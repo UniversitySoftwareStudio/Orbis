@@ -23,7 +23,7 @@ class RAGService:
         Args:
             query: User's search query
             db: Database session
-            limit: Number of results to return
+            limit: Number of results to return 
             
         Returns:
             Tuple of (list of courses with similarity scores, timing dict)
