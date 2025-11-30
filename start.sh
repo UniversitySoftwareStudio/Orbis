@@ -15,16 +15,15 @@ echo ""
 # Start backend
 echo -e "${GREEN}[2/3] Starting API...${NC}"
 cd api
-uvicorn main:app --host 0.0.0.0 --port 8000 --reload &
+./run.sh &
 API_PID=$!
 cd ..
-echo "API running (PID: $API_PID)"
 echo ""
 
 # Start frontend
 echo -e "${GREEN}[3/3] Starting Web...${NC}"
 cd web
-npm run dev &
+./run.sh &
 WEB_PID=$!
 cd ..
 echo "Web running (PID: $WEB_PID)"
