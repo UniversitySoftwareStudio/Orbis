@@ -6,3 +6,8 @@ python-dotenv==1.0.1
 # Database
 psycopg2-binary==2.9.9
 sqlalchemy==2.0.23
+pgvector==0.3.6
+
+# Embeddings (local)
+sentence-transformers==3.3.1
+torch==2.5.1
