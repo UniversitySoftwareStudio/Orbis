@@ -7,6 +7,11 @@ TODO:
 - Add intent detection ot RAG
 - Add github-actions for quality, security, etc...
 
+- Oracle network diagram
+- CI/CD implementation
+- finding password vault for team members for secure access
+
+
 As the complexity increase in the system we will have more control over data which will allow use to execute more comples queries with complex RAG. Let's see where this takes us.
 
 If structure looks complex, we can review it later.
