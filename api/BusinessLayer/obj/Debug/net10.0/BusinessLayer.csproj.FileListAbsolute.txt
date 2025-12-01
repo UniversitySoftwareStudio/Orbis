@@ -1,0 +1,17 @@
+C:\Users\Acer\VSCodeProjects\Orbis\api\BusinessLayer\bin\Debug\net10.0\BusinessLayer.deps.json
+C:\Users\Acer\VSCodeProjects\Orbis\api\BusinessLayer\bin\Debug\net10.0\BusinessLayer.dll
+C:\Users\Acer\VSCodeProjects\Orbis\api\BusinessLayer\bin\Debug\net10.0\BusinessLayer.pdb
+C:\Users\Acer\VSCodeProjects\Orbis\api\BusinessLayer\bin\Debug\net10.0\Common.dll
+C:\Users\Acer\VSCodeProjects\Orbis\api\BusinessLayer\bin\Debug\net10.0\DataAccessLayer.dll
+C:\Users\Acer\VSCodeProjects\Orbis\api\BusinessLayer\bin\Debug\net10.0\DataAccessLayer.pdb
+C:\Users\Acer\VSCodeProjects\Orbis\api\BusinessLayer\bin\Debug\net10.0\Common.pdb
+C:\Users\Acer\VSCodeProjects\Orbis\api\BusinessLayer\obj\Debug\net10.0\BusinessLayer.csproj.AssemblyReference.cache
+C:\Users\Acer\VSCodeProjects\Orbis\api\BusinessLayer\obj\Debug\net10.0\BusinessLayer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Acer\VSCodeProjects\Orbis\api\BusinessLayer\obj\Debug\net10.0\BusinessLayer.AssemblyInfoInputs.cache
+C:\Users\Acer\VSCodeProjects\Orbis\api\BusinessLayer\obj\Debug\net10.0\BusinessLayer.AssemblyInfo.cs
+C:\Users\Acer\VSCodeProjects\Orbis\api\BusinessLayer\obj\Debug\net10.0\BusinessLayer.csproj.CoreCompileInputs.cache
+C:\Users\Acer\VSCodeProjects\Orbis\api\BusinessLayer\obj\Debug\net10.0\Business.EA331CBA.Up2Date
+C:\Users\Acer\VSCodeProjects\Orbis\api\BusinessLayer\obj\Debug\net10.0\BusinessLayer.dll
+C:\Users\Acer\VSCodeProjects\Orbis\api\BusinessLayer\obj\Debug\net10.0\refint\BusinessLayer.dll
+C:\Users\Acer\VSCodeProjects\Orbis\api\BusinessLayer\obj\Debug\net10.0\BusinessLayer.pdb
+C:\Users\Acer\VSCodeProjects\Orbis\api\BusinessLayer\obj\Debug\net10.0\ref\BusinessLayer.dll
