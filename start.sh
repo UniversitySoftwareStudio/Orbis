@@ -1,42 +1,48 @@
 #!/bin/bash
-
-# Colors
-GREEN='\033[0;32m'
-BLUE='\033[0;34m'
-NC='\033[0m' # No Color
-
-echo -e "${BLUE}Starting...${NC}\n"
-
-# Start database
-echo -e "${GREEN}[1/3] Starting PostgreSQL...${NC}"
-docker-compose up -d
+echo "Starting Orbis..."
 echo ""
 
-# Start backend
-echo -e "${GREEN}[2/3] Starting API...${NC}"
-cd api
-./run.sh &
-API_PID=$!
-cd ..
+echo "Step 1: Starting Database..."
+if docker-compose ps | grep -q "Up"; then
+    echo "✓ Database already running"
+else
+    docker-compose up -d
+    echo "✓ Database started"
+fi
 echo ""
 
-# Start frontend
-echo -e "${GREEN}[3/3] Starting Web...${NC}"
-cd web
-./run.sh &
-WEB_PID=$!
-cd ..
-echo "Web running (PID: $WEB_PID)"
+echo "⚙️  Step 2: Starting API..."
+if lsof -i :8000 > /dev/null 2>&1; then
+    echo "✓ API already running on port 8000"
+else
+    cd api
+    ./run.sh &
+    API_PID=$!
+    cd ..
+    echo "✓ API started on port 8000"
+fi
 echo ""
 
-echo -e "${BLUE}✓ All services running!${NC}"
+echo "Step 3: Starting Web..."
+if lsof -i :5173 > /dev/null 2>&1; then
+    echo "✓ Web already running on port 5173"
+else
+    cd web
+    ./run.sh &
+    WEB_PID=$!
+    cd ..
+    echo "✓ Web started on port 5173"
+fi
+echo ""
+
+echo "All services are running!"
 echo ""
 echo "  Web:      http://localhost:5173"
 echo "  API:      http://localhost:8000"
 echo "  Database: localhost:5432"
 echo ""
 echo "Press Ctrl+C to stop all services"
+echo ""
 
-# Wait for Ctrl+C
-trap "kill $API_PID $WEB_PID; docker-compose down; exit" INT
+trap "echo ''; echo 'Stopping services...'; kill $API_PID $WEB_PID 2>/dev/null; docker-compose down; echo 'Done!'; exit" INT
 wait
