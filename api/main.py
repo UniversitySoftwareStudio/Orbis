@@ -5,7 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from routes.search import router as search_router
 from dotenv import load_dotenv
 
-load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), "api.env"))
+load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), ".env"))
 
 app = FastAPI(title="API")
 
