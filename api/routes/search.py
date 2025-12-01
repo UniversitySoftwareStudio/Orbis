@@ -3,6 +3,9 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from database.session import get_db
 from services.rag_service import get_rag_service
+import logging
+
+logger = logging.getLogger(__name__)
 
 router = APIRouter()
 
@@ -30,13 +33,12 @@ async def search_courses(
     search_start = time.perf_counter()
     results, search_timings = rag_service.search_courses(q, db, limit)
     timings["search_total"] = round((time.perf_counter() - search_start) * 1000, 2)
+
+    logger.info("search_timings: %s", timings)
     
     # Merge detailed timings from service
     timings.update(search_timings)
-    
-    # Total time
-    timings["total"] = round((time.perf_counter() - total_start) * 1000, 2)
-    
+
     return {
         "query": q,
         "results": results,
