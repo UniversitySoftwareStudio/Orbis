@@ -1,9 +1,11 @@
 import sys
 from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker
-from database.models import Base
+from sqlalchemy.orm import declarative_base
+#from sqlalchemy.ext.declarative import declarative_base
 import os
 
+Base = declarative_base()
 # Database connection
 DATABASE_URL = os.getenv(
     "DATABASE_URL", "postgresql://user:password@localhost:5432/orbisdb"
@@ -43,7 +45,5 @@ if __name__ == "__main__":
     with engine.connect() as conn:
         conn.execute(text("CREATE EXTENSION IF NOT EXISTS vector"))
         conn.commit()  # Important: Create Extension requires a commit
-    if len(sys.argv) > 1 and sys.argv[1] == "--reset":
-        reset_db()
-    else:
-        init_db()
+
+    init_db()
