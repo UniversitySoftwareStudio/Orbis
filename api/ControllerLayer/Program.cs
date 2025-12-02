@@ -1,5 +1,5 @@
-//using businesslayer
-//using dataaccesslayer
+using BusinessLayer;
+using DataAccessLayer;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,8 +8,8 @@ builder.Services.AddOpenApi();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-//builder.Services.AddDataAccessDependencies(builder.Configuration);
-//builder.Services.AddServiceDependencies(builder.Configuration);
+builder.Services.AddDataAccessDependencies(builder.Configuration);
+builder.Services.AddServiceDependencies(builder.Configuration);
 
 // Add CORS
 builder.Services.AddCors(options =>
@@ -27,7 +27,8 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-app.UseCors("AllowReactApp"); // Use CORS
+// Use CORS
+app.UseCors("AllowReactApp");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment()) {
