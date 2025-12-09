@@ -2,6 +2,7 @@ import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from routes.search import router as search_router
+from routes.regulations import router as regulations_router
 from dotenv import load_dotenv
 
 load_dotenv(".env")
@@ -18,6 +19,8 @@ app.add_middleware(
 
 # Register routes
 app.include_router(search_router, prefix="/api", tags=["search"])
+app.include_router(regulations_router, prefix="/api", tags=["regulations"])
+
 
 
 @app.get("/")

@@ -1,0 +1,211 @@
+{
+  "chunk_size": 100,
+  "total_questions": 10,
+  "correct_retrievals": 4,
+  "accuracy": 0.4,
+  "keyword_matches": 8,
+  "keyword_accuracy": 0.8,
+  "results": [
+    {
+      "question": "Who inspects whether the thesis complies with the form requirements?",
+      "expected_chunk_id": 2544,
+      "retrieved_chunk_ids": [
+        2544,
+        2535,
+        2543
+      ],
+      "found": true,
+      "keywords": [
+        "thesis",
+        "complies",
+        "form requirements"
+      ],
+      "keywords_found": [
+        "thesis",
+        "complies",
+        "form requirements"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What is the purpose of the 'M' grade in the university regulation document?",
+      "expected_chunk_id": 2424,
+      "retrieved_chunk_ids": [
+        2238,
+        2417,
+        2178
+      ],
+      "found": false,
+      "keywords": [
+        "M",
+        "resit exam",
+        "failed"
+      ],
+      "keywords_found": [
+        "M"
+      ],
+      "keyword_match": false
+    },
+    {
+      "question": "Under what conditions can a student obtain a minor program certificate?",
+      "expected_chunk_id": 2295,
+      "retrieved_chunk_ids": [
+        2308,
+        2303,
+        2301
+      ],
+      "found": false,
+      "keywords": [
+        "minor program certificate",
+        "conditions",
+        "completion"
+      ],
+      "keywords_found": [
+        "minor program certificate",
+        "conditions"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What percentage of the tuition fee is the student obliged to pay if the application for enrollment cancellation is made before the student begins his/her education and prior to the semester beginning?",
+      "expected_chunk_id": 2576,
+      "retrieved_chunk_ids": [
+        2577,
+        2353,
+        2578
+      ],
+      "found": false,
+      "keywords": [
+        "tuition fee",
+        "enrollment cancellation",
+        "25%"
+      ],
+      "keywords_found": [
+        "tuition fee",
+        "enrollment cancellation",
+        "25%"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "Who may determine the exam date, hour, and place if the thesis exam date was not determined or the jury did not convene?",
+      "expected_chunk_id": 2457,
+      "retrieved_chunk_ids": [
+        2526,
+        2456,
+        2457
+      ],
+      "found": true,
+      "keywords": [
+        "exam date",
+        "director",
+        "jury"
+      ],
+      "keywords_found": [
+        "exam date",
+        "director",
+        "jury"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What are the principles and procedures governing lateral transfers from other higher education institutions to \u0130stanbul Bilgi University?",
+      "expected_chunk_id": 2230,
+      "retrieved_chunk_ids": [
+        2231,
+        2188,
+        2430
+      ],
+      "found": false,
+      "keywords": [
+        "lateral transfers",
+        "higher education institutions",
+        "\u0130stanbul Bilgi University"
+      ],
+      "keywords_found": [
+        "higher education institutions",
+        "\u0130stanbul Bilgi University"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What percentage of the enrolled program's tuition fee do students pay for the semesters in which they complete their financial enrollment?",
+      "expected_chunk_id": 2358,
+      "retrieved_chunk_ids": [
+        2577,
+        2353,
+        2571
+      ],
+      "found": false,
+      "keywords": [
+        "students",
+        "25%",
+        "tuition fee"
+      ],
+      "keywords_found": [
+        "25%",
+        "tuition fee"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "By the end of which semester at the latest should the program director propose a thesis advisor for the student?",
+      "expected_chunk_id": 2497,
+      "retrieved_chunk_ids": [
+        2513,
+        2448,
+        2499
+      ],
+      "found": false,
+      "keywords": [
+        "second semester",
+        "thesis advisor",
+        "student's term of study"
+      ],
+      "keywords_found": [
+        "thesis advisor"
+      ],
+      "keyword_match": false
+    },
+    {
+      "question": "Who is responsible for assessing the project, final project report, and assessment report?",
+      "expected_chunk_id": 2482,
+      "retrieved_chunk_ids": [
+        2480,
+        2482,
+        2481
+      ],
+      "found": true,
+      "keywords": [
+        "arbitrator",
+        "project",
+        "assessment"
+      ],
+      "keywords_found": [
+        "project",
+        "assessment"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What action must be taken if a student is found cheating in an exam or plagiarizing in an assignment?",
+      "expected_chunk_id": 2546,
+      "retrieved_chunk_ids": [
+        2170,
+        2546,
+        2169
+      ],
+      "found": true,
+      "keywords": [
+        "cheating",
+        "plagiarism",
+        "notify"
+      ],
+      "keywords_found": [
+        "cheating",
+        "plagiarism"
+      ],
+      "keyword_match": true
+    }
+  ]
+}
