@@ -1,0 +1,203 @@
+{
+  "chunk_size": 150,
+  "total_questions": 10,
+  "correct_retrievals": 6,
+  "accuracy": 0.6,
+  "keyword_matches": 5,
+  "keyword_accuracy": 0.5,
+  "results": [
+    {
+      "question": "According to the regulation document, what GPA is required for students to continue the minor program?",
+      "expected_chunk_id": 2709,
+      "retrieved_chunk_ids": [
+        2710,
+        2706,
+        2707
+      ],
+      "found": false,
+      "keywords": [
+        "minor program",
+        "minimum GPA",
+        "2.40"
+      ],
+      "keywords_found": [
+        "minor program",
+        "minimum GPA"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What requirements must double major students fulfill in order to receive a separate undergraduate diploma in both majors?",
+      "expected_chunk_id": 2693,
+      "retrieved_chunk_ids": [
+        2682,
+        2693,
+        2684
+      ],
+      "found": true,
+      "keywords": [
+        "double major students",
+        "undergraduate diploma",
+        "successfully pass"
+      ],
+      "keywords_found": [],
+      "keyword_match": false
+    },
+    {
+      "question": "What type of degree diploma will students receive after completing a two-year program at \u0130stanbul Bilgi University?",
+      "expected_chunk_id": 2663,
+      "retrieved_chunk_ids": [
+        2646,
+        2796,
+        2880
+      ],
+      "found": false,
+      "keywords": [
+        "two-year program",
+        "\u0130stanbul Bilgi University",
+        "degree diploma"
+      ],
+      "keywords_found": [
+        "\u0130stanbul Bilgi University"
+      ],
+      "keyword_match": false
+    },
+    {
+      "question": "According to the regulation document, who assesses the excuses related to final exams?",
+      "expected_chunk_id": 2651,
+      "retrieved_chunk_ids": [
+        2651,
+        2650,
+        2713
+      ],
+      "found": true,
+      "keywords": [
+        "faculty members",
+        "final exams",
+        "excuses"
+      ],
+      "keywords_found": [
+        "faculty members",
+        "final exams",
+        "excuses"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What does the university regulation document specify regarding additional examinations for students who fail to achieve the required GPA sought for graduation?",
+      "expected_chunk_id": 2712,
+      "retrieved_chunk_ids": [
+        2712,
+        2698,
+        2878
+      ],
+      "found": true,
+      "keywords": [
+        "additional examinations",
+        "required GPA",
+        "graduation"
+      ],
+      "keywords_found": [
+        "additional examinations",
+        "required GPA",
+        "graduation"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What is the consequence if a student fails to make a project presentation on the determined date?",
+      "expected_chunk_id": 2826,
+      "retrieved_chunk_ids": [
+        2823,
+        2826,
+        2858
+      ],
+      "found": true,
+      "keywords": [
+        "project presentation",
+        "deemed failed"
+      ],
+      "keywords_found": [],
+      "keyword_match": false
+    },
+    {
+      "question": "According to the university regulation document, what financial obligation do students have if they exceed the durations stipulated in clause (a)?",
+      "expected_chunk_id": 2894,
+      "retrieved_chunk_ids": [
+        2893,
+        2894,
+        2672
+      ],
+      "found": true,
+      "keywords": [
+        "tuition fee",
+        "Board of Trustees",
+        "scholarship"
+      ],
+      "keywords_found": [
+        "tuition fee",
+        "Board of Trustees",
+        "scholarship"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "When is the graduation date considered for a thesis to be made available for scientific researches and activities?",
+      "expected_chunk_id": 2815,
+      "retrieved_chunk_ids": [
+        2846,
+        2859,
+        2815
+      ],
+      "found": true,
+      "keywords": [
+        "graduation date",
+        "exam jury commission",
+        "thesis"
+      ],
+      "keywords_found": [
+        "thesis"
+      ],
+      "keyword_match": false
+    },
+    {
+      "question": "What conditions must graduate students meet in order to be given the right to take an additional exam?",
+      "expected_chunk_id": 2877,
+      "retrieved_chunk_ids": [
+        2698,
+        2712,
+        2878
+      ],
+      "found": false,
+      "keywords": [
+        "additional exam",
+        "GPA",
+        "graduate programs"
+      ],
+      "keywords_found": [
+        "additional exam",
+        "GPA"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What GPA is required for students to be entitled to take the thesis exam?",
+      "expected_chunk_id": 2805,
+      "retrieved_chunk_ids": [
+        2844,
+        2878,
+        2835
+      ],
+      "found": false,
+      "keywords": [
+        "GPA",
+        "entitled",
+        "thesis exam"
+      ],
+      "keywords_found": [
+        "thesis exam"
+      ],
+      "keyword_match": false
+    }
+  ]
+}

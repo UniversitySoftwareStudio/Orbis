@@ -1,10 +1,16 @@
-TODO: 
+## Completed
 
+- University rules modeling
+- Chunk quality experimentation (100w vs 150w)
+
+## TODO
+
+- Factuality check experimentation (course recommendation hallucination detection)
 - Understanding how to implement singleton pattern (model should be init once only)
 - Understanding how to develop db structure strategy (embeddings + schemas)
 - Understanding RAG to complex RAG need (Why we need it and etc...)
 
-- Add intent detection ot RAG
+- Add intent detection to RAG
 - Add github-actions for quality, security, etc...
 
 - Oracle network diagram

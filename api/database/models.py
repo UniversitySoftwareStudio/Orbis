@@ -31,3 +31,49 @@ class CourseContent(Base):
     topic = Column(Text, nullable=False)
     
     course = relationship("Course", back_populates="content")
+
+
+class UniversityDocument(Base):
+    """
+    Represents a raw, unchunked document scraped from a university resource.
+    This serves as the 'Ground Truth' corpus for chunking experiments.
+    """
+    __tablename__ = "university_documents"
+    
+    id = Column(Integer, primary_key=True)
+    source_url = Column(String(500), unique=True, nullable=False)
+    title = Column(String(255), nullable=False)
+    
+    # The full, raw text content (potentially 20+ pages)
+    # We store this intact to allow for different chunking strategies later
+    raw_content = Column(Text, nullable=False)
+    
+    # High-level metadata describing the document's purpose
+    summary = Column(Text)   # "What is it all about"
+    keywords = Column(Text)  # Searchable tags
+    
+    # 2. Summary Embedding: Best for "Where are the rules about probation?"
+    keyword_embedding = Column(Vector(EMBEDDING_DIM))
+    
+    chunks = relationship("DocumentChunk", back_populates="document")
+
+
+class DocumentChunk(Base):
+    """
+    Represents a specific section of a UniversityDocument.
+    Used for fine-grained retrieval.
+    """
+    __tablename__ = "document_chunks"
+    
+    id = Column(Integer, primary_key=True)
+    document_id = Column(Integer, ForeignKey("university_documents.id"), nullable=False)
+    
+    chunk_index = Column(Integer, nullable=False)  # Order within document
+    content = Column(Text, nullable=False)         # The actual text of the chunk
+    embedding = Column(Vector(EMBEDDING_DIM))      # Vector representation of this chunk
+    
+    document = relationship("UniversityDocument", back_populates="chunks")
+
+
+
+
