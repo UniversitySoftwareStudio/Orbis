@@ -1,4 +1,5 @@
 services:
+  #Our postgres database with pgvector extension for vector embeddings
   postgres:
     image: pgvector/pgvector:pg18-trixie
     container_name: orbisdb
@@ -12,6 +13,7 @@ services:
       - postgres_data:/var/lib/postgresql
     restart: unless-stopped
 
+  # Existing TEI (Text Embeddings Inference) service via MiniLM-L6-v2 (Option A)
   embeddings:
     image: ghcr.io/huggingface/text-embeddings-inference:cpu-latest
     container_name: embeddings
@@ -19,6 +21,17 @@ services:
     ports:
       - "7860:80"
     restart: unless-stopped
+  
+  # New Ollama service (Option B)
+  ollama:
+    image: ollama/ollama:latest
+    container_name: orbis_ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    restart: unless-stopped
 
 volumes:
   postgres_data:
+  ollama_data:

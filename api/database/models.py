@@ -1,12 +1,13 @@
+import os
 from sqlalchemy import Column, Integer, String, Text, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from pgvector.sqlalchemy import Vector
 
 Base = declarative_base()
-# Default dimension for all-MiniLM-L6-v2 model
-# If you change the model, update this value accordingly
-EMBEDDING_DIM = 384
+# Read dimension from ENV, defaulting to 384 (MiniLM)
+# If you switch models in .env, you must also update this or reset your DB!
+EMBEDDING_DIM = int(os.getenv("EMBEDDING_DIM", "384"))
 
 
 class Course(Base):
