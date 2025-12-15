@@ -50,9 +50,17 @@ class BaseExperiment(ABC):
         all_chunks = self.db.query(DocumentChunk).all()
         return random.sample(all_chunks, min(n, len(all_chunks)))
         
-    def save_json(self, data: Dict, filename: str):
-        """Save data to JSON file."""
+    def save_json(self, data, filename: str):
+        """Save data to JSON file, extending if exists."""
         filepath = self.output_dir / filename
+        
+        if filepath.exists():
+            with open(filepath, "r") as f:
+                existing = json.load(f)
+            if isinstance(existing, list) and isinstance(data, list):
+                existing.extend(data)
+                data = existing
+        
         with open(filepath, "w") as f:
             json.dump(data, f, indent=2)
         print(f"Saved to {filepath}")
