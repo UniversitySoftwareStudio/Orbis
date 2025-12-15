@@ -34,7 +34,9 @@ FLOW:
 """
 
 import sys
+import json as json_lib
 from pathlib import Path
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 sys.path.append(str(Path(__file__).parent.parent))
 
@@ -52,9 +54,10 @@ class ChunkingQualityExperiment(BaseExperiment):
     def __init__(self):
         db = SessionLocal()
         super().__init__(db, experiment_name="chunking_quality")
-        self.chunk_sizes = [100, 150]  # Capped at 150 to avoid 413 errors
-        self.overlap_ratio = 0.1  # 10% overlap
-        self.ground_truth_samples = 10  # Generate 10 Q&A pairs per chunk size
+        self.chunk_sizes = [100, 150]
+        self.overlap_ratio = 0.1
+        self.ground_truth_samples = 1000
+        self.max_workers = 10  # Parallel threads
 
     def run(self):
         """Run the complete experiment."""
@@ -77,11 +80,9 @@ class ChunkingQualityExperiment(BaseExperiment):
 
             # Step 3: Sample random chunks
             sampled_chunks = self.sample_chunks(n=self.ground_truth_samples)
-            print(
-                f"📋 Sampled {len(sampled_chunks)} chunks for ground truth generation"
-            )
+            print(f"📋 Sampled {len(sampled_chunks)} chunks for ground truth generation")
 
-            # Step 4: Generate ground truths using AI
+            # Step 4: Generate ground truths using AI (parallel)
             ground_truths = self._generate_ground_truths(sampled_chunks)
             print(f"✅ Generated {len(ground_truths)} ground truth Q&A pairs")
 
@@ -98,16 +99,9 @@ class ChunkingQualityExperiment(BaseExperiment):
         print("Experiment Complete!")
         print("=" * 60)
 
-    def _generate_ground_truths(self, chunks):
-        """Generate ground truth Q&A pairs using AI with keywords."""
-        import json as json_lib
-
-        ground_truths = []
-
-        for i, chunk in enumerate(chunks):
-            print(f"Generating ground truth {i+1}/{len(chunks)}...")
-
-            prompt = f"""Based on this text chunk from a university regulation document:
+    def _generate_single_ground_truth(self, chunk):
+        """Generate a single ground truth Q&A pair."""
+        prompt = f"""Based on this text chunk from a university regulation document:
 
 "{chunk.content}"
 
@@ -117,28 +111,50 @@ Also extract 2-3 critical keywords from the chunk that MUST appear in a correct 
 Return ONLY a JSON object with this format:
 {{"question": "your question here", "expected_answer": "the answer from the chunk", "keywords": ["keyword1", "keyword2", "keyword3"]}}"""
 
-            try:
-                response = ""
-                for token in self.llm_service.generate(prompt):
-                    response += token
+        try:
+            response = ""
+            for token in self.llm_service.generate(prompt):
+                response += token
 
-                qa_pair = json_lib.loads(response.strip())
+            qa_pair = json_lib.loads(response.strip())
 
-                ground_truths.append(
-                    {
-                        "chunk_id": chunk.id,
-                        "chunk_content": chunk.content,
-                        "document_title": chunk.document.title,
-                        "question": qa_pair["question"],
-                        "expected_answer": qa_pair["expected_answer"],
-                        "keywords": qa_pair["keywords"],
-                    }
-                )
+            return {
+                "chunk_id": chunk.id,
+                "chunk_content": chunk.content,
+                "document_title": chunk.document.title,
+                "question": qa_pair["question"],
+                "expected_answer": qa_pair["expected_answer"],
+                "keywords": qa_pair["keywords"],
+            }
+        except Exception:
+            return None
 
-            except Exception as e:
-                print(f"⚠️  Failed to generate ground truth for chunk {chunk.id}: {e}")
-                continue
+    def _generate_ground_truths(self, chunks):
+        """Generate ground truth Q&A pairs using AI with keywords (parallel)."""
+        ground_truths = []
+        failed = 0
+        total = len(chunks)
 
+        print(f"🚀 Generating ground truths with {self.max_workers} parallel workers...")
+
+        with ThreadPoolExecutor(max_workers=self.max_workers) as executor:
+            futures = {
+                executor.submit(self._generate_single_ground_truth, chunk): i 
+                for i, chunk in enumerate(chunks)
+            }
+
+            for future in as_completed(futures):
+                result = future.result()
+                if result:
+                    ground_truths.append(result)
+                else:
+                    failed += 1
+
+                done = len(ground_truths) + failed
+                if done % 50 == 0 or done == total:
+                    print(f"   Progress: {done}/{total} | ✅ {len(ground_truths)} | ❌ {failed}")
+
+        print(f"   Completed: ✅ {len(ground_truths)} | ❌ {failed}")
         return ground_truths
 
     def _test_retrieval_quality(self, ground_truths, chunk_size):
@@ -150,6 +166,7 @@ Return ONLY a JSON object with this format:
         results = []
         correct_count = 0
         keyword_match_count = 0
+        reciprocal_ranks = []
 
         print(f"\n🔍 Testing retrieval for {len(ground_truths)} questions...")
 
@@ -173,6 +190,13 @@ Return ONLY a JSON object with this format:
             retrieved_ids = [c.id for c in retrieved_chunk_data]
             found = expected_chunk_id in retrieved_ids
 
+            # Calculate reciprocal rank
+            if expected_chunk_id in retrieved_ids:
+                rank = retrieved_ids.index(expected_chunk_id) + 1
+                reciprocal_ranks.append(1 / rank)
+            else:
+                reciprocal_ranks.append(0)
+
             # Check if top retrieved chunk contains keywords
             keywords_found = []
             if retrieved_chunk_data and keywords:
@@ -194,6 +218,7 @@ Return ONLY a JSON object with this format:
                     "expected_chunk_id": expected_chunk_id,
                     "retrieved_chunk_ids": retrieved_ids,
                     "found": found,
+                    "rank": retrieved_ids.index(expected_chunk_id) + 1 if found else None,
                     "keywords": keywords,
                     "keywords_found": keywords_found,
                     "keyword_match": keyword_match,
@@ -202,31 +227,28 @@ Return ONLY a JSON object with this format:
 
             status = "✅" if found else "❌"
             kw_status = f"🔑 {len(keywords_found)}/{len(keywords)}" if keywords else ""
-            print(
-                f"   [{i+1}/{len(ground_truths)}] {status} Found: {found} {kw_status}"
-            )
+            print(f"   [{i+1}/{len(ground_truths)}] {status} Found: {found} {kw_status}")
 
         accuracy = correct_count / len(ground_truths) if ground_truths else 0
         keyword_accuracy = (
             keyword_match_count / len(ground_truths) if ground_truths else 0
         )
+        mrr = sum(reciprocal_ranks) / len(reciprocal_ranks) if reciprocal_ranks else 0
 
         report = {
             "chunk_size": chunk_size,
             "total_questions": len(ground_truths),
             "correct_retrievals": correct_count,
             "accuracy": accuracy,
+            "mrr": mrr,
             "keyword_matches": keyword_match_count,
             "keyword_accuracy": keyword_accuracy,
             "results": results,
         }
 
-        print(
-            f"\nChunk Accuracy: {accuracy * 100:.1f}% ({correct_count}/{len(ground_truths)})"
-        )
-        print(
-            f"Keyword Accuracy: {keyword_accuracy * 100:.1f}% ({keyword_match_count}/{len(ground_truths)})"
-        )
+        print(f"\nRecall@3: {accuracy * 100:.1f}% ({correct_count}/{len(ground_truths)})")
+        print(f"MRR: {mrr:.3f}")
+        print(f"Keyword Accuracy: {keyword_accuracy * 100:.1f}% ({keyword_match_count}/{len(ground_truths)})")
 
         return report
 

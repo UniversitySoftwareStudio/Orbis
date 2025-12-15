@@ -1,174 +1,1551 @@
 {
   "chunk_size": 150,
-  "total_questions": 10,
-  "correct_retrievals": 6,
-  "accuracy": 0.6,
-  "keyword_matches": 5,
-  "keyword_accuracy": 0.5,
+  "total_questions": 306,
+  "correct_retrievals": 207,
+  "accuracy": 0.6764705882352942,
+  "mrr": 0.5473856209150327,
+  "keyword_matches": 232,
+  "keyword_accuracy": 0.7581699346405228,
   "results": [
     {
-      "question": "According to the regulation document, what GPA is required for students to continue the minor program?",
-      "expected_chunk_id": 2709,
+      "question": "Can students who disenroll from the secondary major program study double major in another program?",
+      "expected_chunk_id": 4683,
       "retrieved_chunk_ids": [
-        2710,
-        2706,
-        2707
+        4666,
+        4683,
+        4662
+      ],
+      "found": true,
+      "rank": 2,
+      "keywords": [
+        "disenroll",
+        "secondary major",
+        "study"
+      ],
+      "keywords_found": [
+        "secondary major"
+      ],
+      "keyword_match": false
+    },
+    {
+      "question": "What GPA is required for students to continue the minor program?",
+      "expected_chunk_id": 4693,
+      "retrieved_chunk_ids": [
+        4690,
+        4694,
+        4691
       ],
       "found": false,
+      "rank": null,
       "keywords": [
+        "GPA",
         "minor program",
-        "minimum GPA",
         "2.40"
       ],
       "keywords_found": [
-        "minor program",
-        "minimum GPA"
+        "GPA",
+        "minor program"
       ],
       "keyword_match": true
     },
     {
-      "question": "What requirements must double major students fulfill in order to receive a separate undergraduate diploma in both majors?",
-      "expected_chunk_id": 2693,
+      "question": "How many credits may students who have not met graduation criteria for the secondary major be allowed to take upon decision of the board of directors?",
+      "expected_chunk_id": 4668,
       "retrieved_chunk_ids": [
-        2682,
-        2693,
-        2684
-      ],
-      "found": true,
-      "keywords": [
-        "double major students",
-        "undergraduate diploma",
-        "successfully pass"
-      ],
-      "keywords_found": [],
-      "keyword_match": false
-    },
-    {
-      "question": "What type of degree diploma will students receive after completing a two-year program at \u0130stanbul Bilgi University?",
-      "expected_chunk_id": 2663,
-      "retrieved_chunk_ids": [
-        2646,
-        2796,
-        2880
+        4783,
+        4801,
+        4815
       ],
       "found": false,
+      "rank": null,
       "keywords": [
-        "two-year program",
-        "\u0130stanbul Bilgi University",
-        "degree diploma"
+        "credits",
+        "secondary major",
+        "board of directors"
       ],
       "keywords_found": [
+        "credits",
+        "board of directors"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What exam are students subjected to in the English Language Preparatory Program?",
+      "expected_chunk_id": 4589,
+      "retrieved_chunk_ids": [
+        4590,
+        4756,
+        4589
+      ],
+      "found": true,
+      "rank": 3,
+      "keywords": [
+        "English",
+        "proficiency",
+        "exam"
+      ],
+      "keywords_found": [
+        "English",
+        "proficiency",
+        "exam"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What is the purpose of the Regulation according to the \u0130stanbul Bilgi University Graduate Education and Training Regulations?",
+      "expected_chunk_id": 4736,
+      "retrieved_chunk_ids": [
+        4736,
+        4574,
+        4737
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "Regulation",
+        "graduate education and training activities",
         "\u0130stanbul Bilgi University"
       ],
-      "keyword_match": false
-    },
-    {
-      "question": "According to the regulation document, who assesses the excuses related to final exams?",
-      "expected_chunk_id": 2651,
-      "retrieved_chunk_ids": [
-        2651,
-        2650,
-        2713
-      ],
-      "found": true,
-      "keywords": [
-        "faculty members",
-        "final exams",
-        "excuses"
-      ],
       "keywords_found": [
-        "faculty members",
-        "final exams",
-        "excuses"
+        "Regulation",
+        "graduate education and training activities",
+        "\u0130stanbul Bilgi University"
       ],
       "keyword_match": true
     },
     {
-      "question": "What does the university regulation document specify regarding additional examinations for students who fail to achieve the required GPA sought for graduation?",
-      "expected_chunk_id": 2712,
+      "question": "What must students include when delivering their theses to the institute?",
+      "expected_chunk_id": 4789,
       "retrieved_chunk_ids": [
-        2712,
-        2698,
-        2878
+        4810,
+        4764,
+        4758
       ],
-      "found": true,
+      "found": false,
+      "rank": null,
       "keywords": [
-        "additional examinations",
-        "required GPA",
-        "graduation"
+        "deliver",
+        "theses",
+        "institute"
       ],
       "keywords_found": [
-        "additional examinations",
-        "required GPA",
-        "graduation"
+        "deliver",
+        "institute"
       ],
       "keyword_match": true
     },
     {
-      "question": "What is the consequence if a student fails to make a project presentation on the determined date?",
-      "expected_chunk_id": 2826,
+      "question": "Can courses taken as free electives be counted for the elective course liability of the program of registration if the student is not admitted to the double major or minor program or lateral transfer within the University?",
+      "expected_chunk_id": 4598,
       "retrieved_chunk_ids": [
-        2823,
-        2826,
-        2858
+        4598,
+        4670,
+        4599
       ],
       "found": true,
+      "rank": 1,
       "keywords": [
-        "project presentation",
-        "deemed failed"
+        "free electives",
+        "elective course liability",
+        "program of registration"
+      ],
+      "keywords_found": [
+        "free electives",
+        "elective course liability",
+        "program of registration"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What must double major students do in order to graduate from the secondary major program?",
+      "expected_chunk_id": 4677,
+      "retrieved_chunk_ids": [
+        4666,
+        4668,
+        4661
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "double major",
+        "graduate",
+        "secondary major"
+      ],
+      "keywords_found": [
+        "double major",
+        "secondary major"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What is the maximum percentage of total credit burden that students can exceed without having to pay an additional tuition credit fee?",
+      "expected_chunk_id": 4729,
+      "retrieved_chunk_ids": [
+        4730,
+        4597,
+        4729
+      ],
+      "found": true,
+      "rank": 3,
+      "keywords": [
+        "total credit burden",
+        "twenty percent",
+        "additional tuition credit fee"
       ],
       "keywords_found": [],
       "keyword_match": false
     },
     {
-      "question": "According to the university regulation document, what financial obligation do students have if they exceed the durations stipulated in clause (a)?",
-      "expected_chunk_id": 2894,
+      "question": "What does the Academic Advisor need to announce at the beginning of the semester?",
+      "expected_chunk_id": 4710,
       "retrieved_chunk_ids": [
-        2893,
-        2894,
-        2672
+        4710,
+        4593,
+        4713
       ],
       "found": true,
+      "rank": 1,
       "keywords": [
-        "tuition fee",
-        "Board of Trustees",
-        "scholarship"
+        "Advisor",
+        "office hours",
+        "semester"
       ],
       "keywords_found": [
-        "tuition fee",
-        "Board of Trustees",
-        "scholarship"
+        "Advisor",
+        "office hours",
+        "semester"
       ],
       "keyword_match": true
     },
     {
-      "question": "When is the graduation date considered for a thesis to be made available for scientific researches and activities?",
-      "expected_chunk_id": 2815,
+      "question": "What conditions must students meet in order to be granted an additional examination for their primary major?",
+      "expected_chunk_id": 4681,
       "retrieved_chunk_ids": [
-        2846,
-        2859,
-        2815
+        4682,
+        4696,
+        4680
       ],
-      "found": true,
+      "found": false,
+      "rank": null,
       "keywords": [
-        "graduation date",
-        "exam jury commission",
-        "thesis"
+        "conditions",
+        "second paragraph",
+        "Article 27"
+      ],
+      "keywords_found": [],
+      "keyword_match": false
+    },
+    {
+      "question": "How many double major programs may a student enroll in simultaneously according to the university regulations?",
+      "expected_chunk_id": 4669,
+      "retrieved_chunk_ids": [
+        4666,
+        4661,
+        4687
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "double major",
+        "enroll",
+        "simultaneously"
       ],
       "keywords_found": [
-        "thesis"
+        "double major",
+        "enroll",
+        "simultaneously"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What determines the proficiency requirement for foreign languages in certain programs?",
+      "expected_chunk_id": 4748,
+      "retrieved_chunk_ids": [
+        4748,
+        4747,
+        4749
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "Academic Committee",
+        "proficiency requirement",
+        "foreign languages"
+      ],
+      "keywords_found": [
+        "Academic Committee",
+        "proficiency requirement"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What are the conditions for students who fail to increase their overall grade point average to 2.00 or above?",
+      "expected_chunk_id": 4646,
+      "retrieved_chunk_ids": [
+        4628,
+        4646,
+        4626
+      ],
+      "found": true,
+      "rank": 2,
+      "keywords": [
+        "students",
+        "overall grade point average",
+        "2.00"
+      ],
+      "keywords_found": [
+        "students",
+        "overall grade point average",
+        "2.00"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "When will the doctoral qualifying examination dates be announced?",
+      "expected_chunk_id": 4824,
+      "retrieved_chunk_ids": [
+        4824,
+        4822,
+        4823
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "qualifying examinations",
+        "announced",
+        "one week before"
+      ],
+      "keywords_found": [
+        "qualifying examinations",
+        "announced",
+        "one week before"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "At what point in the program are students obliged to take the doctoral qualifying examination?",
+      "expected_chunk_id": 4822,
+      "retrieved_chunk_ids": [
+        4822,
+        4824,
+        4823
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "doctoral qualifying examination",
+        "obliged",
+        "fifth",
+        "seventh"
+      ],
+      "keywords_found": [
+        "doctoral qualifying examination",
+        "obliged",
+        "fifth",
+        "seventh"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What is the minimum number of credits required for graduation from the secondary major for students admitted for a double major or minor program in 2010-2014 Academic Years?",
+      "expected_chunk_id": 4707,
+      "retrieved_chunk_ids": [
+        4667,
+        4668,
+        4679
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "minimum number of credits",
+        "graduation",
+        "double major or minor program"
+      ],
+      "keywords_found": [
+        "graduation"
       ],
       "keyword_match": false
     },
     {
-      "question": "What conditions must graduate students meet in order to be given the right to take an additional exam?",
-      "expected_chunk_id": 2877,
+      "question": "What is the consequence for students whose GPA for the primary or secondary major falls below 2.00 in the double major program?",
+      "expected_chunk_id": 4674,
       "retrieved_chunk_ids": [
-        2698,
-        2712,
-        2878
+        4671,
+        4679,
+        4666
       ],
       "found": false,
+      "rank": null,
+      "keywords": [
+        "students",
+        "GPA",
+        "double major program"
+      ],
+      "keywords_found": [
+        "students",
+        "GPA",
+        "double major program"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "How are Semester Grade Point Averages (SGPA) and Overall Grade Point Averages (OGPA) calculated according to the university regulation document?",
+      "expected_chunk_id": 4621,
+      "retrieved_chunk_ids": [
+        4621,
+        4779,
+        4778
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "Semester Grade Point Averages",
+        "Overall Grade Point Averages",
+        "calculated"
+      ],
+      "keywords_found": [
+        "calculated"
+      ],
+      "keyword_match": false
+    },
+    {
+      "question": "Can students enroll in both a double major and minor program under the same degree program?",
+      "expected_chunk_id": 4666,
+      "retrieved_chunk_ids": [
+        4666,
+        4687,
+        4661
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "enroll",
+        "double major",
+        "minor"
+      ],
+      "keywords_found": [
+        "enroll",
+        "double major",
+        "minor"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "When are students given a copy of the Procedures and Principles document in a graduate program enrollment?",
+      "expected_chunk_id": 4876,
+      "retrieved_chunk_ids": [
+        4876,
+        4849,
+        4797
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "students",
+        "Procedures and Principles",
+        "enrollment"
+      ],
+      "keywords_found": [
+        "students",
+        "Procedures and Principles",
+        "enrollment"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What is the program where the student is enrolled at the time of application referred to as?",
+      "expected_chunk_id": 4660,
+      "retrieved_chunk_ids": [
+        4757,
+        4662,
+        4758
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "enrolled",
+        "time of application",
+        "primary major"
+      ],
+      "keywords_found": [],
+      "keyword_match": false
+    },
+    {
+      "question": "What is required for candidates applying for graduate programs conducted in Turkish?",
+      "expected_chunk_id": 4747,
+      "retrieved_chunk_ids": [
+        4747,
+        4751,
+        4740
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "candidates",
+        "apply",
+        "graduate programs",
+        "Turkish",
+        "foreign language score",
+        "Academic Committee"
+      ],
+      "keywords_found": [
+        "candidates",
+        "apply",
+        "graduate programs",
+        "Turkish",
+        "foreign language score",
+        "Academic Committee"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "Starting from which year does this Regulation apply?",
+      "expected_chunk_id": 4704,
+      "retrieved_chunk_ids": [
+        4656,
+        4653,
+        4650
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "Regulation",
+        "apply",
+        "2002-2003 Academic Year"
+      ],
+      "keywords_found": [
+        "Regulation"
+      ],
+      "keyword_match": false
+    },
+    {
+      "question": "What is the maximum term for completion of a doctoral program for students admitted with an undergraduate degree?",
+      "expected_chunk_id": 4821,
+      "retrieved_chunk_ids": [
+        4821,
+        4856,
+        4855
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "maximum term",
+        "doctoral program",
+        "undergraduate degree"
+      ],
+      "keywords_found": [
+        "maximum term",
+        "doctoral program",
+        "undergraduate degree"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "Under what circumstances can a student have the courses they completed in a minor program counted for their major program?",
+      "expected_chunk_id": 4698,
+      "retrieved_chunk_ids": [
+        4694,
+        4691,
+        4689
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "disenroll",
+        "minor program",
+        "major program"
+      ],
+      "keywords_found": [
+        "minor program",
+        "major program"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What does 'Program additional tuition fee' refer to?",
+      "expected_chunk_id": 4868,
+      "retrieved_chunk_ids": [
+        4878,
+        4877,
+        4729
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "Program additional tuition fee"
+      ],
+      "keywords_found": [],
+      "keyword_match": false
+    },
+    {
+      "question": "What determines the tuition fee to be paid by special students and equivalency students?",
+      "expected_chunk_id": 4583,
+      "retrieved_chunk_ids": [
+        4730,
+        4873,
+        4878
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "tuition fee",
+        "special students",
+        "equivalency students"
+      ],
+      "keywords_found": [
+        "tuition fee"
+      ],
+      "keyword_match": false
+    },
+    {
+      "question": "What provisions apply to the internal transfer of double major students to the secondary major program they study?",
+      "expected_chunk_id": 4686,
+      "retrieved_chunk_ids": [
+        4686,
+        4666,
+        4680
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "provisions",
+        "internal transfer",
+        "double major"
+      ],
+      "keywords_found": [
+        "provisions",
+        "internal transfer",
+        "double major"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "How long is the time frame to file an objection against decisions related to excuse applications?",
+      "expected_chunk_id": 4638,
+      "retrieved_chunk_ids": [
+        4638,
+        4635,
+        4634
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "objection",
+        "excuse applications",
+        "three days"
+      ],
+      "keywords_found": [
+        "objection",
+        "excuse applications",
+        "three days"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What is the minimum advance notice required for changes to the thesis exam hour, date, and place?",
+      "expected_chunk_id": 4838,
+      "retrieved_chunk_ids": [
+        4838,
+        4792,
+        4839
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "notify",
+        "institute",
+        "ten days"
+      ],
+      "keywords_found": [
+        "notify",
+        "institute",
+        "ten days"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "When can students apply for a minor program at the university?",
+      "expected_chunk_id": 4690,
+      "retrieved_chunk_ids": [
+        4690,
+        4691,
+        4694
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "apply",
+        "minor program",
+        "third semester",
+        "sixth semester"
+      ],
+      "keywords_found": [
+        "apply",
+        "minor program",
+        "sixth semester"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "According to the university regulation document, will there be a discount/refund in tuition fees if the education is performed partially or completely online?",
+      "expected_chunk_id": 4726,
+      "retrieved_chunk_ids": [
+        4726,
+        4877,
+        4873
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "discount/refund",
+        "tuition fees",
+        "online"
+      ],
+      "keywords_found": [
+        "discount/refund",
+        "tuition fees",
+        "online"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "Under what conditions can students from a graduate program without thesis be transferred to the university's graduate programs with thesis?",
+      "expected_chunk_id": 4859,
+      "retrieved_chunk_ids": [
+        4857,
+        4859,
+        4856
+      ],
+      "found": true,
+      "rank": 2,
+      "keywords": [
+        "graduate program without thesis",
+        "transferred",
+        "AKTS credits"
+      ],
+      "keywords_found": [
+        "graduate program without thesis",
+        "transferred",
+        "AKTS credits"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What is the time frame a student has to file an application for withdrawing their disenrollment application?",
+      "expected_chunk_id": 4848,
+      "retrieved_chunk_ids": [
+        4848,
+        4718,
+        4642
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "withdraw",
+        "disenrollment application",
+        "sixty days"
+      ],
+      "keywords_found": [
+        "withdraw",
+        "disenrollment application",
+        "sixty days"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "Which Higher Education Law does this Regulation at \u0130stanbul Bilgi University operate under?",
+      "expected_chunk_id": 4574,
+      "retrieved_chunk_ids": [
+        4736,
+        4643,
+        4744
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "Higher Education Law",
+        "Regulation",
+        "\u0130stanbul Bilgi University"
+      ],
+      "keywords_found": [
+        "Regulation",
+        "\u0130stanbul Bilgi University"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What is the minimum number of printed copies of the thesis that must be delivered to the institute?",
+      "expected_chunk_id": 4790,
+      "retrieved_chunk_ids": [
+        4797,
+        4844,
+        4810
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "printed copies",
+        "institute board of directors",
+        "not less than one"
+      ],
+      "keywords_found": [
+        "institute board of directors"
+      ],
+      "keyword_match": false
+    },
+    {
+      "question": "How are courses from the existing program recognized and exemptions granted in the graduate program without thesis?",
+      "expected_chunk_id": 4860,
+      "retrieved_chunk_ids": [
+        4860,
+        4799,
+        4783
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "courses",
+        "recognized",
+        "exemption"
+      ],
+      "keywords_found": [
+        "courses",
+        "recognized",
+        "exemption"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What is the maximum term of study for a graduate program with thesis, excluding the term spent in scientific preparatory program?",
+      "expected_chunk_id": 4785,
+      "retrieved_chunk_ids": [
+        4804,
+        4860,
+        4858
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "maximum",
+        "term of study",
+        "graduate program with thesis"
+      ],
+      "keywords_found": [
+        "maximum"
+      ],
+      "keyword_match": false
+    },
+    {
+      "question": "What does the grade 'NA' signify and when is it turned to grade 'F'?",
+      "expected_chunk_id": 4771,
+      "retrieved_chunk_ids": [
+        4608,
+        4771,
+        4616
+      ],
+      "found": true,
+      "rank": 2,
+      "keywords": [
+        "NA",
+        "conditions",
+        "F"
+      ],
+      "keywords_found": [
+        "NA",
+        "conditions",
+        "F"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "When should the project subject be proposed to the institute for approval by the student's project advisor?",
+      "expected_chunk_id": 4806,
+      "retrieved_chunk_ids": [
+        4806,
+        4805,
+        4807
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "project subject",
+        "third semester",
+        "student's project advisor"
+      ],
+      "keywords_found": [
+        "project subject",
+        "third semester",
+        "student's project advisor"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What type of committee is responsible for investigating plagiarism cases involving graduates?",
+      "expected_chunk_id": 4853,
+      "retrieved_chunk_ids": [
+        4602,
+        4853,
+        4836
+      ],
+      "found": true,
+      "rank": 2,
+      "keywords": [
+        "investigation committee",
+        "instructors",
+        "faculty members"
+      ],
+      "keywords_found": [],
+      "keyword_match": false
+    },
+    {
+      "question": "What is the maximum number of graduate courses that students enrolled in the doctorate program are allowed to take?",
+      "expected_chunk_id": 4814,
+      "retrieved_chunk_ids": [
+        4814,
+        4782,
+        4801
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "graduate",
+        "courses",
+        "AKTS credits"
+      ],
+      "keywords_found": [
+        "graduate",
+        "courses",
+        "AKTS credits"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "When does this Regulation apply to all students?",
+      "expected_chunk_id": 4649,
+      "retrieved_chunk_ids": [
+        4656,
+        4653,
+        4628
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "Regulation",
+        "students",
+        "2002-2003 Academic Year"
+      ],
+      "keywords_found": [
+        "Regulation",
+        "students"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "When can students drop their compulsory or elective courses and add new courses instead?",
+      "expected_chunk_id": 4586,
+      "retrieved_chunk_ids": [
+        4586,
+        4585,
+        4763
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "drop",
+        "compulsory or elective courses",
+        "minimum credit limits",
+        "maximum credit limits",
+        "application",
+        "mid-term examinations"
+      ],
+      "keywords_found": [
+        "drop",
+        "compulsory or elective courses",
+        "minimum credit limits",
+        "maximum credit limits",
+        "application",
+        "mid-term examinations"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "When should a student file an application against material errors?",
+      "expected_chunk_id": 4618,
+      "retrieved_chunk_ids": [
+        4617,
+        4852,
+        4602
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "file",
+        "application",
+        "material errors"
+      ],
+      "keywords_found": [
+        "file",
+        "material errors"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "During what dates can enrollment suspension applications be made according to the University Executive Board?",
+      "expected_chunk_id": 4870,
+      "retrieved_chunk_ids": [
+        4718,
+        4719,
+        4870
+      ],
+      "found": true,
+      "rank": 3,
+      "keywords": [
+        "Enrollment suspension",
+        "dates",
+        "University Executive Board"
+      ],
+      "keywords_found": [
+        "Enrollment suspension"
+      ],
+      "keyword_match": false
+    },
+    {
+      "question": "What is the term used for a course for which final pass grade has not been given?",
+      "expected_chunk_id": 4615,
+      "retrieved_chunk_ids": [
+        4615,
+        4766,
+        4768
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "NNL",
+        "Associated course",
+        "final pass grade"
+      ],
+      "keywords_found": [
+        "NNL",
+        "Associated course",
+        "final pass grade"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What are the possible decisions that the thesis jury can make regarding a student's thesis?",
+      "expected_chunk_id": 4794,
+      "retrieved_chunk_ids": [
+        4835,
+        4790,
+        4836
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "acceptance",
+        "rejection",
+        "correction"
+      ],
+      "keywords_found": [],
+      "keyword_match": false
+    },
+    {
+      "question": "Under what circumstances is a student allowed to take an additional exam for a course?",
+      "expected_chunk_id": 4627,
+      "retrieved_chunk_ids": [
+        4682,
+        4862,
+        4646
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "overall grade point average",
+        "additional exam",
+        "(F)"
+      ],
+      "keywords_found": [
+        "additional exam"
+      ],
+      "keyword_match": false
+    },
+    {
+      "question": "What GPA must students maintain at the end of the first year of the honors program to avoid being dismissed?",
+      "expected_chunk_id": 4702,
+      "retrieved_chunk_ids": [
+        4702,
+        4700,
+        4703
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "GPA",
+        "dismissed",
+        "honors program"
+      ],
+      "keywords_found": [
+        "GPA",
+        "dismissed",
+        "honors program"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What is the purpose of the 'TT' course in the Bilgi Credit System Undergraduate Regulation?",
+      "expected_chunk_id": 4614,
+      "retrieved_chunk_ids": [
+        4614,
+        4600,
+        4604
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "TT",
+        "recognize",
+        "adjustment"
+      ],
+      "keywords_found": [
+        "TT",
+        "recognize",
+        "adjustment"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What restrictions are imposed in terms of the highest grade for additional examinations?",
+      "expected_chunk_id": 4696,
+      "retrieved_chunk_ids": [
+        4646,
+        4682,
+        4628
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "additional examinations",
+        "restriction",
+        "highest grade"
+      ],
+      "keywords_found": [
+        "restriction",
+        "highest grade"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What are the conditions that students of a graduate program without thesis must fulfill in order to be transferred to the University's graduate programs without thesis?",
+      "expected_chunk_id": 4858,
+      "retrieved_chunk_ids": [
+        4857,
+        4859,
+        4858
+      ],
+      "found": true,
+      "rank": 3,
+      "keywords": [
+        "graduate program without thesis",
+        "completed courses",
+        "total AKTS credits"
+      ],
+      "keywords_found": [
+        "graduate program without thesis",
+        "total AKTS credits"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "Under what circumstances will students be disenrolled from the double major program?",
+      "expected_chunk_id": 4671,
+      "retrieved_chunk_ids": [
+        4662,
+        4666,
+        4683
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "disenrolled",
+        "GPA",
+        "double major program"
+      ],
+      "keywords_found": [
+        "disenrolled"
+      ],
+      "keyword_match": false
+    },
+    {
+      "question": "What regulation document should be followed for the thesis course enrollment?",
+      "expected_chunk_id": 4676,
+      "retrieved_chunk_ids": [
+        4851,
+        4788,
+        4624
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "thesis course",
+        "enroll",
+        "\u0130stanbul Bilgi University"
+      ],
+      "keywords_found": [],
+      "keyword_match": false
+    },
+    {
+      "question": "What are the required qualifications of the students who will be admitted to the Honors Program?",
+      "expected_chunk_id": 4700,
+      "retrieved_chunk_ids": [
+        4700,
+        4701,
+        4702
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "qualifications",
+        "students",
+        "admitted",
+        "Honors Program"
+      ],
+      "keywords_found": [
+        "qualifications",
+        "students",
+        "admitted",
+        "Honors Program"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What is the minimum GPA required for students to apply for a minor program?",
+      "expected_chunk_id": 4691,
+      "retrieved_chunk_ids": [
+        4690,
+        4691,
+        4694
+      ],
+      "found": true,
+      "rank": 2,
+      "keywords": [
+        "minimum",
+        "GPA",
+        "minor program"
+      ],
+      "keywords_found": [
+        "minimum",
+        "GPA",
+        "minor program"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "How are students admitted to undergraduate degree and two-year degree programs of Istanbul Bilgi University?",
+      "expected_chunk_id": 4579,
+      "retrieved_chunk_ids": [
+        4579,
+        4630,
+        4578
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "admitted",
+        "undergraduate degree",
+        "selection and placement procedures"
+      ],
+      "keywords_found": [
+        "admitted",
+        "undergraduate degree",
+        "selection and placement procedures"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What grade is used for students who have failed to fulfill the conditions for acceptance to the end-of-semester exam?",
+      "expected_chunk_id": 4608,
+      "retrieved_chunk_ids": [
+        4765,
+        4646,
+        4626
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "NA",
+        "conditions",
+        "end-of-semester exam"
+      ],
+      "keywords_found": [
+        "NA",
+        "conditions",
+        "end-of-semester exam"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "At what point can a student enroll for thesis according to the university regulation document?",
+      "expected_chunk_id": 4788,
+      "retrieved_chunk_ids": [
+        4788,
+        4851,
+        4786
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "enroll",
+        "third semester",
+        "term of study"
+      ],
+      "keywords_found": [
+        "enroll",
+        "third semester",
+        "term of study"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What are the conditions and documents sought for the registration of students newly admitted to \u0130stanbul Bilgi University?",
+      "expected_chunk_id": 4584,
+      "retrieved_chunk_ids": [
+        4584,
+        4579,
+        4864
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "conditions",
+        "documents",
+        "registration"
+      ],
+      "keywords_found": [
+        "conditions",
+        "documents",
+        "registration"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "How many credits are courses arranged as in a semester and in a year for undergraduate programs at Istanbul Bilgi University?",
+      "expected_chunk_id": 4595,
+      "retrieved_chunk_ids": [
+        4595,
+        4594,
+        4577
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "credits",
+        "semester",
+        "year",
+        "undergraduate",
+        "programs"
+      ],
+      "keywords_found": [
+        "credits",
+        "semester",
+        "year",
+        "undergraduate",
+        "programs"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "Under what circumstances can students enrolled in graduate programs at other higher education institutions be admitted to graduate courses as special students?",
+      "expected_chunk_id": 4759,
+      "retrieved_chunk_ids": [
+        4865,
+        4759,
+        4802
+      ],
+      "found": true,
+      "rank": 2,
+      "keywords": [
+        "special students",
+        "graduate programs",
+        "approval"
+      ],
+      "keywords_found": [
+        "special students",
+        "graduate programs",
+        "approval"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "Who shall inspect whether the thesis complies with the form requirements set forth?",
+      "expected_chunk_id": 4850,
+      "retrieved_chunk_ids": [
+        4851,
+        4850,
+        4796
+      ],
+      "found": true,
+      "rank": 2,
+      "keywords": [
+        "thesis",
+        "complies",
+        "form requirements"
+      ],
+      "keywords_found": [
+        "thesis",
+        "complies",
+        "form requirements"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "Under what circumstances may the Board of Trustees decide that students who freeze their registration must pay the tuition fee for the next academic year in advance?",
+      "expected_chunk_id": 4640,
+      "retrieved_chunk_ids": [
+        4639,
+        4722,
+        4640
+      ],
+      "found": true,
+      "rank": 3,
+      "keywords": [
+        "Board of Trustees",
+        "freeze their registration",
+        "tuition fee"
+      ],
+      "keywords_found": [
+        "Board of Trustees",
+        "tuition fee"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What are students required to submit when applying to take the qualifying examination?",
+      "expected_chunk_id": 4823,
+      "retrieved_chunk_ids": [
+        4827,
+        4823,
+        4826
+      ],
+      "found": true,
+      "rank": 2,
+      "keywords": [
+        "submit",
+        "foreign language proficiency certificate",
+        "application"
+      ],
+      "keywords_found": [],
+      "keyword_match": false
+    },
+    {
+      "question": "Who determines the registration calendar according to the university regulation document?",
+      "expected_chunk_id": 4587,
+      "retrieved_chunk_ids": [
+        4585,
+        4742,
+        4741
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "registration calendar",
+        "University Board of Directors"
+      ],
+      "keywords_found": [],
+      "keyword_match": false
+    },
+    {
+      "question": "When did the amendments by the Board of Trustees take place regarding students starting?",
+      "expected_chunk_id": 4735,
+      "retrieved_chunk_ids": [
+        4876,
+        4735,
+        4722
+      ],
+      "found": true,
+      "rank": 2,
+      "keywords": [
+        "amended article",
+        "Board of Trustees",
+        "students starting"
+      ],
+      "keywords_found": [
+        "amended article",
+        "Board of Trustees"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "Can compulsory courses be postponed to summer school?",
+      "expected_chunk_id": 4653,
+      "retrieved_chunk_ids": [
+        4653,
+        4586,
+        4656
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "compulsory courses",
+        "academic programs",
+        "postponed"
+      ],
+      "keywords_found": [
+        "compulsory courses",
+        "academic programs",
+        "postponed"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "When was the clause amended by the Board of Trustees?",
+      "expected_chunk_id": 4880,
+      "retrieved_chunk_ids": [
+        4880,
+        4735,
+        4876
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "amended",
+        "clause",
+        "Board of Trustees"
+      ],
+      "keywords_found": [
+        "amended",
+        "clause",
+        "Board of Trustees"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What qualification is required for candidates to apply for a doctoral program?",
+      "expected_chunk_id": 4750,
+      "retrieved_chunk_ids": [
+        4811,
+        4822,
+        4750
+      ],
+      "found": true,
+      "rank": 3,
+      "keywords": [
+        "obliged",
+        "undergraduate diploma",
+        "graduate degree with thesis"
+      ],
+      "keywords_found": [],
+      "keyword_match": false
+    },
+    {
+      "question": "Under what conditions are students allowed to take an additional exam in the program?",
+      "expected_chunk_id": 4862,
+      "retrieved_chunk_ids": [
+        4682,
+        4862,
+        4696
+      ],
+      "found": true,
+      "rank": 2,
       "keywords": [
         "additional exam",
         "GPA",
@@ -181,23 +1558,4928 @@
       "keyword_match": true
     },
     {
-      "question": "What GPA is required for students to be entitled to take the thesis exam?",
-      "expected_chunk_id": 2805,
+      "question": "When will this regulation take effect?",
+      "expected_chunk_id": 4866,
       "retrieved_chunk_ids": [
-        2844,
-        2878,
-        2835
+        4657,
+        4656,
+        4718
       ],
       "found": false,
+      "rank": null,
+      "keywords": [
+        "Regulation",
+        "effect",
+        "published"
+      ],
+      "keywords_found": [
+        "Regulation"
+      ],
+      "keyword_match": false
+    },
+    {
+      "question": "How many instructors make up the doctoral thesis jury and how many of them should be from a different higher education institution?",
+      "expected_chunk_id": 4835,
+      "retrieved_chunk_ids": [
+        4835,
+        4790,
+        4826
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "instructors",
+        "doctoral thesis jury",
+        "different higher education institution"
+      ],
+      "keywords_found": [
+        "instructors",
+        "doctoral thesis jury",
+        "different higher education institution"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "How many times can a student fail before being discharged from the University according to the regulation document?",
+      "expected_chunk_id": 4833,
+      "retrieved_chunk_ids": [
+        4833,
+        4698,
+        4733
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "fail",
+        "two times consecutively",
+        "three times intermittently"
+      ],
+      "keywords_found": [
+        "fail",
+        "two times consecutively",
+        "three times intermittently"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "Who can be proposed as a thesis advisor if there is no instructor meeting the qualifications defined by the Academic Committee among the University's permanent instructors?",
+      "expected_chunk_id": 4787,
+      "retrieved_chunk_ids": [
+        4820,
+        4786,
+        4787
+      ],
+      "found": true,
+      "rank": 3,
+      "keywords": [
+        "instructor",
+        "qualifications",
+        "higher education institutions"
+      ],
+      "keywords_found": [
+        "instructor",
+        "qualifications",
+        "higher education institutions"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What is the procedure if a decision is not reached by the assessment committee members regarding whether a student passes or fails?",
+      "expected_chunk_id": 4809,
+      "retrieved_chunk_ids": [
+        4809,
+        4617,
+        4841
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "assessment committee",
+        "arbitrator",
+        "institute board of directors"
+      ],
+      "keywords_found": [
+        "assessment committee",
+        "arbitrator",
+        "institute board of directors"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What rules apply to the additional examinations performed pursuant to this article?",
+      "expected_chunk_id": 4682,
+      "retrieved_chunk_ids": [
+        4697,
+        4682,
+        4696
+      ],
+      "found": true,
+      "rank": 2,
+      "keywords": [
+        "additional examinations",
+        "highest grade",
+        "grade received"
+      ],
+      "keywords_found": [
+        "additional examinations",
+        "highest grade",
+        "grade received"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "How is the term of eight semesters calculated for students who start their undergraduate studies in spring semester after fulfilling the English proficiency requirement?",
+      "expected_chunk_id": 4631,
+      "retrieved_chunk_ids": [
+        4631,
+        4648,
+        4655
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "term of eight semesters",
+        "start",
+        "spring semester"
+      ],
+      "keywords_found": [
+        "term of eight semesters",
+        "start",
+        "spring semester"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "How many maximum courses are allowed for students admitted with an undergraduate degree?",
+      "expected_chunk_id": 4817,
+      "retrieved_chunk_ids": [
+        4801,
+        4782,
+        4783
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "undergraduate degree",
+        "maximum courses"
+      ],
+      "keywords_found": [],
+      "keyword_match": false
+    },
+    {
+      "question": "What determines the graduation of a student and who approves it?",
+      "expected_chunk_id": 4845,
+      "retrieved_chunk_ids": [
+        4753,
+        4845,
+        4865
+      ],
+      "found": true,
+      "rank": 2,
+      "keywords": [
+        "graduation",
+        "thesis copies",
+        "institute board of directors"
+      ],
+      "keywords_found": [],
+      "keyword_match": false
+    },
+    {
+      "question": "What type of excuses related to health are excluded from Article 30?",
+      "expected_chunk_id": 4632,
+      "retrieved_chunk_ids": [
+        4633,
+        4635,
+        4634
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "Excuses",
+        "health",
+        "Article 30"
+      ],
+      "keywords_found": [
+        "Excuses",
+        "health"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What are the three requirements for a student to complete minor education according to Article 14?",
+      "expected_chunk_id": 4694,
+      "retrieved_chunk_ids": [
+        4694,
+        4690,
+        4696
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "complete",
+        "minor education",
+        "Article 14"
+      ],
+      "keywords_found": [
+        "complete",
+        "minor education",
+        "Article 14"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What is the condition for transferring among graduate programs within the university or from other higher education institutions to the university's graduate programs?",
+      "expected_chunk_id": 4854,
+      "retrieved_chunk_ids": [
+        4855,
+        4857,
+        4854
+      ],
+      "found": true,
+      "rank": 3,
+      "keywords": [
+        "Transfers",
+        "graduate programs",
+        "courses"
+      ],
+      "keywords_found": [
+        "courses"
+      ],
+      "keyword_match": false
+    },
+    {
+      "question": "What happens if students provide false documents and information to the University?",
+      "expected_chunk_id": 4580,
+      "retrieved_chunk_ids": [
+        4853,
+        4852,
+        4602
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "false",
+        "documents",
+        "discharged"
+      ],
+      "keywords_found": [],
+      "keyword_match": false
+    },
+    {
+      "question": "What factors are considered in the admission assessment for doctoral programs for applicants with a graduate degree?",
+      "expected_chunk_id": 4752,
+      "retrieved_chunk_ids": [
+        4753,
+        4752,
+        4750
+      ],
+      "found": true,
+      "rank": 2,
+      "keywords": [
+        "admission assessment",
+        "graduate degree",
+        "interview"
+      ],
+      "keywords_found": [
+        "graduate degree",
+        "interview"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What percentage of the tuition fee is the student obliged to pay if the application for enrollment cancellation is made before the student begins his/her education and prior to the semester beginning?",
+      "expected_chunk_id": 4872,
+      "retrieved_chunk_ids": [
+        4873,
+        4723,
+        4724
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "tuition fee",
+        "enrollment cancellation",
+        "25%"
+      ],
+      "keywords_found": [
+        "tuition fee",
+        "enrollment cancellation",
+        "25%"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What must a student do if they want to withdraw their disenrollment application within sixty days?",
+      "expected_chunk_id": 4642,
+      "retrieved_chunk_ids": [
+        4848,
+        4642,
+        4641
+      ],
+      "found": true,
+      "rank": 2,
+      "keywords": [
+        "withdraw",
+        "disenrollment",
+        "sixty days"
+      ],
+      "keywords_found": [
+        "withdraw",
+        "disenrollment",
+        "sixty days"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What does GPA stand for according to the university regulation document?",
+      "expected_chunk_id": 4738,
+      "retrieved_chunk_ids": [
+        4707,
+        4802,
+        4766
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "GPA"
+      ],
+      "keywords_found": [
+        "GPA"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "Who determines the academic standing for students in the event that the course schedule includes annual courses?",
+      "expected_chunk_id": 4624,
+      "retrieved_chunk_ids": [
+        4656,
+        4764,
+        4593
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "Academic Committee",
+        "academic standing",
+        "annual courses"
+      ],
+      "keywords_found": [
+        "academic standing"
+      ],
+      "keyword_match": false
+    },
+    {
+      "question": "Who determines the credit value of courses and how are they determined?",
+      "expected_chunk_id": 4762,
+      "retrieved_chunk_ids": [
+        4597,
+        4816,
+        4815
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "credit value",
+        "courses",
+        "Academic Committee"
+      ],
+      "keywords_found": [
+        "courses"
+      ],
+      "keyword_match": false
+    },
+    {
+      "question": "What does the tuition fee per course apply to for scholarship students who repeat courses due to failure?",
+      "expected_chunk_id": 4869,
+      "retrieved_chunk_ids": [
+        4877,
+        4720,
+        4724
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "tuition fee",
+        "scholarship students",
+        "repeat courses"
+      ],
+      "keywords_found": [
+        "tuition fee",
+        "repeat courses"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "In what circumstances can a student be allowed to prepare their theses in a language different from the medium of instruction of their graduate program?",
+      "expected_chunk_id": 4849,
+      "retrieved_chunk_ids": [
+        4575,
+        4749,
+        4748
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "thses",
+        "medium of instruction",
+        "language"
+      ],
+      "keywords_found": [
+        "medium of instruction",
+        "language"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What must be delivered to the jury members together with the appointment decision for the thesis exam?",
+      "expected_chunk_id": 4791,
+      "retrieved_chunk_ids": [
+        4792,
+        4793,
+        4790
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "copy",
+        "plagiarism",
+        "report"
+      ],
+      "keywords_found": [],
+      "keyword_match": false
+    },
+    {
+      "question": "What happens if the thesis advisor or thesis jury find out about an actual plagiarism case?",
+      "expected_chunk_id": 4836,
+      "retrieved_chunk_ids": [
+        4836,
+        4791,
+        4834
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "plagiarism",
+        "thesis advisor",
+        "institute board of directors"
+      ],
+      "keywords_found": [
+        "plagiarism",
+        "thesis advisor",
+        "institute board of directors"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What will happen to students who fail the additional exam or fail to increase their overall grade point average to 2.00 or above?",
+      "expected_chunk_id": 4628,
+      "retrieved_chunk_ids": [
+        4646,
+        4628,
+        4647
+      ],
+      "found": true,
+      "rank": 2,
+      "keywords": [
+        "additional exam",
+        "overall grade point average",
+        "course repetition"
+      ],
+      "keywords_found": [
+        "additional exam",
+        "overall grade point average",
+        "course repetition"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What is the minimum percentage of the double major quota in relation to the general quota defined in the Student Selection and Placement System Guide?",
+      "expected_chunk_id": 4664,
+      "retrieved_chunk_ids": [
+        4664,
+        4665,
+        4729
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "double major quota",
+        "20%",
+        "Student Selection and Placement System Guide"
+      ],
+      "keywords_found": [
+        "double major quota",
+        "20%",
+        "Student Selection and Placement System Guide"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What GPA is required for graduate programs to be eligible to take an additional exam?",
+      "expected_chunk_id": 4861,
+      "retrieved_chunk_ids": [
+        4862,
+        4696,
+        4682
+      ],
+      "found": false,
+      "rank": null,
       "keywords": [
         "GPA",
-        "entitled",
+        "graduate programs",
+        "additional exam"
+      ],
+      "keywords_found": [
+        "GPA",
+        "graduate programs",
+        "additional exam"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What does the term 'Annual tuition fee' refer to in the procedures and principles?",
+      "expected_chunk_id": 4716,
+      "retrieved_chunk_ids": [
+        4878,
+        4877,
+        4717
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "Annual tuition fee",
+        "procedures and principles",
+        "Board of Trustees"
+      ],
+      "keywords_found": [
+        "Board of Trustees"
+      ],
+      "keyword_match": false
+    },
+    {
+      "question": "Who determines the credit values of courses and how are they determined?",
+      "expected_chunk_id": 4594,
+      "retrieved_chunk_ids": [
+        4597,
+        4815,
+        4816
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "Credit values",
+        "Academic Committee",
+        "departments"
+      ],
+      "keywords_found": [],
+      "keyword_match": false
+    },
+    {
+      "question": "What is the condition under which students who complete the English Language Preparatory Program at the end of the fall semester, and continue their education in the spring semester, are required to pay the difference in tuition fees?",
+      "expected_chunk_id": 4734,
+      "retrieved_chunk_ids": [
+        4734,
+        4733,
+        4871
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "tuition fee",
+        "English Language Preparatory Program",
+        "spring semester"
+      ],
+      "keywords_found": [
+        "tuition fee",
+        "English Language Preparatory Program"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What percentage of the annual tuition fee must students pay if they apply for cancellation within the first seven weeks following the start date of the spring semester?",
+      "expected_chunk_id": 4722,
+      "retrieved_chunk_ids": [
+        4873,
+        4722,
+        4723
+      ],
+      "found": true,
+      "rank": 2,
+      "keywords": [
+        "cancellation",
+        "seven weeks",
+        "spring semester"
+      ],
+      "keywords_found": [
+        "cancellation"
+      ],
+      "keyword_match": false
+    },
+    {
+      "question": "What information should be displayed on the cover of a successful thesis delivered to the institute for preparation of a diploma?",
+      "expected_chunk_id": 4851,
+      "retrieved_chunk_ids": [
+        4851,
+        4844,
+        4810
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "cover",
+        "successful thesis",
+        "institute"
+      ],
+      "keywords_found": [
+        "cover",
+        "institute"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What will happen if a student fails to take the thesis exam without a justified excuse?",
+      "expected_chunk_id": 4839,
+      "retrieved_chunk_ids": [
+        4840,
+        4794,
+        4634
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "student",
+        "thesis exam",
+        "justified excuse"
+      ],
+      "keywords_found": [
+        "student",
+        "thesis exam",
+        "justified excuse"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What is the minimum number of courses required in the course part of a graduate program without thesis?",
+      "expected_chunk_id": 4800,
+      "retrieved_chunk_ids": [
+        4800,
+        4804,
+        4860
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "courses",
+        "graduate program without thesis",
+        "at least ten"
+      ],
+      "keywords_found": [
+        "courses",
+        "graduate program without thesis",
+        "at least ten"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What are the two categories into which courses offered within the scope of the programs are divided?",
+      "expected_chunk_id": 4596,
+      "retrieved_chunk_ids": [
+        4689,
+        4783,
+        4668
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "compulsory",
+        "elective",
+        "courses"
+      ],
+      "keywords_found": [
+        "elective",
+        "courses"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "How many courses can students enrolled in a graduate program with a thesis select from undergraduate courses or other graduate programs of the University?",
+      "expected_chunk_id": 4782,
+      "retrieved_chunk_ids": [
+        4782,
+        4801,
+        4781
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "graduate program",
+        "courses",
+        "undergraduate"
+      ],
+      "keywords_found": [
+        "graduate program",
+        "courses",
+        "undergraduate"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "Who determines the date, hour, and place of the thesis exam if the thesis advisor is not a permanent instructor or faculty member of the University?",
+      "expected_chunk_id": 4792,
+      "retrieved_chunk_ids": [
+        4838,
+        4792,
+        4793
+      ],
+      "found": true,
+      "rank": 2,
+      "keywords": [
+        "program director",
+        "determine",
         "thesis exam"
+      ],
+      "keywords_found": [
+        "program director",
+        "determine",
+        "thesis exam"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "Under what conditions can 6th semester students take the capstone thesis or project course?",
+      "expected_chunk_id": 4625,
+      "retrieved_chunk_ids": [
+        4625,
+        4624,
+        4673
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "6th semester students",
+        "capstone thesis or project course",
+        "grade point average"
+      ],
+      "keywords_found": [
+        "6th semester students",
+        "capstone thesis or project course",
+        "grade point average"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What types of courses can scientific preparatory programs consist of for doctoral programs?",
+      "expected_chunk_id": 4754,
+      "retrieved_chunk_ids": [
+        4754,
+        4756,
+        4755
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "scientific preparatory programs",
+        "doctoral programs",
+        "courses"
+      ],
+      "keywords_found": [
+        "scientific preparatory programs",
+        "doctoral programs",
+        "courses"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What shall be granted to students who complete a two-year program at \u0130stanbul Bilgi University in accordance with the provisions of this Regulation?",
+      "expected_chunk_id": 4647,
+      "retrieved_chunk_ids": [
+        4706,
+        4705,
+        4579
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "two-year program",
+        "\u0130stanbul Bilgi University",
+        "two-year degree diploma"
+      ],
+      "keywords_found": [
+        "\u0130stanbul Bilgi University"
+      ],
+      "keyword_match": false
+    },
+    {
+      "question": "When can students withdraw from a registered course according to the university regulation document?",
+      "expected_chunk_id": 4776,
+      "retrieved_chunk_ids": [
+        4611,
+        4585,
+        4776
+      ],
+      "found": true,
+      "rank": 3,
+      "keywords": [
+        "withdraw",
+        "courses",
+        "four weeks"
+      ],
+      "keywords_found": [
+        "withdraw",
+        "courses"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "Who decides on applications for excuses according to the university regulation document?",
+      "expected_chunk_id": 4846,
+      "retrieved_chunk_ids": [
+        4635,
+        4638,
+        4634
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "excuses",
+        "decided",
+        "institute board of directors"
+      ],
+      "keywords_found": [
+        "excuses"
+      ],
+      "keyword_match": false
+    },
+    {
+      "question": "What determines the frequency and method of arranging invoices for tuition fees in this university?",
+      "expected_chunk_id": 4875,
+      "retrieved_chunk_ids": [
+        4728,
+        4875,
+        4873
+      ],
+      "found": true,
+      "rank": 2,
+      "keywords": [
+        "invoices",
+        "tuition fee",
+        "educational weeks"
+      ],
+      "keywords_found": [
+        "invoices",
+        "tuition fee"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What is the minimum GPA required for students to not be deemed probational students for the following semester?",
+      "expected_chunk_id": 4803,
+      "retrieved_chunk_ids": [
+        4803,
+        4784,
+        4817
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "GPA",
+        "probational student",
+        "2.80"
+      ],
+      "keywords_found": [
+        "GPA",
+        "probational student",
+        "2.80"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What is the minimum amount of AKTS credits required for students admitted with a graduate degree with thesis in the doctorate program?",
+      "expected_chunk_id": 4812,
+      "retrieved_chunk_ids": [
+        4813,
+        4814,
+        4782
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "240 AKTS credits",
+        "graduate degree with thesis",
+        "doctorate program"
+      ],
+      "keywords_found": [
+        "graduate degree with thesis"
+      ],
+      "keyword_match": false
+    },
+    {
+      "question": "What conditions must doctoral program students meet in order to be transferred to the University's doctoral programs?",
+      "expected_chunk_id": 4855,
+      "retrieved_chunk_ids": [
+        4855,
+        4856,
+        4854
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "doctoral program students",
+        "transferred",
+        "at least seven courses",
+        "AKTS credits"
+      ],
+      "keywords_found": [
+        "doctoral program students",
+        "transferred",
+        "at least seven courses",
+        "AKTS credits"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What is the designation used for courses taken from other higher education institutions while being a student at Istanbul Bilgi University within the scope of exchange programs and recognized by the university?",
+      "expected_chunk_id": 4773,
+      "retrieved_chunk_ids": [
+        4775,
+        4610,
+        4612
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "TE",
+        "exchange programs",
+        "recognized"
+      ],
+      "keywords_found": [
+        "TE",
+        "exchange programs",
+        "recognized"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "How many courses and credits are required to be taken during the minor program?",
+      "expected_chunk_id": 4688,
+      "retrieved_chunk_ids": [
+        4692,
+        4691,
+        4689
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "six courses",
+        "thirty credits",
+        "minor program"
+      ],
+      "keywords_found": [
+        "minor program"
+      ],
+      "keyword_match": false
+    },
+    {
+      "question": "What is the normal term of undergraduate studies at Istanbul Bilgi University?",
+      "expected_chunk_id": 4591,
+      "retrieved_chunk_ids": [
+        4578,
+        4595,
+        4630
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "undergraduate studies",
+        "Istanbul Bilgi University",
+        "eight semesters"
+      ],
+      "keywords_found": [],
+      "keyword_match": false
+    },
+    {
+      "question": "What grade point average is required for a student to graduate from a two-year degree program?",
+      "expected_chunk_id": 4644,
+      "retrieved_chunk_ids": [
+        4626,
+        4631,
+        4628
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "grade point average",
+        "two-year degree program"
+      ],
+      "keywords_found": [
+        "grade point average"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What happens if a student's thesis is rejected but their studies are considered acceptable as a project?",
+      "expected_chunk_id": 4842,
+      "retrieved_chunk_ids": [
+        4842,
+        4796,
+        4843
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "thesis",
+        "accepted as project",
+        "diploma"
+      ],
+      "keywords_found": [
+        "thesis",
+        "diploma"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What happens if a student receives an (F) grade from a compulsory course and wishes to postpone the course repetition liability?",
+      "expected_chunk_id": 4620,
+      "retrieved_chunk_ids": [
+        4620,
+        4778,
+        4586
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "compulsory course",
+        "postpone",
+        "course repetition"
+      ],
+      "keywords_found": [
+        "compulsory course",
+        "postpone",
+        "course repetition"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "How is a thesis advisor appointed for students in this university?",
+      "expected_chunk_id": 4820,
+      "retrieved_chunk_ids": [
+        4820,
+        4787,
+        4829
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "Thesis advisor",
+        "appointed",
+        "Institute Board of Directors"
+      ],
+      "keywords_found": [
+        "Thesis advisor",
+        "appointed",
+        "Institute Board of Directors"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What is the term used for recognized courses taken while being a student at Istanbul Bilgi University?",
+      "expected_chunk_id": 4610,
+      "retrieved_chunk_ids": [
+        4610,
+        4775,
+        4612
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "recognized courses",
+        "Istanbul Bilgi University"
+      ],
+      "keywords_found": [
+        "recognized courses"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What criteria are considered when making a decision about the applications?",
+      "expected_chunk_id": 4758,
+      "retrieved_chunk_ids": [
+        4758,
+        4753,
+        4757
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "consideration",
+        "application files",
+        "exam results",
+        "undergraduate grades"
+      ],
+      "keywords_found": [
+        "consideration",
+        "application files"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "According to the regulation document, what does the term 'Academic advisor' refer to?",
+      "expected_chunk_id": 4737,
+      "retrieved_chunk_ids": [
+        4761,
+        4709,
+        4820
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "Academic advisor",
+        "thesis",
+        "project"
+      ],
+      "keywords_found": [
+        "Academic advisor",
+        "thesis",
+        "project"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What percentage of the quota shall the double major quota be applied as in cases where a separate quota is not defined?",
+      "expected_chunk_id": 4665,
+      "retrieved_chunk_ids": [
+        4665,
+        4664,
+        4729
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "double major quota",
+        "20%",
+        "quota"
+      ],
+      "keywords_found": [
+        "double major quota",
+        "20%",
+        "quota"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "How are students admitted into the Honors Program?",
+      "expected_chunk_id": 4701,
+      "retrieved_chunk_ids": [
+        4700,
+        4701,
+        4702
+      ],
+      "found": true,
+      "rank": 2,
+      "keywords": [
+        "admitted",
+        "Honors Program",
+        "commission"
+      ],
+      "keywords_found": [
+        "admitted",
+        "Honors Program"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What percentage of the annual tuition fee do students have to pay if they make their enrollment cancellation application after the beginning date of the spring semester but until the end of course add-drop period?",
+      "expected_chunk_id": 4724,
+      "retrieved_chunk_ids": [
+        4723,
+        4724,
+        4873
+      ],
+      "found": true,
+      "rank": 2,
+      "keywords": [
+        "tuition fee",
+        "enrollment cancellation",
+        "spring semester"
+      ],
+      "keywords_found": [
+        "tuition fee",
+        "enrollment cancellation",
+        "spring semester"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What Overall GPA is required to be included in the high honor list at \u0130stanbul Bilgi University?",
+      "expected_chunk_id": 4630,
+      "retrieved_chunk_ids": [
+        4630,
+        4703,
+        4699
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "Overall GPA",
+        "high honor list",
+        "complete their studies"
+      ],
+      "keywords_found": [
+        "Overall GPA",
+        "high honor list",
+        "complete their studies"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "How are semester grade point averages and overall grade point averages calculated in the university?",
+      "expected_chunk_id": 4779,
+      "retrieved_chunk_ids": [
+        4621,
+        4779,
+        4655
+      ],
+      "found": true,
+      "rank": 2,
+      "keywords": [
+        "AKTS credits",
+        "grade point averages",
+        "rounding method"
+      ],
+      "keywords_found": [
+        "grade point averages"
+      ],
+      "keyword_match": false
+    },
+    {
+      "question": "When does this Regulation take effect?",
+      "expected_chunk_id": 4708,
+      "retrieved_chunk_ids": [
+        4657,
+        4718,
+        4656
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "Regulation",
+        "take effect",
+        "publication"
+      ],
+      "keywords_found": [
+        "Regulation"
+      ],
+      "keyword_match": false
+    },
+    {
+      "question": "What can double major students do if the total credit of the compulsory courses of both major programs is not sufficient for meeting the relevant semester\u2019s minimum credit load of the primary major program?",
+      "expected_chunk_id": 4670,
+      "retrieved_chunk_ids": [
+        4670,
+        4667,
+        4677
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "double major students",
+        "total credit",
+        "compulsory courses"
+      ],
+      "keywords_found": [
+        "double major students",
+        "total credit",
+        "compulsory courses"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What criteria must a student meet in order to be proposed a project advisor by the program director?",
+      "expected_chunk_id": 4805,
+      "retrieved_chunk_ids": [
+        4805,
+        4806,
+        4808
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "program director",
+        "propose",
+        "doctorate degree"
+      ],
+      "keywords_found": [
+        "program director",
+        "propose",
+        "doctorate degree"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "Who is responsible for evaluating the project or final project report, and what are the possible outcomes?",
+      "expected_chunk_id": 4808,
+      "retrieved_chunk_ids": [
+        4808,
+        4809,
+        4807
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "evaluate",
+        "project advisor",
+        "assessment committee"
+      ],
+      "keywords_found": [
+        "evaluate",
+        "project advisor",
+        "assessment committee"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What do students declare with a signed document at the time of enrollment?",
+      "expected_chunk_id": 4578,
+      "retrieved_chunk_ids": [
+        4585,
+        4876,
+        4641
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "enrollment",
+        "signed document",
+        "financial obligations"
+      ],
+      "keywords_found": [
+        "financial obligations"
+      ],
+      "keyword_match": false
+    },
+    {
+      "question": "What committee determines the academic calendar for each academic year?",
+      "expected_chunk_id": 4576,
+      "retrieved_chunk_ids": [
+        4742,
+        4741,
+        4576
+      ],
+      "found": true,
+      "rank": 3,
+      "keywords": [
+        "Academic Committee",
+        "determined",
+        "academic calendar"
+      ],
+      "keywords_found": [
+        "Academic Committee",
+        "determined",
+        "academic calendar"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "When must material objections against assessment grades be raised?",
+      "expected_chunk_id": 4617,
+      "retrieved_chunk_ids": [
+        4617,
+        4616,
+        4809
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "material objections",
+        "raw grades",
+        "course pass grade"
+      ],
+      "keywords_found": [
+        "material objections",
+        "raw grades",
+        "course pass grade"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What are the possible decisions that the thesis jury can make at the end of the thesis exam?",
+      "expected_chunk_id": 4840,
+      "retrieved_chunk_ids": [
+        4840,
+        4794,
+        4792
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "thesis jury",
+        "rejection",
+        "correction"
+      ],
+      "keywords_found": [
+        "thesis jury",
+        "rejection",
+        "correction"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "Under what circumstances may an ALES score be sought for admission to graduate programs without thesis?",
+      "expected_chunk_id": 4746,
+      "retrieved_chunk_ids": [
+        4746,
+        4745,
+        4752
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "ALES score",
+        "graduate programs without thesis",
+        "relevant program director"
+      ],
+      "keywords_found": [
+        "ALES score",
+        "graduate programs without thesis",
+        "relevant program director"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "Under what circumstances can special students transfer the courses they have taken at \u0130stanbul Bilgi University to a program of any degree at the university as credits?",
+      "expected_chunk_id": 4582,
+      "retrieved_chunk_ids": [
+        4582,
+        4581,
+        4583
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "transfer",
+        "courses",
+        "credits"
+      ],
+      "keywords_found": [
+        "transfer",
+        "courses",
+        "credits"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What is the numerical value of the letter grade 'B+' according to the university regulation document?",
+      "expected_chunk_id": 4603,
+      "retrieved_chunk_ids": [
+        4603,
+        4766,
+        4628
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "numerical value",
+        "letter grade",
+        "B+"
+      ],
+      "keywords_found": [
+        "numerical value",
+        "B+"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What must students do if they cannot make their course registration according to the \u0130stanbul Bilgi University Credit System Undergraduate and Associate Degree Education Examination Regulations?",
+      "expected_chunk_id": 4732,
+      "retrieved_chunk_ids": [
+        4732,
+        4584,
+        4579
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "course registration",
+        "University Executive Board",
+        "excuse"
+      ],
+      "keywords_found": [
+        "course registration",
+        "University Executive Board",
+        "excuse"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What is the maximum number of undergraduate courses that can be taken by students from a particular program outside of their course schedule?",
+      "expected_chunk_id": 4783,
+      "retrieved_chunk_ids": [
+        4801,
+        4783,
+        4782
+      ],
+      "found": true,
+      "rank": 2,
+      "keywords": [
+        "undergraduate",
+        "courses",
+        "maximum number"
+      ],
+      "keywords_found": [
+        "undergraduate",
+        "courses"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "How many academic semesters is the scientific preparatory program required to be completed within?",
+      "expected_chunk_id": 4755,
+      "retrieved_chunk_ids": [
+        4756,
+        4754,
+        4755
+      ],
+      "found": true,
+      "rank": 3,
+      "keywords": [
+        "scientific preparatory program",
+        "completed",
+        "two academic semesters"
+      ],
+      "keywords_found": [
+        "scientific preparatory program",
+        "completed",
+        "two academic semesters"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What action must a student take within one month of being informed that their study is not defendable as a thesis?",
+      "expected_chunk_id": 4837,
+      "retrieved_chunk_ids": [
+        4832,
+        4837,
+        4830
+      ],
+      "found": true,
+      "rank": 2,
+      "keywords": [
+        "student",
+        "one month",
+        "assess",
+        "project"
+      ],
+      "keywords_found": [
+        "student",
+        "one month"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "When is the latest date that applications for enrollment suspension can be made?",
+      "expected_chunk_id": 4718,
+      "retrieved_chunk_ids": [
+        4718,
+        4719,
+        4720
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "enrollment suspension",
+        "latest date",
+        "final exams"
+      ],
+      "keywords_found": [
+        "enrollment suspension",
+        "final exams"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What must probationary and failing students do before registering for courses?",
+      "expected_chunk_id": 4713,
+      "retrieved_chunk_ids": [
+        4817,
+        4803,
+        4713
+      ],
+      "found": true,
+      "rank": 3,
+      "keywords": [
+        "probationary",
+        "failing",
+        "students",
+        "Academic Advisors",
+        "registering",
+        "courses"
+      ],
+      "keywords_found": [
+        "students",
+        "courses"
+      ],
+      "keyword_match": false
+    },
+    {
+      "question": "When must applications for excuse be filed and where should they be submitted?",
+      "expected_chunk_id": 4636,
+      "retrieved_chunk_ids": [
+        4635,
+        4638,
+        4637
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "applications",
+        "excuse",
+        "Registrar\u2019s Office"
+      ],
+      "keywords_found": [
+        "applications",
+        "excuse"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What grade is given to students whose success cannot reach 'C+' or 'P' levels?",
+      "expected_chunk_id": 4767,
+      "retrieved_chunk_ids": [
+        4767,
+        4766,
+        4626
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "F",
+        "C+",
+        "P"
+      ],
+      "keywords_found": [
+        "F",
+        "C+",
+        "P"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What is the minimum overall grade point average required in order to take the doctoral thesis exam?",
+      "expected_chunk_id": 4828,
+      "retrieved_chunk_ids": [
+        4828,
+        4819,
+        4862
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "overall grade point average",
+        "doctoral thesis exam",
+        "3.20"
+      ],
+      "keywords_found": [
+        "overall grade point average",
+        "doctoral thesis exam",
+        "3.20"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What is the maximum number of credit loads double major students may take during one semester?",
+      "expected_chunk_id": 4667,
+      "retrieved_chunk_ids": [
+        4667,
+        4670,
+        4729
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "credit loads",
+        "double major",
+        "forty two"
+      ],
+      "keywords_found": [
+        "credit loads",
+        "double major",
+        "forty two"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What restrictions are imposed in terms of the highest grade for examinations?",
+      "expected_chunk_id": 4697,
+      "retrieved_chunk_ids": [
+        4646,
+        4697,
+        4628
+      ],
+      "found": true,
+      "rank": 2,
+      "keywords": [
+        "restrictions",
+        "highest grade",
+        "examinations"
+      ],
+      "keywords_found": [
+        "highest grade"
+      ],
+      "keyword_match": false
+    },
+    {
+      "question": "What options are available for students who voluntarily quit their secondary major program?",
+      "expected_chunk_id": 4685,
+      "retrieved_chunk_ids": [
+        4685,
+        4698,
+        4684
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "secondary major",
+        "quits",
+        "facilities"
+      ],
+      "keywords_found": [
+        "secondary major",
+        "quits",
+        "facilities"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What conditions must be met in order for minor program students to be granted the right of an additional examination for their major?",
+      "expected_chunk_id": 4695,
+      "retrieved_chunk_ids": [
+        4696,
+        4695,
+        4694
+      ],
+      "found": true,
+      "rank": 2,
+      "keywords": [
+        "conditions",
+        "additional examination",
+        "major"
+      ],
+      "keywords_found": [
+        "additional examination"
+      ],
+      "keyword_match": false
+    },
+    {
+      "question": "When will the terms of study specified in this Regulation be calculated starting from?",
+      "expected_chunk_id": 4864,
+      "retrieved_chunk_ids": [
+        4656,
+        4763,
+        4616
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "terms of study",
+        "Regulation",
+        "20 April 2016"
+      ],
+      "keywords_found": [
+        "Regulation"
+      ],
+      "keyword_match": false
+    },
+    {
+      "question": "How many days does the examination jury have to communicate the written report on the examination result and the examination documents to the relevant program director following the qualifying exam?",
+      "expected_chunk_id": 4827,
+      "retrieved_chunk_ids": [
+        4827,
+        4792,
+        4826
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "communicate",
+        "written report",
+        "three days"
+      ],
+      "keywords_found": [
+        "communicate",
+        "written report",
+        "three days"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What happens if a student fails to submit his/her corrected thesis within three months?",
+      "expected_chunk_id": 4796,
+      "retrieved_chunk_ids": [
+        4796,
+        4841,
+        4831
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "student",
+        "submit",
+        "rejected"
+      ],
+      "keywords_found": [
+        "student",
+        "submit",
+        "rejected"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What numerical values are taken as the basis for calculating the semester and overall grade point averages of graduate programs?",
+      "expected_chunk_id": 4766,
+      "retrieved_chunk_ids": [
+        4621,
+        4766,
+        4779
+      ],
+      "found": true,
+      "rank": 2,
+      "keywords": [
+        "numerical values",
+        "semester",
+        "overall grade point averages"
+      ],
+      "keywords_found": [
+        "semester"
+      ],
+      "keyword_match": false
+    },
+    {
+      "question": "Who determines the number of mid-term exams, assignments, practices, and other studies for each course?",
+      "expected_chunk_id": 4765,
+      "retrieved_chunk_ids": [
+        4764,
+        4601,
+        4765
+      ],
+      "found": true,
+      "rank": 3,
+      "keywords": [
+        "relevant faculty member",
+        "mid-term exams",
+        "assignments"
+      ],
+      "keywords_found": [
+        "relevant faculty member",
+        "mid-term exams",
+        "assignments"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "According to \u0130stanbul Bilgi University regulations, who decides whether credits and grades of recognized courses will be included in average calculations?",
+      "expected_chunk_id": 4613,
+      "retrieved_chunk_ids": [
+        4630,
+        4613,
+        4773
+      ],
+      "found": true,
+      "rank": 2,
+      "keywords": [
+        "credits",
+        "grades",
+        "included in average calculations"
+      ],
+      "keywords_found": [
+        "credits",
+        "grades"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What percentage of the tuition fee do students have to pay if they apply for the suspension of enrollment before the start date of final exams?",
+      "expected_chunk_id": 4719,
+      "retrieved_chunk_ids": [
+        4719,
+        4720,
+        4873
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "tuition fee",
+        "suspension of enrollment",
+        "half"
+      ],
+      "keywords_found": [
+        "tuition fee",
+        "suspension of enrollment",
+        "half"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What publication date and number is mentioned in the university regulation document?",
+      "expected_chunk_id": 4643,
+      "retrieved_chunk_ids": [
+        4656,
+        4704,
+        4742
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "Regulation",
+        "Official Gazette",
+        "24 April 2010"
+      ],
+      "keywords_found": [
+        "Regulation"
+      ],
+      "keyword_match": false
+    },
+    {
+      "question": "What academic year are students who are subject to the provisions of this regulation starting from?",
+      "expected_chunk_id": 4650,
+      "retrieved_chunk_ids": [
+        4656,
+        4653,
+        4593
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "provisions",
+        "starting",
+        "2002-2003"
+      ],
+      "keywords_found": [
+        "provisions"
+      ],
+      "keyword_match": false
+    },
+    {
+      "question": "How many instructors may be part of the examination jury if the advisor does not have a right to vote?",
+      "expected_chunk_id": 4826,
+      "retrieved_chunk_ids": [
+        4826,
+        4835,
+        4790
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "examination jury",
+        "advisor",
+        "six"
+      ],
+      "keywords_found": [
+        "examination jury",
+        "advisor",
+        "six"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What letter grade is given to students whose success cannot reach \"D\" or \"PL\" level?",
+      "expected_chunk_id": 4604,
+      "retrieved_chunk_ids": [
+        4603,
+        4766,
+        4767
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "cannot reach",
+        "\"D\"",
+        "\"PL\""
+      ],
+      "keywords_found": [],
+      "keyword_match": false
+    },
+    {
+      "question": "Who appoints the examination coordinator for managing and coordinating the exams?",
+      "expected_chunk_id": 4590,
+      "retrieved_chunk_ids": [
+        4826,
+        4601,
+        4793
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "examination",
+        "coordinator",
+        "University Board of Directors"
+      ],
+      "keywords_found": [
+        "examination"
+      ],
+      "keyword_match": false
+    },
+    {
+      "question": "What happens if students fail to complete their deficiencies within two weeks after the expiry of the relevant exam period?",
+      "expected_chunk_id": 4607,
+      "retrieved_chunk_ids": [
+        4607,
+        4770,
+        4586
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "deficiencies",
+        "two weeks",
+        "Grade I",
+        "turned to F"
+      ],
+      "keywords_found": [
+        "deficiencies",
+        "two weeks",
+        "Grade I"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "Under what circumstance will the pre-registration/deposit payment of international students be refunded?",
+      "expected_chunk_id": 4727,
+      "retrieved_chunk_ids": [
+        4727,
+        4725,
+        4872
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "pre-registration/deposit payment",
+        "international student",
+        "visa applications"
+      ],
+      "keywords_found": [
+        "pre-registration/deposit payment",
+        "international student",
+        "visa applications"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What percentage of the annual tuition fee must second-year students pay if they cancel their enrollment after the beginning of the fall semester but before the end of the course add-drop period?",
+      "expected_chunk_id": 4723,
+      "retrieved_chunk_ids": [
+        4723,
+        4724,
+        4873
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "second-year",
+        "cancel",
+        "course add-drop period"
+      ],
+      "keywords_found": [
+        "cancel",
+        "course add-drop period"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "How many people are appointed by the University Board of Directors to serve on the Excuse Commission?",
+      "expected_chunk_id": 4635,
+      "retrieved_chunk_ids": [
+        4635,
+        4638,
+        4826
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "Excuse Commission",
+        "5 people",
+        "University Board of Directors"
+      ],
+      "keywords_found": [
+        "Excuse Commission",
+        "University Board of Directors"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "How much time is given to a student for correction after a decision is made on their thesis proposal?",
+      "expected_chunk_id": 4831,
+      "retrieved_chunk_ids": [
+        4831,
+        4841,
+        4795
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "correction",
+        "decision",
+        "one month"
+      ],
+      "keywords_found": [
+        "correction",
+        "decision",
+        "one month"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What grades will be converted to an A- according to the conversion table?",
+      "expected_chunk_id": 4652,
+      "retrieved_chunk_ids": [
+        4652,
+        4603,
+        4766
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "grades",
+        "converted",
+        "A-"
+      ],
+      "keywords_found": [
+        "grades",
+        "converted",
+        "A-"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What is the Honors Program at the university designed for?",
+      "expected_chunk_id": 4699,
+      "retrieved_chunk_ids": [
+        4700,
+        4701,
+        4702
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "Honors Program",
+        "special educational program",
+        "outstanding achievements"
+      ],
+      "keywords_found": [
+        "Honors Program"
+      ],
+      "keyword_match": false
+    },
+    {
+      "question": "How many terms are allowed in a year for education and training activities according to the regulation document?",
+      "expected_chunk_id": 4743,
+      "retrieved_chunk_ids": [
+        4656,
+        4743,
+        4763
+      ],
+      "found": true,
+      "rank": 2,
+      "keywords": [
+        "terms",
+        "education and training activities",
+        "year"
+      ],
+      "keywords_found": [
+        "year"
+      ],
+      "keyword_match": false
+    },
+    {
+      "question": "Who is responsible for evaluating student attendance?",
+      "expected_chunk_id": 4601,
+      "retrieved_chunk_ids": [
+        4764,
+        4601,
+        4589
+      ],
+      "found": true,
+      "rank": 2,
+      "keywords": [
+        "evaluated",
+        "attendance",
+        "faculty member"
+      ],
+      "keywords_found": [
+        "attendance",
+        "faculty member"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What is the purpose of the TE designation for courses taken within exchange programs?",
+      "expected_chunk_id": 4612,
+      "retrieved_chunk_ids": [
+        4773,
+        4612,
+        4599
+      ],
+      "found": true,
+      "rank": 2,
+      "keywords": [
+        "TE",
+        "exchange programs",
+        "higher education institutions"
+      ],
+      "keywords_found": [
+        "TE",
+        "exchange programs",
+        "higher education institutions"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What kind of document should special students be granted instead of a title or diploma?",
+      "expected_chunk_id": 4760,
+      "retrieved_chunk_ids": [
+        4760,
+        4845,
+        4865
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "special students",
+        "letter",
+        "courses"
+      ],
+      "keywords_found": [
+        "special students",
+        "letter",
+        "courses"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What must be paid in order to request enrollment suspension?",
+      "expected_chunk_id": 4871,
+      "retrieved_chunk_ids": [
+        4719,
+        4720,
+        4871
+      ],
+      "found": true,
+      "rank": 3,
+      "keywords": [
+        "enrollment suspension",
+        "overdue installments",
+        "paid"
+      ],
+      "keywords_found": [
+        "paid"
+      ],
+      "keyword_match": false
+    },
+    {
+      "question": "What courses can be recognized and transferred from another higher education institution to Istanbul Bilgi University?",
+      "expected_chunk_id": 4775,
+      "retrieved_chunk_ids": [
+        4775,
+        4582,
+        4610
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "courses",
+        "exchange programs",
+        "higher education institutions"
+      ],
+      "keywords_found": [
+        "courses",
+        "exchange programs",
+        "higher education institutions"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What happens to students who fail the additional exam and do not increase their overall grade point average to 2.00 or above?",
+      "expected_chunk_id": 4629,
+      "retrieved_chunk_ids": [
+        4646,
+        4628,
+        4647
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "fail",
+        "additional exam",
+        "overall grade point average"
+      ],
+      "keywords_found": [
+        "fail",
+        "additional exam",
+        "overall grade point average"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "How many courses can students enrolled in a graduate program without a thesis select from undergraduate courses or other graduate programs of the University, as long as they have not been taken during their undergraduate education?",
+      "expected_chunk_id": 4801,
+      "retrieved_chunk_ids": [
+        4801,
+        4804,
+        4860
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "courses",
+        "graduate program",
+        "undergraduate courses"
+      ],
+      "keywords_found": [
+        "courses",
+        "graduate program",
+        "undergraduate courses"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What may be accepted as an excuse for failure to take an exam in the case of a relative's death?",
+      "expected_chunk_id": 4634,
+      "retrieved_chunk_ids": [
+        4634,
+        4633,
+        4840
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "excuse",
+        "failure",
+        "relative's death"
+      ],
+      "keywords_found": [
+        "excuse",
+        "failure"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What is the deadline for a student to request that his/her study be assessed as a project?",
+      "expected_chunk_id": 4843,
+      "retrieved_chunk_ids": [
+        4807,
+        4806,
+        4808
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "deadline",
+        "request",
+        "one month"
+      ],
+      "keywords_found": [],
+      "keyword_match": false
+    },
+    {
+      "question": "How many times should a thesis study be assessed by the thesis supervision committee in order for a letter to be issued stating that the thesis is defendable?",
+      "expected_chunk_id": 4834,
+      "retrieved_chunk_ids": [
+        4834,
+        4832,
+        4789
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "assessed",
+        "thesis supervision committee",
+        "defendable"
+      ],
+      "keywords_found": [
+        "assessed",
+        "thesis supervision committee",
+        "defendable"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What minimum GPA is required for graduation from the Honors program?",
+      "expected_chunk_id": 4703,
+      "retrieved_chunk_ids": [
+        4702,
+        4700,
+        4703
+      ],
+      "found": true,
+      "rank": 3,
+      "keywords": [
+        "GPA",
+        "graduation",
+        "Honors program"
+      ],
+      "keywords_found": [
+        "GPA",
+        "Honors program"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What minimum GPA shall be applied until the end of the second semester of the 2004-2005 Academic Year for students who started their minor program before the second semester of 2002-2003 Academic Year?",
+      "expected_chunk_id": 4706,
+      "retrieved_chunk_ids": [
+        4690,
+        4694,
+        4691
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "minimum GPA",
+        "second semester",
+        "minor program"
+      ],
+      "keywords_found": [
+        "minimum GPA",
+        "minor program"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What is the maximum credit load of students for a semester, excluding thesis and project?",
+      "expected_chunk_id": 4763,
+      "retrieved_chunk_ids": [
+        4597,
+        4800,
+        4763
+      ],
+      "found": true,
+      "rank": 3,
+      "keywords": [
+        "maximum",
+        "credit load",
+        "semester"
+      ],
+      "keywords_found": [
+        "credit load",
+        "semester"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What courses can double major students count towards the thesis course and capstone thesis of their primary major?",
+      "expected_chunk_id": 4675,
+      "retrieved_chunk_ids": [
+        4672,
+        4673,
+        4675
+      ],
+      "found": true,
+      "rank": 3,
+      "keywords": [
+        "double major",
+        "thesis",
+        "electives"
+      ],
+      "keywords_found": [
+        "double major",
+        "thesis",
+        "electives"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What actions will be taken if a student is found to have cheated or plagiarized in an exam or assignment?",
+      "expected_chunk_id": 4852,
+      "retrieved_chunk_ids": [
+        4602,
+        4852,
+        4853
+      ],
+      "found": true,
+      "rank": 2,
+      "keywords": [
+        "cheating",
+        "plagiarism",
+        "action"
+      ],
+      "keywords_found": [
+        "cheating",
+        "plagiarism",
+        "action"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "Can certain foreign languages be taught with compulsory courses in a program?",
+      "expected_chunk_id": 4741,
+      "retrieved_chunk_ids": [
+        4575,
+        4741,
+        4596
+      ],
+      "found": true,
+      "rank": 2,
+      "keywords": [
+        "foreign languages",
+        "compulsory courses",
+        "Academic Committee"
+      ],
+      "keywords_found": [
+        "foreign languages",
+        "Academic Committee"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What does SGPA stand for?",
+      "expected_chunk_id": 4740,
+      "retrieved_chunk_ids": [
+        4740,
+        4778,
+        4779
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "SGPA",
+        "Semester Grade Point Average"
+      ],
+      "keywords_found": [
+        "SGPA",
+        "Semester Grade Point Average"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What three components does the doctoral process consist of?",
+      "expected_chunk_id": 4818,
+      "retrieved_chunk_ids": [
+        4811,
+        4812,
+        4818
+      ],
+      "found": true,
+      "rank": 3,
+      "keywords": [
+        "Doctoral process",
+        "courses",
+        "qualifying exam",
+        "thesis study"
+      ],
+      "keywords_found": [],
+      "keyword_match": false
+    },
+    {
+      "question": "What is the definition of a minor education program according to the university regulation document?",
+      "expected_chunk_id": 4687,
+      "retrieved_chunk_ids": [
+        4690,
+        4694,
+        4689
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "Minor education program",
+        "undergraduate program",
+        "two-year degree program"
+      ],
+      "keywords_found": [
+        "Minor education program",
+        "undergraduate program"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "According to the regulation document, what grade is given to students who pass the make-up exam?",
+      "expected_chunk_id": 4605,
+      "retrieved_chunk_ids": [
+        4605,
+        4628,
+        4765
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "make-up exam",
+        "grade",
+        "D"
+      ],
+      "keywords_found": [
+        "make-up exam",
+        "grade",
+        "D"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What is the name given to students who are admitted to \u0130stanbul Bilgi University through methods other than those set forth in the regulations?",
+      "expected_chunk_id": 4581,
+      "retrieved_chunk_ids": [
+        4579,
+        4581,
+        4610
+      ],
+      "found": true,
+      "rank": 2,
+      "keywords": [
+        "special students",
+        "University",
+        "admitted"
+      ],
+      "keywords_found": [
+        "University",
+        "admitted"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "When must the student deliver his/her project?",
+      "expected_chunk_id": 4807,
+      "retrieved_chunk_ids": [
+        4807,
+        4806,
+        4810
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "deliver",
+        "project",
+        "semester"
+      ],
+      "keywords_found": [
+        "deliver",
+        "project",
+        "semester"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What percentage of tuition fee is a student obliged to pay if an application for enrollment cancellation is made after the specified date for the semester?",
+      "expected_chunk_id": 4873,
+      "retrieved_chunk_ids": [
+        4873,
+        4723,
+        4724
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "tuition fee",
+        "enrollment cancellation",
+        "25%"
+      ],
+      "keywords_found": [
+        "tuition fee",
+        "enrollment cancellation",
+        "25%"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What happens if a student fails to complete the scientific preparatory program within two academic semesters?",
+      "expected_chunk_id": 4756,
+      "retrieved_chunk_ids": [
+        4756,
+        4733,
+        4755
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "fail",
+        "scientific preparatory program",
+        "automatically disenrolled"
+      ],
+      "keywords_found": [
+        "fail",
+        "scientific preparatory program",
+        "automatically disenrolled"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "How many courses exceeding thirty credits from the minor program can be counted as elective courses for the student?",
+      "expected_chunk_id": 4689,
+      "retrieved_chunk_ids": [
+        4689,
+        4692,
+        4694
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "courses",
+        "thirty",
+        "six"
+      ],
+      "keywords_found": [
+        "courses",
+        "thirty",
+        "six"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "Who determines the opening of courses included in the course schedule and the faculty members to teach these courses?",
+      "expected_chunk_id": 4764,
+      "retrieved_chunk_ids": [
+        4762,
+        4593,
+        4764
+      ],
+      "found": true,
+      "rank": 3,
+      "keywords": [
+        "course schedule",
+        "institute board of directors",
+        "program director"
+      ],
+      "keywords_found": [
+        "course schedule",
+        "institute board of directors"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What happens if the project presentation is not made on the determined date?",
+      "expected_chunk_id": 4810,
+      "retrieved_chunk_ids": [
+        4807,
+        4810,
+        4808
+      ],
+      "found": true,
+      "rank": 2,
+      "keywords": [
+        "project",
+        "presentation",
+        "failed"
+      ],
+      "keywords_found": [
+        "project"
+      ],
+      "keyword_match": false
+    },
+    {
+      "question": "What currency are tuition fee refunds made in cases of enrollment suspension and cancellation?",
+      "expected_chunk_id": 4725,
+      "retrieved_chunk_ids": [
+        4720,
+        4725,
+        4719
+      ],
+      "found": true,
+      "rank": 2,
+      "keywords": [
+        "Tuition fee refunds",
+        "enrollment suspension",
+        "Turkish Lira"
+      ],
+      "keywords_found": [
+        "enrollment suspension"
+      ],
+      "keyword_match": false
+    },
+    {
+      "question": "What are the consequences for a student whose thesis proposal is rejected twice in the defense?",
+      "expected_chunk_id": 4832,
+      "retrieved_chunk_ids": [
+        4832,
+        4796,
+        4831
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "rejected",
+        "defense",
+        "discharged"
+      ],
+      "keywords_found": [
+        "rejected",
+        "defense",
+        "discharged"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What is the deadline for loading the electronic copy of the graduate thesis to the Y\u00d6K National Thesis Center?",
+      "expected_chunk_id": 4798,
+      "retrieved_chunk_ids": [
+        4798,
+        4797,
+        4830
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "electronic copy",
+        "Y\u00d6K National Thesis Center",
+        "three months"
+      ],
+      "keywords_found": [
+        "electronic copy",
+        "Y\u00d6K National Thesis Center",
+        "three months"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "Who is responsible for implementing the provisions of this Regulation at Istanbul Bilgi University?",
+      "expected_chunk_id": 4657,
+      "retrieved_chunk_ids": [
+        4715,
+        4867,
+        4595
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "provisions",
+        "Regulation",
+        "Rector"
+      ],
+      "keywords_found": [
+        "Regulation"
+      ],
+      "keyword_match": false
+    },
+    {
+      "question": "What percentage is used for undergraduate grade point average, graduate grade point average, written entrance examination, and interview in the admission process?",
+      "expected_chunk_id": 4753,
+      "retrieved_chunk_ids": [
+        4753,
+        4752,
+        4751
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "undergraduate grade point average",
+        "graduate grade point average",
+        "10%"
+      ],
+      "keywords_found": [
+        "undergraduate grade point average",
+        "graduate grade point average",
+        "10%"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What grade is given to a student who does not take the rescheduled exam before the start of the following semester's period of registration?",
+      "expected_chunk_id": 4772,
+      "retrieved_chunk_ids": [
+        4772,
+        4770,
+        4616
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "rescheduled exam",
+        "F grade",
+        "following semester"
+      ],
+      "keywords_found": [
+        "rescheduled exam",
+        "following semester"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "According to the regulation document, how is a student's semester/grade determined based on credit completed?",
+      "expected_chunk_id": 4592,
+      "retrieved_chunk_ids": [
+        4592,
+        4622,
+        4766
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "semester/grade",
+        "credit completed",
+        "academic program"
+      ],
+      "keywords_found": [
+        "credit completed",
+        "academic program"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "When do the Procedures and Principles apply to all students?",
+      "expected_chunk_id": 4879,
+      "retrieved_chunk_ids": [
+        4601,
+        4624,
+        4764
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "Procedures",
+        "Principles",
+        "First Semester",
+        "2021-2022 Academic Year"
+      ],
+      "keywords_found": [],
+      "keyword_match": false
+    },
+    {
+      "question": "What type of courses are included in the TI category at \u0130stanbul Bilgi University?",
+      "expected_chunk_id": 4774,
+      "retrieved_chunk_ids": [
+        4610,
+        4774,
+        4773
+      ],
+      "found": true,
+      "rank": 2,
+      "keywords": [
+        "TI",
+        "recognized courses",
+        "\u0130stanbul Bilgi University"
+      ],
+      "keywords_found": [
+        "TI",
+        "recognized courses",
+        "\u0130stanbul Bilgi University"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What is the minimum credit load for students in a semester?",
+      "expected_chunk_id": 4600,
+      "retrieved_chunk_ids": [
+        4597,
+        4692,
+        4599
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "minimum credit load",
+        "students",
+        "semester"
+      ],
+      "keywords_found": [
+        "students",
+        "semester"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What must a student do at least once every semester in regards to their academic advisor?",
+      "expected_chunk_id": 4712,
+      "retrieved_chunk_ids": [
+        4713,
+        4710,
+        4761
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "student",
+        "academic advisor",
+        "every semester"
+      ],
+      "keywords_found": [
+        "student",
+        "academic advisor"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What is the basis for calculating the amount that will be taken for scholarship students in case of enrollment cancellation?",
+      "expected_chunk_id": 4874,
+      "retrieved_chunk_ids": [
+        4720,
+        4873,
+        4724
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "scholarship",
+        "enrollment cancellation",
+        "total tuition fee"
+      ],
+      "keywords_found": [
+        "scholarship",
+        "total tuition fee"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What is the approving authority for the \u0130stanbul Bilgi University Financial Procedures and Principles for Students Subject to Graduate Education Regulation?",
+      "expected_chunk_id": 4867,
+      "retrieved_chunk_ids": [
+        4715,
+        4867,
+        4869
+      ],
+      "found": true,
+      "rank": 2,
+      "keywords": [
+        "\u0130stanbul Bilgi University",
+        "Financial Procedures and Principles",
+        "Board of Trustees"
+      ],
+      "keywords_found": [
+        "\u0130stanbul Bilgi University",
+        "Financial Procedures and Principles",
+        "Board of Trustees"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What is the maximum study term for the graduate program without thesis at the University?",
+      "expected_chunk_id": 4804,
+      "retrieved_chunk_ids": [
+        4858,
+        4804,
+        4860
+      ],
+      "found": true,
+      "rank": 2,
+      "keywords": [
+        "maximum study term",
+        "graduate program without thesis",
+        "three semesters"
+      ],
+      "keywords_found": [
+        "graduate program without thesis"
+      ],
+      "keyword_match": false
+    },
+    {
+      "question": "What is the requirement for double major students regarding the capstone thesis in their primary major program?",
+      "expected_chunk_id": 4672,
+      "retrieved_chunk_ids": [
+        4672,
+        4675,
+        4673
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "Double major students",
+        "compulsory thesis courses",
+        "capstone thesis"
+      ],
+      "keywords_found": [
+        "Double major students",
+        "compulsory thesis courses",
+        "capstone thesis"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "When can a student propose their thesis advisor to the institute board of directors?",
+      "expected_chunk_id": 4786,
+      "retrieved_chunk_ids": [
+        4830,
+        4820,
+        4829
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "thesis advisor",
+        "institute board of directors",
+        "first semester"
+      ],
+      "keywords_found": [
+        "thesis advisor",
+        "institute board of directors"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "How many courses can students of Istanbul Bilgi University take at most during the summer school?",
+      "expected_chunk_id": 4654,
+      "retrieved_chunk_ids": [
+        4654,
+        4577,
+        4861
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "students",
+        "Istanbul Bilgi University",
+        "three courses"
+      ],
+      "keywords_found": [
+        "students",
+        "three courses"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What type of excuses will be accepted as valid reasons for missing classes?",
+      "expected_chunk_id": 4633,
+      "retrieved_chunk_ids": [
+        4606,
+        4634,
+        4635
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "excuses",
+        "inpatient treatment",
+        "health institution"
+      ],
+      "keywords_found": [
+        "excuses"
+      ],
+      "keyword_match": false
+    },
+    {
+      "question": "What are the conditions that students who filed an application for a double major program should meet?",
+      "expected_chunk_id": 4663,
+      "retrieved_chunk_ids": [
+        4662,
+        4661,
+        4669
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "conditions",
+        "double major program",
+        "compulsory courses"
+      ],
+      "keywords_found": [],
+      "keyword_match": false
+    },
+    {
+      "question": "When was the \u0130stanbul Bilgi University Credit System Undergraduate and Two-Year Program Education and Examination Regulation published in the Official Gazette?",
+      "expected_chunk_id": 4573,
+      "retrieved_chunk_ids": [
+        4705,
+        4595,
+        4579
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "\u0130stanbul Bilgi University",
+        "Credit System",
+        "Official Gazette"
+      ],
+      "keywords_found": [
+        "\u0130stanbul Bilgi University",
+        "Credit System",
+        "Official Gazette"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What must students do after successfully passing the doctoral qualifying examination?",
+      "expected_chunk_id": 4830,
+      "retrieved_chunk_ids": [
+        4828,
+        4824,
+        4825
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "doctoral qualifying examination",
+        "thesis proposals",
+        "thesis supervision committee"
+      ],
+      "keywords_found": [],
+      "keyword_match": false
+    },
+    {
+      "question": "Who is responsible for enforcing the provisions of this Directive?",
+      "expected_chunk_id": 4714,
+      "retrieved_chunk_ids": [
+        4657,
+        4709,
+        4714
+      ],
+      "found": true,
+      "rank": 3,
+      "keywords": [
+        "provisions",
+        "Directive",
+        "Rector"
+      ],
+      "keywords_found": [
+        "provisions",
+        "Rector"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "How many semesters can special student status last for?",
+      "expected_chunk_id": 4865,
+      "retrieved_chunk_ids": [
+        4865,
+        4656,
+        4648
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "special student status",
+        "two semesters"
+      ],
+      "keywords_found": [
+        "special student status",
+        "two semesters"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What happens to the enrollment fee if a student disenrolls or does not continue education after the suspension of enrollment?",
+      "expected_chunk_id": 4720,
+      "retrieved_chunk_ids": [
+        4720,
+        4719,
+        4871
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "enrollment fee",
+        "disenrolls",
+        "not refunded"
+      ],
+      "keywords_found": [
+        "enrollment fee",
+        "disenrolls",
+        "not refunded"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What is the deadline for delivering the bound copies, electronic copy, and other documents required for diploma after passing the thesis exam?",
+      "expected_chunk_id": 4844,
+      "retrieved_chunk_ids": [
+        4844,
+        4845,
+        4797
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "deliver",
+        "one month",
+        "thesis exam"
+      ],
+      "keywords_found": [
+        "deliver",
+        "one month",
+        "thesis exam"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "Under what circumstances can undergraduate students in the first and second semester exceed the normal credit load?",
+      "expected_chunk_id": 4597,
+      "retrieved_chunk_ids": [
+        4597,
+        4667,
+        4692
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "Undergraduate students",
+        "exceed",
+        "normal credit load"
+      ],
+      "keywords_found": [
+        "Undergraduate students",
+        "exceed",
+        "normal credit load"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What must students do in order for the course registrations to be made?",
+      "expected_chunk_id": 4588,
+      "retrieved_chunk_ids": [
+        4585,
+        4763,
+        4589
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "financial obligations",
+        "course registrations",
+        "University"
+      ],
+      "keywords_found": [
+        "financial obligations",
+        "course registrations",
+        "University"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "Under what circumstances can a student freeze their registration?",
+      "expected_chunk_id": 4641,
+      "retrieved_chunk_ids": [
+        4639,
+        4641,
+        4847
+      ],
+      "found": true,
+      "rank": 2,
+      "keywords": [
+        "freeze",
+        "registration",
+        "written application"
+      ],
+      "keywords_found": [
+        "freeze",
+        "registration"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What GPA is required for the secondary major program?",
+      "expected_chunk_id": 4678,
+      "retrieved_chunk_ids": [
+        4678,
+        4671,
+        4677
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "GPA",
+        "secondary major",
+        "2.80"
+      ],
+      "keywords_found": [
+        "GPA",
+        "secondary major",
+        "2.80"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What is the abbreviation used to follow the academic standing of students for the courses they took in the completed semester?",
+      "expected_chunk_id": 4778,
+      "retrieved_chunk_ids": [
+        4778,
+        4768,
+        4766
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "Semester Grade Point Average",
+        "SGPA"
+      ],
+      "keywords_found": [
+        "Semester Grade Point Average",
+        "SGPA"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What right are double major students granted for their primary major?",
+      "expected_chunk_id": 4680,
+      "retrieved_chunk_ids": [
+        4666,
+        4668,
+        4677
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "Double major",
+        "additional examination",
+        "primary major"
+      ],
+      "keywords_found": [
+        "Double major",
+        "primary major"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What are the conditions for transferring students from graduate programs with thesis to the University's graduate programs without thesis?",
+      "expected_chunk_id": 4857,
+      "retrieved_chunk_ids": [
+        4857,
+        4856,
+        4859
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "conditions",
+        "transferring",
+        "graduate programs without thesis"
+      ],
+      "keywords_found": [
+        "conditions",
+        "graduate programs without thesis"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What is the timeframe for delivering the thesis and required documents after passing the thesis exam?",
+      "expected_chunk_id": 4797,
+      "retrieved_chunk_ids": [
+        4838,
+        4792,
+        4830
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "deliver",
+        "thesis exam",
+        "within one month"
       ],
       "keywords_found": [
         "thesis exam"
       ],
       "keyword_match": false
+    },
+    {
+      "question": "What does the 'Normal Period of Study' refer to for undergraduate education at \u0130stanbul Bilgi University?",
+      "expected_chunk_id": 4717,
+      "retrieved_chunk_ids": [
+        4577,
+        4591,
+        4595
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "Normal Period of Study",
+        "undergraduate education",
+        "8 semesters"
+      ],
+      "keywords_found": [],
+      "keyword_match": false
+    },
+    {
+      "question": "What happens to the grade of students who fail to complete their deficiencies within two weeks after the exam period?",
+      "expected_chunk_id": 4770,
+      "retrieved_chunk_ids": [
+        4607,
+        4770,
+        4617
+      ],
+      "found": true,
+      "rank": 2,
+      "keywords": [
+        "grade",
+        "students",
+        "deficiencies"
+      ],
+      "keywords_found": [
+        "grade",
+        "students",
+        "deficiencies"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What program will students be admitted to if they fail to meet the proficiency requirement for graduate programs where proficiency in English language is sought?",
+      "expected_chunk_id": 4749,
+      "retrieved_chunk_ids": [
+        4749,
+        4748,
+        4747
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "Language Preparatory Program",
+        "proficiency requirement",
+        "English language"
+      ],
+      "keywords_found": [
+        "Language Preparatory Program",
+        "proficiency requirement",
+        "English language"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "In what language is the medium of instruction at the university?",
+      "expected_chunk_id": 4575,
+      "retrieved_chunk_ids": [
+        4575,
+        4740,
+        4576
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "Medium of Instruction",
+        "English",
+        "courses"
+      ],
+      "keywords_found": [
+        "Medium of Instruction",
+        "English",
+        "courses"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "When can undergraduate program students apply for a double major program?",
+      "expected_chunk_id": 4661,
+      "retrieved_chunk_ids": [
+        4661,
+        4662,
+        4666
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "undergraduate",
+        "apply",
+        "double major"
+      ],
+      "keywords_found": [
+        "undergraduate",
+        "apply",
+        "double major"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What is the maximum credit load for students in the third and subsequent semesters in an academic year?",
+      "expected_chunk_id": 4599,
+      "retrieved_chunk_ids": [
+        4597,
+        4763,
+        4599
+      ],
+      "found": true,
+      "rank": 3,
+      "keywords": [
+        "Maximum credit load",
+        "third and subsequent semesters",
+        "eighty credits"
+      ],
+      "keywords_found": [],
+      "keyword_match": false
+    },
+    {
+      "question": "What GPA threshold will result in a student being deemed probational for the following semester?",
+      "expected_chunk_id": 4784,
+      "retrieved_chunk_ids": [
+        4803,
+        4784,
+        4817
+      ],
+      "found": true,
+      "rank": 2,
+      "keywords": [
+        "GPA",
+        "probational",
+        "semester"
+      ],
+      "keywords_found": [
+        "GPA",
+        "probational",
+        "semester"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What happens to students whose grade point average at the end of any semester is 1.75?",
+      "expected_chunk_id": 4622,
+      "retrieved_chunk_ids": [
+        4655,
+        4628,
+        4621
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "grade point average",
+        "probational student",
+        "semester"
+      ],
+      "keywords_found": [
+        "grade point average",
+        "semester"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "Under what circumstances will students be granted the right to take an additional exam for a course they received an (F) grade from?",
+      "expected_chunk_id": 4645,
+      "retrieved_chunk_ids": [
+        4682,
+        4646,
+        4696
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "additional exam",
+        "(F) grade",
+        "overall grade point average"
+      ],
+      "keywords_found": [
+        "additional exam"
+      ],
+      "keyword_match": false
+    },
+    {
+      "question": "How are Academic Advisors assigned to students at \u0130stanbul Bilgi University?",
+      "expected_chunk_id": 4709,
+      "retrieved_chunk_ids": [
+        4709,
+        4867,
+        4714
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "Assigning",
+        "Advisors",
+        "Student"
+      ],
+      "keywords_found": [
+        "Assigning",
+        "Advisors",
+        "Student"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What are graduate education activities carried out on?",
+      "expected_chunk_id": 4742,
+      "retrieved_chunk_ids": [
+        4740,
+        4854,
+        4780
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "graduate education activities",
+        "semester basis",
+        "fall",
+        "spring semesters"
+      ],
+      "keywords_found": [],
+      "keyword_match": false
+    },
+    {
+      "question": "What are the four main conditions that need to be met in order to register for courses at the university?",
+      "expected_chunk_id": 4585,
+      "retrieved_chunk_ids": [
+        4585,
+        4763,
+        4783
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "registration",
+        "conditions",
+        "courses"
+      ],
+      "keywords_found": [
+        "registration",
+        "conditions",
+        "courses"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "Who is the approving authority of the Financial Procedures and Principles for Students regulation at Istanbul Bilgi University?",
+      "expected_chunk_id": 4715,
+      "retrieved_chunk_ids": [
+        4715,
+        4867,
+        4716
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "approving authority",
+        "Financial Procedures and Principles for Students",
+        "Istanbul Bilgi University"
+      ],
+      "keywords_found": [
+        "approving authority",
+        "Financial Procedures and Principles for Students"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What regulation should determine the tuition fees, exemptions, and payment dates for graduate education at \u0130stanbul Bilgi University?",
+      "expected_chunk_id": 4744,
+      "retrieved_chunk_ids": [
+        4868,
+        4869,
+        4744
+      ],
+      "found": true,
+      "rank": 3,
+      "keywords": [
+        "tuition fees",
+        "exemptions",
+        "payment dates"
+      ],
+      "keywords_found": [],
+      "keyword_match": false
+    },
+    {
+      "question": "What department must approve a student's application for disenrollment?",
+      "expected_chunk_id": 4847,
+      "retrieved_chunk_ids": [
+        4848,
+        4642,
+        4698
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "disenroll",
+        "application",
+        "Financial Affairs Department"
+      ],
+      "keywords_found": [
+        "disenroll",
+        "application",
+        "Financial Affairs Department"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "When should applications for excuse be filed to be considered?",
+      "expected_chunk_id": 4637,
+      "retrieved_chunk_ids": [
+        4635,
+        4638,
+        4634
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "applications",
+        "excuse",
+        "consideration"
+      ],
+      "keywords_found": [
+        "applications",
+        "excuse"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "When must jury members who voted 'rejection' or 'correction' submit their evaluations of the thesis?",
+      "expected_chunk_id": 4795,
+      "retrieved_chunk_ids": [
+        4841,
+        4795,
+        4794
+      ],
+      "found": true,
+      "rank": 2,
+      "keywords": [
+        "jury members",
+        "rejection",
+        "correction"
+      ],
+      "keywords_found": [
+        "jury members",
+        "rejection",
+        "correction"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "Who is appointed as an academic advisor for each student enrolling in graduate programs?",
+      "expected_chunk_id": 4761,
+      "retrieved_chunk_ids": [
+        4761,
+        4820,
+        4787
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "academic advisor",
+        "program director",
+        "graduate programs"
+      ],
+      "keywords_found": [
+        "academic advisor",
+        "program director",
+        "graduate programs"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What is the purpose of the doctoral program according to the university regulation document?",
+      "expected_chunk_id": 4811,
+      "retrieved_chunk_ids": [
+        4811,
+        4821,
+        4737
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "doctoral program",
+        "independent researches",
+        "scientific events"
+      ],
+      "keywords_found": [
+        "doctoral program",
+        "independent researches",
+        "scientific events"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "How many additional courses may be granted to students in the sixth, seventh or eighth semester for the Fall Semester of 2013-2014 Academic Year?",
+      "expected_chunk_id": 4656,
+      "retrieved_chunk_ids": [
+        4656,
+        4763,
+        4593
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "additional courses",
+        "sixth, seventh or eighth semester",
+        "2013-2014 Academic Year"
+      ],
+      "keywords_found": [
+        "additional courses",
+        "sixth, seventh or eighth semester",
+        "2013-2014 Academic Year"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "Can undergraduate courses taken by a student as determined by the institute committee be counted for course load and credits?",
+      "expected_chunk_id": 4815,
+      "retrieved_chunk_ids": [
+        4815,
+        4816,
+        4597
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "undergraduate",
+        "course load",
+        "credits"
+      ],
+      "keywords_found": [
+        "undergraduate",
+        "course load",
+        "credits"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What documents may be requested from candidates at the time of application to graduate programs?",
+      "expected_chunk_id": 4751,
+      "retrieved_chunk_ids": [
+        4758,
+        4757,
+        4750
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "documents",
+        "application",
+        "graduate programs"
+      ],
+      "keywords_found": [
+        "documents",
+        "application"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "When will academic standing and probational student status start to be applied to students who registered with the first and subsequent grades before 2002-2003 Academic Year at the end of the first semester of 2002-2003 Academic Year?",
+      "expected_chunk_id": 4651,
+      "retrieved_chunk_ids": [
+        4651,
+        4784,
+        4803
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "academic standing",
+        "probational student status",
+        "2002-2003 Academic Year"
+      ],
+      "keywords_found": [
+        "academic standing",
+        "probational student status",
+        "2002-2003 Academic Year"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What is the maximum number of courses and AKTS credits that may be taken from the undergraduate or graduate program?",
+      "expected_chunk_id": 4816,
+      "retrieved_chunk_ids": [
+        4813,
+        4801,
+        4782
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "courses",
+        "AKTS credits",
+        "maximum"
+      ],
+      "keywords_found": [
+        "courses",
+        "AKTS credits"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What grade is given to a student who does not take the rescheduled exam before the start of the following semester's period of registration?",
+      "expected_chunk_id": 4609,
+      "retrieved_chunk_ids": [
+        4772,
+        4770,
+        4616
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "F",
+        "rescheduled exam",
+        "following semester"
+      ],
+      "keywords_found": [
+        "F",
+        "rescheduled exam",
+        "following semester"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What happens if a student applies for another minor program while they are already enrolled in a minor program?",
+      "expected_chunk_id": 4692,
+      "retrieved_chunk_ids": [
+        4691,
+        4694,
+        4698
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "student",
+        "minor program",
+        "disenrolled"
+      ],
+      "keywords_found": [
+        "student",
+        "minor program"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What must a student who has received an (F) from a compulsory course do?",
+      "expected_chunk_id": 4777,
+      "retrieved_chunk_ids": [
+        4778,
+        4620,
+        4606
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "compulsory course",
+        "repeat",
+        "(F)"
+      ],
+      "keywords_found": [
+        "compulsory course",
+        "repeat",
+        "(F)"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What are students obliged to pay if they repeat courses due to failure, even if they have scholarships?",
+      "expected_chunk_id": 4877,
+      "retrieved_chunk_ids": [
+        4877,
+        4586,
+        4620
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "students",
+        "repeat courses",
+        "scholarships"
+      ],
+      "keywords_found": [
+        "students",
+        "repeat courses",
+        "scholarships"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What is the code used for courses exempted as a result of an exam performed by the Academic Committee upon suggestion by the board of directors of the relevant faculty or high school?",
+      "expected_chunk_id": 4606,
+      "retrieved_chunk_ids": [
+        4606,
+        4769,
+        4815
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "EE",
+        "exam",
+        "Academic Committee"
+      ],
+      "keywords_found": [
+        "EE",
+        "exam",
+        "Academic Committee"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What is the minimum ALES standard score required for admission to graduate programs as specified in the Graduate Education and Training Regulations?",
+      "expected_chunk_id": 4745,
+      "retrieved_chunk_ids": [
+        4745,
+        4752,
+        4746
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "ALES",
+        "standard score",
+        "Graduate Education and Training Regulations"
+      ],
+      "keywords_found": [
+        "ALES",
+        "standard score",
+        "Graduate Education and Training Regulations"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What is the meaning of the course code 'S' when it appears on a transcript?",
+      "expected_chunk_id": 4611,
+      "retrieved_chunk_ids": [
+        4766,
+        4772,
+        4611
+      ],
+      "found": true,
+      "rank": 3,
+      "keywords": [
+        "S",
+        "special student",
+        "courses"
+      ],
+      "keywords_found": [
+        "S",
+        "courses"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What percentage of the annual tuition fee are students obliged to pay if they cancel their enrollment at \u0130stanbul Bilgi University until the start date of the first semester?",
+      "expected_chunk_id": 4721,
+      "retrieved_chunk_ids": [
+        4721,
+        4868,
+        4727
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "enrollment",
+        "\u0130stanbul Bilgi University",
+        "10%"
+      ],
+      "keywords_found": [
+        "enrollment",
+        "\u0130stanbul Bilgi University",
+        "10%"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "Which students does the Regulation apply to from the second semester of the 2002-2003 Academic Year?",
+      "expected_chunk_id": 4705,
+      "retrieved_chunk_ids": [
+        4656,
+        4707,
+        4593
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "Regulation",
+        "Credit System",
+        "Undergraduate and Two-Year Program"
+      ],
+      "keywords_found": [
+        "Regulation"
+      ],
+      "keyword_match": false
+    },
+    {
+      "question": "When must jury members who cast their votes as 'rejection' or 'correction' submit their evaluations of the thesis?",
+      "expected_chunk_id": 4841,
+      "retrieved_chunk_ids": [
+        4841,
+        4795,
+        4794
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "jury members",
+        "'rejection' or 'correction'",
+        "evaluations"
+      ],
+      "keywords_found": [
+        "jury members",
+        "evaluations"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "Under what circumstances may the institute director allow thesis exams to be performed outside the University buildings?",
+      "expected_chunk_id": 4793,
+      "retrieved_chunk_ids": [
+        4793,
+        4839,
+        4838
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "institute director",
+        "thesis exams",
+        "University buildings"
+      ],
+      "keywords_found": [
+        "institute director",
+        "thesis exams",
+        "University buildings"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "According to the university regulation document, for how many semesters is the tuition fee per credit collected from students exceeding the normal education period in undergraduate education?",
+      "expected_chunk_id": 4730,
+      "retrieved_chunk_ids": [
+        4730,
+        4878,
+        4877
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "tuition fee",
+        "credit",
+        "undergraduate education"
+      ],
+      "keywords_found": [
+        "tuition fee",
+        "credit",
+        "undergraduate education"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What is the effective date of the Official Gazette dated 30 June 2014 and numbered 29046?",
+      "expected_chunk_id": 4658,
+      "retrieved_chunk_ids": [
+        4704,
+        4742,
+        4657
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "Official Gazette",
+        "30 June 2014",
+        "29046"
+      ],
+      "keywords_found": [
+        "Official Gazette",
+        "30 June 2014",
+        "29046"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What is the maximum number of courses and AKTS credits that can be taken from undergraduate programs in the graduate program?",
+      "expected_chunk_id": 4802,
+      "retrieved_chunk_ids": [
+        4801,
+        4782,
+        4813
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "courses",
+        "AKTS credits",
+        "undergraduate programs"
+      ],
+      "keywords_found": [
+        "courses",
+        "AKTS credits",
+        "undergraduate programs"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What components should be available in diplomas according to the university regulation document?",
+      "expected_chunk_id": 4780,
+      "retrieved_chunk_ids": [
+        4851,
+        4844,
+        4750
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "Components",
+        "diplomas",
+        "University"
+      ],
+      "keywords_found": [
+        "University"
+      ],
+      "keyword_match": false
+    },
+    {
+      "question": "What is the minimum overall grade point average required for a student to continue in the program?",
+      "expected_chunk_id": 4819,
+      "retrieved_chunk_ids": [
+        4626,
+        4628,
+        4621
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "grade point average"
+      ],
+      "keywords_found": [
+        "grade point average"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "Within how many weeks must the relevant instructor announce exam grades that impact the semester grade?",
+      "expected_chunk_id": 4616,
+      "retrieved_chunk_ids": [
+        4617,
+        4616,
+        4765
+      ],
+      "found": true,
+      "rank": 2,
+      "keywords": [
+        "within",
+        "weeks",
+        "instructor",
+        "exam grades",
+        "semester grade"
+      ],
+      "keywords_found": [
+        "within",
+        "weeks"
+      ],
+      "keyword_match": false
+    },
+    {
+      "question": "What credit point average must a probational student increase to in order to be removed from the probational status?",
+      "expected_chunk_id": 4623,
+      "retrieved_chunk_ids": [
+        4623,
+        4803,
+        4622
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "grade point average",
+        "probational student",
+        "1.75"
+      ],
+      "keywords_found": [
+        "grade point average",
+        "probational student",
+        "1.75"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "How many semesters are students allowed to freeze their registration for?",
+      "expected_chunk_id": 4639,
+      "retrieved_chunk_ids": [
+        4639,
+        4763,
+        4847
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "registration",
+        "freeze",
+        "four semesters"
+      ],
+      "keywords_found": [
+        "registration",
+        "freeze",
+        "four semesters"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What is the minimum total AKTS credits required for the course part of the graduate program with thesis?",
+      "expected_chunk_id": 4781,
+      "retrieved_chunk_ids": [
+        4813,
+        4781,
+        4782
+      ],
+      "found": true,
+      "rank": 2,
+      "keywords": [
+        "total AKTS credits",
+        "graduate program with thesis",
+        "course part"
+      ],
+      "keywords_found": [
+        "total AKTS credits"
+      ],
+      "keyword_match": false
+    },
+    {
+      "question": "What conditions must double major students meet in order to receive separate undergraduate diplomas in both majors?",
+      "expected_chunk_id": 4679,
+      "retrieved_chunk_ids": [
+        4666,
+        4677,
+        4660
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "double major",
+        "undergraduate diploma",
+        "curricula"
+      ],
+      "keywords_found": [
+        "double major"
+      ],
+      "keyword_match": false
+    },
+    {
+      "question": "What happens if a student is found cheating or plagiarizing in an exam or assignment?",
+      "expected_chunk_id": 4602,
+      "retrieved_chunk_ids": [
+        4602,
+        4852,
+        4853
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "cheating",
+        "plagiarism",
+        "fail"
+      ],
+      "keywords_found": [
+        "cheating",
+        "plagiarism",
+        "fail"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What are the days of the week on which courses can be conducted in all undergraduate and two-year programs of the University?",
+      "expected_chunk_id": 4577,
+      "retrieved_chunk_ids": [
+        4743,
+        4785,
+        4656
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "courses",
+        "conducted",
+        "Monday",
+        "Saturday",
+        "undergraduate",
+        "two-year",
+        "programs"
+      ],
+      "keywords_found": [
+        "courses",
+        "conducted",
+        "Monday",
+        "Saturday",
+        "programs"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "Within how many months should the thesis subject and title be determined?",
+      "expected_chunk_id": 4829,
+      "retrieved_chunk_ids": [
+        4830,
+        4829,
+        4788
+      ],
+      "found": true,
+      "rank": 2,
+      "keywords": [
+        "Thesis subject",
+        "title",
+        "three months"
+      ],
+      "keywords_found": [
+        "Thesis subject",
+        "title",
+        "three months"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What document and date is referenced for the amended article?",
+      "expected_chunk_id": 4619,
+      "retrieved_chunk_ids": [
+        4880,
+        4876,
+        4637
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "amended article",
+        "Official Gazette",
+        "13 June 2013"
+      ],
+      "keywords_found": [
+        "amended article"
+      ],
+      "keyword_match": false
+    },
+    {
+      "question": "How many AKTS credits are required for students admitted with a graduate degree, in a program that consists of at least 120 total AKTS credits and at least fourteen courses?",
+      "expected_chunk_id": 4813,
+      "retrieved_chunk_ids": [
+        4813,
+        4782,
+        4801
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "AKTS credits",
+        "graduate degree",
+        "120"
+      ],
+      "keywords_found": [
+        "AKTS credits",
+        "graduate degree",
+        "120"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What activities are carried out in line with the provisions of this Regulation at \u0130stanbul Bilgi University?",
+      "expected_chunk_id": 4659,
+      "retrieved_chunk_ids": [
+        4715,
+        4736,
+        4579
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "Education",
+        "double major",
+        "Regulation"
+      ],
+      "keywords_found": [
+        "Education",
+        "Regulation"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What board determines the dates of the summer school and related principles?",
+      "expected_chunk_id": 4655,
+      "retrieved_chunk_ids": [
+        4655,
+        4653,
+        4654
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "summer school",
+        "University Board of Directors",
+        "conduct"
+      ],
+      "keywords_found": [
+        "summer school",
+        "University Board of Directors",
+        "conduct"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What courses can students have counted towards their elective courses and credit load if they disenroll or are disenrolled from the secondary major?",
+      "expected_chunk_id": 4684,
+      "retrieved_chunk_ids": [
+        4598,
+        4684,
+        4586
+      ],
+      "found": true,
+      "rank": 2,
+      "keywords": [
+        "courses",
+        "elective",
+        "secondary major"
+      ],
+      "keywords_found": [
+        "courses",
+        "elective"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "Who appoints an advisor for each student according to the university regulation document?",
+      "expected_chunk_id": 4593,
+      "retrieved_chunk_ids": [
+        4761,
+        4820,
+        4787
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "advisor",
+        "appointed",
+        "head"
+      ],
+      "keywords_found": [
+        "advisor",
+        "appointed"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "How are invoices regarding tuition fees arranged?",
+      "expected_chunk_id": 4728,
+      "retrieved_chunk_ids": [
+        4728,
+        4875,
+        4873
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "invoices",
+        "tuition fee",
+        "arranged"
+      ],
+      "keywords_found": [
+        "invoices",
+        "tuition fee",
+        "arranged"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "How is credit calculated for tuition fees in the program?",
+      "expected_chunk_id": 4731,
+      "retrieved_chunk_ids": [
+        4878,
+        4873,
+        4730
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "credit",
+        "annual tuition fee",
+        "program"
+      ],
+      "keywords_found": [
+        "credit",
+        "program"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What grade point average is required for graduate programs according to the university regulation document?",
+      "expected_chunk_id": 4863,
+      "retrieved_chunk_ids": [
+        4628,
+        4626,
+        4766
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "grade point average",
+        "graduate programs"
+      ],
+      "keywords_found": [
+        "grade point average"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What does the term 'Project advisor' refer to in the context of graduate programs without thesis?",
+      "expected_chunk_id": 4739,
+      "retrieved_chunk_ids": [
+        4805,
+        4820,
+        4821
+      ],
+      "found": false,
+      "rank": null,
+      "keywords": [
+        "Project advisor",
+        "instructor",
+        "graduate programs without thesis"
+      ],
+      "keywords_found": [
+        "Project advisor",
+        "instructor"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What is the minimum grade point average required for a student to graduate from the undergraduate program?",
+      "expected_chunk_id": 4626,
+      "retrieved_chunk_ids": [
+        4626,
+        4752,
+        4628
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "graduate",
+        "undergraduate program",
+        "grade point average"
+      ],
+      "keywords_found": [
+        "graduate",
+        "undergraduate program",
+        "grade point average"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What happens to students who have not fulfilled their financial obligations toward the University and whose excuses are not deemed valid?",
+      "expected_chunk_id": 4733,
+      "retrieved_chunk_ids": [
+        4640,
+        4732,
+        4733
+      ],
+      "found": true,
+      "rank": 3,
+      "keywords": [
+        "financial obligations",
+        "student rights",
+        "military service"
+      ],
+      "keywords_found": [],
+      "keyword_match": false
+    },
+    {
+      "question": "What is the financial responsibility of the University toward students who pay the tuition fee with banking campaigns or bank credits?",
+      "expected_chunk_id": 4878,
+      "retrieved_chunk_ids": [
+        4878,
+        4727,
+        4717
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "financial responsibility",
+        "students",
+        "banking campaigns"
+      ],
+      "keywords_found": [
+        "financial responsibility",
+        "students",
+        "banking campaigns"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "When can two-year program students file an application for double major?",
+      "expected_chunk_id": 4662,
+      "retrieved_chunk_ids": [
+        4662,
+        4661,
+        4669
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "two-year program",
+        "double major",
+        "application"
+      ],
+      "keywords_found": [
+        "two-year program",
+        "double major",
+        "application"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "Who is responsible for appointing members of the doctoral qualifying committee?",
+      "expected_chunk_id": 4825,
+      "retrieved_chunk_ids": [
+        4825,
+        4824,
+        4826
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "doctoral qualifying committee",
+        "proposed",
+        "appointed"
+      ],
+      "keywords_found": [
+        "doctoral qualifying committee",
+        "proposed",
+        "appointed"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What is the purpose of the graduate program without thesis according to the university regulation document?",
+      "expected_chunk_id": 4799,
+      "retrieved_chunk_ids": [
+        4799,
+        4860,
+        4821
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "graduate program without thesis",
+        "purpose",
+        "occupational issues"
+      ],
+      "keywords_found": [
+        "graduate program without thesis",
+        "purpose",
+        "occupational issues"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "How many semesters must a student complete their studies in to be included in the high honor list?",
+      "expected_chunk_id": 4648,
+      "retrieved_chunk_ids": [
+        4648,
+        4631,
+        4802
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "four",
+        "semesters",
+        "high honor list"
+      ],
+      "keywords_found": [
+        "four",
+        "semesters",
+        "high honor list"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What are the specific procedures for admission to graduate programs according to the regulations?",
+      "expected_chunk_id": 4757,
+      "retrieved_chunk_ids": [
+        4757,
+        4802,
+        4783
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "admission",
+        "graduate programs",
+        "application"
+      ],
+      "keywords_found": [
+        "admission",
+        "graduate programs",
+        "application"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "Under what conditions can doctoral program students be transferred to the University's graduate programs with thesis?",
+      "expected_chunk_id": 4856,
+      "retrieved_chunk_ids": [
+        4856,
+        4855,
+        4857
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "transferred",
+        "graduate programs with thesis",
+        "qualifying examination"
+      ],
+      "keywords_found": [
+        "transferred",
+        "graduate programs with thesis",
+        "qualifying examination"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "Can students be exempt from preparing a thesis for the secondary major if they successfully pass certain courses?",
+      "expected_chunk_id": 4673,
+      "retrieved_chunk_ids": [
+        4673,
+        4672,
+        4625
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "exempt",
+        "thesis",
+        "secondary major"
+      ],
+      "keywords_found": [
+        "exempt",
+        "thesis",
+        "secondary major"
+      ],
+      "keyword_match": true
+    },
+    {
+      "question": "What form is used to enter all academic and other problems a student faces?",
+      "expected_chunk_id": 4711,
+      "retrieved_chunk_ids": [
+        4711,
+        4764,
+        4768
+      ],
+      "found": true,
+      "rank": 1,
+      "keywords": [
+        "Advisor-Student Form"
+      ],
+      "keywords_found": [
+        "Advisor-Student Form"
+      ],
+      "keyword_match": true
     }
   ]
 }
