@@ -30,7 +30,7 @@ RESULTS_DIR = Path(__file__).parent / "results" / "chunking_quality"
 RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 
 DATASETS = [
-    RESULTS_DIR / "ground_truths_100w.json"
+    RESULTS_DIR / "ground_truths_150w.json"
 ]
 
 MODELS_TO_TEST = [
