@@ -3,38 +3,11 @@
 Experiment 1: Chunking Quality Check
 
 Tests if we can find the right regulation rules with different chunk sizes.
-
-FLOW:
-    For each chunk size (100w, 150w):
-
-    1. DELETE all existing chunks
-       └─> Clear database
-
-    2. RE-CHUNK documents
-       └─> Split documents with current chunk_size + overlap
-
-    3. SAMPLE random chunks (N=10)
-       └─> Pick chunks to generate test questions
-
-    4. GENERATE ground truths using AI
-       └─> For each chunk: create question + keywords
-       └─> AI extracts critical keywords from chunk
-
-    5. SAVE ground truths
-       └─> results/chunking_quality/ground_truths_{size}w.json
-
-    6. TEST retrieval quality
-       └─> Ask each question
-       └─> Check if correct chunk retrieved (top-3)
-       └─> Verify keywords present in retrieved chunk
-
-    7. SAVE report
-       └─> results/chunking_quality/report_{size}w.json
-       └─> Metrics: chunk_accuracy, keyword_accuracy
 """
 
 import sys
 import json as json_lib
+import os
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
@@ -71,23 +44,41 @@ class ChunkingQualityExperiment(BaseExperiment):
             print(f"{'=' * 60}\n")
 
             overlap = int(chunk_size * self.overlap_ratio)
+            gt_filename = f"ground_truths_{chunk_size}w.json"
+            
+            # We assume the BaseExperiment saves results in a specific folder. 
+            # We construct the path to check for existence.
+            # Adjust 'results/chunking_quality' if your BaseExperiment uses a different path structure.
+            gt_file_path = Path(__file__).parent / "results" / "chunking_quality" / gt_filename
 
-            # Step 1: Delete all existing chunks
+            # Step 1: Delete all existing chunks (Always required to reset DB state)
             self.delete_all_chunks()
 
-            # Step 2: Re-chunk with current strategy
+            # Step 2: Re-chunk with current strategy (Always required to fill DB)
             total_chunks = self.chunk_all_documents(chunk_size, overlap)
 
-            # Step 3: Sample random chunks
-            sampled_chunks = self.sample_chunks(n=self.ground_truth_samples)
-            print(f"📋 Sampled {len(sampled_chunks)} chunks for ground truth generation")
+            ground_truths = []
 
-            # Step 4: Generate ground truths using AI (parallel)
-            ground_truths = self._generate_ground_truths(sampled_chunks)
-            print(f"✅ Generated {len(ground_truths)} ground truth Q&A pairs")
+            # CHECK: Do we already have ground truths?
+            if gt_file_path.exists():
+                print(f"📂 Found existing ground truths at: {gt_filename}")
+                print("🔄 Loading and re-mapping IDs to new database chunks...")
+                ground_truths = self._load_and_remap_ground_truths(gt_file_path)
+            else:
+                # Step 3: Sample random chunks
+                sampled_chunks = self.sample_chunks(n=self.ground_truth_samples)
+                print(f"📋 Sampled {len(sampled_chunks)} chunks for ground truth generation")
 
-            # Step 5: Save ground truths
-            self.save_json(ground_truths, f"ground_truths_{chunk_size}w.json")
+                # Step 4: Generate ground truths using AI (parallel)
+                ground_truths = self._generate_ground_truths(sampled_chunks)
+                print(f"✅ Generated {len(ground_truths)} ground truth Q&A pairs")
+
+                # Step 5: Save ground truths
+                self.save_json(ground_truths, gt_filename)
+
+            if not ground_truths:
+                print("⚠️ No ground truths available. Skipping test.")
+                continue
 
             # Step 6: Test retrieval quality
             report = self._test_retrieval_quality(ground_truths, chunk_size)
@@ -98,6 +89,42 @@ class ChunkingQualityExperiment(BaseExperiment):
         print("\n" + "=" * 60)
         print("Experiment Complete!")
         print("=" * 60)
+
+    def _load_and_remap_ground_truths(self, filepath):
+        """
+        Loads existing ground truths and updates their chunk_ids.
+        Since we re-chunked the database, the old IDs in the JSON file are invalid.
+        We must find the new chunk ID by matching the content.
+        """
+        try:
+            with open(filepath, "r", encoding="utf-8") as f:
+                data = json_lib.load(f)
+        except Exception as e:
+            print(f"❌ Error loading JSON: {e}")
+            return []
+
+        remapped_data = []
+        not_found_count = 0
+
+        for item in data:
+            content_to_match = item["chunk_content"]
+            
+            # Find the chunk in the NEW database that matches the OLD content
+            # We filter by exact content match
+            chunk = self.db.query(DocumentChunk).filter_by(content=content_to_match).first()
+            
+            if chunk:
+                # Update the ID to the new database ID
+                item["chunk_id"] = chunk.id
+                remapped_data.append(item)
+            else:
+                not_found_count += 1
+        
+        print(f"   ✅ Successfully remapped {len(remapped_data)} items.")
+        if not_found_count > 0:
+            print(f"   ⚠️ Warning: Could not find {not_found_count} chunks in new DB (content mismatch).")
+
+        return remapped_data
 
     def _generate_single_ground_truth(self, chunk):
         """Generate a single ground truth Q&A pair."""
@@ -226,8 +253,9 @@ Return ONLY a JSON object with this format:
             )
 
             status = "✅" if found else "❌"
-            kw_status = f"🔑 {len(keywords_found)}/{len(keywords)}" if keywords else ""
-            print(f"   [{i+1}/{len(ground_truths)}] {status} Found: {found} {kw_status}")
+            kw_status = f"{len(keywords_found)}/{len(keywords)}" if keywords else ""
+            if (i + 1) % 10 == 0:  # Print every 10th to reduce spam, or keep as is
+                 print(f"   [{i+1}/{len(ground_truths)}] {status} Found: {found} {kw_status}")
 
         accuracy = correct_count / len(ground_truths) if ground_truths else 0
         keyword_accuracy = (
