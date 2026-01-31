@@ -1,7 +1,7 @@
 import time
 from typing import List, Dict, Tuple, Iterator
 from sqlalchemy.orm import Session
-from database.repositories import get_course_repository
+from database.repositories.course_repository import get_course_repository
 from services.embedding_service import get_embedding_service
 from services.llm_service import LLMService
 
