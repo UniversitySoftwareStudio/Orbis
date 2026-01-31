@@ -1,11 +1,11 @@
 import sys
 from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker
-from sqlalchemy.orm import declarative_base
-#from sqlalchemy.ext.declarative import declarative_base
 import os
 
-Base = declarative_base()
+# Import Base from models (single source of truth)
+from .models import Base
+
 # Database connection
 DATABASE_URL = os.getenv(
     "DATABASE_URL", "postgresql://user:password@localhost:5432/orbisdb"
@@ -15,13 +15,15 @@ engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 
-
 def init_db():
+    """Initialize database with pgvector extension and create all tables"""
     with engine.connect() as conn:
         conn.execute(text("CREATE EXTENSION IF NOT EXISTS vector"))
-        conn.commit()  # Important: Create Extension requires a commit
-
+        conn.commit()
+    
+    # This will now find all models because Base is imported from models.py
     Base.metadata.create_all(bind=engine)
+    print("✓ Database initialized")
 
 
 def reset_db():
@@ -39,11 +41,3 @@ def get_db():
         yield db
     finally:
         db.close()
-
-
-if __name__ == "__main__":
-    with engine.connect() as conn:
-        conn.execute(text("CREATE EXTENSION IF NOT EXISTS vector"))
-        conn.commit()  # Important: Create Extension requires a commit
-
-    init_db()

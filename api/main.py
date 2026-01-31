@@ -4,6 +4,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from routes.search import router as search_router
 from routes.regulations import router as regulations_router
 from dotenv import load_dotenv
+from database import models
+from database.session import init_db
 
 load_dotenv(".env")
 
@@ -16,6 +18,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+init_db()
 
 # Register routes
 app.include_router(search_router, prefix="/api", tags=["search"])

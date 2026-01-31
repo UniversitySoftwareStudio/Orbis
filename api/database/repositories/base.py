@@ -1,52 +1,64 @@
-from typing import Generic, TypeVar, Type, List, Optional, TYPE_CHECKING
+from typing import TypeVar, Generic, Type, List, Optional
 from sqlalchemy.orm import Session
+from sqlalchemy import func
 
-if TYPE_CHECKING:
-    from database.models import Base
+T = TypeVar('T')
 
-ModelType = TypeVar("ModelType")
-
-
-class BaseRepository(Generic[ModelType]):
-    """
-    Base repository with common CRUD operations.
-    All specific repositories can inherit from this.
-    """
+class BaseRepository(Generic[T]):
+    """Generic CRUD operations for all models"""
     
-    def __init__(self, model: Type[ModelType]):
+    def __init__(self, session: Session, model: Type[T]):
+        self.session = session
         self.model = model
     
-    def get_by_id(self, db: Session, id: int) -> Optional[ModelType]:
-        """Get entity by ID"""
-        return db.query(self.model).filter(self.model.id == id).first()
+    def create(self, **kwargs) -> T:
+        """Create a new record"""
+        obj = self.model(**kwargs)
+        self.session.add(obj)
+        self.session.commit()
+        self.session.refresh(obj)
+        return obj
     
-    def get_all(self, db: Session, skip: int = 0, limit: int = 100) -> List[ModelType]:
-        """Get all entities with pagination"""
-        return db.query(self.model).offset(skip).limit(limit).all()
+    def get_by_id(self, id: int) -> Optional[T]:
+        """Get record by ID"""
+        return self.session.query(self.model).filter(self.model.id == id).first()
     
-    def create(self, db: Session, obj_in: dict) -> ModelType:
-        """Create new entity"""
-        db_obj = self.model(**obj_in)
-        db.add(db_obj)
-        db.commit()
-        db.refresh(db_obj)
-        return db_obj
+    def get_all(self, skip: int = 0, limit: int = 100) -> List[T]:
+        """Get all records with pagination"""
+        return self.session.query(self.model).offset(skip).limit(limit).all()
     
-    def update(self, db: Session, id: int, obj_in: dict) -> Optional[ModelType]:
-        """Update entity"""
-        db_obj = self.get_by_id(db, id)
-        if db_obj:
-            for field, value in obj_in.items():
-                setattr(db_obj, field, value)
-            db.commit()
-            db.refresh(db_obj)
-        return db_obj
+    def update(self, id: int, **kwargs) -> Optional[T]:
+        """Update a record"""
+        obj = self.get_by_id(id)
+        if not obj:
+            return None
+        
+        for key, value in kwargs.items():
+            if hasattr(obj, key):
+                setattr(obj, key, value)
+        
+        self.session.commit()
+        self.session.refresh(obj)
+        return obj
     
-    def delete(self, db: Session, id: int) -> bool:
-        """Delete entity"""
-        db_obj = self.get_by_id(db, id)
-        if db_obj:
-            db.delete(db_obj)
-            db.commit()
-            return True
-        return False
+    def delete(self, id: int) -> bool:
+        """Delete a record"""
+        obj = self.get_by_id(id)
+        if not obj:
+            return False
+        
+        self.session.delete(obj)
+        self.session.commit()
+        return True
+    
+    def count(self) -> int:
+        """Count total records"""
+        return self.session.query(func.count(self.model.id)).scalar()
+    
+    def filter_by(self, **kwargs) -> List[T]:
+        """Filter records by attributes"""
+        return self.session.query(self.model).filter_by(**kwargs).all()
+    
+    def get_one_by(self, **kwargs) -> Optional[T]:
+        """Get single record by attributes"""
+        return self.session.query(self.model).filter_by(**kwargs).first()
