@@ -2,6 +2,8 @@ from fastapi import APIRouter, Depends
 from fastapi.responses import StreamingResponse
 from sqlalchemy.orm import Session
 from database.session import get_db
+from database.models import User
+from dependencies import get_current_active_user
 from services.rag_service import RAGService
 import json
 import asyncio
@@ -10,11 +12,18 @@ router = APIRouter()
 
 
 @router.get("/search")
-async def search_courses(q: str, limit: int = 5, db: Session = Depends(get_db)):
+async def search_courses(
+    q: str, 
+    limit: int = 5, 
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_active_user)
+):
     """
-    Semantic search for courses with timing information
+    Semantic search for courses with timing information.
+    Requires authentication (any UserType: STUDENT, INSTRUCTOR, ADMIN).
 
     Example: /search?q=programming with recursion&limit=3
+    Header: Authorization: Bearer <token>
     """
     rag_service = RAGService()
     results, timings = rag_service.search_courses(q, db, limit)
@@ -28,11 +37,18 @@ async def search_courses(q: str, limit: int = 5, db: Session = Depends(get_db)):
 
 
 @router.get("/ask")
-async def ask_courses(q: str, limit: int = 5, db: Session = Depends(get_db)):
+async def ask_courses(
+    q: str, 
+    limit: int = 5, 
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_active_user)
+):
     """
-    Stream course recommendations with AI-generated answer in real-time
+    Stream course recommendations with AI-generated answer in real-time.
+    Requires authentication (any UserType: STUDENT, INSTRUCTOR, ADMIN).
 
     Example: /ask?q=I want to learn about machine learning&limit=3
+    Header: Authorization: Bearer <token>
     """
     rag_service = RAGService()
     stream, courses = rag_service.stream_answer(q, db, limit)
