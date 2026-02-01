@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from database.session import get_db
 from database.models import User, UserType
 from services.auth_service import AuthService
-from dependencies import get_current_user, get_current_active_user
+from dependencies import get_current_active_user
 from schemas.auth import (
     LoginRequest, 
     RegisterRequest, 
