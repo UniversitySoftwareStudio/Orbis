@@ -3,14 +3,15 @@ from datetime import datetime
 from sqlalchemy import (
     Column, Integer, String, Text, ForeignKey, DateTime, 
     Boolean, Numeric, Date, Time, Enum as SQLEnum, Table,
-    UniqueConstraint, CheckConstraint  # <--- NEW IMPORTS
+    UniqueConstraint, CheckConstraint
 )
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import DeclarativeBase, relationship
 from pgvector.sqlalchemy import Vector
 import enum
 
-Base = declarative_base()
+class Base(DeclarativeBase):
+    pass
+
 EMBEDDING_DIM = int(os.getenv("EMBEDDING_DIM", "384"))
 
 
