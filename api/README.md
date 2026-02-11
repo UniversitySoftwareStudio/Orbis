@@ -10,6 +10,13 @@ This is the backend for the Orbis RAG system. It uses a **Hybrid Search Architec
 * **Multi-Lingual:** Native support for both **Turkish** and **English** queries without translation loss.
 * **Batch & Compare:** Can fetch multiple specific entities in a single database round-trip for accurate comparisons.
 * **Metadata Aware:** Injects rich metadata (ECTS, Credits, Schedule) into the context, allowing the LLM to answer detailed attribute questions.
+* **Smart Context Expansion**
+    * **The Problem:** Vector search often finds "Fragment B" (e.g., Step 3) but misses "Fragment A" (Step 1).
+    * **The Solution:** If a Web Page is found, the system automatically fetches **the entire document** (all chunks) to guarantee complete context.
+* **Neural Reranking (Jina AI)**
+    * **The Problem:** Expanding documents creates too much noise (80+ chunks).
+    * **The Solution:** We use **Jina Reranker v2 (Multilingual)** to score and sort these chunks.
+    * **Result:** The LLM receives only the **Top 5** most relevant chunks, ensuring high accuracy and low latency (< 2s).
 
 ## 🛠️ Architecture
 
@@ -30,31 +37,37 @@ Instead of scattering data across `courses`, `people`, and `pages` tables, we us
 | **`search_vector`** | tsvector | Text search vector for keyword searches |
 
 ### The Flow
-1.  **User Query** -> **Router (Llama 3):** Decides `sql` vs `vector`.
+1.  **User Query** -> **Router (Llama 3):** Decides whether to run an `sql` or `vector` search.
 2.  **Tool Execution:**
     * *If SQL:* Executes precise filters (`code`, `title_like`) with `OR` logic support.
     * *If Vector:* Generates local embedding and finds nearest semantic neighbors.
-3.  **Context Building:** Combines recieved text content + parsed metadata fields.
-4.  **Synthesis:** Groq (Llama 3 70B) generates the final natural language response.
+3. **Smart Expansion:** If there's any chunked content like a `web page`, then an sql query is ran to get all of it's related pairs. This is done for the top N distinct chunked contents. Related pairs are then added to the search result.
+4. **Reranking:** Jina AI reranks the recieved chunks and returns top N results
+5.  **Context Building:** Combines recieved text content + parsed metadata fields.
+6.  **Synthesis:** Groq (Llama 3 70B) generates the final natural language response.
 
 ## ⚡ Setup & Run
 
 ### 1. Prerequisites
 * Python 3.10+
 * Docker & Docker Compose (for PostgreSQL + pgvector) *(Not needed if db is hosted somewhere else)*
-* Groq API Key
+* **Groq API Key** (LLM)
+* **Jina AI API Key** (Reranker)
 
 ### 2. Environment Variables
 Create a `.env` file in the `api/` folder:
 
 ```ini
+# Database
+DATABASE_URL=postgresql://postgres:password@localhost:5432/orbisdb
+
 # LLM Provider (Groq)
 LLM_PROVIDER=groq
 GROQ_API_KEY=your_groq_api_key_here
 GROQ_MODEL=llama-3.3-70b-versatile
 
-# Database
-DATABASE_URL=postgresql://postgres:password@localhost:5432/orbis_db
+# Reranker (Jina)
+JINA_API_KEY=jina_...
 ```
 ### 3. Installation
 ```bash

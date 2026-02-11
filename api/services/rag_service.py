@@ -4,12 +4,14 @@ from sqlalchemy.orm import Session
 from database.repositories.rag_repository import get_rag_repository
 from services.embedding_service import get_embedding_service
 from services.llm_service import get_llm_service
+from services.reranker_service import get_reranker_service # <--- New Import
 
 class RAGService:
     def __init__(self):
         self.embedding_service = get_embedding_service()
         self.repository = get_rag_repository()
         self.llm_service = get_llm_service()
+        self.reranker = get_reranker_service() # <--- Init Reranker
 
     def _get_router_decision(self, query: str) -> Dict:
         system_prompt = """
@@ -34,118 +36,156 @@ class RAGService:
         - Keep the query in the SAME LANGUAGE as the user (TR -> TR, EN -> EN).
         - Output ONLY keywords.
         
-        # EXAMPLES
-        - "What is CMPE 101?" 
-          -> { "tool": "sql", "filters": { "type": "course", "code": "CMPE 101" } }
-           
-        - "Compare CMPE 351 and 321"  <-- UPDATED: Now uses SQL for precision
-          -> { "tool": "sql", "filters": { "type": "course", "code": "CMPE 351, CMPE 321" } }
-           
-        - "List courses about database or network" 
-          -> { "tool": "sql", "filters": { "type": "course", "title_like": "Database, Network" } }
-           
-        - "Show me the announcements" 
-          -> { "tool": "sql", "filters": { "type": "web_page", "title_like": "Announcement" } }
-          
-        - "How is the campus life?"
-          -> { "tool": "vector", "query": "campus life social activities" }
-          
-        - (TR) "Bilgisayar mühendisliği hakkında bilgi ver"
-          -> { "tool": "vector", "query": "Bilgisayar mühendisliği genel bilgi" }
-
         OUTPUT JSON ONLY. NO MARKDOWN.
         """
-        
+        # (Router prompt usage unchanged)
         response_text = ""
-        # We consume the stream to get the full JSON string
         for chunk in self.llm_service.generate(f"{system_prompt}\nUser: {query}"):
             response_text += chunk
-            
         try:
-            # Clean markdown if the LLM adds it
-            cleaned = response_text.replace("```json", "").replace("```", "").strip()
-            return json.loads(cleaned)
+            return json.loads(response_text.replace("```json", "").replace("```", "").strip())
         except:
-            print("Router failed to parse JSON. Fallback to Vector.")
             return {"tool": "vector", "query": query}
 
     def process_query(self, query: str, db: Session) -> Iterator[str]:
-        """
-        Main RAG Pipeline: Router -> Tool -> Generator
-        """
         # 1. Router Step
         decision = self._get_router_decision(query)
+        decision["tool"] = decision.get("tool", "").lower()
         print(f"🧠 Router Decision: {decision}")
         
         context_docs = []
         
         # 2. Retrieval Step
         if decision["tool"] == "sql":
-            # Try SQL Filter
-            docs = self.repository.sql_filter(db, decision["filters"])
-            if not docs:
+            print(f"🔍 Executing SQL Filter: {decision['filters']}")
+            limit = 50 if "title_like" in decision["filters"] else 5
+            context_docs = self.repository.sql_filter(db, decision["filters"], limit=limit)
+            if not context_docs:
                 print("⚠️ SQL returned 0 results. Falling back to Vector.")
-                decision["tool"] = "vector" # Switch mode
-            else:
-                context_docs = docs
+                decision["tool"] = "vector"
 
         if decision["tool"] == "vector":
-            # Vector Search
+            # A. Initial Retrieval (High Recall, Low Precision)
             q_emb = self.embedding_service.embed_text(decision.get("query", query))
-            context_docs = self.repository.vector_search(db, q_emb, limit=25)
+            initial_docs = self.repository.vector_search(db, q_emb, limit=25)
+            
+            # B. Smart Expansion (Get Top 3 Unique Pages)
+            expanded_docs_map = {} # Use dict to deduplicate by ID
+            unique_urls = []
+            seen_urls = set()
+            
+            for d in initial_docs:
+                url = getattr(d, "url", None)
+                # If it's a web page, collect its URL
+                if d.type == 'web_page' and url and url not in seen_urls:
+                    unique_urls.append(url)
+                    seen_urls.add(url)
+                    if len(unique_urls) >= 3: # Limit to Top 3 sources
+                        break
+            
+            # Fetch full content for these URLs
+            if unique_urls:
+                print(f"🔄 Smart Expansion: Fetching full context for {len(unique_urls)} pages...")
+                for url in unique_urls:
+                    page_chunks = self.repository.get_by_url(db, url)
+                    for chunk in page_chunks:
+                        expanded_docs_map[chunk.id] = chunk
+            
+            # Also ensure original non-webpage results (like courses) are kept
+            for d in initial_docs:
+                if d.type != 'web_page':
+                    expanded_docs_map[d.id] = d
+            
+            # Convert map back to list of candidates
+            candidate_docs = list(expanded_docs_map.values())
 
-        # === 🔍 IMPROVED DEBUG LOGGING ===
-        print(f"\n{'='*50}")
-        print(f"🧠 RAG DEBUG: '{decision.get('query', query)}'")
-        print(f"{'='*50}")
-             
+            # C. Reranking (High Precision)
+            if candidate_docs:
+                print(f"⚖️ Reranking {len(candidate_docs)} chunks with jina-reranker-v2-base-multilingual...")
+                
+                # Extract text for reranker
+                doc_texts = [d.content for d in candidate_docs]
+                
+                # Call Microservice (Top 10)
+                reranked_results = self.reranker.rerank(
+                    query=decision.get("query", query), 
+                    documents=doc_texts, 
+                    top_k=10
+                )
+                
+                # Map back to objects
+                final_context_docs = []
+                for res in reranked_results:
+                    # Reranker returns indices relative to the list we sent
+                    original_doc = candidate_docs[res["index"]]
+                    # Optional: Inject the relevance score into metadata for debugging
+                    # original_doc.metadata_['relevance_score'] = res['score'] 
+                    final_context_docs.append(original_doc)
+                    
+                context_docs = final_context_docs
+                print(f"✅ Kept Top {len(context_docs)} most relevant chunks.")
+            else:
+                context_docs = []
+
+        # Debug Logging
+        print(f"\n{'='*50}\n🧠 RAG DEBUG: '{decision.get('query', query)}'\n{'='*50}")
         for i, doc in enumerate(context_docs):
-            # Get a clean snippet (first 100 chars, remove newlines)
             snippet = (doc.content[:85] + "...") if doc.content else "No content"
             snippet = snippet.replace('\n', ' ').strip()
-                 
-            # Print clean, formatted output
-            print(f"#{i+1:02d} [{doc.type.upper()}] {doc.title}")
-            print(f"    └── {snippet}")
-                 
+            print(f"#{i+1:02d} [{doc.type.upper()}] {doc.title}\n    └── {snippet}")
         print(f"{'='*50}\n")
-        # =================================
 
-        # 3. Generation Step
-        
-        # A. Build Context with Metadata
-        context_parts = []
-        for d in context_docs:
-            # Start with Title and Content
-            doc_str = f"Source ({d.type}): {d.title}\nContent: {d.content}"
-            
-            # Check for metadata (handle 'metadata_' or 'metadata')
-            meta = getattr(d, "metadata_", getattr(d, "metadata", {})) or {}
-            
-            if meta:
-                # Add useful attributes like ECTS, Code, etc.
-                # Filter out complex nested dicts (like weekly schedules) to save tokens
-                meta_str = "\nAttributes: " + ", ".join(
-                    f"{k.upper()}: {v}" 
-                    for k, v in meta.items() 
-                    if v and isinstance(v, (str, int, float))
-                )
-                doc_str += meta_str
-            
-            context_parts.append(doc_str)
-            
-        context_str = "\n\n".join(context_parts)
+        # 3. Context Building
+        context_str = ""
+        # (Same CSV logic as before...)
+        if decision["tool"] == "sql" and len(context_docs) > 5:
+            # ... CSV Logic ...
+            course_count = sum(1 for d in context_docs if d.type == 'course')
+            is_course_list = course_count > (len(context_docs) / 2)
+            if is_course_list:
+                context_str = "The user asked for a list of courses. CSV Format:\n\nID, Code, Title, ECTS, Info\n"
+                for d in context_docs:
+                    meta = getattr(d, "metadata_", getattr(d, "metadata", {})) or {}
+                    code = meta.get("course_code", "N/A")
+                    ects = meta.get("ects", "-")
+                    snippet = (d.content[:50].replace("\n", " ") + "...") if d.content else ""
+                    context_str += f"{d.id}, {code}, {d.title}, {ects}, {snippet}\n"
+            else:
+                context_str = "The user asked for a list. CSV Format:\n\nID, Type, Title, URL, Snippet\n"
+                for d in context_docs:
+                    meta = getattr(d, "metadata_", getattr(d, "metadata", {})) or {}
+                    url = getattr(d, "url", "N/A")
+                    source_ref = url if d.type == 'web_page' else meta.get("course_code", "N/A")
+                    snippet = (d.content[:100].replace("\n", " ") + "...") if d.content else ""
+                    context_str += f"{d.id}, {d.type}, {d.title}, {source_ref}, {snippet}\n"
+        else:
+            context_parts = []
+            for d in context_docs:
+                doc_str = f"Source ({d.type}): {d.title}\nContent: {d.content}"
+                meta = getattr(d, "metadata_", getattr(d, "metadata", {})) or {}
+                if meta:
+                    clean_meta = {k: v for k, v in meta.items() if isinstance(v, (str, int, float))}
+                    meta_str = "\nAttributes: " + ", ".join(f"{k.upper()}: {v}" for k, v in clean_meta.items())
+                    doc_str += meta_str
+                context_parts.append(doc_str)
+            context_str = "\n\n".join(context_parts)
 
-        # B. Construct the Final Prompt
-        # This was the missing piece! We need to combine instruction + context + query.
+        # === 🔧 SAFETY VALVE: If no docs found, don't ask LLM ===
+        if not context_docs:
+            print("⚠️ No relevant documents found. Returning default response.")
+            yield "I'm sorry, but I couldn't find any specific information about that in the university database."
+            return
+        # ========================================================
+
+        # 4. Generation
         final_prompt = f"""
         You are a helpful academic assistant for a university.
         
         # INSTRUCTIONS
         1. Use the provided context to answer the user's question accurately.
-        2. If the answer is not in the context, say "I don't have that information." or "I don't have information about <topic>" with <topic> being the topic of user query.
-        3. **FORMATTING:** Use Markdown to make the answer readable (bold keys, bullet points, tables where appropriate).
-        4. **NATURAL LANGUAGE:** Do not simply repeat raw metadata keys like "THEORYPRACTICE_HOUR". Translate them into natural language (e.g., "3 hours theory, 2 hours practice").
+        2. If the answer is not in the context, say "I don't have that information.".
+        3. **FORMATTING:** Use Markdown to make the answer readable (bold keys, bullet points).
+        4. **NATURAL LANGUAGE:** Translate metadata keys (e.g. "3 hours theory").
         
         ### USER QUESTION:
         {query}
@@ -155,6 +195,4 @@ class RAGService:
         
         ### ANSWER:
         """
-        
-        # C. Send to LLM
         yield from self.llm_service.generate(final_prompt)
