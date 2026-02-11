@@ -1,49 +1,85 @@
-# API
+# 🧠 Orbis API (RAG Backend)
 
-This is the backend. It talks to the frontend.
+This is the backend for the Orbis RAG system. It uses a **Hybrid Search Architecture** that combines the precision of SQL with the semantic understanding of Vector Search, orchestrated by an intelligent Router.
 
-## What's inside?
+## 🚀 Main Capabilities
 
+* **Hybrid Search:** Automatically switches between:
+    * **SQL Tool:** For precise lookups ("What is CMPE 101?"), lists ("List computer courses"), and direct comparisons.
+    * **Vector Tool:** For fuzzy questions ("How do I apply for a minor?"), conceptual queries, and general knowledge.
+* **Multi-Lingual:** Native support for both **Turkish** and **English** queries without translation loss.
+* **Batch & Compare:** Can fetch multiple specific entities in a single database round-trip for accurate comparisons.
+* **Metadata Aware:** Injects rich metadata (ECTS, Credits, Schedule) into the context, allowing the LLM to answer detailed attribute questions.
+
+## 🛠️ Architecture
+
+### The "One-Table" Approach
+Instead of scattering data across `courses`, `people`, and `pages` tables, we use a single unified table:
+
+| Column | Type | Description |
+| :--- | :--- | :--- |
+| `id` | UUID | Unique identifier |
+| `url` | String | Origin link of the source |
+| `title` | String | Course name or Page title |
+| `content` | Text | The actual text chunk |
+| `language` | String | Language code of the source (`en` or `tr`) |
+| `type` | String | `course` or `web_page` |
+| **`metadata`** | JSONB | Flexible attributes (ECTS, Year, Code, etc.) |
+| **`embedding`** | Vector | 384-dim vector (MiniLM-L12) |
+| `created_at` | Timestamp | Date at which the source is added to the database |
+| **`search_vector`** | tsvector | Text search vector for keyword searches |
+
+### The Flow
+1.  **User Query** -> **Router (Llama 3):** Decides `sql` vs `vector`.
+2.  **Tool Execution:**
+    * *If SQL:* Executes precise filters (`code`, `title_like`) with `OR` logic support.
+    * *If Vector:* Generates local embedding and finds nearest semantic neighbors.
+3.  **Context Building:** Combines recieved text content + parsed metadata fields.
+4.  **Synthesis:** Groq (Llama 3 70B) generates the final natural language response.
+
+## ⚡ Setup & Run
+
+### 1. Prerequisites
+* Python 3.10+
+* Docker & Docker Compose (for PostgreSQL + pgvector) *(Not needed if db is hosted somewhere else)*
+* Groq API Key
+
+### 2. Environment Variables
+Create a `.env` file in the `api/` folder:
+
+```ini
+# LLM Provider (Groq)
+LLM_PROVIDER=groq
+GROQ_API_KEY=your_groq_api_key_here
+GROQ_MODEL=llama-3.3-70b-versatile
+
+# Database
+DATABASE_URL=postgresql://postgres:password@localhost:5432/orbis_db
 ```
-api/
-├── main.py        # The app starts here
-└── app/           # Your code goes here
-    ├── routes/    # URLs and endpoints (calls services)
-    ├── services/  # The smart stuff (AI, logic)
-    └── models/    # Data shapes (used by routes & services)
-```
-
-## Flow
-
-```
-User → routes → services → response
-              ↓
-           models (validates data)
-```
-
-## Run it
-
+### 3. Installation
 ```bash
-python main.py
+cd api
+# Create virtual env (optional but recommended)
+python -m venv venv
+source venv/bin/activate  # or venv\Scripts\activate on Windows
+
+# Install dependencies
+pip install -r requirements.txt
 ```
+### 4. Running the Server
+Run inside `api/` folder
+```bash
+uvicorn main:app --reload
+```
+The server will start at `http://127.0.0.1:8000`.
 
-Goes to: http://localhost:8000
+## 🧪 Usage Examples
+You can test these queries via the API or your Frontend:
 
-## How to add stuff
-
-**Add a new endpoint:**
-1. Make a file in `app/routes/` (e.g., `user.py`)
-2. Copy the pattern from `routes/README.md`
-3. Import it in `main.py` and add: `app.include_router(user.router)`
-
-**Add AI logic:**
-1. Make a file in `app/services/` (e.g., `rag_service.py`)
-2. Write your class/functions
-3. Import and use in routes
-
-**Add data model:**
-1. Make a file in `app/models/` (e.g., `user.py`)
-2. Define Pydantic models
-3. Use them in routes for validation
-
-That's it. Build and go!
+| Intent | Query Example | Used Tool |
+| :--- | :--- | :--- |
+| Comparison | "Compare CMPE 351 and 321" | `SQL` (Batch Code) |
+| Broad List | "List all computer courses" | `SQL` (Title Like) |
+| Specific Info | "What is the ECTS of CMPE 460?" | `SQL` (Exact Code) |
+| Fuzzy/General | "How is the campus life?" | `Vector` |
+| Turkish | "Bilgisayar mühendisliği mezuniyet şartları..." | `Vector` (TR) |

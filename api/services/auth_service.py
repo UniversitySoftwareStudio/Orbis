@@ -1,50 +1,81 @@
-import os
 from datetime import datetime, timedelta
-from typing import Optional
-from jose import JWTError, jwt
-from passlib.context import CryptContext
+from typing import Optional, Dict, Any
+from jose import jwt, JWTError
+import bcrypt
 from sqlalchemy.orm import Session
-from database.models import User, UserType
+import os
+
+from database.models import User
 from database.repositories.user_repository import UserRepository
 
-# Password hashing
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
-
-# JWT settings
-SECRET_KEY = os.getenv("JWT_SECRET_KEY", "your-secret-key-change-in-production")
-ALGORITHM = "HS256"
+# Config
+SECRET_KEY = os.getenv("SECRET_KEY", "super-secret-key-change-this")
+ALGORITHM = os.getenv("ALGORITHM", "HS256")
 ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", "30"))
 
-
 class AuthService:
-    def __init__(self, session: Session):
-        self.session = session
-        self.user_repo = UserRepository(session)
-    
-    @staticmethod
-    def hash_password(password: str) -> str:
-        """Hash a password"""
-        return pwd_context.hash(password)
-    
-    @staticmethod
-    def verify_password(plain_password: str, hashed_password: str) -> bool:
-        """Verify a password against a hash"""
-        return pwd_context.verify(plain_password, hashed_password)
-    
-    def authenticate_user(self, email: str, password: str) -> Optional[User]:
-        """Authenticate a user by email and password"""
+    def __init__(self, db: Session):
+        self.user_repo = UserRepository(db)
+
+    def verify_password(self, plain_password, hashed_password):
+        # bcrypt requires bytes, so we encode strings to utf-8
+        if not plain_password or not hashed_password:
+            return False
+            
+        p_bytes = plain_password.encode('utf-8')
+        h_bytes = hashed_password.encode('utf-8')
+        
+        try:
+            return bcrypt.checkpw(p_bytes, h_bytes)
+        except ValueError:
+            # This happens if the DB contains a plain text password (not a hash)
+            # or a hash from a different algorithm.
+            print("⚠️ Error: Password in DB is not a valid bcrypt hash.")
+            return False
+
+    def get_password_hash(self, password):
+        p_bytes = password.encode('utf-8')
+        salt = bcrypt.gensalt()
+        return bcrypt.hashpw(p_bytes, salt).decode('utf-8')
+
+    def authenticate_user(self, email: str, password: str):
         user = self.user_repo.get_by_email(email)
         if not user:
-            return None
+            return False
+        # Verify the password using the new direct method
         if not self.verify_password(password, user.password_hash):
-            return None
-        if not user.is_active:
-            return None
+            return False
         return user
-    
-    @staticmethod
-    def create_access_token(data: dict, expires_delta: Optional[timedelta] = None) -> str:
-        """Create a JWT access token with UserType"""
+
+    def register_user(self, email: str, password: str, first_name: str, last_name: str, user_type: str):
+        # Check if user exists
+        if self.user_repo.get_by_email(email):
+            raise ValueError("Email already registered")
+
+        # Hash password
+        hashed_password = self.get_password_hash(password)
+        
+        new_user = User(
+            email=email,
+            password_hash=hashed_password,
+            first_name=first_name,
+            last_name=last_name,
+            user_type=user_type, 
+            is_active=True
+        )
+        
+        return self.user_repo.create(new_user)
+
+    def create_user_token(self, user: User) -> str:
+        """Generates the JWT"""
+        data = {
+            "sub": user.email,
+            "type": str(user.user_type),
+            "id": str(user.id)
+        }
+        return self.create_access_token(data)
+
+    def create_access_token(self, data: Dict[str, Any], expires_delta: Optional[timedelta] = None):
         to_encode = data.copy()
         if expires_delta:
             expire = datetime.utcnow() + expires_delta
@@ -54,58 +85,11 @@ class AuthService:
         to_encode.update({"exp": expire})
         encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
         return encoded_jwt
-    
+
     @staticmethod
-    def decode_token(token: str) -> dict:
-        """Decode and verify a JWT token"""
+    def decode_token(token: str):
         try:
             payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
             return payload
         except JWTError:
             return None
-    
-    def create_user_token(self, user: User) -> str:
-        """Create a token for a user with their UserType"""
-        access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
-        access_token = self.create_access_token(
-            data={
-                "sub": user.email,
-                "user_id": user.id,
-                "user_type": user.user_type.value,  # Include UserType in token
-                "first_name": user.first_name,
-                "last_name": user.last_name
-            },
-            expires_delta=access_token_expires
-        )
-        return access_token
-    
-    def register_user(
-        self, 
-        email: str, 
-        password: str, 
-        first_name: str, 
-        last_name: str, 
-        user_type: UserType
-    ) -> User:
-        """Register a new user with UserType"""
-        # Check if user already exists
-        existing_user = self.user_repo.get_by_email(email)
-        if existing_user:
-            raise ValueError("User with this email already exists")
-        
-        # Create new user
-        hashed_password = self.hash_password(password)
-        user = User(
-            email=email,
-            password_hash=hashed_password,
-            first_name=first_name,
-            last_name=last_name,
-            user_type=user_type,
-            is_active=True
-        )
-        
-        self.session.add(user)
-        self.session.commit()
-        self.session.refresh(user)
-        
-        return user
