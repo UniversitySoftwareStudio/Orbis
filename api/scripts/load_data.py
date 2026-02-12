@@ -4,13 +4,14 @@ import json
 import psycopg2
 from psycopg2.extras import Json
 from dotenv import load_dotenv
+from rich.progress import Progress, SpinnerColumn, BarColumn, TextColumn, TimeRemainingColumn, MofNCompleteColumn
 
 # Path setup to find your data
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_DIR = os.path.join(BASE_DIR, "data")
 sys.path.append(BASE_DIR)
 
-load_dotenv() # Load your .env vars
+load_dotenv()
 
 # Config
 DB_PARAMS = {
@@ -21,12 +22,23 @@ DB_PARAMS = {
     "port": os.getenv("DB_PORT")
 }
 
-FILES = ["bilgi_courses_data.jsonl", "bilgi_university_data.jsonl"]
+FILES = [
+    #"bilgi_courses_data.jsonl", 
+    #"bilgi_university_data.jsonl",
+    "bilgi_pdfs_important.jsonl"
+    #bilgi_pdfs_irrelevant.jsonl and bilgi pdfs_resumers.jsonl contain data that we don't want to include in the db. So we don't include them here.
+]
+
 CHUNK_SIZE = 150
 CHUNK_OVERLAP = 30
 
 def get_db_connection():
-    return psycopg2.connect(**DB_PARAMS)
+    try:
+        conn = psycopg2.connect(**DB_PARAMS)
+        return conn
+    except Exception as e:
+        print(f"Database connection failed: {e}")
+        sys.exit(1)
 
 def simple_chunker(text, chunk_size=CHUNK_SIZE, overlap=CHUNK_OVERLAP):
     if not text: return []
@@ -85,73 +97,119 @@ def setup_database(conn):
         conn.commit()
     print("✅ Schema Ready.")
 
+def clean_text(text):
+    """Removes NUL (0x00) characters which crash PostgreSQL."""
+    if not text:
+        return text
+    return text.replace('\x00', '')
+
 def process_file(conn, filename):
     filepath = os.path.join(DATA_DIR, filename)
     if not os.path.exists(filepath):
         print(f"⚠️  File not found: {filepath}")
         return
 
-    print(f"📂 Processing {filename}...")
+    # 1. Pre-scan to get total line count (Active Progress Requirement)
+    print(f"📊 Counting records in {filename}...")
+    with open(filepath, 'r', encoding='utf-8') as f:
+        total_lines = sum(1 for _ in f)
+
     cursor = conn.cursor()
     batch_data = []
+    
     insert_query = """
         INSERT INTO knowledge_base (url, title, content, language, type, metadata)
         VALUES (%s, %s, %s, %s, %s, %s)
     """
 
-    with open(filepath, 'r', encoding='utf-8') as f:
-        for line in f:
-            try:
-                row = json.loads(line)
-                
-                # --- COURSE LOGIC ---
-                if row.get('type') == 'course':
-                    batch_data.append((
-                        row['url'],
-                        row['title'], # Already formatted as "Code - Name"
-                        row['content'],
-                        row['language'],
-                        'course',
-                        Json(row['metadata'])
-                    ))
-
-                # --- WEB PAGE LOGIC ---
-                else:
-                    chunks = simple_chunker(row['content'])
-                    for i, chunk_text in enumerate(chunks):
-                        meta = row['metadata'].copy()
-                        meta['chunk_index'] = i
-                        meta['total_chunks'] = len(chunks)
-                        if row.get('detected_date'): meta['date'] = row['detected_date']
-                        if row.get('mentioned_years'): meta['years'] = row['mentioned_years']
-                        if row.get('metadata', {}).get('breadcrumbs'): meta['breadcrumbs'] = row['metadata']['breadcrumbs']
-
+    # 2. Rich Progress Bar Context
+    with Progress(
+        SpinnerColumn(),
+        TextColumn("[bold blue]{task.description}"),
+        BarColumn(bar_width=40, style="cyan", complete_style="blue"),
+        MofNCompleteColumn(),      # Shows: "150/1200"
+        TextColumn("[progress.percentage]{task.percentage:>3.0f}%"),
+        TimeRemainingColumn(),     # Shows: "00:45 left"
+    ) as progress:
+        
+        task = progress.add_task(f"Processing {filename}...", total=total_lines)
+        
+        with open(filepath, 'r', encoding='utf-8') as f:
+            for line in f:
+                try:
+                    row = json.loads(line)
+                    
+                    # --- COURSE LOGIC ---
+                    if row.get('type') == 'course':
                         batch_data.append((
                             row['url'],
-                            row['title'],
-                            chunk_text,
+                            row['title'], 
+                            row['content'],
                             row['language'],
-                            'web_page',
-                            Json(meta)
+                            'course',
+                            Json(row['metadata'])
                         ))
 
-                if len(batch_data) >= 100:
-                    cursor.executemany(insert_query, batch_data)
-                    conn.commit()
-                    batch_data = []
+                    # --- WEB PAGE & PDF LOGIC ---
+                    else:
+                        chunks = simple_chunker(row['content'])
+                        doc_type = row.get('type', 'web_page')
+                        
+                        for i, chunk_text in enumerate(chunks):
+                            meta = row['metadata'].copy()
+                            meta['chunk_index'] = i
+                            meta['total_chunks'] = len(chunks)
+                            
+                            # Handle Dates (Web vs PDF)
+                            if row.get('detected_date'): 
+                                meta['date'] = row['detected_date']
+                            elif meta.get('final_date'): 
+                                meta['date'] = meta['final_date']
 
-            except json.JSONDecodeError: continue
-            except Exception as e: print(f"Error: {e}")
+                            # Handle other meta
+                            if row.get('mentioned_years'): 
+                                meta['years'] = row['mentioned_years']
+                            if row.get('metadata', {}).get('breadcrumbs'): 
+                                meta['breadcrumbs'] = row['metadata']['breadcrumbs']
 
+                            batch_data.append((
+                                row['url'],
+                                row['title'],
+                                chunk_text,
+                                row.get('language', 'en'),
+                                doc_type,
+                                Json(meta)
+                            ))
+
+                    # Batch Insert
+                    if len(batch_data) >= 100:
+                        cursor.executemany(insert_query, batch_data)
+                        conn.commit()
+                        batch_data = []
+                    
+                    # Update Progress Bar
+                    progress.update(task, advance=1)
+
+                except json.JSONDecodeError: 
+                    continue
+                except Exception as e: 
+                    # Optional: Print error without breaking the bar
+                    # progress.console.print(f"[red]Error:[/red] {e}")
+                    continue
+
+    # Flush remaining batch
     if batch_data:
         cursor.executemany(insert_query, batch_data)
         conn.commit()
-    print(f"✅ Loaded {filename}")
+    
+    print(f"✅ Loaded {filename} successfully.")
 
 if __name__ == "__main__":
     conn = get_db_connection()
     setup_database(conn)
+    
     for f in FILES:
         process_file(conn, f)
+        
     conn.close()
     print("🎉 Ingestion Complete.")
