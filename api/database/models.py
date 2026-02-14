@@ -3,11 +3,12 @@ from datetime import datetime
 from sqlalchemy import (
     Column, Integer, String, Text, ForeignKey, DateTime, 
     Boolean, Numeric, Date, Time, Enum as SQLEnum, Table,
-    UniqueConstraint, CheckConstraint
+    UniqueConstraint, CheckConstraint, func, TIMESTAMP
 )
 from sqlalchemy.orm import DeclarativeBase, relationship
 from pgvector.sqlalchemy import Vector
 import enum
+from sqlalchemy.dialects.postgresql import UUID, JSONB
 
 class Base(DeclarativeBase):
     pass
@@ -253,3 +254,17 @@ class Assignment(Base):
     is_published = Column(Boolean, default=False)
     
     section = relationship("CourseSection", back_populates="assignments")
+class KnowledgeBase(Base):
+    __tablename__ = "knowledge_base"
+
+    id = Column(UUID(as_uuid=True), primary_key=True, server_default=func.gen_random_uuid())
+    url = Column(Text, nullable=False)
+    title = Column(Text)
+    content = Column(Text)
+    language = Column(String(10))
+    type = Column(String(50))
+
+    metadata_ = Column("metadata", JSONB, default={})
+    embedding = Column(Vector(EMBEDDING_DIM))
+
+    created_at = Column(TIMESTAMP, server_default=func.now())

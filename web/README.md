@@ -1,4 +1,4 @@
-# web/
+# Orbis Frontend
 
 React frontend. The UI.
 
