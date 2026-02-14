@@ -12,6 +12,7 @@ export const api = {
       method: 'POST',
       headers,
       body: JSON.stringify(data),
+      credentials: 'include', // send/receive httpOnly cookies
     });
 
     if (!response.ok) {
@@ -27,13 +28,14 @@ export const api = {
     token: string, 
     onChunk: (text: string) => void
   ) => {
+    const headers: HeadersInit = { 'Content-Type': 'application/json' };
+    if (token) headers['Authorization'] = `Bearer ${token}`;
+
     const response = await fetch(`${API_BASE_URL}/chat`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-      },
+      headers,
       body: JSON.stringify({ message }),
+      credentials: 'include', // send cookie for server-side auth
     });
 
     if (!response.ok) throw new Error(response.statusText);

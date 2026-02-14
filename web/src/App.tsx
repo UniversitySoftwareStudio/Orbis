@@ -28,10 +28,15 @@ const handleLogin = async (e: React.FormEvent) => {
         email: username,
         password: password 
       }); 
-      
+      // Backend sets an httpOnly cookie and returns user info (no token in body).
+      // If an access_token is provided, use it; otherwise assume cookie-based session.
       if (res.access_token) {
         setToken(res.access_token);
         localStorage.setItem('token', res.access_token);
+      } else {
+        // Use a sentinel value to indicate authenticated state when using cookies
+        setToken('cookie');
+        localStorage.setItem('token', 'cookie');
       }
     } catch (err: any) {
       console.error(err);

@@ -8,7 +8,19 @@ from database.models import User, UserType
 from database.repositories.user_repository import UserRepository
 
 # Password hashing
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+# Prefer bcrypt_sha256 to avoid bcrypt's 72-byte password limit,
+# but keep plain bcrypt as a fallback to verify any existing bcrypt hashes.
+pwd_context = CryptContext(schemes=["bcrypt_sha256", "bcrypt"], deprecated="auto")
+
+# Ensure passlib's bcrypt backend initializes using a short secret so
+# backend detection doesn't attempt to process long passwords during
+# initialization (which can trigger bcrypt's 72-byte limit).
+try:
+    pwd_context.hash("__passlib_init__")
+except Exception:
+    # If initialization fails, we still keep going; errors will surface
+    # when hashing/verifying at runtime and can be handled there.
+    pass
 
 # JWT settings
 SECRET_KEY = os.getenv("JWT_SECRET_KEY", "your-secret-key-change-in-production")
@@ -24,12 +36,24 @@ class AuthService:
     @staticmethod
     def hash_password(password: str) -> str:
         """Hash a password"""
-        return pwd_context.hash(password)
+        try:
+            return pwd_context.hash(password)
+        except ValueError as e:
+            if "72 bytes" in str(e) or "longer than 72 bytes" in str(e):
+                truncated = password.encode("utf-8")[:72].decode("utf-8", errors="ignore")
+                return pwd_context.hash(truncated)
+            raise
     
     @staticmethod
     def verify_password(plain_password: str, hashed_password: str) -> bool:
         """Verify a password against a hash"""
-        return pwd_context.verify(plain_password, hashed_password)
+        try:
+            return pwd_context.verify(plain_password, hashed_password)
+        except ValueError as e:
+            if "72 bytes" in str(e) or "longer than 72 bytes" in str(e):
+                truncated = plain_password.encode("utf-8")[:72].decode("utf-8", errors="ignore")
+                return pwd_context.verify(truncated, hashed_password)
+            raise
     
     def authenticate_user(self, email: str, password: str) -> Optional[User]:
         """Authenticate a user by email and password"""
