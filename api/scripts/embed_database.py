@@ -69,7 +69,7 @@ def generate_embeddings():
             while True:
                 # Fetch Batch
                 cursor.execute("""
-                    SELECT id, title, content 
+                    SELECT id, title, content, metadata 
                     FROM knowledge_base 
                     WHERE embedding IS NULL 
                     LIMIT %s
@@ -84,10 +84,20 @@ def generate_embeddings():
                 ids_to_update = []
                 
                 for r in rows:
-                    row_id, title, content = r
+                    row_id, title, content, metadata = r
                     safe_title = title if title else ""
-                    # Combine Title + Content for context-aware embedding
-                    text = f"{safe_title}\n\n{content}"
+                    
+                    # Extract breadcrumbs or other useful meta-context
+                    meta_context = ""
+                    if metadata:
+                        if isinstance(metadata, dict) and "breadcrumbs" in metadata:
+                            breadcrumbs = " > ".join(metadata["breadcrumbs"])
+                            meta_context = f"Category/Path: {breadcrumbs}\n"
+                        elif isinstance(metadata, dict) and "course_code" in metadata:
+                            meta_context = f"Course Code: {metadata.get('course_code')}\n"
+
+                    # Combine Title + Metadata + Content
+                    text = f"{safe_title}\n{meta_context}\n{content}"
                     texts_to_embed.append(text)
                     ids_to_update.append(row_id)
 
