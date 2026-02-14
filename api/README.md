@@ -1,49 +1,22 @@
-# API
+# Orbis Backend
 
-This is the backend. It talks to the frontend.
+This folder contains the backend logic, RAG pipeline, and database management scripts.
 
-## What's inside?
+## Key Scripts (`api/scripts/`)
 
-```
-api/
-├── main.py        # The app starts here
-└── app/           # Your code goes here
-    ├── routes/    # URLs and endpoints (calls services)
-    ├── services/  # The smart stuff (AI, logic)
-    └── models/    # Data shapes (used by routes & services)
-```
+* `embed_database.py`: The master script. Wipes the DB, scrapes sources, and generates embeddings.
+* `load_data.py`: The loader script. Takes content of inputted jsonl files from `api/data/` and inserts them into the db while chunking them.
+* `fix_pdf_language_and_titles.py`: A very specific script intended to fix the language and title issues of pdf dataset files `api/data/bilgi_pdfs_---.json`.
 
-## Flow
+## Development
 
-```
-User → routes → services → response
-              ↓
-           models (validates data)
-```
+To run the API locally without Docker (for debugging) run the following inside `api/` folder:
 
-## Run it
-
-```bash
-python main.py
-```
-
-Goes to: http://localhost:8000
-
-## How to add stuff
-
-**Add a new endpoint:**
-1. Make a file in `app/routes/` (e.g., `user.py`)
-2. Copy the pattern from `routes/README.md`
-3. Import it in `main.py` and add: `app.include_router(user.router)`
-
-**Add AI logic:**
-1. Make a file in `app/services/` (e.g., `rag_service.py`)
-2. Write your class/functions
-3. Import and use in routes
-
-**Add data model:**
-1. Make a file in `app/models/` (e.g., `user.py`)
-2. Define Pydantic models
-3. Use them in routes for validation
-
-That's it. Build and go!
+1.  **Install dependencies:**
+    ```bash
+    pip install -r requirements.txt
+    ```
+2.  **Run the server:**
+    ```bash
+    uvicorn main:app --reload
+    ```
