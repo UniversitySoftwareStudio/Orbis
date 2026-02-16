@@ -1,41 +1,74 @@
+import re
 from typing import List, Dict, Any
 from sqlalchemy.orm import Session
 from sqlalchemy import text, select, or_, func
 from database.models import KnowledgeBase
 
 class RAGRepository:
-    def vector_search(self, db: Session, query_embedding: List[float], query_text: str = "", filters: Dict[str, Any] = None, limit: int = 35):
-        """Hybrid Search: Vector Similarity + Exact Title Keyword Boosting"""
+    def vector_search(self, db: Session, query_embedding: List[float], query_text: str = "", filters: Dict[str, Any] = None, limit: int = 10):
+        """
+        True Hybrid Search: Merges Vector Similarity (Semantic) with Pre-computed Keyword Search (Lexical).
+        """
         
-        # Base query
-        stmt = select(KnowledgeBase)
+        # --- 1. SEMANTIC SEARCH (Vector) ---
+        vector_stmt = select(KnowledgeBase).order_by(
+            KnowledgeBase.embedding.l2_distance(query_embedding)
+        )
         
         if filters:
             if filters.get("type"):
-                stmt = stmt.where(KnowledgeBase.type == filters["type"].lower())
-        
-        # 1. Vector Distance Calculation
-        vector_dist = KnowledgeBase.embedding.l2_distance(query_embedding)
-        
-        # 2. Lexical Boosting Logic (Requires PostgreSQL tsvector)
-        # We clean the query text for basic keyword matching
-        clean_keywords = " | ".join([word for word in query_text.split() if len(word) > 2])
-        
-        if clean_keywords:
-            # Create a basic rank based on title matching
-            # If the title contains the words, ts_rank increases
-            lexical_rank = func.ts_rank(
-                func.to_tsvector('english', KnowledgeBase.title), 
-                func.to_tsquery('english', clean_keywords)
-            )
-            # Combine scores: lower distance is better, higher rank is better.
-            # We subtract the rank from the distance to boost exact title matches.
-            combined_score = vector_dist - (lexical_rank * 0.5) 
-            stmt = stmt.order_by(combined_score)
-        else:
-            stmt = stmt.order_by(vector_dist)
+                vector_stmt = vector_stmt.where(KnowledgeBase.type == filters["type"])
+            if filters.get("code"): 
+                 vector_stmt = vector_stmt.where(KnowledgeBase.title.ilike(f"{filters['code']}%"))
+
+        vector_results = db.scalars(vector_stmt.limit(limit)).all()
+
+        # --- 2. LEXICAL SEARCH (Keyword / TSVector) ---
+        keyword_results = []
+        if query_text:
+            # FIX: Use "OR" logic for long sentences to catch key terms like "Staj" (Internship)
             
-        return db.scalars(stmt.limit(limit)).all()
+            # 1. Clean punctuation (keep only alphanumeric)
+            clean_text = re.sub(r'[^\w\s]', ' ', query_text)
+            
+            # 2. Split into words (filter out short words < 3 chars)
+            words = [w for w in clean_text.split() if len(w) > 2]
+            
+            if words:
+                # 3. Join with OR operator (|)
+                # Example: "Staj | çalışmamı | tamamladım"
+                or_query = " | ".join(words)
+                
+                # 4. Use to_tsquery with the OR string
+                # This ensures documents matching *any* of the words are returned.
+                keyword_stmt = select(KnowledgeBase).where(
+                    text("search_vector @@ to_tsquery('simple', :q)")
+                ).order_by(
+                    text("ts_rank(search_vector, to_tsquery('simple', :q)) DESC")
+                )
+                
+                if filters and filters.get("type"):
+                    keyword_stmt = keyword_stmt.where(KnowledgeBase.type == filters["type"])
+                
+                keyword_results = db.scalars(keyword_stmt.params(q=or_query).limit(limit)).all()
+
+        # --- 3. HYBRID FUSION (Deduplicate & Merge) ---
+        seen_ids = set()
+        final_results = []
+        
+        # Add Keyword Results first (High Precision / Specific Terms)
+        for doc in keyword_results:
+            if doc.id not in seen_ids:
+                final_results.append(doc)
+                seen_ids.add(doc.id)
+                
+        # Add Vector Results (High Recall / Concepts)
+        for doc in vector_results:
+            if doc.id not in seen_ids:
+                final_results.append(doc)
+                seen_ids.add(doc.id)
+                
+        return final_results
 
     def get_by_url(self, db: Session, url: str):
         """Fetch ALL chunks for a specific URL to reconstruct the document"""

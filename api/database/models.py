@@ -8,7 +8,7 @@ from sqlalchemy import (
 from sqlalchemy.orm import DeclarativeBase, relationship
 from pgvector.sqlalchemy import Vector
 import enum
-from sqlalchemy.dialects.postgresql import UUID, JSONB
+from sqlalchemy.dialects.postgresql import UUID, JSONB, TSVECTOR
 
 class Base(DeclarativeBase):
     pass
@@ -254,6 +254,7 @@ class Assignment(Base):
     is_published = Column(Boolean, default=False)
     
     section = relationship("CourseSection", back_populates="assignments")
+
 class KnowledgeBase(Base):
     __tablename__ = "knowledge_base"
 
@@ -266,5 +267,7 @@ class KnowledgeBase(Base):
 
     metadata_ = Column("metadata", JSONB, default={})
     embedding = Column(Vector(EMBEDDING_DIM))
+
+    search_vector = Column(TSVECTOR)
 
     created_at = Column(TIMESTAMP, server_default=func.now())

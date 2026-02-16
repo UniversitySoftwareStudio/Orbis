@@ -7,12 +7,16 @@ An intelligent Student Information System (SIS) designed for Istanbul Bilgi Univ
 
 ## 🌟 Key Features
 
-### 🧠 Intelligent Chatbot (RAG)
-* **Hybrid Search:** Combines Vector Similarity (Semantic) + SQL `ts_rank` (Keyword) for high-precision retrieval.
-* **Intent Decomposition:** Automatically detects if a user is asking for a comparison, a list, or a specific fact, and routes the query to the best tool (SQL vs. Vector).
-* **One-Table Architecture:** Unifies Courses, Web Pages, and PDFs into a single searchable knowledge base.
-* **Smart Reranking:** Uses Jina AI to rerank results, ensuring the most relevant answer is at the top.
-* **Citation Engine:** Provides strict, clickable citations for every fact, distinguishing between entities (offices) and sources (documents).
+### 🧠 Advanced RAG Pipeline (Double Reranking)
+Unlike standard RAG systems, UniChat uses a multi-stage retrieval process to ensure high precision:
+1.  **Hybrid Search:** Retrieves N candidates using Vector Similarity (Semantic) + PostgreSQL `tsvector` (Keyword).
+2.  **Pre-Expansion Rerank:** Uses Jina AI to identify the "True Top N" documents from the initial pool.
+3.  **Smart Context Expansion:** Fetches neighboring chunks *only* for those top N documents to provide full context (e.g., the whole regulation article).
+4.  **Final Rerank:** Re-scores the expanded context (N chunks) to feed the absolute best data to the LLM.
+
+### ⚡ Stateless & Scalable
+* **Zero-History Context:** The RAG engine is stateless to prevent "Context Bloat" and token overflow (413 errors).
+* **Strict Router:** An intelligent router prevents SQL overload by detecting generic queries ("Staj") and routing them to Vector search, reserving SQL only for specific Course Code lookups.
 
 ### 🎓 Student Information System (Planned)
 * **Course Management:** CRUD operations for courses and sections.

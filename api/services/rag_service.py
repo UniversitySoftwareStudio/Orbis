@@ -28,25 +28,32 @@ class RAGService:
         STRUCTURE:
         {
           "intents": [
-            { "tool": "...", "query": "..." },
-            { "tool": "...", "filters": {...} }
+            { "tool": "vector", "query": "..." },
+            { "tool": "sql", "filters": { "code": "...", "type": "course" } }
           ]
         }
         
         CRITICAL RULES:
         1. **AVAILABLE TOOLS:** "vector", "sql"
-        1. **ALLOWED TYPES:** "course", "web_page", "pdf".
-        2. **FILTER FORMAT:** { "code": "CMPE" }, { "title_like": "Engineering" }.
-        3. **UNIVERSITY STRUCTURE (The "PDF Killer" Rule):**
-           - If the user asks about **Faculties, Departments, Centers, Offices, or Campuses (except Erasmus)**:
-           - YOU MUST add "filters": { "type": "web_page" }.
-           - PDFs are for rules/lists; Web Pages are for entities.
-           - Example: "List departments of Eng Faculty" -> { "tool": "vector", "query": "departments of Engineering Faculty", "filters": { "type": "web_page" } }
-        4. **SPLIT COMPARISONS:** If comparing X and Y, generate TWO intents.
-        5. **DETECT CODES (STRICT):** - Use "SQL" **ONLY** if the user searches for a specific **Course Code** (e.g., "CMPE 351") or **Subject Code** (e.g., "ACC", "CMPE").
-           - **CRITICAL:** You MUST put the code in the "filters" object (e.g. `{ "code": "ACC" }`).
-           - **FORBIDDEN:** Do NOT put the code in the "query" field. The "query" field must be empty for SQL course searches.
-           - For generic titles (e.g. "Deep Learning"), use "VECTOR".
+        2. **ALLOWED TYPES:** "course", "web_page", "pdf".
+        3. **FILTER FORMAT:** { "code": "CMPE" }, { "title_like": "Engineering" }.
+        
+        4. **TYPE FILTERING (RELAXED):**
+            - **DO NOT** apply a "type" filter (pdf/web_page) unless the user EXPLICITLY asks for it (e.g., "Show me the PDF", "Check the website").
+            - **EXCEPTION:** If the user asks about **Contact Info, Locations, or "About Us"** for Faculties/Departments, use "filters": { "type": "web_page" }.
+            - **FOR REGULATIONS/RULES:** Do **NOT** filter. Rules can exist in both PDFs and Web Pages.
+            
+        5. **SPLIT COMPARISONS:** If comparing X and Y, generate TWO intents.
+        
+        6. **STRICT INTENT SEPARATION (CRITICAL):**
+            - **SQL Usage:** Use SQL **ONLY** if the user searches for:
+                - A specific **Course Code** (e.g. "CMPE 351"). Put it in `filters: { "code": "..." }`.
+                - A specific **Subject Code** (e.g. "ACC"). Put it in `filters: { "code": "..." }`.
+                - A specific **List Request** (e.g. "List all sociology courses").
+            - **VECTOR Usage:** Use VECTOR for **EVERYTHING ELSE**.
+                - Questions about "Regulations", "Internships" (Staj), "Erasmus", "Prerequisites", "How to...", "Is there a rule...".
+                - **NEVER** use SQL for generic topic searches (e.g. "Staj documents", "Ders registration"). 
+                - **Reason:** SQL title search is too broad. Use Semantic Vector search for topics.
         
         OUTPUT JSON ONLY.
         """
@@ -126,8 +133,7 @@ class RAGService:
         if tool == "vector":
             # --- Dynamic Throttling ---
             # If parallel, be conservative to save tokens
-            search_limit = 25 if is_parallel else 40
-            expansion_limit = 1 if is_parallel else 3 
+            search_limit = 15 if is_parallel else 30
             
             # Skip if query is still empty
             if not query_text.strip():
@@ -139,6 +145,7 @@ class RAGService:
             
             q_emb = self.embedding_service.embed_text(query_text)
             
+            # A. Initial Retrieval (Hybrid: Vector + Keyword)
             initial_docs = self.repository.vector_search(
                 db, 
                 query_embedding=q_emb, 
@@ -147,50 +154,105 @@ class RAGService:
                 limit=search_limit
             )
             
-            # Smart Expansion
-            expanded_docs_map = {}
+            if not initial_docs:
+                return []
+
+            # =========================================================
+            # NEW STEP: Pre-Expansion Rerank (The "Quality Filter")
+            # =========================================================
+            # We assume 'initial_docs' contains the raw search results (e.g. 40 docs).
+            # We RERANK them NOW to find the "True Top 3" before we waste time expanding the wrong ones.
+            
+            # Construct text for Reranker
+            rerank_texts = []
             for d in initial_docs:
-                expanded_docs_map[d.id] = d
+                meta = getattr(d, "metadata_", getattr(d, "metadata", {})) or {}
+                clean_meta = ", ".join([f"{k}: {v}" for k, v in meta.items() if isinstance(v, (str, int, float))])
+                text_block = (
+                    f"Title: {d.title}\n"
+                    f"URL: {getattr(d, 'url', 'N/A')}\n"
+                    f"Content: {d.content}"
+                )
+                rerank_texts.append(text_block)
+
+            # Rerank the initial pool
+            if len(initial_docs) > 0:
+                console.log(f"   ⚖️  Pre-Expansion Reranking {len(initial_docs)} candidates...")
+                pre_rerank_results = self.reranker.rerank(
+                    query=query_text,
+                    documents=rerank_texts,
+                    top_k=len(initial_docs) # Reorder all of them
+                )
                 
+                # Reconstruct list in new order
+                reranked_initial_docs = []
+                for res in pre_rerank_results:
+                    reranked_initial_docs.append(initial_docs[res["index"]])
+            else:
+                reranked_initial_docs = initial_docs
+
+            # =========================================================
+            # MODIFIED STEP: Smart Expansion (Using True Top 3)
+            # =========================================================
+            # Now we pick the top 3 from the *RERANKED* list.
+            
+            docs_to_expand = reranked_initial_docs[:3]
+            
+            expanded_docs_map = {}
+            
+            # 1. Add top 10 reranked docs to the map immediately (High Relevance Baseline)
+            for d in reranked_initial_docs[:10]:
+                expanded_docs_map[d.id] = d
+
+            # 2. Identify URLs to expand from the Top 3
             unique_urls = []
             seen_urls = set()
             
-            for d in initial_docs:
+            for d in docs_to_expand:
                 url = getattr(d, "url", None)
                 if d.type in ['web_page', 'pdf'] and url and url not in seen_urls:
                     unique_urls.append(url)
                     seen_urls.add(url)
-                    if len(unique_urls) >= expansion_limit: 
-                        break
-            
-            # Fetch full context (Expansion)
+
+            # 3. Perform Expansion Fetch
             if unique_urls:
                 console.log(f"   🔄 Expanding {len(unique_urls)} source(s)...")
+                
+                # Print titles being expanded
+                for url in unique_urls:
+                    matching_doc = next((d for d in docs_to_expand if getattr(d, 'url', None) == url), None)
+                    safe_title = getattr(matching_doc, 'title', 'Untitled') if matching_doc else "Unknown Source"
+                    console.log(f"      - [dim cyan]{safe_title}[/dim cyan]")
+
                 for url in unique_urls:
                     page_chunks = self.repository.get_by_url(db, url)
                     for chunk in page_chunks:
-                        expanded_docs_map[chunk.id] = chunk
+                        if chunk.id not in expanded_docs_map:
+                            expanded_docs_map[chunk.id] = chunk
             
             candidate_docs = list(expanded_docs_map.values())
 
+            # =========================================================
+            # EXISTING STEP: Final Rerank (The Context Optimizer)
+            # =========================================================
             RERANK_INPUT_CAP = 75
             
             if len(candidate_docs) > RERANK_INPUT_CAP:
-                console.log(f"[yellow]⚠️  Too many chunks ({len(candidate_docs)}). Capping at {RERANK_INPUT_CAP} for reranking.[/yellow]")
+                console.log(f"[yellow]⚠️  Too many chunks ({len(candidate_docs)}). Capping at {RERANK_INPUT_CAP} for final reranking.[/yellow]")
                 
                 # Intelligent Slicing:
-                # 1. Always keep the original vector hits (they are the most relevant)
-                priority_ids = {d.id for d in initial_docs}
+                # Prioritize the docs that triggered the expansion (Top 3 Reranked)
+                priority_ids = {d.id for d in docs_to_expand}
                 priority_docs = [d for d in candidate_docs if d.id in priority_ids]
                 other_docs = [d for d in candidate_docs if d.id not in priority_ids]
                 
-                # 2. Fill the rest with expanded context up to the cap
+                # Fill the rest
                 slots_left = RERANK_INPUT_CAP - len(priority_docs)
                 candidate_docs = priority_docs + other_docs[:slots_left]
 
-            # Reranking
+            # Final Reranking
             if candidate_docs:
-                console.log(f"   ⚖️  Reranking {len(candidate_docs)} chunks...")
+                console.log(f"   ⚖️  Final Reranking {len(candidate_docs)} chunks...")
                 doc_texts = []
                 for d in candidate_docs:
                     # Safely extract metadata
