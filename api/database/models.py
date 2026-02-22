@@ -205,7 +205,7 @@ class CourseSection(Base):
     instructor_id = Column(Integer, ForeignKey("instructors.id"))
     
     section_number = Column(String(10), nullable=False)
-    crn = Column(String(20), unique=True, index=True)
+    crn = Column(String(50), unique=True, index=True)
     max_enrollment = Column(Integer, default=30)
     current_enrollment = Column(Integer, default=0)
     

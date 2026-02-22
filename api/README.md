@@ -1,22 +1,75 @@
-# Orbis Backend
+# API
 
-This folder contains the backend logic, RAG pipeline, and database management scripts.
+This is the backend. It talks to the frontend.
 
-## Key Scripts (`api/scripts/`)
+## What's inside?
 
-* `embed_database.py`: The master script. Wipes the DB, scrapes sources, and generates embeddings.
-* `load_data.py`: The loader script. Takes content of inputted jsonl files from `api/data/` and inserts them into the db while chunking them.
-* `fix_pdf_language_and_titles.py`: A very specific script intended to fix the language and title issues of pdf dataset files `api/data/bilgi_pdfs_---.json`.
+```
+api/
+├── main.py        # The app starts here
+└── app/           # Your code goes here
+    ├── routes/    # URLs and endpoints (calls services)
+    ├── services/  # The smart stuff (AI, logic)
+    └── models/    # Data shapes (used by routes & services)
+```
 
-## Development
+## Flow
 
-To run the API locally without Docker (for debugging) run the following inside `api/` folder:
+```
+User → routes → services → response
+              ↓
+           models (validates data)
+```
 
-1.  **Install dependencies:**
-    ```bash
-    pip install -r requirements.txt
-    ```
-2.  **Run the server:**
-    ```bash
-    uvicorn main:app --reload
-    ```
+## Run it
+
+```bash
+python main.py
+```
+
+Goes to: http://localhost:8000
+
+## Ingest data (fast, no embeddings)
+
+Compute preprocessing stats (including TEI max token limits):
+
+```bash
+python -m ingest.preprocess_report --tei-url http://localhost:7860
+```
+
+Ingest JSONL into Postgres (creates Courses, Documents, Chunks; optional demo SIS data):
+
+```bash
+python -m ingest.ingest_db --reset --seed-demo --tei-url http://localhost:7860
+```
+
+Notes:
+- Your TEI server reports `max_input_length=256` and `auto_truncate=false`, so chunking must be token-safe.
+- `--tei-url` makes ingestion use TEI `/tokenize` to build chunks that stay within the model’s input length.
+
+## Backfill embeddings (slow, run later)
+
+Once the DB is filled and TEI/Ollama is stable, backfill pgvector columns:
+
+```bash
+python -m ingest.embed_backfill --only all --batch-size 32
+```
+
+## How to add stuff
+
+**Add a new endpoint:**
+1. Make a file in `app/routes/` (e.g., `user.py`)
+2. Copy the pattern from `routes/README.md`
+3. Import it in `main.py` and add: `app.include_router(user.router)`
+
+**Add AI logic:**
+1. Make a file in `app/services/` (e.g., `rag_service.py`)
+2. Write your class/functions
+3. Import and use in routes
+
+**Add data model:**
+1. Make a file in `app/models/` (e.g., `user.py`)
+2. Define Pydantic models
+3. Use them in routes for validation
+
+That's it. Build and go!

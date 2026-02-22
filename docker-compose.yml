@@ -1,22 +1,7 @@
 services:
-  #Our postgres database with pgvector extension for vector embeddings
-  postgres:
-    image: pgvector/pgvector:pg18-trixie
-    container_name: orbisdb
-    environment:
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: orbisdb
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql
-    restart: unless-stopped
-
   # Existing TEI (Text Embeddings Inference) service via MiniLM-L6-v2 (Option A)
   embeddings:
     image: ghcr.io/huggingface/text-embeddings-inference:cpu-latest
-    container_name: embeddings
     command: --model-id sentence-transformers/all-MiniLM-L6-v2
     ports:
       - "7860:80"
@@ -33,5 +18,4 @@ services:
     restart: unless-stopped
 
 volumes:
-  postgres_data:
   ollama_data:
