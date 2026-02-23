@@ -1,23 +1,55 @@
-const API_BASE_URL = 'http://localhost:8000';
+const API_BASE_URL = 'http://localhost:8000/api';
 
 export const api = {
-  get: async (endpoint: string) => {
-    const response = await fetch(`${API_BASE_URL}${endpoint}`);
-    if (!response.ok) throw new Error(`API error: ${response.statusText}`);
-    return response.json();
-  },
+  // 1. Standard POST (for Login)
+  post: async (endpoint: string, data: any, token?: string) => {
+    const headers: HeadersInit = {
+      'Content-Type': 'application/json',
+    };
+    if (token) headers['Authorization'] = `Bearer ${token}`;
 
-  post: async (endpoint: string, data: any) => {
     const response = await fetch(`${API_BASE_URL}${endpoint}`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers,
       body: JSON.stringify(data),
+      credentials: 'include', // send/receive httpOnly cookies
     });
-    if (!response.ok) throw new Error(`API error: ${response.statusText}`);
+
+    if (!response.ok) {
+      const error = await response.json().catch(() => ({ detail: response.statusText }));
+      throw new Error(error.detail || 'API Error');
+    }
     return response.json();
   },
-};
 
-export default api;
+  // 2. Streaming Chat (The RAG Magic)
+  chatStream: async (
+    message: string, 
+    token: string, 
+    onChunk: (text: string) => void
+  ) => {
+    const headers: HeadersInit = { 'Content-Type': 'application/json' };
+    if (token) headers['Authorization'] = `Bearer ${token}`;
+
+    const response = await fetch(`${API_BASE_URL}/chat`, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({ message }),
+      credentials: 'include', // send cookie for server-side auth
+    });
+
+    if (!response.ok) throw new Error(response.statusText);
+    if (!response.body) throw new Error('No response body');
+
+    // Read the stream
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder();
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      const chunk = decoder.decode(value, { stream: true });
+      onChunk(chunk);
+    }
+  },
+};

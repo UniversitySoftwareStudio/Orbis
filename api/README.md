@@ -29,6 +29,43 @@ python main.py
 
 Goes to: http://localhost:8000
 
+## Ingest data (fast, no embeddings)
+
+Compute preprocessing stats (including TEI max token limits):
+
+```bash
+python -m ingest.preprocess_report --tei-url http://localhost:7860
+```
+
+Ingest JSONL into Postgres (creates Courses, Documents, Chunks; optional demo SIS data):
+
+```bash
+python -m ingest.ingest_db --reset --seed-demo --tei-url http://localhost:7860
+```
+
+Notes:
+- Your TEI server reports `max_input_length=256` and `auto_truncate=false`, so chunking must be token-safe.
+- `--tei-url` makes ingestion use TEI `/tokenize` to build chunks that stay within the model’s input length.
+
+## Backfill embeddings (slow, run later)
+
+Once the DB is filled and TEI/Ollama is stable, backfill pgvector columns:
+
+```bash
+python -m ingest.embed_backfill --only all --batch-size 32
+```
+
+## Multiple TEI servers (round robin)
+
+If you run more than one TEI container, set `TEI_URLS` (comma-separated) so the API
+distributes embedding calls across them in round-robin order:
+
+```bash
+TEI_URLS=http://localhost:7860,http://localhost:7861,http://localhost:7862
+```
+
+If `TEI_URLS` is not set, the API falls back to `TEI_URL` / `EMBEDDING_SERVICE_URL`.
+
 ## How to add stuff
 
 **Add a new endpoint:**

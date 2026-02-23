@@ -1,33 +1,96 @@
-## Completed
+# Orbis (SIS & RAG System)
 
-- University rules modeling
-- Chunk quality experimentation (100w vs 150w)
+An intelligent Student Information System (SIS) designed for Istanbul Bilgi University. This project integrates a traditional administrative backend with an advanced **RAG (Retrieval-Augmented Generation)** chatbot, allowing students to query course catalogs, university regulations, and administrative procedures in natural language.
 
-TODOs
- 
-* more embedding models
-* generating more ground truths
-* deploying llm models locally and integrating third parties.
-* experimenting the more embedding models with the more ground truths
-* creating ground truths for LLM quality experimentation
-* experimenting the LLM quality with the new ground truths
-* creating complete school UML diagram and implementing it.
-* Implementing core agent and required agents in the system
-* Testing the best prompt for the best outcome. (agents)
-* Complete first MVP that has all of our use cases working.
-* Sİnce use cases working, make sure all apis are complete.
-* Since all api contracts now complete, completely finish the frontend (minimally! - otherwise it will create more work)
+![Status](https://img.shields.io/badge/Status-Prototype-orange)
+![Tech](https://img.shields.io/badge/Stack-FastAPI_|_PostgreSQL_|_Angular-blue)
 
-This is the point where we can even stop working on the project, our achievement is seeing our event agent outputs internship events which was our problem.
+## 🌟 Key Features
 
-Urgent TODOs:
+### 🧠 Advanced RAG Pipeline (Double Reranking)
+Unlike standard RAG systems, UniChat uses a multi-stage retrieval process to ensure high precision:
+1.  **Hybrid Search:** Retrieves N candidates using Vector Similarity (Semantic) + PostgreSQL `tsvector` (Keyword).
+2.  **Pre-Expansion Rerank:** Uses Jina AI to identify the "True Top N" documents from the initial pool.
+3.  **Smart Context Expansion:** Fetches neighboring chunks *only* for those top N documents to provide full context (e.g., the whole regulation article).
+4.  **Final Rerank:** Re-scores the expanded context (N chunks) to feed the absolute best data to the LLM.
 
-* Complete DB schema according to use cases.
-    - Implement typical school system entities
-    - Research fastapi session implementation.
-* ingesting almost all of the courses and documents we can find
+### ⚡ Stateless & Scalable
+* **Zero-History Context:** The RAG engine is stateless to prevent "Context Bloat" and token overflow (413 errors).
+* **Strict Router:** An intelligent router prevents SQL overload by detecting generic queries ("Staj") and routing them to Vector search, reserving SQL only for specific Course Code lookups.
 
-## USE CASES
+### 🎓 Student Information System (Planned)
+* **Course Management:** CRUD operations for courses and sections.
+* **Event System:** (Upcoming) Automated deadlines and regulation checks.
+* **Submission Checks:** (Upcoming) Automated assignment validation.
+
+## 🛠️ Tech Stack
+
+* **Backend:** Python, FastAPI, SQLAlchemy
+* **Database:** PostgreSQL with `pgvector` extension
+* **LLM Engine:** Llama 3.3 70B (via Groq API)
+* **Embeddings:** `sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2`
+* **Reranker:** Jina AI
+* **Frontend:** React
+* **Infrastructure:** Docker, Docker Compose
+
+## 🚀 Getting Started
+
+### Prerequisites
+* Docker & Docker Compose (Only to run db locally)
+* Python 3.10+
+* Groq API Key (for LLM)
+* Jina AI API Key (for Reranking)
+
+### Installation
+
+1.  **Clone the repository:**
+    ```bash
+    git clone [https://github.com/your-username/unichat-agent.git](https://github.com/your-username/unichat-agent.git)
+    cd unichat-agent
+    ```
+
+2.  **Set up Environment Variables:**
+    Create a `.env` file in the `api/` directory:
+    ```ini
+    DB_NAME=postgres
+    DB_USER=postgres
+    DB_PASSWORD=yourpassword
+    DB_HOST=db
+    DB_PORT=5432
+    GROQ_API_KEY=gsk_...
+    JINA_API_KEY=jina_...
+    ```
+### How to Run
+
+Details on how to run both front and backend of the project can be found at `api/README.md` and `web/README.md`
+
+## 📂 Project Structure
+
+* `api/`: FastAPI backend, RAG logic, and database scripts.
+* `api/data/`: Raw PDF documents and scraped JSONL data.
+* `api/scripts/`: Various scripts used to load and embed data into db.
+* `web/`: Angular frontend application.
+
+## ✅ Completed Milestones
+
+* **Core RAG Architecture:** "One-Table" approach unifying Courses, Web Pages, and PDFs.
+* **Data Pipeline:**
+    * Scrapers for Courses (JSONL) and Web Pages.
+    * PDF Pipeline: Hybrid cleaning and language detection.
+* **Advanced Retrieval:**
+    * **Intent Router:** Distinguishes between "List", "Compare", and "Explain" queries.
+    * **Auto-Repair Logic:** Fixes malformed SQL queries automatically.
+    * **Smart Expansion:** Fetches full context for relevant documents with soft diversity caps.
+* **Persona & Safety:** "Reference Librarian" persona that enforces citations and strict administrative safety rules.
+
+## 🚧 Roadmap
+
+* [ ] Implement SIS Relational Tables (Students, Enrollments).
+* [ ] Integrate Relational Data into RAG (Text-to-SQL for schedule/grades).
+* [ ] Event System for deadline tracking.
+* [ ] Admin Dashboard for managing knowledge base.
+
+## 🔑 Use Cases
 
 ### Chatbot
 

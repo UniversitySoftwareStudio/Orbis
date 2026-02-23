@@ -13,6 +13,8 @@ from .section_repository import SectionRepository
 from .term_repository import TermRepository
 from .assignment_repository import AssignmentRepository
 from .document_repository import DocumentRepository
+from .rag_repository import RAGRepository
+
 
 __all__ = [
     'BaseRepository',
@@ -25,4 +27,5 @@ __all__ = [
     'TermRepository',
     'AssignmentRepository',
     'DocumentRepository',
+    'RAGRepository',
 ]

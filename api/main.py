@@ -1,14 +1,18 @@
+from dotenv import load_dotenv
+
+# Load environment variables immediately so other imports see them
+load_dotenv(".env")
+
 import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from routes.search import router as search_router
 from routes.regulations import router as regulations_router
 from routes.auth import router as auth_router
-from dotenv import load_dotenv
+from routes.logout import router as logout_router
+
 from database import models
 from database.session import init_db
-
-load_dotenv(".env")
 
 app = FastAPI(
     title="UniChatBot API",
@@ -32,6 +36,8 @@ app.include_router(auth_router, prefix="/api", tags=["authentication"])
 app.include_router(search_router, prefix="/api", tags=["search"])
 app.include_router(regulations_router, prefix="/api", tags=["regulations"])
 
+app.include_router(search_router, prefix="/api", tags=["chat"])
+app.include_router(logout_router, prefix="/api", tags=["logout"])
 
 
 @app.get("/")

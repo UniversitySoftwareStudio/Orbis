@@ -101,7 +101,15 @@ def login(request: LoginRequest, response: Response, db: Session = Depends(get_d
     """
     auth_service = AuthService(db)
     
-    user = auth_service.authenticate_user(request.email, request.password)
+    try:
+        user = auth_service.authenticate_user(request.email, request.password)
+    except ValueError as e:
+        # Handle password backend/value errors (e.g. bcrypt 72-byte limit) as authentication failures
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Incorrect email or password",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
     
     if not user:
         raise HTTPException(

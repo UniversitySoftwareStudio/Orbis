@@ -7,23 +7,34 @@ import os
 from .models import Base
 
 # Database connection
-DATABASE_URL = os.getenv(
-    "DATABASE_URL", "postgresql://user:password@localhost:5432/orbisdb"
-)
+DATABASE_URL = os.getenv("DATABASE_URL")
+
+# If a full DATABASE_URL isn't provided, construct it from individual DB_* env vars.
+if not DATABASE_URL:
+    db_user = os.getenv("DB_USER", "user")
+    db_password = os.getenv("DB_PASSWORD", "password")
+    db_host = os.getenv("DB_HOST", "localhost")
+    db_port = os.getenv("DB_PORT", "5432")
+    db_name = os.getenv("DB_NAME", "orbisdb")
+    DATABASE_URL = f"postgresql://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}"
 
 engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 
 def init_db():
-    """Initialize database with pgvector extension and create all tables"""
-    with engine.connect() as conn:
-        conn.execute(text("CREATE EXTENSION IF NOT EXISTS vector"))
-        conn.commit()
-    
-    # This will now find all models because Base is imported from models.py
-    Base.metadata.create_all(bind=engine)
-    print("✓ Database initialized")
+    """Initializes the DB tables."""
+    try:
+        # Enable pgvector extension
+        with engine.connect() as conn:
+            conn.execute(text("CREATE EXTENSION IF NOT EXISTS vector"))
+            conn.commit()
+        
+        # Create all tables defined in models.py
+        Base.metadata.create_all(bind=engine)
+        print("✅ Database initialized successfully.")
+    except Exception as e:
+        print(f"❌ Database initialization failed: {e}")
 
 
 def reset_db():
