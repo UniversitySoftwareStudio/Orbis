@@ -17,6 +17,11 @@ import os
 import sys
 import time
 
+# Allow `python embed_backfill.py` from `api/ingest/` by making `api/` importable.
+API_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
+if API_DIR not in sys.path:
+    sys.path.insert(0, API_DIR)
+
 # Force unbuffered output
 sys.stdout.reconfigure(line_buffering=True)
 sys.stderr.reconfigure(line_buffering=True)
@@ -37,9 +42,8 @@ from services.embedding_service import get_embedding_service
 # Helpers
 # ---------------------------------------------------------------------------
 
-# all-MiniLM-L6-v2 has a 256 token limit (~500 chars).
-# Truncate aggressively to avoid 413 from TEI.
-MAX_EMBED_CHARS = 500
+# all-MiniLM-L6-v2 has a 256 token limit. We keep this conservative to reduce 413s.
+MAX_EMBED_CHARS = 320
 
 
 def _truncate(text: str, max_chars: int = MAX_EMBED_CHARS) -> str:
