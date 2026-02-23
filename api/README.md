@@ -55,6 +55,17 @@ Once the DB is filled and TEI/Ollama is stable, backfill pgvector columns:
 python -m ingest.embed_backfill --only all --batch-size 32
 ```
 
+## Multiple TEI servers (round robin)
+
+If you run more than one TEI container, set `TEI_URLS` (comma-separated) so the API
+distributes embedding calls across them in round-robin order:
+
+```bash
+TEI_URLS=http://localhost:7860,http://localhost:7861,http://localhost:7862
+```
+
+If `TEI_URLS` is not set, the API falls back to `TEI_URL` / `EMBEDDING_SERVICE_URL`.
+
 ## How to add stuff
 
 **Add a new endpoint:**
