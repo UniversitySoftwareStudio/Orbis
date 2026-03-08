@@ -18,7 +18,7 @@ class RAGService:
         self.embedding_service = get_embedding_service()
         self.repository = get_rag_repository()
         self.llm_service = get_llm_service()
-        self.reranker = get_reranker_service() # <--- Init Reranker
+        self.reranker = get_reranker_service()
 
     def _get_router_decision(self, query: str) -> Dict:
         system_prompt = """
@@ -158,7 +158,7 @@ class RAGService:
                 return []
 
             # =========================================================
-            # NEW STEP: Pre-Expansion Rerank (The "Quality Filter")
+            # Pre-Expansion Rerank
             # =========================================================
             # We assume 'initial_docs' contains the raw search results (e.g. 40 docs).
             # We RERANK them NOW to find the "True Top 3" before we waste time expanding the wrong ones.
@@ -192,7 +192,7 @@ class RAGService:
                 reranked_initial_docs = initial_docs
 
             # =========================================================
-            # MODIFIED STEP: Smart Expansion (Using True Top 3)
+            # Smart Expansion (Using True Top 3)
             # =========================================================
             # Now we pick the top 3 from the *RERANKED* list.
             
@@ -233,7 +233,7 @@ class RAGService:
             candidate_docs = list(expanded_docs_map.values())
 
             # =========================================================
-            # EXISTING STEP: Final Rerank (The Context Optimizer)
+            # Final Rerank (The Context Optimizer)
             # =========================================================
             RERANK_INPUT_CAP = 75
             

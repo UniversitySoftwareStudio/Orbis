@@ -124,7 +124,7 @@ class RegulationService:
         # Use LLM service to stream
         try:
             # Delegate to LLMService which handles fallback logic
-            response_stream = self.llm_service.generate_response(prompt)
+            response_stream = self.llm_service.generate(prompt)
             for chunk in response_stream:
                 msg = {"type": "content", "delta": chunk}
                 yield f"data: {json.dumps(msg)}\n\n"
