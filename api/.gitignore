@@ -27,6 +27,12 @@ wheels/
 .env
 .venv
 
+# Data files - exclude all JSONL files in data folder
+data/*.jsonl
+
+# But include the example file(s)
+!data/*_example.jsonl
+
 # IDE
 .vscode/
 .idea/
