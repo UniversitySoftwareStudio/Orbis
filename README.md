@@ -87,7 +87,6 @@ Details on how to run both front and backend of the project can be found at `api
 
 * [ ] Implement SIS Relational Tables (Students, Enrollments).
 * [ ] Integrate Relational Data into RAG (Text-to-SQL for schedule/grades).
-* [ ] Event System for deadline tracking.
 * [ ] Admin Dashboard for managing knowledge base.
 
 ## 🔑 Use Cases
@@ -95,10 +94,6 @@ Details on how to run both front and backend of the project can be found at `api
 ### Chatbot
 
 A RAG based chatbot system that has access to all non-sensitive university data that will be able to answer various queries of users (instructors & students alike)
-
-### Event System
-
-A RAG based system that will periodically check university regulations and course rules in order to create various events (like informing students a deadline of a homework/project submission, suggesting students to take actions such as registering to erasmus programmes, etc.)
 
 ### Submission Check
 

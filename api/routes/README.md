@@ -1,23 +1,21 @@
-# routes/
+# `routes/`
 
-API endpoints. What users hit.
+HTTP entrypoints only. Keep route files thin.
 
-**Example:** `chat.py`
-```python
-from fastapi import APIRouter
-from app.services.chat_service import ChatService
-from app.models.chat import ChatMessage
+## Modules
+- `auth.py`: register/login/me/refresh.
+- `logout.py`: logout endpoint (cookie invalidation).
+- `search.py`: chat/search/ask endpoints.
 
-router = APIRouter()
-chat_service = ChatService()
-
-@router.post("/message")
-async def send_message(msg: ChatMessage):
-    reply = chat_service.reply(msg.text)
-    return {"response": reply}
+## Flow
+```mermaid
+flowchart TD
+  A[HTTP request] --> B[routes/*.py]
+  B --> C[services/*.py]
+  C --> D[database/* or rag/*]
+  C --> E[response/SSE]
 ```
 
-**Connects:**
-- Uses `models/` for data shapes
-- Calls `services/` to do work
-- Returns JSON to frontend
+## Rule
+- Validate request/identity in routes.
+- Put business logic in `services/`.

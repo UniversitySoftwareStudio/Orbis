@@ -2,7 +2,7 @@ import os
 from datetime import datetime
 from sqlalchemy import (
     Column, Integer, String, Text, ForeignKey, DateTime, 
-    Boolean, Numeric, Date, Time, Enum as SQLEnum, Table,
+    Boolean, Numeric, Date, Enum as SQLEnum, Table,
     UniqueConstraint, CheckConstraint, func, TIMESTAMP
 )
 from sqlalchemy.orm import DeclarativeBase, relationship
@@ -14,11 +14,6 @@ class Base(DeclarativeBase):
     pass
 
 EMBEDDING_DIM = int(os.getenv("EMBEDDING_DIM", "384"))
-
-
-# ============================================================================
-# ENUMS
-# ============================================================================
 
 class UserType(enum.Enum):
     STUDENT = "student"
@@ -44,22 +39,12 @@ class TermType(enum.Enum):
     SPRING = "spring"
     SUMMER = "summer"
 
-
-# ============================================================================
-# ASSOCIATION TABLES
-# ============================================================================
-
 course_prerequisites = Table(
     'course_prerequisites',
     Base.metadata,
     Column('course_id', Integer, ForeignKey('courses.id'), primary_key=True),
     Column('prerequisite_id', Integer, ForeignKey('courses.id'), primary_key=True)
 )
-
-
-# ============================================================================
-# EXISTING MODELS
-# ============================================================================
 
 class Course(Base):
     __tablename__ = "courses"
@@ -118,11 +103,6 @@ class DocumentChunk(Base):
     
     document = relationship("UniversityDocument", back_populates="chunks")
 
-
-# ============================================================================
-# SCHOOL SYSTEM MODELS
-# ============================================================================
-
 class User(Base):
     __tablename__ = "users"
     
@@ -132,7 +112,6 @@ class User(Base):
     first_name = Column(String(100), nullable=False)
     last_name = Column(String(100), nullable=False)
     
-    # FIX: validate_strings=True ensures SQLAlchemy checks inputs before sending to DB
     user_type = Column(SQLEnum(UserType, validate_strings=True), nullable=False)
     
     is_active = Column(Boolean, default=True)
@@ -154,7 +133,6 @@ class Student(Base):
     user = relationship("User", back_populates="student")
     enrollments = relationship("Enrollment", back_populates="student")
     
-    # FIX: Ensure GPA is between 0.00 and 4.00
     __table_args__ = (
         CheckConstraint('gpa >= 0.00 AND gpa <= 4.00', name='check_valid_gpa'),
     )
@@ -180,7 +158,6 @@ class AcademicTerm(Base):
     id = Column(Integer, primary_key=True)
     code = Column(String(20), unique=True, nullable=False, index=True)
     
-    # FIX: validate_strings=True
     term_type = Column(SQLEnum(TermType, validate_strings=True), nullable=False)
     
     year = Column(Integer, nullable=False)
@@ -190,7 +167,6 @@ class AcademicTerm(Base):
     
     sections = relationship("CourseSection", back_populates="term")
 
-    # FIX: Ensure End Date is after Start Date
     __table_args__ = (
         CheckConstraint('end_date >= start_date', name='check_valid_term_dates'),
     )
@@ -209,7 +185,6 @@ class CourseSection(Base):
     max_enrollment = Column(Integer, default=30)
     current_enrollment = Column(Integer, default=0)
     
-    # FIX: validate_strings=True
     status = Column(SQLEnum(SectionStatus, validate_strings=True), default=SectionStatus.SCHEDULED)
     
     course = relationship("Course", back_populates="sections")
@@ -227,7 +202,6 @@ class Enrollment(Base):
     section_id = Column(Integer, ForeignKey("course_sections.id"), nullable=False)
     enrolled_at = Column(DateTime, default=datetime.utcnow)
     
-    # FIX: validate_strings=True
     status = Column(SQLEnum(EnrollmentStatus, validate_strings=True), default=EnrollmentStatus.ENROLLED)
     
     final_grade_numeric = Column(Numeric(5, 2))
@@ -236,7 +210,6 @@ class Enrollment(Base):
     student = relationship("Student", back_populates="enrollments")
     section = relationship("CourseSection", back_populates="enrollments")
 
-    # FIX: Prevent duplicate enrollments (Student cannot be in Section 1 twice)
     __table_args__ = (
         UniqueConstraint('student_id', 'section_id', name='uq_student_section_enrollment'),
     )
@@ -271,3 +244,40 @@ class KnowledgeBase(Base):
     search_vector = Column(TSVECTOR)
 
     created_at = Column(TIMESTAMP, server_default=func.now())
+
+    versioned_embeddings = relationship("KnowledgeBaseEmbedding", back_populates="kb_entry")
+
+
+class EmbeddingModel(Base):
+    __tablename__ = "embedding_models"
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String(255), nullable=False)
+    version = Column(String(50), nullable=False)
+    dimension = Column(Integer, nullable=False)
+    description = Column(Text)
+    is_active = Column(Boolean, default=False, nullable=False)
+    created_at = Column(TIMESTAMP, server_default=func.now())
+
+    embeddings = relationship("KnowledgeBaseEmbedding", back_populates="model")
+
+    __table_args__ = (
+        UniqueConstraint('name', 'version', name='uq_embedding_model_name_version'),
+    )
+
+
+class KnowledgeBaseEmbedding(Base):
+    __tablename__ = "knowledge_base_embeddings"
+
+    id = Column(UUID(as_uuid=True), primary_key=True, server_default=func.gen_random_uuid())
+    kb_id = Column(UUID(as_uuid=True), ForeignKey("knowledge_base.id", ondelete="CASCADE"), nullable=False, index=True)
+    model_id = Column(Integer, ForeignKey("embedding_models.id", ondelete="CASCADE"), nullable=False, index=True)
+    embedding = Column(Vector(), nullable=False)
+    created_at = Column(TIMESTAMP, server_default=func.now())
+
+    kb_entry = relationship("KnowledgeBase", back_populates="versioned_embeddings")
+    model = relationship("EmbeddingModel", back_populates="embeddings")
+
+    __table_args__ = (
+        UniqueConstraint('kb_id', 'model_id', name='uq_kb_model_embedding'),
+    )
