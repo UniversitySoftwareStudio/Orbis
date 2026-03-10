@@ -11,9 +11,6 @@ from decimal import Decimal
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from sqlalchemy import create_engine, event
-from sqlalchemy.orm import sessionmaker
-
 from database import models
 from database.repositories.course_repository import CourseRepository
 from database.repositories.student_repository import StudentRepository
@@ -23,27 +20,6 @@ from database.repositories.term_repository import TermRepository
 from database.repositories.assignment_repository import AssignmentRepository
 from database.repositories.user_repository import UserRepository
 from database.repositories.instructor_repository import InstructorRepository
-
-
-@pytest.fixture(scope="function")
-def db_session():
-    """Create a test database session"""
-    engine = create_engine("sqlite:///:memory:")
-    
-    @event.listens_for(engine, "connect")
-    def set_sqlite_pragma(dbapi_connection, connection_record):
-        cursor = dbapi_connection.cursor()
-        cursor.execute("PRAGMA foreign_keys=ON")
-        cursor.close()
-    
-    models.Base.metadata.create_all(bind=engine)
-    Session = sessionmaker(bind=engine)
-    session = Session()
-    
-    yield session
-    
-    session.close()
-    engine.dispose()
 
 
 @pytest.fixture
