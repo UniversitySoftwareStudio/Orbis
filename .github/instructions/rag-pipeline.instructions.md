@@ -1,6 +1,6 @@
 # RAG Pipeline — Detailed Instructions
 
-Applies to: `api/services/rag_service.py`, `api/database/repositories/rag_repository.py`
+Applies to: `api/rag/` (all submodules), `api/database/repositories/rag_repository.py`
 
 This file documents how the production RAG pipeline works, why it is structured the way it is,
 and what must not be changed without understanding the consequences.
@@ -180,7 +180,12 @@ The URL is explicitly labeled so the LLM can generate proper Markdown citation l
 
 ## LLM Prompt and Citation Rules
 
-The final prompt enforces these rules (do not soften them when modifying the prompt):
+> ⚠️ **Note:** The current `ANSWER_PROMPT_TEMPLATE` in `rag/constants.py` has been simplified.
+> The detailed rules below were part of the original design intent and should be restored or
+> enforced when improving citation quality. The current prompt uses briefer instructions
+> ("link source documents when URL exists", "use italicized source title if no URL").
+
+The final prompt should enforce these rules (do not soften them when modifying the prompt):
 
 1. **Bold for entities** (offices, roles, departments): `**Erasmus Office**` — never linked
 2. **Markdown link on the document title** (not on the entity): `[Study Mobility Guide](url)`
@@ -194,7 +199,7 @@ The final prompt enforces these rules (do not soften them when modifying the pro
 ## Parallel Intents
 
 When the router returns multiple intents (e.g., comparing two departments), they are processed
-sequentially in a loop. Each intent runs `_process_single_intent()` with `is_parallel=True`,
+sequentially in a loop. Each intent runs `RetrievalEngine.execute_intent()` with `parallel_mode=True`,
 which reduces the search limit (15 instead of 30) and the final rerank top-k (5 instead of 10)
 to conserve context window space across the merged result.
 
@@ -206,8 +211,9 @@ to conserve context window space across the merged result.
   to prevent context bloat and token overflow. Do not add history.
 - **Not a simple RAG** — "just embed, search, generate" is not how this works. The double rerank
   and expansion are load-bearing components, not optional optimizations.
-- **Not using `regulation_service.py`** — that service is a simpler, older search used only for
-  the experiments in `api/experiments/`. The production `/api/chat` endpoint uses `rag_service.py`.
+- **Not using `regulation_service.py`** — that service has been deleted. It was a simpler, older search
+  used only for the experiments in `api/scripts/experiments/`. The production `/api/chat` endpoint
+  uses the RAG pipeline in `api/rag/`.
 
 ---
 
@@ -215,9 +221,17 @@ to conserve context window space across the merged result.
 
 | File | Role |
 |------|------|
-| `api/services/rag_service.py` | Full pipeline: router, intent processing, context building, generation |
+| `api/rag/service.py` | Main RAGService class: query processing, course search, streaming |
+| `api/rag/router.py` | LLM-driven query router — converts user query to intents |
+| `api/rag/retrieval.py` | RetrievalEngine: dispatches intents to SQL or vector execution paths |
+| `api/rag/vector_intent.py` | Vector path: hybrid search, pre-expansion rerank, expansion, final rerank |
+| `api/rag/sql_intent.py` | SQL path: filter normalization, course code lookups |
+| `api/rag/rerank.py` | Jina AI reranker wrapper with fallback |
+| `api/rag/context.py` | Context building (CSV vs detailed mode), deduplication, debug table |
+| `api/rag/constants.py` | Prompt templates (ROUTER_PROMPT, ANSWER_PROMPT_TEMPLATE) |
+| `api/rag/helpers.py` | Utility functions (doc_meta, build_rerank_text) |
+| `api/rag/pipeline.py` | Re-exports RAGService (entry point for `from rag.pipeline import RAGService`) |
 | `api/database/repositories/rag_repository.py` | DB queries: hybrid search, SQL filter, URL fetch |
-| `api/services/reranker_service.py` | Jina AI reranker wrapper with fallback |
-| `api/services/embedding_service.py` | TEI / Ollama provider with round-robin and 413 backoff |
-| `api/services/llm_service.py` | Groq / Gemini streaming wrapper |
-| `api/routes/search.py` | `/api/chat` and `/api/search` endpoints |
+| `api/embedding/service.py` | TEI / Ollama / Local provider with singleton pattern |
+| `api/llm/service.py` | Groq / Gemini / OpenAI streaming wrapper |
+| `api/routes/search.py` | `/api/chat`, `/api/search`, and `/api/ask` endpoints |

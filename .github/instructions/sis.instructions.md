@@ -66,8 +66,8 @@ the standardized repository structure and may be refactored.
 
 ## Known Incomplete / Missing Things
 
-1. **`UserRepository.resolve_user_role()`** — tested in `test_repository_features.py` but the
-   method does not exist in `user_repository.py`. Do not call it; it will raise `AttributeError`.
+1. **`UserRepository.resolve_user_role()`** — now implemented in `user_repository.py`.
+   Returns a dict with `role`, `entity_id`, and `user_type` keys. Checks Student first, then Instructor.
 
 2. **No SIS routes beyond auth** — there are no active FastAPI endpoints for enrollment,
    sections, terms, or assignments yet. The repositories exist but are not wired up.

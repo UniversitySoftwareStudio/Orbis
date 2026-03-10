@@ -20,7 +20,7 @@ The system has two major components in active development:
 | Database | PostgreSQL 16 with `pgvector` extension |
 | Embeddings | HuggingFace TEI server (primary) or Ollama (alternative) — model: `paraphrase-multilingual-MiniLM-L12-v2` (384-dim) or `all-MiniLM-L6-v2` (384-dim) |
 | Reranker | Jina AI (`jina-reranker-v2-base-multilingual`) via external API |
-| LLM | Groq (`llama-3.3-70b-versatile`) or Gemini (`gemini-1.5-flash`) — switchable via `LLM_PROVIDER` env var |
+| LLM | Groq (`llama-3.3-70b-versatile`), Gemini (`gemini-1.5-flash`), or any OpenAI-compatible endpoint — switchable via `LLM_PROVIDER` env var |
 | Frontend | React 19 + TypeScript + Vite (NOT Angular — the developers know Angular but this project uses React) |
 | Auth | JWT stored in httpOnly cookies |
 
@@ -31,31 +31,42 @@ The system has two major components in active development:
 ```
 orbis/
 ├── CLAUDE.md                        # AI context index (read this first)
-├── docker-compose.yml               # NOT IN USE — ignore this file
+├── docker-compose.yml               # TEI load-balanced setup — see note in Known Bugs
 ├── api/
 │   ├── main.py                      # FastAPI app entry point
 │   ├── dependencies.py              # Auth dependencies (JWT cookie validation)
 │   ├── requirements.txt
 │   ├── .env.example                 # Reference for required env vars
+│   ├── core/                        # Shared infrastructure (logging)
 │   ├── database/
 │   │   ├── models.py                # ALL SQLAlchemy models (single source of truth)
 │   │   ├── session.py               # DB engine, SessionLocal, get_db()
 │   │   └── repositories/            # Data access layer
+│   ├── embedding/                   # Embedding provider package (TEI / Ollama / Local)
+│   ├── llm/                         # LLM provider package (Groq / Gemini / OpenAI)
+│   ├── rag/                         # RAG pipeline package (router, retrieval, rerank, context)
+│   ├── rag_service/                 # Optional standalone RAG microservice (port 8010)
 │   ├── routes/                      # FastAPI routers
-│   ├── services/                    # Business logic and AI
-│   │   ├── rag_service.py           # PRODUCTION RAG pipeline
-│   │   ├── regulation_service.py    # LEGACY — used only by experiments, not production
-│   │   ├── embedding_service.py     # Embedding provider abstraction (TEI / Ollama)
-│   │   ├── llm_service.py           # LLM provider abstraction (Groq / Gemini)
-│   │   └── reranker_service.py      # Jina AI reranker
+│   ├── services/                    # Thin re-export wrappers for backward compatibility
+│   │   ├── rag_service.py           # Re-exports RAGService from rag.pipeline
+│   │   ├── embedding_service.py     # Re-exports from embedding.runtime
+│   │   └── auth_service.py          # Authentication and JWT logic
 │   ├── schemas/                     # Pydantic request/response schemas
-│   ├── scripts/                     # ACTIVE: data processing scripts (see below)
-│   ├── ingest/                      # LEGACY — old ingestion pipeline, kept but not in use
-│   ├── experiments/                 # LEGACY — old RAG experiments, kept but not in use
+│   ├── scripts/                     # ACTIVE: data processing, scraping, and categorization
+│   │   ├── experiments/             # LEGACY — old RAG experiments, kept but not in use
+│   │   ├── ingest/                  # LEGACY — old ingestion pipeline, kept but not in use
+│   │   ├── categorization/          # URL clustering and data categorization
+│   │   └── scrape/                  # Web scraping scripts
+│   ├── tests/                       # Pytest E2E and stress tests (PostgreSQL-backed)
 │   └── data/                        # JSONL data files (gitignored except *_example.jsonl)
+├── docs/                            # Project documentation and audits
+├── nginx/                           # Nginx config for TEI load balancer
 └── web/
     └── src/
         ├── App.tsx                  # Entire frontend UI (single component for now)
+        ├── components/              # Placeholder — empty, prepared for future use
+        ├── pages/                   # Placeholder — empty, prepared for future use
+        ├── types/                   # Placeholder — empty, prepared for future use
         ├── services/api.ts          # HTTP + SSE streaming calls to backend
         └── index.css
 ```
@@ -80,7 +91,7 @@ orbis/
 ### Environment Variables
 - Never hardcode credentials — always use `os.getenv()`
 - See `.env.example` for the full list of required variables
-- `LLM_PROVIDER` switches between `groq` and `gemini`
+- `LLM_PROVIDER` switches between `groq`, `gemini`, and `openai`
 - `EMBEDDING_PROVIDER` switches between `tei`, `ollama`, and `local`
 
 ---
@@ -89,17 +100,15 @@ orbis/
 
 These are real issues in the current codebase. Do not silently work around them — flag them.
 
-1. **`UserRepository.resolve_user_role()` does not exist** — it is tested in `api/tests/test_repository_features.py` but the method is missing from `api/database/repositories/user_repository.py`. Tests for it will fail.
+1. **Frontend cookie sentinel** — `App.tsx` stores the string `'cookie'` in localStorage as a workaround to indicate an authenticated session when using httpOnly cookies. This is intentional for now but is a known hack.
 
-2. **Duplicate logout route** — `main.py` registers both `auth_router` (which includes a logout endpoint) and a separate `logout_router`. This causes a route conflict.
+2. **`docker-compose.yml` embedding model mismatch** — The compose file now uses `intfloat/multilingual-e5-small` with 3 load-balanced TEI replicas, but the production system uses `paraphrase-multilingual-MiniLM-L12-v2` or `all-MiniLM-L6-v2` (384-dim). If someone deploys via compose, the embeddings will be incompatible with the existing database.
 
-3. **Frontend cookie sentinel** — `App.tsx` stores the string `'cookie'` in localStorage as a workaround to indicate an authenticated session when using httpOnly cookies. This is intentional for now but is a known hack.
+3. **`api/scripts/experiments/` and `api/scripts/ingest/` are entirely legacy** — these folders were moved from `api/experiments/` and `api/ingest/` into `api/scripts/` but still belong to an earlier RAG prototype. They may not function correctly against the current codebase. Do not reference or modify them. The active data pipeline is in `api/scripts/` (top-level scripts only).
 
-4. **`docker-compose.yml` is not part of the active setup** — TEI and Ollama are run separately outside Docker. The compose file may be removed in the future.
+4. **SIS repositories are partially complete** — several repositories have methods that are scaffolded but not yet connected to routes. See `sis.instructions.md` for details.
 
-5. **`api/experiments/` and `api/ingest/` are entirely legacy** — these folders belong to an earlier RAG prototype, kept only at a contributor's request. They may not function correctly against the current codebase. Do not reference or modify them. The active data pipeline is in `api/scripts/`.
-
-6. **SIS repositories are partially complete** — several repositories have methods that are scaffolded but not yet connected to routes. See `sis.instructions.md` for details.
+5. **Simplified LLM prompt** — The `ANSWER_PROMPT_TEMPLATE` in `rag/constants.py` has been simplified compared to the original. The detailed citation protocol (bold entities, Markdown links on document titles, administrative safety rules) has been reduced to briefer instructions. This may affect citation quality.
 
 ---
 
@@ -133,7 +142,7 @@ npm run dev
 
 ### Data Pipeline (order matters)
 
-The scraping scripts are not in the repo. Assume scraped JSONL files already exist in `api/data/`.
+Scraping scripts are now in `api/scripts/scrape/`. Scraped JSONL files should be placed in `api/data/`.
 
 ```bash
 cd api

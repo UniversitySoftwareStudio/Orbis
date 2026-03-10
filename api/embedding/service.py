@@ -1,8 +1,8 @@
+import os
 import threading
 
 from embedding.config import EMBEDDING_PROVIDER, OLLAMA_MODEL, OLLAMA_URL, select_tei_url
-from embedding.providers import EmbeddingProvider, OllamaProvider, TEIProvider
-
+from embedding.providers import EmbeddingProvider, OllamaProvider, TEIProvider, LocalProvider
 
 class EmbeddingService:
     def __init__(self) -> None:
@@ -14,6 +14,9 @@ class EmbeddingService:
             return OllamaProvider(OLLAMA_URL, OLLAMA_MODEL)
         if EMBEDDING_PROVIDER == "tei":
             return TEIProvider(select_tei_url())
+        if EMBEDDING_PROVIDER == "local":
+            model_name = os.getenv("LOCAL_MODEL", "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2")
+            return LocalProvider(model_name)
         raise ValueError(f"Unknown embedding provider: {EMBEDDING_PROVIDER}")
 
     def embed_text(self, text: str) -> list[float]:

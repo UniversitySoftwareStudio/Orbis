@@ -1,6 +1,6 @@
 # Data Pipeline — Detailed Instructions
 
-Applies to: `api/scripts/`, `api/ingest/`, `api/data/`, `api/database/models.py` (KnowledgeBase)
+Applies to: `api/scripts/`, `api/scripts/ingest/` (legacy), `api/data/`, `api/database/models.py` (KnowledgeBase)
 
 ---
 
@@ -232,7 +232,7 @@ the full document during the Smart Context Expansion step.
 ## Active Data Scripts (in `api/scripts/`)
 
 These are the three scripts that make up the current data pipeline.
-The `api/ingest/` folder is a legacy pipeline from an earlier prototype — do not use it.
+The `api/scripts/ingest/` folder is a legacy pipeline from an earlier prototype — do not use it.
 
 | Script | Purpose | When to run |
 |--------|---------|-------------|
@@ -242,7 +242,7 @@ The `api/ingest/` folder is a legacy pipeline from an earlier prototype — do n
 
 Run order: `fix_pdf_language_and_titles.py` → `load_data.py` → `embed_database.py`
 
-The scraping scripts that produced the JSONL files originally are not in this repository.
+The scraping scripts that produced the JSONL files are in `api/scripts/scrape/`.
 
 **Embedding text format** (from `scripts/embed_database.py`):
 ```

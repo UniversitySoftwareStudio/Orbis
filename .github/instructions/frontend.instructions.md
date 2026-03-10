@@ -78,9 +78,9 @@ while (true) {
 
 Each chunk from `onChunk` is appended to the last assistant message in state.
 
-**Note:** The backend `rag_service.py` yields raw text from the LLM (not `data: {...}\n\n` SSE format).
-The frontend reads it as a plain stream. This is different from the `/api/regulations/ask` endpoint
-which does use SSE format — that endpoint is not used by the frontend currently.
+**Note:** The backend `rag/service.py` yields raw text from the LLM (not `data: {...}\n\n` SSE format).
+The frontend reads it as a plain stream. The old `/api/regulations/ask` endpoint which used SSE format
+has been removed along with `regulation_service.py`.
 
 ---
 
