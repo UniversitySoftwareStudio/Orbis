@@ -2,16 +2,23 @@ import time
 from collections.abc import Iterator
 from typing import Any
 
-from sqlalchemy.orm import Session
+from rich import box
+from rich.panel import Panel
+from rich.table import Table
 
+from core.logging import get_logger
 from database.repositories.rag_repository import get_rag_repository
 from llm.service import get_llm_service
+from rag.console import RAG_DEBUG, console
 from rag.constants import ANSWER_PROMPT_TEMPLATE
 from rag.context import build_context, deduplicate_docs, render_debug_table
 from rag.helpers import doc_meta
 from rag.retrieval import RetrievalEngine
 from rag.router import route_query
 from services.embedding_service import get_embedding_service
+from sqlalchemy.orm import Session
+
+logger = get_logger(__name__)
 
 
 class RAGService:
@@ -22,21 +29,45 @@ class RAGService:
         self.retrieval = RetrievalEngine(self.embedding_service, self.repository)
 
     def process_query(self, query: str, session: Session) -> Iterator[str]:
-        intents = route_query(self.llm_service, query)
-        parallel_mode = len(intents) > 1
+        t_start = time.perf_counter()
 
+        intents = route_query(self.llm_service, query)
+        t_routed = time.perf_counter()
+
+        parallel_mode = len(intents) > 1
         docs: list[Any] = []
         for intent in intents:
             docs.extend(self.retrieval.execute_intent(session, intent, parallel_mode=parallel_mode))
+        t_retrieved = time.perf_counter()
 
         context_docs = deduplicate_docs(docs)
         render_debug_table(intents, context_docs)
+
         if not context_docs:
+            logger.warning("No docs found for query: %.80s", query)
             yield "I'm sorry, but I couldn't find any specific information."
             return
 
         prompt = ANSWER_PROMPT_TEMPLATE.format(query=query, context=build_context(intents, context_docs))
+
         yield from self.llm_service.generate(prompt)
+
+        t_end = time.perf_counter()
+
+        if RAG_DEBUG:
+            table = Table(box=box.SIMPLE, show_header=False)
+            table.add_column("Stage", style="dim")
+            table.add_column("Duration", style="bold green", justify="right")
+            table.add_row("Routing", f"{(t_routed - t_start) * 1000:.0f}ms")
+            table.add_row("Retrieval", f"{(t_retrieved - t_routed) * 1000:.0f}ms")
+            table.add_row("LLM stream", f"{(t_end - t_retrieved) * 1000:.0f}ms")
+            table.add_row("Total", f"{(t_end - t_start) * 1000:.0f}ms")
+            console.print(Panel(
+                table,
+                title="[dim]Query complete[/dim]",
+                border_style="dim",
+                box=box.SIMPLE,
+            ))
 
     def search_courses(
         self,

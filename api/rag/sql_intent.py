@@ -1,6 +1,13 @@
 from typing import Any
 
+from rich import box
+from rich.table import Table
+
+from core.logging import get_logger
+from rag.console import RAG_DEBUG, console
 from sqlalchemy.orm import Session
+
+logger = get_logger(__name__)
 
 
 def normalize_filters(raw_filters: Any) -> dict[str, Any]:
@@ -31,4 +38,13 @@ def execute_sql_intent(repository: Any, session: Session, query: str, filters: d
         else:
             return []
 
-    return repository.sql_filter(session, repaired, limit=75)
+    results = repository.sql_filter(session, repaired, limit=75)
+
+    if RAG_DEBUG:
+        status_color = "green" if results else "yellow"
+        status = f"[{status_color}]{len(results)} doc(s)[/{status_color}]"
+        if not results:
+            status += " [yellow]→ will fallback to vector[/yellow]"
+        console.print(f"  [bold]SQL intent[/bold]  filters=[cyan]{repaired}[/cyan]  →  {status}")
+
+    return results

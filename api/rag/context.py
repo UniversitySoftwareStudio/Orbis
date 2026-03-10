@@ -1,15 +1,11 @@
-import os
 from typing import Any
 
 from rich import box
-from rich.console import Console
 from rich.panel import Panel
 from rich.table import Table
 
+from rag.console import RAG_DEBUG, console
 from rag.helpers import doc_meta
-
-console = Console()
-RAG_DEBUG = os.getenv("RAG_DEBUG", "").lower() in {"1", "true", "yes", "on"}
 
 
 def deduplicate_docs(docs: list[Any]) -> list[Any]:
