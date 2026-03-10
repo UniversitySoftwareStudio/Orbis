@@ -44,3 +44,4 @@ data/*.jsonl
 .pytest_cache/
 .coverage
 htmlcov/
+tests/reports/
