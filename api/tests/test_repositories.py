@@ -8,8 +8,6 @@ from decimal import Decimal
 # Ensure package imports work
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from sqlalchemy import create_engine, event
-from sqlalchemy.orm import sessionmaker
 from sqlalchemy.exc import IntegrityError, StatementError, DataError, PendingRollbackError
 
 # Application Imports
@@ -24,29 +22,6 @@ from database.repositories.enrollment_repository import EnrollmentRepository
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("tests.final")
-
-@pytest.fixture(scope="function")
-def strict_session():
-    """
-    Creates an SQLite session with STRICT enforcement enabled.
-    """
-    engine = create_engine("sqlite:///:memory:")
-    
-    # 1. Enforce Foreign Keys (SQLite default is OFF)
-    @event.listens_for(engine, "connect")
-    def set_sqlite_pragma(dbapi_connection, connection_record):
-        cursor = dbapi_connection.cursor()
-        cursor.execute("PRAGMA foreign_keys=ON")
-        cursor.close()
-
-    models.Base.metadata.create_all(bind=engine)
-    Session = sessionmaker(bind=engine)
-    session = Session()
-    try:
-        yield session
-    finally:
-        session.close()
-        engine.dispose()
 
 # ============================================================================
 # VERIFICATION TESTS (Expecting Failures)

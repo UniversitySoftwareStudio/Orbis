@@ -1,86 +1,35 @@
-# API
+# `api/`
 
-This is the backend. It talks to the frontend.
+Main backend service (auth, chat/search, ingest).
 
-## What's inside?
-
-```
-api/
-├── main.py        # The app starts here
-└── app/           # Your code goes here
-    ├── routes/    # URLs and endpoints (calls services)
-    ├── services/  # The smart stuff (AI, logic)
-    └── models/    # Data shapes (used by routes & services)
-```
+## Modules
+- `main.py`: FastAPI app bootstrap and router wiring.
+- `routes/`: HTTP endpoints.
+- `services/`: app-level business logic.
+- `llm/`: LLM provider adapters.
+- `rag/`: RAG query routing/retrieval pipeline.
+- `database/`: SQLAlchemy models/session/repositories.
+- `embedding/`: embedding provider runtime (TEI/Ollama).
+- `rag_service/`: standalone RAG microservice boundary.
 
 ## Flow
-
+```mermaid
+flowchart TD
+  A[Client] --> B[routes/*]
+  B --> C[services/*]
+  C --> D[rag/*]
+  C --> E[database/repositories/*]
+  D --> E
+  C --> F[embedding/*]
 ```
-User → routes → services → response
-              ↓
-           models (validates data)
-```
 
-## Run it
-
+## Run
 ```bash
 python main.py
 ```
 
-Goes to: http://localhost:8000
-
-## Ingest data (fast, no embeddings)
-
-Compute preprocessing stats (including TEI max token limits):
-
+## TEI Endpoint
+Use a single TEI URL (prefer LB/service mesh in front of multiple replicas):
 ```bash
-python -m ingest.preprocess_report --tei-url http://localhost:7860
+TEI_URL=http://tei-lb:7860
 ```
-
-Ingest JSONL into Postgres (creates Courses, Documents, Chunks; optional demo SIS data):
-
-```bash
-python -m ingest.ingest_db --reset --seed-demo --tei-url http://localhost:7860
-```
-
-Notes:
-- Your TEI server reports `max_input_length=256` and `auto_truncate=false`, so chunking must be token-safe.
-- `--tei-url` makes ingestion use TEI `/tokenize` to build chunks that stay within the model’s input length.
-
-## Backfill embeddings (slow, run later)
-
-Once the DB is filled and TEI/Ollama is stable, backfill pgvector columns:
-
-```bash
-python -m ingest.embed_backfill --only all --batch-size 32
-```
-
-## Multiple TEI servers (round robin)
-
-If you run more than one TEI container, set `TEI_URLS` (comma-separated) so the API
-distributes embedding calls across them in round-robin order:
-
-```bash
-TEI_URLS=http://localhost:7860,http://localhost:7861,http://localhost:7862
-```
-
-If `TEI_URLS` is not set, the API falls back to `TEI_URL` / `EMBEDDING_SERVICE_URL`.
-
-## How to add stuff
-
-**Add a new endpoint:**
-1. Make a file in `app/routes/` (e.g., `user.py`)
-2. Copy the pattern from `routes/README.md`
-3. Import it in `main.py` and add: `app.include_router(user.router)`
-
-**Add AI logic:**
-1. Make a file in `app/services/` (e.g., `rag_service.py`)
-2. Write your class/functions
-3. Import and use in routes
-
-**Add data model:**
-1. Make a file in `app/models/` (e.g., `user.py`)
-2. Define Pydantic models
-3. Use them in routes for validation
-
-That's it. Build and go!

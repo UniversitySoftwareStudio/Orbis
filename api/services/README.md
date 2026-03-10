@@ -1,20 +1,29 @@
-# services/
+# `services/`
 
-The brain. AI and business logic.
+Business logic layer used by routes.
 
-**Example:** `chat_service.py`
-```python
-class ChatService:
-    def __init__(self):
-        # Load your AI model here
-        pass
-    
-    def reply(self, message: str) -> str:
-        # Call OpenAI, LangChain, or your multi-agent system
-        response = f"AI says: {message}"
-        return response
+## Modules
+- `auth_service.py`: password hashing, token issue/verify, user auth.
+- `rag_service.py`: compatibility export to `rag.service.RAGService`.
+- `embedding_service.py`: compatibility export to `embedding.service`.
+
+## Flow
+```mermaid
+flowchart TD
+  A[routes/*] --> B[services/*]
+  B --> C[database/repositories/*]
+  B --> D[embedding/*]
+  B --> E[rag/*]
+  B --> F[external APIs]
 ```
 
-**Used by:** `routes/` (they import and call this)
+## Rule
+- Keep service files focused and small.
+- Route code calls services; services own decision logic.
 
-**Uses:** External APIs, AI models, databases
+## LLM Switching
+- `LLM_PROVIDER`: `gemini` | `groq` | `openai`
+- Gemini: `GEMINI_API_KEY`, optional `GEMINI_MODEL`
+- Groq: `GROQ_API_KEY`, optional `GROQ_MODEL`
+- OpenAI: `OPENAI_API_KEY`, optional `OPENAI_MODEL`, optional `OPENAI_BASE_URL`
+- Runtime reload supported via `llm.service.get_llm_service().reload_from_env()`
