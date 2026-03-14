@@ -40,6 +40,47 @@ class TermType(enum.Enum):
     SPRING = "spring"
     SUMMER = "summer"
 
+
+class EventRunStatus(enum.Enum):
+    RUNNING = "running"
+    COMPLETED = "completed"
+    FAILED = "failed"
+
+
+class EventSourceStatus(enum.Enum):
+    PENDING = "pending"
+    DONE = "done"
+    FAILED = "failed"
+    SKIPPED = "skipped"
+
+
+class EventStatus(enum.Enum):
+    PENDING = "pending"
+    NEEDS_REVIEW = "needs_review"
+    ASSIGNED = "assigned"
+
+
+class EventTargetRole(enum.Enum):
+    STUDENT = "student"
+    STAFF = "staff"
+    ADMIN = "admin"
+    ALL = "all"
+
+
+class EventAgent(enum.Enum):
+    ORCHESTRATOR = "orchestrator"
+    SEARCH = "search_agent"
+    REASONING = "reasoning_agent"
+    EVENT_CREATOR = "event_creator"
+
+
+class EventCandidateDecision(enum.Enum):
+    ACCEPT_PENDING = "accept_pending"
+    ACCEPT_REVIEW = "accept_review"
+    REJECT_QUALITY = "reject_quality"
+    REJECT_DUPLICATE = "reject_duplicate"
+
+
 course_prerequisites = Table(
     'course_prerequisites',
     Base.metadata,
@@ -267,6 +308,8 @@ class KnowledgeBase(Base):
     content = Column(Text)
     language = Column(String(10))
     type = Column(String(50))
+    category = Column(String(100))
+    parent_category = Column(String(100))
 
     metadata_ = Column("metadata", JSONB, default={})
     embedding = Column(Vector(EMBEDDING_DIM))
@@ -326,3 +369,117 @@ class AcademicCalendarEntry(Base):
     academic_year = Column(String(10), nullable=False)
     notes = Column(Text, nullable=True)
     created_at = Column(TIMESTAMP, server_default=func.now())
+
+
+class EventRun(Base):
+    __tablename__ = "event_runs"
+
+    id = Column(UUID(as_uuid=True), primary_key=True, server_default=func.gen_random_uuid())
+    status = Column(SQLEnum(EventRunStatus, validate_strings=True), nullable=False, default=EventRunStatus.RUNNING)
+    started_at = Column(TIMESTAMP, server_default=func.now(), nullable=False)
+    completed_at = Column(TIMESTAMP)
+    last_category = Column(Text)
+    chunks_processed = Column(Integer, default=0, nullable=False)
+    sources_processed = Column(Integer, default=0, nullable=False)
+    events_created = Column(Integer, default=0, nullable=False)
+    error_message = Column(Text)
+
+    source_logs = relationship("EventSourceLog", back_populates="run")
+    events = relationship("Event", back_populates="run")
+    agent_logs = relationship("EventAgentLog", back_populates="run")
+    candidate_logs = relationship("EventCandidateLog", back_populates="run")
+
+
+class EventSourceLog(Base):
+    __tablename__ = "event_source_logs"
+
+    id = Column(UUID(as_uuid=True), primary_key=True, server_default=func.gen_random_uuid())
+    run_id = Column(UUID(as_uuid=True), ForeignKey("event_runs.id", ondelete="CASCADE"), nullable=False, index=True)
+    source_key = Column(String(64), nullable=False, index=True)
+    source_url = Column(Text, nullable=False)
+    category = Column(Text, nullable=False)
+    parent_category = Column(Text, nullable=False)
+    status = Column(SQLEnum(EventSourceStatus, validate_strings=True), nullable=False, default=EventSourceStatus.PENDING)
+    reason = Column(Text)
+    chunk_count = Column(Integer, default=0, nullable=False)
+    created_at = Column(TIMESTAMP, server_default=func.now(), nullable=False)
+    completed_at = Column(TIMESTAMP)
+
+    run = relationship("EventRun", back_populates="source_logs")
+
+    __table_args__ = (
+        UniqueConstraint("run_id", "source_key", name="uq_event_source_log_run_source"),
+    )
+
+
+class EventSourceCheckpoint(Base):
+    __tablename__ = "event_source_checkpoints"
+
+    source_key = Column(String(64), primary_key=True)
+    source_url = Column(Text, nullable=False)
+    category = Column(Text, nullable=False)
+    parent_category = Column(Text, nullable=False)
+    content_hash = Column(String(64), nullable=False)
+    last_run_id = Column(UUID(as_uuid=True), ForeignKey("event_runs.id", ondelete="SET NULL"))
+    last_processed_at = Column(TIMESTAMP, server_default=func.now(), nullable=False)
+
+    __table_args__ = (
+        UniqueConstraint("source_url", "content_hash", name="uq_event_checkpoint_source_content"),
+    )
+
+
+class Event(Base):
+    __tablename__ = "regulatory_events"
+
+    id = Column(UUID(as_uuid=True), primary_key=True, server_default=func.gen_random_uuid())
+    run_id = Column(UUID(as_uuid=True), ForeignKey("event_runs.id", ondelete="SET NULL"), index=True)
+    source_key = Column(String(64), nullable=False, index=True)
+    source_chunk_ids = Column(JSONB, nullable=False, default=list)
+    source_url = Column(Text, nullable=False)
+    category = Column(Text, nullable=False)
+    parent_category = Column(Text, nullable=False)
+    obligation_text = Column(Text, nullable=False)
+    evidence_excerpt = Column(Text, nullable=False)
+    target_role = Column(SQLEnum(EventTargetRole, validate_strings=True), nullable=False)
+    status = Column(SQLEnum(EventStatus, validate_strings=True), nullable=False, default=EventStatus.PENDING)
+    fingerprint = Column(String(64), nullable=False, unique=True)
+    created_at = Column(TIMESTAMP, server_default=func.now(), nullable=False)
+
+    run = relationship("EventRun", back_populates="events")
+
+
+class EventAgentLog(Base):
+    __tablename__ = "event_agent_logs"
+
+    id = Column(UUID(as_uuid=True), primary_key=True, server_default=func.gen_random_uuid())
+    run_id = Column(UUID(as_uuid=True), ForeignKey("event_runs.id", ondelete="CASCADE"), nullable=False, index=True)
+    source_key = Column(String(64), index=True)
+    agent = Column(SQLEnum(EventAgent, validate_strings=True), nullable=False)
+    state = Column(String(64), nullable=False)
+    decision = Column(String(64), nullable=False)
+    reason = Column(Text)
+    payload = Column(JSONB, nullable=False, default=dict)
+    created_at = Column(TIMESTAMP, server_default=func.now(), nullable=False)
+
+    run = relationship("EventRun", back_populates="agent_logs")
+
+
+class EventCandidateLog(Base):
+    __tablename__ = "event_candidate_logs"
+
+    id = Column(UUID(as_uuid=True), primary_key=True, server_default=func.gen_random_uuid())
+    run_id = Column(UUID(as_uuid=True), ForeignKey("event_runs.id", ondelete="CASCADE"), nullable=False, index=True)
+    source_key = Column(String(64), index=True)
+    source_url = Column(Text, nullable=False)
+    category = Column(Text, nullable=False)
+    parent_category = Column(Text, nullable=False)
+    target_role = Column(Text, nullable=False)
+    candidate_hash = Column(String(64), nullable=False, index=True)
+    candidate_text = Column(Text, nullable=False)
+    normalized_text = Column(Text, nullable=False)
+    decision = Column(SQLEnum(EventCandidateDecision, validate_strings=True), nullable=False)
+    reason_code = Column(String(64), nullable=False)
+    metrics = Column(JSONB, nullable=False, default=dict)
+    created_at = Column(TIMESTAMP, server_default=func.now(), nullable=False)
+
+    run = relationship("EventRun", back_populates="candidate_logs")
