@@ -69,6 +69,7 @@ def _report_dir() -> Path:
 
 def pytest_configure(config: pytest.Config) -> None:
     global _TEST_STARTED_AT, _TEST_CASE_REPORTS
+    os.environ.setdefault("EVENTS_ENABLE_REASONING_REVIEW", "0")
     _TEST_STARTED_AT = datetime.now(timezone.utc)
     _TEST_CASE_REPORTS = {}
 
