@@ -7,11 +7,14 @@ from rich.panel import Panel
 from rich.table import Table
 
 from core.logging import get_logger
+from database.models import User
 from database.repositories.rag_repository import get_rag_repository
 from llm.service import get_llm_service
+from rag.config import RAG_PARALLEL_MODE, RAG_STREAM_ENABLED
 from rag.console import RAG_DEBUG, console
 from rag.constants import ANSWER_PROMPT_TEMPLATE
 from rag.context import build_context, deduplicate_docs, render_debug_table
+from rag.context_injectors import build_sis_context
 from rag.helpers import doc_meta
 from rag.retrieval import RetrievalEngine
 from rag.router import route_query
@@ -28,13 +31,14 @@ class RAGService:
         self.llm_service = get_llm_service()
         self.retrieval = RetrievalEngine(self.embedding_service, self.repository)
 
-    def process_query(self, query: str, session: Session) -> Iterator[str]:
+    def process_query(self, query: str, session: Session, current_user: User | None = None) -> Iterator[str]:
         t_start = time.perf_counter()
 
         intents = route_query(self.llm_service, query)
+        sis_context, intents = build_sis_context(intents, current_user, session)
         t_routed = time.perf_counter()
 
-        parallel_mode = len(intents) > 1
+        parallel_mode = RAG_PARALLEL_MODE and len(intents) > 1
         docs: list[Any] = []
         for intent in intents:
             docs.extend(self.retrieval.execute_intent(session, intent, parallel_mode=parallel_mode))
@@ -43,14 +47,22 @@ class RAGService:
         context_docs = deduplicate_docs(docs)
         render_debug_table(intents, context_docs)
 
-        if not context_docs:
+        if not context_docs and not sis_context:
             logger.warning("No docs found for query: %.80s", query)
             yield "I'm sorry, but I couldn't find any specific information."
             return
 
-        prompt = ANSWER_PROMPT_TEMPLATE.format(query=query, context=build_context(intents, context_docs))
+        context = build_context(intents, context_docs)
+        if sis_context:
+            context = sis_context + "\n\n" + context if context else sis_context
 
-        yield from self.llm_service.generate(prompt)
+        prompt = ANSWER_PROMPT_TEMPLATE.format(query=query, context=context)
+
+        if RAG_STREAM_ENABLED:
+            yield from self.llm_service.generate(prompt)
+        else:
+            full_response = "".join(self.llm_service.generate(prompt))
+            yield full_response
 
         t_end = time.perf_counter()
 

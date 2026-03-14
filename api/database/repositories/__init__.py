@@ -14,6 +14,8 @@ from .term_repository import TermRepository
 from .assignment_repository import AssignmentRepository
 from .document_repository import DocumentRepository
 from .rag_repository import RAGRepository
+from .academic_calendar_repository import AcademicCalendarRepository
+from .section_schedule_repository import SectionScheduleRepository
 
 
 __all__ = [
@@ -28,4 +30,6 @@ __all__ = [
     'AssignmentRepository',
     'DocumentRepository',
     'RAGRepository',
+    'AcademicCalendarRepository',
+    'SectionScheduleRepository',
 ]

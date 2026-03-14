@@ -4,6 +4,7 @@ from rich import box
 from rich.panel import Panel
 from rich.table import Table
 
+from rag.config import RAG_FINAL_K, RAG_TOP_K
 from rag.console import RAG_DEBUG, console
 from rag.helpers import build_rerank_text
 from rag.rerank import rerank, rerank_docs
@@ -61,7 +62,7 @@ def execute_vector_intent(
     if not query.strip():
         return []
 
-    fetch_limit = 15 if parallel_mode else 30
+    fetch_limit = RAG_TOP_K // 2 if parallel_mode else RAG_TOP_K
     initial_docs = repository.vector_search(
         session,
         query_embedding=embedding_service.embed_text(query),
@@ -118,7 +119,7 @@ def execute_vector_intent(
             console.print(f"  [bold]Cap (75)[/bold]  priority=[cyan]{len(priority)}[/cyan]  rest=[cyan]{len(rest[:max(0, 75 - len(priority))])}[/cyan]  →  pool trimmed to [bold]{len(candidates)}[/bold]")
 
     # Stage 2 — final rerank
-    top_k = 5 if parallel_mode else 10
+    top_k = RAG_FINAL_K // 2 if parallel_mode else RAG_FINAL_K
     final = rerank_docs(query, candidates, top_k=top_k, include_language=True)
 
     if RAG_DEBUG:

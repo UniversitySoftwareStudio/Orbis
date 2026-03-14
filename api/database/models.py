@@ -1,8 +1,9 @@
 import os
+import datetime as dt
 from datetime import datetime
 from sqlalchemy import (
-    Column, Integer, String, Text, ForeignKey, DateTime, 
-    Boolean, Numeric, Date, Enum as SQLEnum, Table,
+    Column, Integer, String, Text, ForeignKey, DateTime,
+    Boolean, Numeric, Date, Enum as SQLEnum, Table, Time,
     UniqueConstraint, CheckConstraint, func, TIMESTAMP
 )
 from sqlalchemy.orm import DeclarativeBase, relationship
@@ -184,14 +185,43 @@ class CourseSection(Base):
     crn = Column(String(50), unique=True, index=True)
     max_enrollment = Column(Integer, default=30)
     current_enrollment = Column(Integer, default=0)
-    
+
+    section_type = Column(String(10), nullable=False, default="LECTURE", server_default="LECTURE")
+    parent_section_id = Column(Integer, ForeignKey("course_sections.id", ondelete="CASCADE"), nullable=True)
+    instructor_name = Column(String(200), nullable=True)
+
     status = Column(SQLEnum(SectionStatus, validate_strings=True), default=SectionStatus.SCHEDULED)
-    
+
     course = relationship("Course", back_populates="sections")
     term = relationship("AcademicTerm", back_populates="sections")
     instructor = relationship("Instructor", back_populates="sections")
     enrollments = relationship("Enrollment", back_populates="section")
     assignments = relationship("Assignment", back_populates="section")
+    parent_section = relationship("CourseSection", remote_side="CourseSection.id", foreign_keys=[parent_section_id])
+    lab_sections = relationship("CourseSection", back_populates="parent_section", foreign_keys="CourseSection.parent_section_id")
+    schedules = relationship("SectionSchedule", back_populates="section", cascade="all, delete-orphan")
+
+    __table_args__ = (
+        CheckConstraint("section_type IN ('LECTURE', 'LAB')", name='check_section_type'),
+    )
+
+
+class SectionSchedule(Base):
+    __tablename__ = "section_schedules"
+
+    id = Column(Integer, primary_key=True)
+    section_id = Column(Integer, ForeignKey("course_sections.id", ondelete="CASCADE"), nullable=False)
+    day_of_week = Column(String(3), nullable=False)
+    start_time = Column(Time, nullable=False)
+    end_time = Column(Time, nullable=False)
+    location = Column(String(150), nullable=True)
+    is_online = Column(Boolean, nullable=False, default=False, server_default="false")
+
+    section = relationship("CourseSection", back_populates="schedules")
+
+    __table_args__ = (
+        CheckConstraint("day_of_week IN ('MON','TUE','WED','THU','FRI')", name='check_day_of_week'),
+    )
 
 
 class Enrollment(Base):
@@ -281,3 +311,18 @@ class KnowledgeBaseEmbedding(Base):
     __table_args__ = (
         UniqueConstraint('kb_id', 'model_id', name='uq_kb_model_embedding'),
     )
+
+
+class AcademicCalendarEntry(Base):
+    __tablename__ = "academic_calendar_entries"
+
+    id = Column(Integer, primary_key=True)
+    title_tr = Column(String(300), nullable=False)
+    title_en = Column(String(300), nullable=True)
+    start_date = Column(Date, nullable=False)
+    end_date = Column(Date, nullable=True)
+    entry_type = Column(String(50), nullable=False)
+    applies_to = Column(String(30), nullable=False, default="undergraduate", server_default="undergraduate")
+    academic_year = Column(String(10), nullable=False)
+    notes = Column(Text, nullable=True)
+    created_at = Column(TIMESTAMP, server_default=func.now())

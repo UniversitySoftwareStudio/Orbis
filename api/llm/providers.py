@@ -4,6 +4,8 @@ from typing import Protocol
 import google.generativeai as genai
 from openai import OpenAI
 
+from rag.config import RAG_LLM_MAX_TOKENS
+
 
 class LLMProvider(Protocol):
     def stream(self, prompt: str) -> Iterator[str]: ...
@@ -16,7 +18,11 @@ class GeminiProvider:
         self.client = genai.GenerativeModel(model)
 
     def stream(self, prompt: str) -> Iterator[str]:
-        for chunk in self.client.generate_content(prompt, stream=True):
+        for chunk in self.client.generate_content(
+            prompt,
+            stream=True,
+            generation_config={"max_output_tokens": RAG_LLM_MAX_TOKENS},
+        ):
             text = getattr(chunk, "text", "")
             if text:
                 yield text
@@ -32,6 +38,7 @@ class OpenAICompatProvider:
             model=self.model,
             messages=[{"role": "user", "content": prompt}],
             stream=True,
+            max_tokens=RAG_LLM_MAX_TOKENS,
         )
         for chunk in chunks:
             text = chunk.choices[0].delta.content
