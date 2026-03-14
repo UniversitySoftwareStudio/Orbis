@@ -14,10 +14,16 @@ User Query
     │
     ▼
 [1] Router Agent (LLM call)
-    → Produces a list of "intents", each with tool=vector or tool=sql
+    → Produces a list of "intents", each with tool=vector, sql, calendar, or student_schedule
     │
     ▼
-[2] For each intent → _process_single_intent()
+[1.5] SIS Context Injection (context_injectors.py)
+    → Separates "calendar" and "student_schedule" intents from the list
+    → Fetches structured data from SIS tables (academic_calendar_entries, section_schedules)
+    → Returns formatted context string + remaining non-SIS intents
+    │
+    ▼
+[2] For each remaining intent → _process_single_intent()
     │
     ├─ SQL path → rag_repository.sql_filter() → exact course/code lookup
     │
@@ -48,13 +54,14 @@ User Query
     │
     ▼
 [4] Context Building
+    → SIS context (calendar/schedule blocks) is prepended to the RAG document context
     → If SQL list or >40 docs: compact to CSV format
     → Otherwise: detailed text blocks with Title, URL, Content, Metadata
     │
     ▼
 [5] LLM Generation (streaming)
-    → System prompt enforces citation protocol and administrative safety rules
-    → Response streams back to frontend via SSE
+    → System prompt enforces citation protocol, administrative safety, and structured context rules
+    → Response streams back to frontend as raw text
 ```
 
 ---
@@ -85,6 +92,7 @@ to identify which source documents are truly relevant — the expansion noise wi
 ## Router Agent Rules
 
 The router is an LLM call that converts the user query into a list of "intents".
+There are four available tools: `vector`, `sql`, `calendar`, and `student_schedule`.
 The rules are enforced via the system prompt but must be understood here too.
 
 ### When to use SQL
@@ -92,15 +100,29 @@ The rules are enforced via the system prompt but must be understood here too.
 - User asks to **list courses in a department**: `"List all engineering courses"`
 - SQL filters: `{ "code": "CMPE" }` or `{ "type": "course" }`
 
-### When to use Vector (everything else)
+### When to use Vector
 - Questions about regulations, rules, procedures: `"How do I apply for Erasmus?"`
 - Conceptual queries: `"What is the internship policy?"` (Staj)
 - Factual questions about the university: `"Where is the student affairs office?"`
 - Even if the answer might be in a course-related document — use Vector, not SQL
+- **Everything that is not SQL, Calendar, or Student Schedule goes to Vector**
 
 **Critical rule:** Generic topic searches must go to Vector, not SQL.
 The word "Staj" (internship) is a perfect example — SQL title search would return
 hundreds of irrelevant results, while vector search finds the actual regulation documents.
+
+### When to use Calendar
+- Questions about academic dates, deadlines, holidays, exam periods, registration windows, semester start/end
+- Examples: `"When are midterms?"`, `"Is there a holiday this week?"`, `"Sınav haftası ne zaman?"`
+- No `query` or `filters` needed — just `{ "tool": "calendar" }`
+- Do **not** combine with vector for the same calendar question
+
+### When to use Student Schedule
+- **Only** when the user explicitly asks about **their own** personal schedule or classes
+- Examples: `"What are my classes today?"`, `"Bugün derslerim var mı?"`, `"Haftalık programım nedir?"`
+- No `query` or `filters` needed — just `{ "tool": "student_schedule" }`
+- Do **not** use for general course catalog questions
+- **Can** be combined with Calendar when the user asks about conflicts between their schedule and holidays/exam periods
 
 ### Auto-repair logic (in `_process_single_intent`)
 The router sometimes makes mistakes. The code contains auto-repair logic:
@@ -180,19 +202,19 @@ The URL is explicitly labeled so the LLM can generate proper Markdown citation l
 
 ## LLM Prompt and Citation Rules
 
-> ⚠️ **Note:** The current `ANSWER_PROMPT_TEMPLATE` in `rag/constants.py` has been simplified.
-> The detailed rules below were part of the original design intent and should be restored or
-> enforced when improving citation quality. The current prompt uses briefer instructions
-> ("link source documents when URL exists", "use italicized source title if no URL").
-
-The final prompt should enforce these rules (do not soften them when modifying the prompt):
+The `ANSWER_PROMPT_TEMPLATE` in `rag/constants.py` enforces these rules:
 
 1. **Bold for entities** (offices, roles, departments): `**Erasmus Office**` — never linked
 2. **Markdown link on the document title** (not on the entity): `[Study Mobility Guide](url)`
 3. **No invented citations** — if a URL is not in context, do not fabricate one
-4. **Administrative safety** — when the answer involves a procedure, identify the responsible
+4. **Fallback for missing URLs** — use *Italics* for the document title instead of a link
+5. **Administrative safety** — when the answer involves a procedure, identify the responsible
    office from the context and advise contacting them
-5. **Answer only from context** — no hallucination beyond what the retrieved documents say
+6. **Structured context rules** — the prompt includes special handling for SIS data blocks:
+   - `=== AKADEMİK TAKVİM ===` sections are treated as authoritative calendar data.
+     Citation rules 1-3 do not apply to calendar data (it has no URLs).
+   - `=== ÖĞRENCİ HAFTALIK PROGRAMI ===` sections are used for personal schedule answers.
+   - When both sections are present, the LLM is instructed to cross-reference them for conflicts.
 
 ---
 
@@ -228,6 +250,8 @@ to conserve context window space across the merged result.
 | `api/rag/sql_intent.py` | SQL path: filter normalization, course code lookups |
 | `api/rag/rerank.py` | Jina AI reranker wrapper with fallback |
 | `api/rag/context.py` | Context building (CSV vs detailed mode), deduplication, debug table |
+| `api/rag/context_injectors.py` | SIS context injection: fetches calendar and student schedule from DB |
+| `api/rag/config.py` | Centralized RAG tuning knobs (TOP_K, FINAL_K, RERANK_MODEL, etc.) |
 | `api/rag/constants.py` | Prompt templates (ROUTER_PROMPT, ANSWER_PROMPT_TEMPLATE) |
 | `api/rag/helpers.py` | Utility functions (doc_meta, build_rerank_text) |
 | `api/rag/pipeline.py` | Re-exports RAGService (entry point for `from rag.pipeline import RAGService`) |

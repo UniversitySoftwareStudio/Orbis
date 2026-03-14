@@ -21,7 +21,7 @@ The system has two major components in active development:
 | Embeddings | HuggingFace TEI server (primary) or Ollama (alternative) — model: `paraphrase-multilingual-MiniLM-L12-v2` (384-dim) or `all-MiniLM-L6-v2` (384-dim) |
 | Reranker | Jina AI (`jina-reranker-v2-base-multilingual`) via external API |
 | LLM | Groq (`llama-3.3-70b-versatile`), Gemini (`gemini-1.5-flash`), or any OpenAI-compatible endpoint — switchable via `LLM_PROVIDER` env var |
-| Frontend | React 19 + TypeScript + Vite (NOT Angular — the developers know Angular but this project uses React) |
+| Frontend | React 19 + TypeScript + Vite + react-router-dom + i18next (NOT Angular — the developers know Angular but this project uses React) |
 | Auth | JWT stored in httpOnly cookies |
 
 ---
@@ -44,31 +44,44 @@ orbis/
 │   │   └── repositories/            # Data access layer
 │   ├── embedding/                   # Embedding provider package (TEI / Ollama / Local)
 │   ├── llm/                         # LLM provider package (Groq / Gemini / OpenAI)
-│   ├── rag/                         # RAG pipeline package (router, retrieval, rerank, context)
+│   ├── rag/                         # RAG pipeline package (router, retrieval, rerank, context, SIS injection)
 │   ├── rag_service/                 # Optional standalone RAG microservice (port 8010)
 │   ├── routes/                      # FastAPI routers
 │   ├── services/                    # Thin re-export wrappers for backward compatibility
 │   │   ├── rag_service.py           # Re-exports RAGService from rag.pipeline
 │   │   ├── embedding_service.py     # Re-exports from embedding.runtime
 │   │   └── auth_service.py          # Authentication and JWT logic
-│   ├── schemas/                     # Pydantic request/response schemas
-│   ├── scripts/                     # ACTIVE: data processing, scraping, and categorization
+│   ├── schemas/                     # Pydantic request/response schemas (incl. SIS schemas)
+│   ├── scripts/                     # ACTIVE: data processing, scraping, seeding, and categorization
 │   │   ├── experiments/             # LEGACY — old RAG experiments, kept but not in use
 │   │   ├── ingest/                  # LEGACY — old ingestion pipeline, kept but not in use
 │   │   ├── categorization/          # URL clustering and data categorization
-│   │   └── scrape/                  # Web scraping scripts
+│   │   ├── migrations/              # SQL migration scripts for SIS tables
+│   │   ├── scrape/                  # Web scraping scripts
+│   │   └── seed_*.py                # SIS demo data seeding scripts
 │   ├── tests/                       # Pytest E2E and stress tests (PostgreSQL-backed)
 │   └── data/                        # JSONL data files (gitignored except *_example.jsonl)
 ├── docs/                            # Project documentation and audits
 ├── nginx/                           # Nginx config for TEI load balancer
 └── web/
     └── src/
-        ├── App.tsx                  # Entire frontend UI (single component for now)
-        ├── components/              # Placeholder — empty, prepared for future use
-        ├── pages/                   # Placeholder — empty, prepared for future use
-        ├── types/                   # Placeholder — empty, prepared for future use
-        ├── services/api.ts          # HTTP + SSE streaming calls to backend
-        └── index.css
+        ├── App.tsx                  # Thin routing shell (providers + BrowserRouter)
+        ├── main.tsx                 # Entry point (imports i18n.ts)
+        ├── i18n.ts                  # i18next setup (TR/EN)
+        ├── types.ts                 # Shared types (Message interface)
+        ├── contexts/
+        │   ├── AuthContext.tsx       # Auth state, login/logout, token refresh
+        │   └── ThemeContext.tsx      # Dark/light mode, accent colors
+        ├── components/
+        │   └── Sidebar.tsx          # Collapsible nav sidebar
+        ├── pages/
+        │   ├── LoginPage.tsx        # Login form
+        │   ├── ChatPage.tsx         # RAG chat interface
+        │   ├── CalendarPage.tsx     # Academic calendar view
+        │   └── SchedulePage.tsx     # Weekly schedule grid
+        ├── services/api.ts          # HTTP + streaming calls to backend
+        ├── locales/                  # i18n translation files (en.json, tr.json)
+        └── index.css                # Global styles (CSS custom properties theming)
 ```
 
 ---
@@ -100,15 +113,15 @@ orbis/
 
 These are real issues in the current codebase. Do not silently work around them — flag them.
 
-1. **Frontend cookie sentinel** — `App.tsx` stores the string `'cookie'` in localStorage as a workaround to indicate an authenticated session when using httpOnly cookies. This is intentional for now but is a known hack.
+1. **Frontend cookie sentinel** — `LoginPage.tsx` stores the string `'cookie'` in the `AuthUser` object (persisted to localStorage as `orbis_user`) as a workaround to indicate an authenticated session when using httpOnly cookies. This is intentional for now but is a known hack.
 
 2. **`docker-compose.yml` embedding model mismatch** — The compose file now uses `intfloat/multilingual-e5-small` with 3 load-balanced TEI replicas, but the production system uses `paraphrase-multilingual-MiniLM-L12-v2` or `all-MiniLM-L6-v2` (384-dim). If someone deploys via compose, the embeddings will be incompatible with the existing database.
 
 3. **`api/scripts/experiments/` and `api/scripts/ingest/` are entirely legacy** — these folders were moved from `api/experiments/` and `api/ingest/` into `api/scripts/` but still belong to an earlier RAG prototype. They may not function correctly against the current codebase. Do not reference or modify them. The active data pipeline is in `api/scripts/` (top-level scripts only).
 
-4. **SIS repositories are partially complete** — several repositories have methods that are scaffolded but not yet connected to routes. See `sis.instructions.md` for details.
+4. **`EmbeddingModel` / `KnowledgeBaseEmbedding` models are scaffolded but unused** — defined in `models.py` with no migration, no repository, and no code that references them. They are placeholders for future versioned embedding support.
 
-5. **Simplified LLM prompt** — The `ANSWER_PROMPT_TEMPLATE` in `rag/constants.py` has been simplified compared to the original. The detailed citation protocol (bold entities, Markdown links on document titles, administrative safety rules) has been reduced to briefer instructions. This may affect citation quality.
+5. **Some RAG config knobs are defined but not yet wired** — `RAG_SCORE_THRESHOLD`, `RAG_RERANK_ENABLED`, and `RAG_RERANK_TOP_N` exist in `rag/config.py` but are not consumed by any code path yet.
 
 ---
 
@@ -116,7 +129,7 @@ These are real issues in the current codebase. Do not silently work around them 
 
 - **Do not add session history to the RAG chat** — the system is intentionally stateless. Adding history causes context bloat and 413 token overflow errors. This was a deliberate architectural decision.
 - **Do not replace the two-stage rerank with a single rerank** — the pre-expansion rerank and the final rerank serve different purposes. See `rag-pipeline.instructions.md`.
-- **Do not use SQL search for generic topic queries** — SQL is only for exact course code lookups. Vector search handles everything else. The router enforces this.
+- **Do not use SQL search for generic topic queries** — SQL is only for exact course code lookups. Vector search handles everything else. The router now has four tools: `vector`, `sql`, `calendar`, and `student_schedule`.
 - **Do not use `session.query()` style in new code** — use SQLAlchemy 2.0 `select()` style.
 - **Do not add new columns to `knowledge_base` without regenerating `search_vector`** — the `search_vector` column is a `GENERATED ALWAYS AS` computed column. Schema changes require a full `ALTER TABLE`.
 - **Do not put business logic in routes** — routes call services, services call repositories.

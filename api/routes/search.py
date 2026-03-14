@@ -33,10 +33,10 @@ class ChatRequest(BaseModel):
 async def chat(
     request: ChatRequest,
     db: Session = Depends(get_db),
-    _current_user: User = Depends(get_current_active_user),
+    current_user: User = Depends(get_current_active_user),
 ) -> StreamingResponse:
     return StreamingResponse(
-        _get_rag().process_query(request.message, db),
+        _get_rag().process_query(request.message, db, current_user),
         media_type="text/event-stream",
     )
 

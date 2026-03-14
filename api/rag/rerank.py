@@ -4,10 +4,10 @@ from typing import Any
 import requests
 
 from core.logging import get_logger
+from rag.config import RAG_RERANK_MODEL
 from rag.helpers import build_rerank_text
 
 RERANK_URL = "https://api.jina.ai/v1/rerank"
-RERANK_MODEL = "jina-reranker-v2-base-multilingual"
 logger = get_logger(__name__)
 
 
@@ -25,7 +25,7 @@ def rerank(query: str, documents: list[str], top_k: int) -> list[dict[str, float
         response = requests.post(
             RERANK_URL,
             headers={"Content-Type": "application/json", "Authorization": f"Bearer {api_key}"},
-            json={"model": RERANK_MODEL, "query": query, "documents": documents, "top_n": top_k},
+            json={"model": RAG_RERANK_MODEL, "query": query, "documents": documents, "top_n": top_k},
             timeout=10,
         )
         response.raise_for_status()
