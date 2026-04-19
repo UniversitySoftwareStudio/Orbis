@@ -1,0 +1,642 @@
+{
+  "summary": {
+    "created_at_utc": "2026-04-02T18:18:52.735743+00:00",
+    "source_input_json": "/home/zperson/Orbis/api/scripts/experiments/results/categorization/pass1_ai_taxonomy_outlier_full_sota_v4_20260402_181846.json",
+    "source_summary": {
+      "created_at_utc": "2026-04-02T18:18:46.845811+00:00",
+      "source_input_json": "/home/zperson/Orbis/api/scripts/experiments/results/categorization/pass1_ai_taxonomy_input_20260402_174148.json",
+      "source_input_summary": {
+        "created_at_utc": "2026-04-02T17:41:48.641541+00:00",
+        "source_depth_json": "/home/zperson/Orbis/api/scripts/experiments/results/categorization/pass1_url_depth_diversity_20260402_174134.json",
+        "source_umbrella_json": "/home/zperson/Orbis/api/scripts/experiments/results/categorization/pass1_url_umbrella_d23_20260402_174054.json",
+        "include_decisions": [
+          "url_only_categorize",
+          "url_only_parent"
+        ],
+        "total_groups_in_depth": 250,
+        "categories_for_ai_count": 208,
+        "categories_for_ai_docs": 39520,
+        "excluded_by_decision": {
+          "needs_algorithm": 42
+        }
+      },
+      "llm_provider": "outlier",
+      "ollama_url": "http://localhost:11434",
+      "outlier_url": "http://127.0.0.1:8080",
+      "model": "claude-opus-4-6",
+      "selected_count": 208,
+      "selected_docs": 39520,
+      "start_index": 0,
+      "max_categories": 0,
+      "confirm_count": 208,
+      "mapped_count": 208,
+      "ai_mapped_count": 0,
+      "rule_mapped_count": 208,
+      "unresolved_count": 0,
+      "validation_failures": 0,
+      "llm_errors": 0,
+      "top_hosts": [
+        [
+          "www.bilgi.edu.tr",
+          207
+        ],
+        [
+          "ects.bilgi.edu.tr",
+          1
+        ]
+      ]
+    },
+    "top_level_count": 13,
+    "mapped_category_count": 208,
+    "mapped_doc_count": 39520,
+    "unresolved_count": 0
+  },
+  "tree": {
+    "academics": {
+      "category_count": 35,
+      "doc_count": 15588,
+      "sub_levels": {
+        "academic_information": {
+          "category_count": 35,
+          "doc_count": 15588,
+          "leaves": {
+            "Academic Unit Pages": {
+              "category_count": 34,
+              "doc_count": 9106,
+              "clusters": [
+                3,
+                4,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                15,
+                17,
+                18,
+                20,
+                22,
+                63,
+                69,
+                70,
+                71,
+                72,
+                73,
+                74,
+                75,
+                78,
+                79,
+                80,
+                81,
+                82,
+                83,
+                84,
+                85,
+                86,
+                137,
+                176
+              ],
+              "representative_parents": [
+                "www.bilgi.edu.tr/tr/akademik/sosyal-ve-beseri-bilimler-fakultesi",
+                "www.bilgi.edu.tr/en/academic/faculty-of-social-sciences-and-humanities",
+                "www.bilgi.edu.tr/tr/akademik/muhendislik-ve-doga-bilimleri-fakultesi"
+              ],
+              "sample_urls": [
+                "https://www.bilgi.edu.tr/tr/akademik/sosyal-ve-beseri-bilimler-fakultesi/karsilastirmali-edebiyat/akademik-kadro/",
+                "https://www.bilgi.edu.tr/tr/akademik/sosyal-ve-beseri-bilimler-fakultesi/uluslararasi-iliskiler/yayinlar/",
+                "http://www.bilgi.edu.tr/tr/akademik/sosyal-ve-beseri-bilimler-fakultesi/tarih/program-yapisi/"
+              ]
+            },
+            "Course Catalog Pages": {
+              "category_count": 1,
+              "doc_count": 6482,
+              "clusters": [
+                1
+              ],
+              "representative_parents": [
+                "ects.bilgi.edu.tr/course/detail"
+              ],
+              "sample_urls": [
+                "https://ects.bilgi.edu.tr/Course/Detail?catalog_courseId=24750239",
+                "https://ects.bilgi.edu.tr/Course/Detail?catalog_courseId=24749167",
+                "https://ects.bilgi.edu.tr/Course/Detail?catalog_courseId=24744072"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "administration": {
+      "category_count": 10,
+      "doc_count": 1806,
+      "sub_levels": {
+        "institutional_governance": {
+          "category_count": 10,
+          "doc_count": 1806,
+          "leaves": {
+            "Institutional Governance Pages": {
+              "category_count": 10,
+              "doc_count": 1806,
+              "clusters": [
+                47,
+                48,
+                61,
+                101,
+                107,
+                117,
+                122,
+                134,
+                149,
+                240
+              ],
+              "representative_parents": [
+                "www.bilgi.edu.tr/en/university",
+                "www.bilgi.edu.tr/tr/universite",
+                "www.bilgi.edu.tr/tr/ik"
+              ],
+              "sample_urls": [
+                "https://www.bilgi.edu.tr/en/university/about/institutional-principles/community-services/lectures/",
+                "https://www.bilgi.edu.tr/en/university/about/institutional-principles/community-services/projects/projects-2015/",
+                "http://www.bilgi.edu.tr/en/university/about/university-governance/rectorate/former-rectors/"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "admissions": {
+      "category_count": 4,
+      "doc_count": 9,
+      "sub_levels": {
+        "admissions_information": {
+          "category_count": 4,
+          "doc_count": 9,
+          "leaves": {
+            "Admissions Information": {
+              "category_count": 4,
+              "doc_count": 9,
+              "clusters": [
+                157,
+                174,
+                181,
+                242
+              ],
+              "representative_parents": [
+                "www.bilgi.edu.tr/upload/bankacilik-ve-finans-cfa-institute-ogrenci-burs-basvuru-bilgileri",
+                "www.bilgi.edu.tr/upload/gorevli-ogrenci-programi-online-basvuru-kilavuzu",
+                "www.bilgi.edu.tr/upload/engelli-ogrenci-birimi-basvuru-formu"
+              ],
+              "sample_urls": [
+                "https://www.bilgi.edu.tr/upload/bankacilik-ve-finans-cfa-institute-ogrenci-burs-basvuru-bilgileri/",
+                "https://www.bilgi.edu.tr/upload/gorevli-ogrenci-programi-online-basvuru-kilavuzu/",
+                "https://www.bilgi.edu.tr/upload/engelli-ogrenci-birimi-basvuru-formu/"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "announcements": {
+      "category_count": 7,
+      "doc_count": 3209,
+      "sub_levels": {
+        "news_announcements": {
+          "category_count": 7,
+          "doc_count": 3209,
+          "leaves": {
+            "University Announcements": {
+              "category_count": 7,
+              "doc_count": 3209,
+              "clusters": [
+                34,
+                37,
+                42,
+                43,
+                104,
+                105,
+                141
+              ],
+              "representative_parents": [
+                "www.bilgi.edu.tr/tr/haber",
+                "www.bilgi.edu.tr/en/news",
+                "www.bilgi.edu.tr/tr/haberler-duyurular-arsivi"
+              ],
+              "sample_urls": [
+                "http://www.bilgi.edu.tr/tr/haber/12756/bilgi-enerji-sistemleri-muhendisligi-bolumunden-gunes-santrallerinin-verimliligini-artiracak-proje/",
+                "http://www.bilgi.edu.tr/tr/haber/10771/2022-2023-erasmus-dil-sinavi-duyurusu/",
+                "https://www.bilgi.edu.tr/tr/haber/11287/bilgi-mimarlik-bolumu-ogrencisi-zeynep-igmenin-zaman-barinagi-tasarimi-kulturregion-festivalinde-sergilendi/"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "events": {
+      "category_count": 7,
+      "doc_count": 2778,
+      "sub_levels": {
+        "events_calendar": {
+          "category_count": 7,
+          "doc_count": 2778,
+          "leaves": {
+            "University Events": {
+              "category_count": 7,
+              "doc_count": 2778,
+              "clusters": [
+                24,
+                25,
+                27,
+                102,
+                103,
+                110,
+                124
+              ],
+              "representative_parents": [
+                "www.bilgi.edu.tr/tr/etkinlik",
+                "www.bilgi.edu.tr/en/event",
+                "www.bilgi.edu.tr/tr/etkinlikler-arsivi"
+              ],
+              "sample_urls": [
+                "https://www.bilgi.edu.tr/tr/etkinlik/6232/kisisel-verilerin-korunmasinda-guncel-gelismeler-egitim-ve-saglikta-veri-koruma/",
+                "https://www.bilgi.edu.tr/tr/etkinlik/11970/future-masters-of-chocolate/",
+                "http://www.bilgi.edu.tr/tr/etkinlik/12583/etki-girisimciligi-ve-etki-yatirimlari-konferansi/"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "international": {
+      "category_count": 12,
+      "doc_count": 2076,
+      "sub_levels": {
+        "international_programs": {
+          "category_count": 12,
+          "doc_count": 2076,
+          "leaves": {
+            "International Office and Programs": {
+              "category_count": 12,
+              "doc_count": 2076,
+              "clusters": [
+                29,
+                30,
+                31,
+                32,
+                33,
+                109,
+                111,
+                112,
+                113,
+                148,
+                163,
+                187
+              ],
+              "representative_parents": [
+                "www.bilgi.edu.tr/en/international/international-office",
+                "www.bilgi.edu.tr/tr/international/uluslararasi-ofis",
+                "www.bilgi.edu.tr/en/international/international-admissions"
+              ],
+              "sample_urls": [
+                "http://www.bilgi.edu.tr/en/international/international-office/bilateral-exchange-programs/language-programs/",
+                "https://www.bilgi.edu.tr/en/international/international-office/bilateral-exchange-programs/bilateral-programs-outgoing-students/bilateral-exchange/faq/",
+                "http://www.bilgi.edu.tr/en/international/international-office/bilateral-exchange-programs/bilateral-programs-outgoing-students/swiss-mobility/faq/"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "media_library": {
+      "category_count": 76,
+      "doc_count": 1305,
+      "sub_levels": {
+        "uploaded_documents": {
+          "category_count": 76,
+          "doc_count": 1305,
+          "leaves": {
+            "Uploaded Documents": {
+              "category_count": 76,
+              "doc_count": 1305,
+              "clusters": [
+                146,
+                147,
+                150,
+                151,
+                152,
+                153,
+                154,
+                155,
+                156,
+                159,
+                160,
+                161,
+                162,
+                164,
+                165,
+                166,
+                167,
+                168,
+                170,
+                171,
+                177,
+                179,
+                183,
+                184,
+                185,
+                186,
+                188,
+                189,
+                190,
+                191,
+                192,
+                193,
+                194,
+                195,
+                196,
+                198,
+                201,
+                202,
+                203,
+                204,
+                205,
+                206,
+                210,
+                211,
+                212,
+                213,
+                214,
+                215,
+                216,
+                217,
+                218,
+                220,
+                221,
+                222,
+                223,
+                224,
+                225,
+                227,
+                228,
+                229,
+                230,
+                231,
+                232,
+                233,
+                234,
+                235,
+                236,
+                237,
+                243,
+                244,
+                245,
+                246,
+                247,
+                248,
+                249,
+                250
+              ],
+              "representative_parents": [
+                "www.bilgi.edu.tr/upload/kurum-ic-degerlendirme-raporu-2017",
+                "www.bilgi.edu.tr/upload/bilgide-sosyal-sorumluluk",
+                "www.bilgi.edu.tr/upload/bilgi-onlisans-programlari"
+              ],
+              "sample_urls": [
+                "https://www.bilgi.edu.tr/upload/kurum-ic-degerlendirme-raporu-2017/",
+                "https://www.bilgi.edu.tr/upload/bilgide-sosyal-sorumluluk/",
+                "https://www.bilgi.edu.tr/upload/bilgi-onlisans-programlari/"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "people": {
+      "category_count": 3,
+      "doc_count": 6071,
+      "sub_levels": {
+        "academic_staff": {
+          "category_count": 3,
+          "doc_count": 6071,
+          "leaves": {
+            "Academic Staff Profiles": {
+              "category_count": 3,
+              "doc_count": 6071,
+              "clusters": [
+                19,
+                52,
+                76
+              ],
+              "representative_parents": [
+                "www.bilgi.edu.tr/tr/akademik/kadro",
+                "www.bilgi.edu.tr/en/academic/staff",
+                "www.bilgi.edu.tr/en/staff"
+              ],
+              "sample_urls": [
+                "https://www.bilgi.edu.tr/tr/akademik/kadro/kerim-mehmet-murat-tunc/",
+                "https://www.bilgi.edu.tr/tr/akademik/kadro/erdem-gunay/",
+                "https://www.bilgi.edu.tr/tr/akademik/kadro/candan-yasan-tepetas/yayimlar/"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "programs": {
+      "category_count": 7,
+      "doc_count": 3706,
+      "sub_levels": {
+        "degree_programs": {
+          "category_count": 7,
+          "doc_count": 3706,
+          "leaves": {
+            "Program Information": {
+              "category_count": 7,
+              "doc_count": 3706,
+              "clusters": [
+                5,
+                14,
+                16,
+                77,
+                158,
+                199,
+                200
+              ],
+              "representative_parents": [
+                "www.bilgi.edu.tr/tr/akademik/lisansustu",
+                "www.bilgi.edu.tr/en/academic/graduate",
+                "www.bilgi.edu.tr/en/academic/english-language-programs"
+              ],
+              "sample_urls": [
+                "http://www.bilgi.edu.tr/tr/akademik/lisansustu/cultma/",
+                "http://www.bilgi.edu.tr/tr/akademik/lisansustu/itlaw/ozel-ogrenci-ve-ogrenci-degisimi/",
+                "http://www.bilgi.edu.tr/tr/akademik/lisansustu/e-mis/hakkinda/"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "regulations_policies": {
+      "category_count": 2,
+      "doc_count": 169,
+      "sub_levels": {
+        "regulatory_documents": {
+          "category_count": 2,
+          "doc_count": 169,
+          "leaves": {
+            "Regulations and Policies": {
+              "category_count": 2,
+              "doc_count": 169,
+              "clusters": [
+                106,
+                169
+              ],
+              "representative_parents": [
+                "www.bilgi.edu.tr/upload/credit-system-bachelors-degree-and-associate-degree-education-and-examination-regulation",
+                "www.bilgi.edu.tr/tr/ihaleler"
+              ],
+              "sample_urls": [
+                "https://www.bilgi.edu.tr/upload/credit-system-bachelors-degree-and-associate-degree-education-and-examination-regulation/",
+                "https://www.bilgi.edu.tr/tr/ihaleler/571/istanbul-bilgi-universitesi-bilgisayar-alim-ihalesi/",
+                "http://www.bilgi.edu.tr/tr/ihaleler/577/istanbul-bilgi-universitesi-kampusler-cati-ve-izolasyon-yapimi-isleri-ihalesi/"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "research": {
+      "category_count": 4,
+      "doc_count": 146,
+      "sub_levels": {
+        "research_units": {
+          "category_count": 4,
+          "doc_count": 146,
+          "leaves": {
+            "Research Pages": {
+              "category_count": 4,
+              "doc_count": 146,
+              "clusters": [
+                89,
+                90,
+                95,
+                97
+              ],
+              "representative_parents": [
+                "www.bilgi.edu.tr/tr/arastirma/arastirmacilar",
+                "www.bilgi.edu.tr/tr/arastirma/oduller",
+                "www.bilgi.edu.tr/tr/arastirma/fikri-mulkiyet"
+              ],
+              "sample_urls": [
+                "http://www.bilgi.edu.tr/tr/arastirma/arastirmacilar/",
+                "https://www.bilgi.edu.tr/tr/arastirma/arastirmacilar/bilimsel-yayin-mentorlugu/",
+                "https://www.bilgi.edu.tr/tr/arastirma/arastirmacilar/"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "services": {
+      "category_count": 20,
+      "doc_count": 926,
+      "sub_levels": {
+        "campus_services": {
+          "category_count": 20,
+          "doc_count": 926,
+          "leaves": {
+            "Campus Services": {
+              "category_count": 20,
+              "doc_count": 926,
+              "clusters": [
+                21,
+                28,
+                40,
+                55,
+                56,
+                57,
+                58,
+                59,
+                60,
+                129,
+                130,
+                131,
+                132,
+                133,
+                145,
+                173,
+                209,
+                226,
+                238,
+                241
+              ],
+              "representative_parents": [
+                "www.bilgi.edu.tr/en/academic/vocational-school-of-health-services",
+                "www.bilgi.edu.tr/en/life-at-bilgi/units-and-services",
+                "www.bilgi.edu.tr/en/talent/talent-development-office"
+              ],
+              "sample_urls": [
+                "https://www.bilgi.edu.tr/en/academic/vocational-school-of-health-services/directors-office/",
+                "http://www.bilgi.edu.tr/en/academic/vocational-school-of-health-services/dentistry-services/dental-prosthetics-technology/academic-staff/",
+                "http://www.bilgi.edu.tr/en/academic/vocational-school-of-health-services/medical-services-and-techniques/dialysis-evening-education/about/"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "student_life": {
+      "category_count": 21,
+      "doc_count": 1731,
+      "sub_levels": {
+        "student_resources": {
+          "category_count": 21,
+          "doc_count": 1731,
+          "leaves": {
+            "Student Life and Resources": {
+              "category_count": 21,
+              "doc_count": 1731,
+              "clusters": [
+                23,
+                38,
+                41,
+                64,
+                93,
+                125,
+                126,
+                136,
+                140,
+                142,
+                143,
+                172,
+                175,
+                178,
+                180,
+                182,
+                197,
+                207,
+                208,
+                219,
+                239
+              ],
+              "representative_parents": [
+                "www.bilgi.edu.tr/en/life-at-bilgi/student",
+                "www.bilgi.edu.tr/tr/yasam/ogrenci",
+                "www.bilgi.edu.tr/upload/undergraduate-student-handbook"
+              ],
+              "sample_urls": [
+                "http://www.bilgi.edu.tr/en/life-at-bilgi/student/student-support-center/student-clubs/social-contribution-and-sustainability-clubs/",
+                "https://www.bilgi.edu.tr/en/life-at-bilgi/student/faq/",
+                "http://www.bilgi.edu.tr/en/life-at-bilgi/student/faq/"
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "unresolved": []
+}

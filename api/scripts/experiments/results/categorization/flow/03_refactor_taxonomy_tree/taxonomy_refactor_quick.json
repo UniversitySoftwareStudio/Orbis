@@ -1,0 +1,318 @@
+{
+  "summary": {
+    "created_at_utc": "2026-04-04T20:48:00.580714+00:00",
+    "source_input_json": "/home/zperson/Orbis/api/scripts/experiments/results/categorization/flow/02_classify_unknowns/group_classification_result.json",
+    "source_total_groups": 105,
+    "source_total_docs": 60649,
+    "source_known_groups": 74,
+    "source_unknown_groups": 31,
+    "source_unknown_docs_excluded": 21324,
+    "total_groups": 74,
+    "total_docs": 39325,
+    "known_groups": 74,
+    "unknown_groups": 0,
+    "mapped_with_ai": 74,
+    "mapped_with_heuristic": 0,
+    "ai_mapping_count": 74,
+    "ai_error_count": 0,
+    "ai_error_reason": "",
+    "ai_invalid_mapping_count": 0,
+    "detected_category_count": 74,
+    "category_rewrites_total": 74,
+    "category_rewrites_with_ai": 74,
+    "category_rewrites_fallback": 0,
+    "category_rewrite_ai_error_count": 0,
+    "category_rewrite_ai_error_reason": "",
+    "base_leaf_count": 74,
+    "expansion_disabled": true
+  },
+  "top_categories": [
+    {
+      "top_category": "academics",
+      "doc_count": 25756,
+      "group_count": 39
+    },
+    {
+      "top_category": "news_and_events",
+      "doc_count": 6043,
+      "group_count": 6
+    },
+    {
+      "top_category": "university_information",
+      "doc_count": 3962,
+      "group_count": 5
+    },
+    {
+      "top_category": "international",
+      "doc_count": 2062,
+      "group_count": 8
+    },
+    {
+      "top_category": "student_life",
+      "doc_count": 1182,
+      "group_count": 6
+    },
+    {
+      "top_category": "career_services",
+      "doc_count": 216,
+      "group_count": 4
+    },
+    {
+      "top_category": "alumni",
+      "doc_count": 50,
+      "group_count": 2
+    },
+    {
+      "top_category": "research",
+      "doc_count": 36,
+      "group_count": 2
+    },
+    {
+      "top_category": "quality_assurance",
+      "doc_count": 18,
+      "group_count": 2
+    }
+  ],
+  "category_rewrites": [
+    {
+      "category_id": 1,
+      "top_category": "academics",
+      "sub_category": "academic_conferences",
+      "current_label": "Emac Fall 2025 Conference",
+      "rewritten_label": "Emac Fall 2025 Conference",
+      "detail": "Information, schedule, and resources for the European Marketing Academy (EMAC) Fall 2025 Conference hosted by the university.",
+      "clear_url": "/taxonomy/academics/academic-conferences/emac-fall-2025",
+      "doc_count": 120,
+      "group_count": 1,
+      "source": "ai"
+    },
+    {
+      "category_id": 2,
+      "top_category": "academics",
+      "sub_category": "academic_conferences",
+      "current_label": "Virginia Woolf Conference 2026",
+      "rewritten_label": "Virginia Woolf Conference 2026",
+      "detail": "Details, call for papers, and program information for the Virginia Woolf Conference 2026 organized by the university.",
+      "clear_url": "/taxonomy/academics/academic-conferences/virginia-woolf-2026",
+      "doc_count": 50,
+      "group_count": 1,
+      "source": "ai"
+    },
+    {
+      "category_id": 3,
+      "top_category": "academics",
+      "sub_category": "academic_staff",
+      "current_label": "Academic Staff Profiles En",
+      "rewritten_label": "Academic Staff Profiles English",
+      "detail": "English-language profile pages for all academic staff members, including research interests, publications, and contact details.",
+      "clear_url": "/taxonomy/academics/academic-staff/profiles-en",
+      "doc_count": 2631,
+      "group_count": 1,
+      "source": "ai"
+    },
+    {
+      "category_id": 4,
+      "top_category": "academics",
+      "sub_category": "academic_staff",
+      "current_label": "Academic Staff Profiles Tr",
+      "rewritten_label": "Academic Staff Profiles Turkish",
+      "detail": "Turkish-language profile pages for all academic staff members, including research interests, publications, and contact details.",
+      "clear_url": "/taxonomy/academics/academic-staff/profiles-tr",
+      "doc_count": 3438,
+      "group_count": 1,
+      "source": "ai"
+    },
+    {
+      "category_id": 5,
+      "top_category": "academics",
+      "sub_category": "course_catalog",
+      "current_label": "Course Catalog",
+      "rewritten_label": "Course Catalog",
+      "detail": "Complete catalog of university courses with descriptions, credit values, prerequisites, and ECTS information.",
+      "clear_url": "/taxonomy/academics/course-catalog/all-courses",
+      "doc_count": 6482,
+      "group_count": 1,
+      "source": "ai"
+    },
+    {
+      "category_id": 6,
+      "top_category": "academics",
+      "sub_category": "data_science_program",
+      "current_label": "Data Science Program En",
+      "rewritten_label": "Data Science Program English",
+      "detail": "English-language pages for the Data Science program, including curriculum, admission requirements, and program outcomes.",
+      "clear_url": "/taxonomy/academics/data-science-program/program-en",
+      "doc_count": 18,
+      "group_count": 1,
+      "source": "ai"
+    },
+    {
+      "category_id": 7,
+      "top_category": "academics",
+      "sub_category": "data_science_program",
+      "current_label": "Data Science Program Tr",
+      "rewritten_label": "Data Science Program Turkish",
+      "detail": "Turkish-language pages for the Data Science program, including curriculum, admission requirements, and program outcomes.",
+      "clear_url": "/taxonomy/academics/data-science-program/program-tr",
+      "doc_count": 18,
+      "group_count": 1,
+      "source": "ai"
+    },
+    {
+      "category_id": 8,
+      "top_category": "academics",
+      "sub_category": "english_language_programs",
+      "current_label": "English Language Programs En",
+      "rewritten_label": "English Language Programs English",
+      "detail": "English-language content about English preparatory and language support programs, including course offerings and placement information.",
+      "clear_url": "/taxonomy/academics/english-language-programs/programs-en",
+      "doc_count": 294,
+      "group_count": 1,
+      "source": "ai"
+    },
+    {
+      "category_id": 9,
+      "top_category": "academics",
+      "sub_category": "english_language_programs",
+      "current_label": "English Language Programs Tr",
+      "rewritten_label": "English Language Programs Turkish",
+      "detail": "Turkish-language content about English preparatory and language support programs, including course offerings and placement information.",
+      "clear_url": "/taxonomy/academics/english-language-programs/programs-tr",
+      "doc_count": 258,
+      "group_count": 1,
+      "source": "ai"
+    },
+    {
+      "category_id": 10,
+      "top_category": "academics",
+      "sub_category": "faculty_of_applied_sciences",
+      "current_label": "Faculty Of Applied Sciences En",
+      "rewritten_label": "Faculty Of Applied Sciences English",
+      "detail": "English-language pages for the Faculty of Applied Sciences, covering departments, programs, faculty members, and academic activities.",
+      "clear_url": "/taxonomy/academics/faculty-of-applied-sciences/overview-en",
+      "doc_count": 412,
+      "group_count": 1,
+      "source": "ai"
+    },
+    {
+      "category_id": 11,
+      "top_category": "academics",
+      "sub_category": "faculty_of_applied_sciences",
+      "current_label": "Faculty Of Applied Sciences Tr",
+      "rewritten_label": "Faculty Of Applied Sciences Turkish",
+      "detail": "Turkish-language pages for the Faculty of Applied Sciences, covering departments, programs, faculty members, and academic activities.",
+      "clear_url": "/taxonomy/academics/faculty-of-applied-sciences/overview-tr",
+      "doc_count": 408,
+      "group_count": 1,
+      "source": "ai"
+    },
+    {
+      "category_id": 12,
+      "top_category": "academics",
+      "sub_category": "faculty_of_architecture",
+      "current_label": "Faculty Of Architecture En",
+      "rewritten_label": "Faculty Of Architecture English",
+      "detail": "English-language pages for the Faculty of Architecture, including departments, degree programs, studios, and research areas.",
+      "clear_url": "/taxonomy/academics/faculty-of-architecture/overview-en",
+      "doc_count": 192,
+      "group_count": 1,
+      "source": "ai"
+    },
+    {
+      "category_id": 13,
+      "top_category": "academics",
+      "sub_category": "faculty_of_architecture",
+      "current_label": "Faculty Of Architecture Tr",
+      "rewritten_label": "Faculty Of Architecture Turkish",
+      "detail": "Turkish-language pages for the Faculty of Architecture, including departments, degree programs, studios, and research areas.",
+      "clear_url": "/taxonomy/academics/faculty-of-architecture/overview-tr",
+      "doc_count": 198,
+      "group_count": 1,
+      "source": "ai"
+    },
+    {
+      "category_id": 14,
+      "top_category": "academics",
+      "sub_category": "faculty_of_business",
+      "current_label": "Faculty Of Business En",
+      "rewritten_label": "Faculty Of Business English",
+      "detail": "English-language pages for the Faculty of Business, covering departments, undergraduate and graduate programs, and faculty research.",
+      "clear_url": "/taxonomy/academics/faculty-of-business/overview-en",
+      "doc_count": 454,
+      "group_count": 1,
+      "source": "ai"
+    },
+    {
+      "category_id": 15,
+      "top_category": "academics",
+      "sub_category": "faculty_of_business",
+      "current_label": "Faculty Of Business Tr",
+      "rewritten_label": "Faculty Of Business Turkish",
+      "detail": "Turkish-language pages for the Faculty of Business, covering departments, undergraduate and graduate programs, and faculty research.",
+      "clear_url": "/taxonomy/academics/faculty-of-business/overview-tr",
+      "doc_count": 448,
+      "group_count": 1,
+      "source": "ai"
+    },
+    {
+      "category_id": 16,
+      "top_category": "academics",
+      "sub_category": "faculty_of_communication",
+      "current_label": "Faculty Of Communication En",
+      "rewritten_label": "Faculty Of Communication English",
+      "detail": "English-language pages for the Faculty of Communication, including media, journalism, and communication studies departments and programs.",
+      "clear_url": "/taxonomy/academics/faculty-of-communication/overview-en",
+      "doc_count": 382,
+      "group_count": 1,
+      "source": "ai"
+    },
+    {
+      "category_id": 17,
+      "top_category": "academics",
+      "sub_category": "faculty_of_communication",
+      "current_label": "Faculty Of Communication Tr",
+      "rewritten_label": "Faculty Of Communication Turkish",
+      "detail": "Turkish-language pages for the Faculty of Communication, including media, journalism, and communication studies departments and programs.",
+      "clear_url": "/taxonomy/academics/faculty-of-communication/overview-tr",
+      "doc_count": 540,
+      "group_count": 1,
+      "source": "ai"
+    },
+    {
+      "category_id": 18,
+      "top_category": "academics",
+      "sub_category": "faculty_of_engineering_and_natural_sciences",
+      "current_label": "Faculty Of Engineering And Natural Sciences En",
+      "rewritten_label": "Faculty Of Engineering And Natural Sciences English",
+      "detail": "English-language pages for the Faculty of Engineering and Natural Sciences, covering engineering and science departments, curricula, and labs.",
+      "clear_url": "/taxonomy/academics/faculty-of-engineering-and-natural-sciences/overview-en",
+      "doc_count": 576,
+      "group_count": 1,
+      "source": "ai"
+    },
+    {
+      "category_id": 19,
+      "top_category": "academics",
+      "sub_category": "faculty_of_engineering_and_natural_sciences",
+      "current_label": "Faculty Of Engineering And Natural Sciences Tr",
+      "rewritten_label": "Faculty Of Engineering And Natural Sciences Turkish",
+      "detail": "Turkish-language pages for the Faculty of Engineering and Natural Sciences, covering engineering and science departments, curricula, and labs.",
+      "clear_url": "/taxonomy/academics/faculty-of-engineering-and-natural-sciences/overview-tr",
+      "doc_count": 665,
+      "group_count": 1,
+      "source": "ai"
+    },
+    {
+      "category_id": 20,
+      "top_category": "academics",
+      "sub_category": "faculty_of_health_sciences",
+      "current_label": "Faculty Of Health Sciences En",
+      "rewritten_label": "Faculty Of Health Sciences English",
+      "detail": "English-language pages for the Faculty of Health Sciences, including nursing, physiotherapy, and other health-related departments and programs.",
+      "clear_url": "/taxonomy/academics/faculty-of-health-sciences/overview-en",
+      "doc_count": 146,
+      "group_count": 1,
+      "source": "ai"
+    }
+  ]
+}

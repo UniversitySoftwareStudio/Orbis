@@ -1,0 +1,637 @@
+{
+  "created_at_utc": "2026-04-04T14:49:16.770305+00:00",
+  "source": "/home/zperson/Orbis/api/scripts/experiments/results/categorization/flow/01_group_parent_urls/parent_groups_result.json",
+  "total_detected_parents": 105,
+  "parents": [
+    {
+      "group_id": 1,
+      "parent_key": "www.bilgi.edu.tr/media/uploads",
+      "chosen_depth": 2,
+      "doc_count": 20168
+    },
+    {
+      "group_id": 2,
+      "parent_key": "ects.bilgi.edu.tr/course/detail",
+      "chosen_depth": 2,
+      "doc_count": 6482
+    },
+    {
+      "group_id": 3,
+      "parent_key": "www.bilgi.edu.tr/tr/akademik/kadro",
+      "chosen_depth": 3,
+      "doc_count": 3438
+    },
+    {
+      "group_id": 4,
+      "parent_key": "www.bilgi.edu.tr/en/academic/staff",
+      "chosen_depth": 3,
+      "doc_count": 2631
+    },
+    {
+      "group_id": 5,
+      "parent_key": "www.bilgi.edu.tr/upload",
+      "chosen_depth": 1,
+      "doc_count": 2213
+    },
+    {
+      "group_id": 6,
+      "parent_key": "www.bilgi.edu.tr/tr/haber",
+      "chosen_depth": 2,
+      "doc_count": 1754
+    },
+    {
+      "group_id": 7,
+      "parent_key": "www.bilgi.edu.tr/tr/akademik/lisansustu",
+      "chosen_depth": 3,
+      "doc_count": 1657
+    },
+    {
+      "group_id": 8,
+      "parent_key": "www.bilgi.edu.tr/tr/etkinlik",
+      "chosen_depth": 2,
+      "doc_count": 1614
+    },
+    {
+      "group_id": 9,
+      "parent_key": "www.bilgi.edu.tr/en/academic/graduate",
+      "chosen_depth": 3,
+      "doc_count": 1551
+    },
+    {
+      "group_id": 10,
+      "parent_key": "www.bilgi.edu.tr/en/news",
+      "chosen_depth": 2,
+      "doc_count": 1389
+    },
+    {
+      "group_id": 11,
+      "parent_key": "www.bilgi.edu.tr/en/event",
+      "chosen_depth": 2,
+      "doc_count": 1106
+    },
+    {
+      "group_id": 12,
+      "parent_key": "www.bilgi.edu.tr/en/university/about",
+      "chosen_depth": 3,
+      "doc_count": 976
+    },
+    {
+      "group_id": 13,
+      "parent_key": "www.bilgi.edu.tr/tr/akademik/sosyal-ve-beseri-bilimler-fakultesi",
+      "chosen_depth": 3,
+      "doc_count": 972
+    },
+    {
+      "group_id": 14,
+      "parent_key": "www.bilgi.edu.tr/en/international/international-office",
+      "chosen_depth": 3,
+      "doc_count": 818
+    },
+    {
+      "group_id": 15,
+      "parent_key": "www.bilgi.edu.tr/tr/international/uluslararasi-ofis",
+      "chosen_depth": 3,
+      "doc_count": 768
+    },
+    {
+      "group_id": 16,
+      "parent_key": "www.bilgi.edu.tr/tr/universite/hakkinda",
+      "chosen_depth": 3,
+      "doc_count": 726
+    },
+    {
+      "group_id": 17,
+      "parent_key": "www.bilgi.edu.tr/en/academic/faculty-of-social-sciences-and-humanities",
+      "chosen_depth": 3,
+      "doc_count": 708
+    },
+    {
+      "group_id": 18,
+      "parent_key": "www.bilgi.edu.tr/tr/akademik/muhendislik-ve-doga-bilimleri-fakultesi",
+      "chosen_depth": 3,
+      "doc_count": 665
+    },
+    {
+      "group_id": 19,
+      "parent_key": "www.bilgi.edu.tr/en/academic/faculty-of-engineering-and-natural-sciences",
+      "chosen_depth": 3,
+      "doc_count": 576
+    },
+    {
+      "group_id": 20,
+      "parent_key": "www.bilgi.edu.tr/tr/akademik/iletisim-fakultesi",
+      "chosen_depth": 3,
+      "doc_count": 540
+    },
+    {
+      "group_id": 21,
+      "parent_key": "www.bilgi.edu.tr/en/academic/school-of-advanced-vocational-studies",
+      "chosen_depth": 3,
+      "doc_count": 532
+    },
+    {
+      "group_id": 22,
+      "parent_key": "www.bilgi.edu.tr/en/academic/vocational-school-of-health-services",
+      "chosen_depth": 3,
+      "doc_count": 524
+    },
+    {
+      "group_id": 23,
+      "parent_key": "www.bilgi.edu.tr/tr/akademik/saglik-hizmetleri-meslek-yuksekokulu",
+      "chosen_depth": 3,
+      "doc_count": 510
+    },
+    {
+      "group_id": 24,
+      "parent_key": "www.bilgi.edu.tr/tr/akademik/meslek-yuksekokulu",
+      "chosen_depth": 3,
+      "doc_count": 488
+    },
+    {
+      "group_id": 25,
+      "parent_key": "www.bilgi.edu.tr/en/life-at-bilgi/student",
+      "chosen_depth": 3,
+      "doc_count": 468
+    },
+    {
+      "group_id": 26,
+      "parent_key": "www.bilgi.edu.tr/en/academic/faculty-of-business",
+      "chosen_depth": 3,
+      "doc_count": 454
+    },
+    {
+      "group_id": 27,
+      "parent_key": "www.bilgi.edu.tr/tr/akademik/saglik-bilimleri-fakultesi",
+      "chosen_depth": 3,
+      "doc_count": 454
+    },
+    {
+      "group_id": 28,
+      "parent_key": "www.bilgi.edu.tr/tr/akademik/isletme-fakultesi",
+      "chosen_depth": 3,
+      "doc_count": 448
+    },
+    {
+      "group_id": 29,
+      "parent_key": "www.bilgi.edu.tr/tr/yasam/ogrenci",
+      "chosen_depth": 3,
+      "doc_count": 420
+    },
+    {
+      "group_id": 30,
+      "parent_key": "www.bilgi.edu.tr/en/academic/faculty-of-applied-sciences",
+      "chosen_depth": 3,
+      "doc_count": 412
+    },
+    {
+      "group_id": 31,
+      "parent_key": "www.bilgi.edu.tr/tr/akademik/uygulamali-bilimler-fakultesi",
+      "chosen_depth": 3,
+      "doc_count": 408
+    },
+    {
+      "group_id": 32,
+      "parent_key": "www.bilgi.edu.tr/en/academic/faculty-of-communication",
+      "chosen_depth": 3,
+      "doc_count": 382
+    },
+    {
+      "group_id": 33,
+      "parent_key": "www.bilgi.edu.tr/media",
+      "chosen_depth": 1,
+      "doc_count": 369
+    },
+    {
+      "group_id": 34,
+      "parent_key": "www.bilgi.edu.tr/en/academic/english-language-programs",
+      "chosen_depth": 3,
+      "doc_count": 294
+    },
+    {
+      "group_id": 35,
+      "parent_key": "www.bilgi.edu.tr/tr/akademik/ingilizce-hazirlik-programi",
+      "chosen_depth": 3,
+      "doc_count": 258
+    },
+    {
+      "group_id": 36,
+      "parent_key": "www.bilgi.edu.tr/tr/akademik/mimarlik-fakultesi",
+      "chosen_depth": 3,
+      "doc_count": 198
+    },
+    {
+      "group_id": 37,
+      "parent_key": "www.bilgi.edu.tr/en/academic/faculty-of-architecture",
+      "chosen_depth": 3,
+      "doc_count": 192
+    },
+    {
+      "group_id": 38,
+      "parent_key": "www.bilgi.edu.tr/tr/arastirma",
+      "chosen_depth": 2,
+      "doc_count": 176
+    },
+    {
+      "group_id": 39,
+      "parent_key": "www.bilgi.edu.tr/tr",
+      "chosen_depth": 1,
+      "doc_count": 153
+    },
+    {
+      "group_id": 40,
+      "parent_key": "www.bilgi.edu.tr/en/academic/faculty-of-health-sciences",
+      "chosen_depth": 3,
+      "doc_count": 146
+    },
+    {
+      "group_id": 41,
+      "parent_key": "www.bilgi.edu.tr/tr/akademik/hukuk-fakultesi",
+      "chosen_depth": 3,
+      "doc_count": 136
+    },
+    {
+      "group_id": 42,
+      "parent_key": "www.bilgi.edu.tr/en/international/international-admissions",
+      "chosen_depth": 3,
+      "doc_count": 132
+    },
+    {
+      "group_id": 43,
+      "parent_key": "www.bilgi.edu.tr/en/life-at-bilgi/units-and-services",
+      "chosen_depth": 3,
+      "doc_count": 130
+    },
+    {
+      "group_id": 44,
+      "parent_key": "www.bilgi.edu.tr/en/academic/faculty-of-law",
+      "chosen_depth": 3,
+      "doc_count": 126
+    },
+    {
+      "group_id": 45,
+      "parent_key": "www.bilgi.edu.tr/en/academic/emacfall2025",
+      "chosen_depth": 3,
+      "doc_count": 120
+    },
+    {
+      "group_id": 46,
+      "parent_key": "www.bilgi.edu.tr/tr/yasam/birim-ve-hizmetler",
+      "chosen_depth": 3,
+      "doc_count": 114
+    },
+    {
+      "group_id": 47,
+      "parent_key": "www.bilgi.edu.tr/tr/arastirma/dis-kaynakli-projeler",
+      "chosen_depth": 3,
+      "doc_count": 106
+    },
+    {
+      "group_id": 48,
+      "parent_key": "www.bilgi.edu.tr/tr/international/uluslararasi-aday-ogrenci",
+      "chosen_depth": 3,
+      "doc_count": 106
+    },
+    {
+      "group_id": 49,
+      "parent_key": "www.bilgi.edu.tr/en/academic/foreign-language-programs",
+      "chosen_depth": 3,
+      "doc_count": 100
+    },
+    {
+      "group_id": 50,
+      "parent_key": "www.bilgi.edu.tr/en/international/international-student-advising-office",
+      "chosen_depth": 3,
+      "doc_count": 96
+    },
+    {
+      "group_id": 51,
+      "parent_key": "www.bilgi.edu.tr/tr/akademik/yabanci-dil-programlari",
+      "chosen_depth": 3,
+      "doc_count": 88
+    },
+    {
+      "group_id": 52,
+      "parent_key": "www.bilgi.edu.tr/tr/arastirma/bilgi-arastirma-fonlari",
+      "chosen_depth": 3,
+      "doc_count": 76
+    },
+    {
+      "group_id": 53,
+      "parent_key": "www.bilgi.edu.tr/en/talent",
+      "chosen_depth": 2,
+      "doc_count": 74
+    },
+    {
+      "group_id": 54,
+      "parent_key": "www.bilgi.edu.tr/tr/international/uluslararasi-ogrenci-danismanlik-ofisi",
+      "chosen_depth": 3,
+      "doc_count": 66
+    },
+    {
+      "group_id": 55,
+      "parent_key": "www.bilgi.edu.tr/tr/mezun",
+      "chosen_depth": 2,
+      "doc_count": 62
+    },
+    {
+      "group_id": 56,
+      "parent_key": "www.bilgi.edu.tr/tr/arastirma/mukemmeliyet-alanlari",
+      "chosen_depth": 3,
+      "doc_count": 58
+    },
+    {
+      "group_id": 57,
+      "parent_key": "www.bilgi.edu.tr/tr/talent",
+      "chosen_depth": 2,
+      "doc_count": 58
+    },
+    {
+      "group_id": 58,
+      "parent_key": "www.bilgi.edu.tr/en/academic/virginia-woolf-conference-2026",
+      "chosen_depth": 3,
+      "doc_count": 50
+    },
+    {
+      "group_id": 59,
+      "parent_key": "www.bilgi.edu.tr/tr/arastirma/universite-sanayi-is-birligi",
+      "chosen_depth": 3,
+      "doc_count": 50
+    },
+    {
+      "group_id": 60,
+      "parent_key": "www.bilgi.edu.tr/en/talent/talent-development-office",
+      "chosen_depth": 3,
+      "doc_count": 48
+    },
+    {
+      "group_id": 61,
+      "parent_key": "www.bilgi.edu.tr/en/international",
+      "chosen_depth": 2,
+      "doc_count": 46
+    },
+    {
+      "group_id": 62,
+      "parent_key": "www.bilgi.edu.tr/tr/akademik/adalet-meslek-yuksekokulu",
+      "chosen_depth": 3,
+      "doc_count": 44
+    },
+    {
+      "group_id": 63,
+      "parent_key": "www.bilgi.edu.tr/tr/talent/yetenek-gelisim-ofisi",
+      "chosen_depth": 3,
+      "doc_count": 36
+    },
+    {
+      "group_id": 64,
+      "parent_key": "www.bilgi.edu.tr/tr/ik",
+      "chosen_depth": 2,
+      "doc_count": 34
+    },
+    {
+      "group_id": 65,
+      "parent_key": "www.bilgi.edu.tr/en/academic/vocational-school-of-justice",
+      "chosen_depth": 3,
+      "doc_count": 32
+    },
+    {
+      "group_id": 66,
+      "parent_key": "www.bilgi.edu.tr/en/academic/general-education-department",
+      "chosen_depth": 3,
+      "doc_count": 30
+    },
+    {
+      "group_id": 67,
+      "parent_key": "www.bilgi.edu.tr/tr/akademik/genel-egitim-bolumu",
+      "chosen_depth": 3,
+      "doc_count": 30
+    },
+    {
+      "group_id": 68,
+      "parent_key": "www.bilgi.edu.tr/tr/international",
+      "chosen_depth": 2,
+      "doc_count": 30
+    },
+    {
+      "group_id": 69,
+      "parent_key": "www.bilgi.edu.tr/en",
+      "chosen_depth": 1,
+      "doc_count": 27
+    },
+    {
+      "group_id": 70,
+      "parent_key": "www.bilgi.edu.tr/",
+      "chosen_depth": 0,
+      "doc_count": 26
+    },
+    {
+      "group_id": 71,
+      "parent_key": "www.bilgi.edu.tr/en/alumni/mentorship-program",
+      "chosen_depth": 3,
+      "doc_count": 26
+    },
+    {
+      "group_id": 72,
+      "parent_key": "www.bilgi.edu.tr/en/life-at-bilgi",
+      "chosen_depth": 2,
+      "doc_count": 26
+    },
+    {
+      "group_id": 73,
+      "parent_key": "www.bilgi.edu.tr/en/uzem",
+      "chosen_depth": 2,
+      "doc_count": 26
+    },
+    {
+      "group_id": 74,
+      "parent_key": "www.bilgi.edu.tr/en/academic/school-of-informatics-technology",
+      "chosen_depth": 3,
+      "doc_count": 24
+    },
+    {
+      "group_id": 75,
+      "parent_key": "www.bilgi.edu.tr/tr/mezun/mentorluk-programi",
+      "chosen_depth": 3,
+      "doc_count": 24
+    },
+    {
+      "group_id": 76,
+      "parent_key": "www.bilgi.edu.tr/tr/yasam",
+      "chosen_depth": 2,
+      "doc_count": 24
+    },
+    {
+      "group_id": 77,
+      "parent_key": "www.bilgi.edu.tr/tr/arastirma/oduller",
+      "chosen_depth": 3,
+      "doc_count": 22
+    },
+    {
+      "group_id": 78,
+      "parent_key": "www.bilgi.edu.tr/tr/uzem",
+      "chosen_depth": 2,
+      "doc_count": 22
+    },
+    {
+      "group_id": 79,
+      "parent_key": "www.bilgi.edu.tr/tr/akademik/bilisim-teknolojisi-yuksekokulu",
+      "chosen_depth": 3,
+      "doc_count": 20
+    },
+    {
+      "group_id": 80,
+      "parent_key": "www.bilgi.edu.tr/tr/arastirma/teknoloji-transfer-ofisi",
+      "chosen_depth": 3,
+      "doc_count": 20
+    },
+    {
+      "group_id": 81,
+      "parent_key": "www.bilgi.edu.tr/en/academic/datascienceprogram",
+      "chosen_depth": 3,
+      "doc_count": 18
+    },
+    {
+      "group_id": 82,
+      "parent_key": "www.bilgi.edu.tr/tr/akademik/veribilimiprogrami",
+      "chosen_depth": 3,
+      "doc_count": 18
+    },
+    {
+      "group_id": 83,
+      "parent_key": "www.bilgi.edu.tr/en/quality/accreditations",
+      "chosen_depth": 3,
+      "doc_count": 14
+    },
+    {
+      "group_id": 84,
+      "parent_key": "www.bilgi.edu.tr/tr/arastirma/fikri-mulkiyet",
+      "chosen_depth": 3,
+      "doc_count": 14
+    },
+    {
+      "group_id": 85,
+      "parent_key": "www.bilgi.edu.tr/tr/universite",
+      "chosen_depth": 2,
+      "doc_count": 13
+    },
+    {
+      "group_id": 86,
+      "parent_key": "www.bilgi.edu.tr/tr/kalite/akreditasyonlar",
+      "chosen_depth": 3,
+      "doc_count": 12
+    },
+    {
+      "group_id": 87,
+      "parent_key": "www.bilgi.edu.tr/en/university",
+      "chosen_depth": 2,
+      "doc_count": 11
+    },
+    {
+      "group_id": 88,
+      "parent_key": "www.bilgi.edu.tr/en/alumni",
+      "chosen_depth": 2,
+      "doc_count": 10
+    },
+    {
+      "group_id": 89,
+      "parent_key": "www.bilgi.edu.tr/en/quality",
+      "chosen_depth": 2,
+      "doc_count": 10
+    },
+    {
+      "group_id": 90,
+      "parent_key": "www.bilgi.edu.tr/en/quality/commissions-and-boards",
+      "chosen_depth": 3,
+      "doc_count": 10
+    },
+    {
+      "group_id": 91,
+      "parent_key": "www.bilgi.edu.tr/en/quality/processes",
+      "chosen_depth": 3,
+      "doc_count": 10
+    },
+    {
+      "group_id": 92,
+      "parent_key": "www.bilgi.edu.tr/tr/kalite",
+      "chosen_depth": 2,
+      "doc_count": 10
+    },
+    {
+      "group_id": 93,
+      "parent_key": "www.bilgi.edu.tr/tr/kalite/komisyonlar-ve-kurullar",
+      "chosen_depth": 3,
+      "doc_count": 10
+    },
+    {
+      "group_id": 94,
+      "parent_key": "www.bilgi.edu.tr/en/academic",
+      "chosen_depth": 2,
+      "doc_count": 8
+    },
+    {
+      "group_id": 95,
+      "parent_key": "www.bilgi.edu.tr/en/life-at-bilgi/transportation",
+      "chosen_depth": 3,
+      "doc_count": 8
+    },
+    {
+      "group_id": 96,
+      "parent_key": "www.bilgi.edu.tr/en/quality/reports",
+      "chosen_depth": 3,
+      "doc_count": 8
+    },
+    {
+      "group_id": 97,
+      "parent_key": "www.bilgi.edu.tr/tr/akademik",
+      "chosen_depth": 2,
+      "doc_count": 8
+    },
+    {
+      "group_id": 98,
+      "parent_key": "www.bilgi.edu.tr/tr/ik/bilgilife",
+      "chosen_depth": 3,
+      "doc_count": 8
+    },
+    {
+      "group_id": 99,
+      "parent_key": "www.bilgi.edu.tr/tr/kalite/raporlar",
+      "chosen_depth": 3,
+      "doc_count": 8
+    },
+    {
+      "group_id": 100,
+      "parent_key": "www.bilgi.edu.tr/tr/kalite/surecler",
+      "chosen_depth": 3,
+      "doc_count": 8
+    },
+    {
+      "group_id": 101,
+      "parent_key": "www.bilgi.edu.tr/en/quality/quality-assurance-system",
+      "chosen_depth": 3,
+      "doc_count": 6
+    },
+    {
+      "group_id": 102,
+      "parent_key": "www.bilgi.edu.tr/en/quality/quality-office",
+      "chosen_depth": 3,
+      "doc_count": 6
+    },
+    {
+      "group_id": 103,
+      "parent_key": "www.bilgi.edu.tr/tr/kalite/kalite-guvencesi-sistemi",
+      "chosen_depth": 3,
+      "doc_count": 6
+    },
+    {
+      "group_id": 104,
+      "parent_key": "www.bilgi.edu.tr/tr/kalite/kalite-ofisi",
+      "chosen_depth": 3,
+      "doc_count": 6
+    },
+    {
+      "group_id": 105,
+      "parent_key": "www.bilgi.edu.tr/tr/yasam/ulasim",
+      "chosen_depth": 3,
+      "doc_count": 6
+    }
+  ]
+}

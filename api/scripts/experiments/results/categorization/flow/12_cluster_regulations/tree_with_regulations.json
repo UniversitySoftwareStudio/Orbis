@@ -1,0 +1,4188 @@
+{
+  "tree": {
+    "people": {
+      "doc_count": 8147,
+      "group_count": 20,
+      "sub_levels": {
+        "academic_staff": {
+          "doc_count": 1701,
+          "group_count": 2,
+          "leaves": {
+            "Academic Staff Directory": {
+              "doc_count": 1701,
+              "group_count": 2,
+              "group_ids": [
+                1,
+                119
+              ],
+              "representative_titles": [
+                "Akademik Kadro",
+                "Academic Staff"
+              ],
+              "sample_urls": [
+                "akademik",
+                "kadro",
+                "akademik-kadro",
+                "sosyal-ve-beseri-bilimler-fakultesi"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.95,
+              "representative_parents": []
+            }
+          }
+        },
+        "academic_staff_profiles": {
+          "doc_count": 4777,
+          "group_count": 14,
+          "leaves": {
+            "Academic Staff Profiles And Publications": {
+              "doc_count": 4777,
+              "group_count": 14,
+              "group_ids": [
+                15,
+                72,
+                116,
+                57,
+                28,
+                132,
+                0,
+                105,
+                39,
+                49,
+                125,
+                133,
+                137,
+                81
+              ],
+              "representative_titles": [
+                "Ayşegül Öztürk - Academic Staff | İstanbul Bilgi University",
+                "Selçuk Özaydın - Academic Staff | İstanbul Bilgi University",
+                "Ebru Temizsoy - Academic Staff | İstanbul Bilgi University",
+                "Academic Staff",
+                "Dtm Jahrbuch 11 2016",
+                "Ece Baş Süzel - Academic Staff | İstanbul Bilgi University"
+              ],
+              "sample_urls": [
+                "academic",
+                "staff",
+                "publications",
+                "akademik",
+                "kadro",
+                "yayimlar"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.95,
+              "representative_parents": []
+            }
+          }
+        },
+        "staff_contact_information": {
+          "doc_count": 902,
+          "group_count": 1,
+          "leaves": {
+            "Academic Staff Contact Information": {
+              "doc_count": 902,
+              "group_count": 1,
+              "group_ids": [
+                29
+              ],
+              "representative_titles": [
+                "Contact"
+              ],
+              "sample_urls": [
+                "academic",
+                "contact",
+                "staff"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.9
+            }
+          }
+        },
+        "research_assistant_evaluations": {
+          "doc_count": 767,
+          "group_count": 3,
+          "leaves": {
+            "Research Assistant Evaluation Forms": {
+              "doc_count": 767,
+              "group_count": 3,
+              "group_ids": [
+                58,
+                71,
+                89
+              ],
+              "representative_titles": [
+                "Isletme Ar Gor Deg",
+                "Yazilim Muh Ar Gor On Deg",
+                "Bilg Muh Ar Gor Deg"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "isletme-ar-gor-deg.pdf",
+                "detaylipuanlistesi_25-26.pdf",
+                "akademik"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.88,
+              "representative_parents": []
+            }
+          }
+        }
+      }
+    },
+    "international": {
+      "doc_count": 6144,
+      "group_count": 13,
+      "sub_levels": {
+        "erasmus_programs": {
+          "doc_count": 2011,
+          "group_count": 2,
+          "leaves": {
+            "Erasmus Study Mobility Programs": {
+              "doc_count": 2011,
+              "group_count": 2,
+              "group_ids": [
+                148,
+                37
+              ],
+              "representative_titles": [
+                "Study Mobility",
+                "Outgoing Student"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "international"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.95,
+              "representative_parents": []
+            }
+          }
+        },
+        "erasmus_study_quotas": {
+          "doc_count": 939,
+          "group_count": 2,
+          "leaves": {
+            "Erasmus Study Mobility Quota Lists": {
+              "doc_count": 939,
+              "group_count": 2,
+              "group_ids": [
+                96,
+                24
+              ],
+              "representative_titles": [
+                "Erasmus For Studies Quota List 2022 2023 Last",
+                "Erasmus For Studies Quota List 2022 2023 Last 1",
+                "Erasmus For Studies Quota List 2021 2022"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "erasmusforstudiesquotalist.pdf",
+                "erasmus-for-studies-quota-list-2022-2023-last_gobo306.pdf"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.95
+            }
+          }
+        },
+        "erasmus_mobility_results": {
+          "doc_count": 1363,
+          "group_count": 3,
+          "leaves": {
+            "Erasmus Mobility Application Results": {
+              "doc_count": 1363,
+              "group_count": 3,
+              "group_ids": [
+                68,
+                31,
+                51
+              ],
+              "representative_titles": [
+                "2022Projeerasmusogrenimhareketliligisonuclari040423"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "2022projeerasmusogrenimhareketliligisonuclari040423_vdtol8i.pdf",
+                "2023-proje-erasmus-avrupa-ogrenim-hareketliligi-sonuclari.pdf",
+                "2021-2022-after-objections-erasmus-europe-study-mobility-placement-results_vtnldpk.pdf"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.92,
+              "representative_parents": []
+            }
+          }
+        },
+        "erasmus_orientation": {
+          "doc_count": 499,
+          "group_count": 1,
+          "leaves": {
+            "Erasmus Student Orientation Presentations": {
+              "doc_count": 499,
+              "group_count": 1,
+              "group_ids": [
+                77
+              ],
+              "representative_titles": [
+                "2018 2019 Orientation Presentation Eng",
+                "2018 2019 Spring Orientation Presentation Eng",
+                "Erasmus Outgoing Student Orientation Spring 2019 20"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "international"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.93
+            }
+          }
+        },
+        "erasmus_internship_mobility": {
+          "doc_count": 478,
+          "group_count": 1,
+          "leaves": {
+            "Erasmus Internship And Traineeship Mobility": {
+              "doc_count": 478,
+              "group_count": 1,
+              "group_ids": [
+                30
+              ],
+              "representative_titles": [
+                "Staj Hareketliligi Ilan Ingilizce",
+                "Internship Mobility",
+                "Traineeship Mobility"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "international"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.95
+            }
+          }
+        },
+        "bilateral_exchange_programs": {
+          "doc_count": 274,
+          "group_count": 1,
+          "leaves": {
+            "Partner Universities For Exchange Programs": {
+              "doc_count": 274,
+              "group_count": 1,
+              "group_ids": [
+                121
+              ],
+              "representative_titles": [
+                "Partner Üniversiteler"
+              ],
+              "sample_urls": [
+                "international",
+                "uluslararasi-ofis",
+                "ikili-degisim-programlari"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.93
+            }
+          }
+        },
+        "erasmus_grant_agreements": {
+          "doc_count": 252,
+          "group_count": 1,
+          "leaves": {
+            "Erasmus Grant Agreement For Multiple Beneficiaries": {
+              "doc_count": 252,
+              "group_count": 1,
+              "group_ids": [
+                26
+              ],
+              "representative_titles": [
+                "GRANT AGREEMENT FOR AN ACTION WITH MULTIPLE BENEFICIARIES"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "general_conditions-1.pdf"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.88
+            }
+          }
+        },
+        "erasmus_staff_mobility": {
+          "doc_count": 240,
+          "group_count": 1,
+          "leaves": {
+            "Erasmus Outgoing Staff Mobility Programs": {
+              "doc_count": 240,
+              "group_count": 1,
+              "group_ids": [
+                19
+              ],
+              "representative_titles": [
+                "Outgoing Staff",
+                "2021-2022 Erasmus Europe Staff Training Mobility Application Call (2019 Project)",
+                "Giden Personel"
+              ],
+              "sample_urls": [
+                "international",
+                "uluslararasi-ofis",
+                "erasmus-programlari"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.94
+            }
+          }
+        },
+        "erasmus_language_exam": {
+          "doc_count": 88,
+          "group_count": 1,
+          "leaves": {
+            "Erasmus English Language Exam Announcement": {
+              "doc_count": 88,
+              "group_count": 1,
+              "group_ids": [
+                7
+              ],
+              "representative_titles": [
+                "2022-2023 Erasmus English Language Exam Announcement",
+                "2022-2023 Erasmus İngilizce Dil Sınavı Duyurusu"
+              ],
+              "sample_urls": [
+                "news",
+                "haber",
+                "media"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.93
+            }
+          }
+        }
+      }
+    },
+    "academics": {
+      "doc_count": 23533,
+      "group_count": 58,
+      "sub_levels": {
+        "university_overview": {
+          "doc_count": 1655,
+          "group_count": 2,
+          "leaves": {
+            "University Overview And General Academic Information": {
+              "doc_count": 1655,
+              "group_count": 2,
+              "group_ids": [
+                74,
+                85
+              ],
+              "representative_titles": [
+                "Academic",
+                "About",
+                "Internationality"
+              ],
+              "sample_urls": [
+                "academic",
+                "about",
+                "university",
+                "media",
+                "uploads"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.6,
+              "representative_parents": [],
+              "taxonomy_url": "/taxonomy/academics/university-overview/university-overview-and-general-academic-information"
+            }
+          }
+        },
+        "graduate_programs": {
+          "doc_count": 1242,
+          "group_count": 2,
+          "leaves": {
+            "Phd In Business Administration Program": {
+              "doc_count": 1242,
+              "group_count": 2,
+              "group_ids": [
+                33,
+                70
+              ],
+              "representative_titles": [
+                "İşletme (Organizasyon-Yönetim)Doktora Programı",
+                "Phd inBusiness Administration"
+              ],
+              "sample_urls": [
+                "academic",
+                "akademik",
+                "media",
+                "international",
+                "lisansustu"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.8,
+              "representative_parents": []
+            }
+          }
+        },
+        "faculty_of_law": {
+          "doc_count": 1091,
+          "group_count": 2,
+          "leaves": {
+            "Faculty Of Law Programs And Courses": {
+              "doc_count": 1091,
+              "group_count": 2,
+              "group_ids": [
+                8,
+                40
+              ],
+              "representative_titles": [
+                "LAW 201 - General Principles of Law",
+                "LAW/E 172 - Legal Thinking and Skills II",
+                "LAW 490 - Integrated Law Practices"
+              ],
+              "sample_urls": [
+                "course",
+                "detail",
+                "academic",
+                "akademik",
+                "lisansustu",
+                "sss"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.95,
+              "representative_parents": [],
+              "taxonomy_url": "/taxonomy/academics/faculty-of-law/faculty-of-law-programs-and-courses"
+            }
+          }
+        },
+        "political_science_programs": {
+          "doc_count": 991,
+          "group_count": 2,
+          "leaves": {
+            "Political Science Graduate Programs": {
+              "doc_count": 991,
+              "group_count": 2,
+              "group_ids": [
+                12,
+                107
+              ],
+              "representative_titles": [
+                "Phd inPolitical Science",
+                "Siyaset BilimiDoktora Programı",
+                "MA inPolitical Science and International Relations"
+              ],
+              "sample_urls": [
+                "academic",
+                "akademik",
+                "publications",
+                "sosyal-ve-beseri-bilimler-fakultesi",
+                "uluslararasi-iliskiler"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.9,
+              "representative_parents": []
+            }
+          }
+        },
+        "faculty_of_architecture": {
+          "doc_count": 1244,
+          "group_count": 2,
+          "leaves": {
+            "Faculty Of Architecture Programs": {
+              "doc_count": 1244,
+              "group_count": 2,
+              "group_ids": [
+                13,
+                88
+              ],
+              "representative_titles": [
+                "About",
+                "M.Arch inArchitectural Design"
+              ],
+              "sample_urls": [
+                "academic",
+                "news",
+                "faculty-of-architecture",
+                "akademik",
+                "mimarlik-fakultesi",
+                "haber"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.92,
+              "representative_parents": []
+            }
+          }
+        },
+        "faculty_of_business": {
+          "doc_count": 1198,
+          "group_count": 2,
+          "leaves": {
+            "Faculty Of Business Graduate Programs": {
+              "doc_count": 1198,
+              "group_count": 2,
+              "group_ids": [
+                99,
+                53
+              ],
+              "representative_titles": [
+                "MSc inFinancial Economics",
+                "About"
+              ],
+              "sample_urls": [
+                "academic",
+                "graduate",
+                "faculty-of-business",
+                "akademik",
+                "lisansustu",
+                "isletme-fakultesi"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.91,
+              "representative_parents": []
+            }
+          }
+        },
+        "cultural_management_programs": {
+          "doc_count": 1443,
+          "group_count": 3,
+          "leaves": {
+            "Arts Culture And Cultural Studies Programs And Courses": {
+              "doc_count": 1443,
+              "group_count": 3,
+              "group_ids": [
+                78,
+                104,
+                112
+              ],
+              "representative_titles": [
+                "Events of Department of Comparative Literature",
+                "MA inCultural Management"
+              ],
+              "sample_urls": [
+                "event",
+                "academic",
+                "akademik",
+                "course",
+                "detail",
+                "iletisim-fakultesi"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.75,
+              "representative_parents": [],
+              "taxonomy_url": "/taxonomy/academics/cultural-management-programs/arts-culture-and-cultural-studies-programs-and-courses"
+            }
+          }
+        },
+        "engineering_and_natural_sciences": {
+          "doc_count": 1364,
+          "group_count": 3,
+          "leaves": {
+            "Engineering And Natural Sciences Faculty Programs And Projects": {
+              "doc_count": 1364,
+              "group_count": 3,
+              "group_ids": [
+                83,
+                108,
+                115
+              ],
+              "representative_titles": [
+                "2022-2023 Projects",
+                "Faculty of Engineering and Natural Sciences / News-Announcements",
+                "2021-2022 Projects"
+              ],
+              "sample_urls": [
+                "academic",
+                "faculty-of-engineering-and-natural-sciences",
+                "news",
+                "akademik",
+                "muhendislik-ve-doga-bilimleri-fakultesi",
+                "haber"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.88,
+              "representative_parents": [],
+              "taxonomy_url": "/taxonomy/academics/engineering-and-natural-sciences/engineering-and-natural-sciences-faculty-programs-and-projects"
+            }
+          }
+        },
+        "business_courses": {
+          "doc_count": 1122,
+          "group_count": 2,
+          "leaves": {
+            "Business Administration Course Catalog": {
+              "doc_count": 1122,
+              "group_count": 2,
+              "group_ids": [
+                3,
+                93
+              ],
+              "representative_titles": [
+                "BUS 400 - Internship I",
+                "BUS 422 - Global Marketing Strategy",
+                "MYI 107 - Introduction to Business"
+              ],
+              "sample_urls": [
+                "course",
+                "detail",
+                "academic",
+                "news"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.93,
+              "representative_parents": []
+            }
+          }
+        },
+        "engineering_courses": {
+          "doc_count": 986,
+          "group_count": 2,
+          "leaves": {
+            "Engineering And Computing Course Catalog": {
+              "doc_count": 986,
+              "group_count": 2,
+              "group_ids": [
+                25,
+                130
+              ],
+              "representative_titles": [
+                "ESEN 351 - Applied Numerical Methods in Engineering",
+                "CMPE 100 - Introduction to Computing",
+                "CMPE 412 - Selected Topics in Computer Engineering II"
+              ],
+              "sample_urls": [
+                "course",
+                "detail",
+                "media"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.92,
+              "representative_parents": []
+            }
+          }
+        },
+        "program_brochures": {
+          "doc_count": 989,
+          "group_count": 2,
+          "leaves": {
+            "Academic Program Brochures": {
+              "doc_count": 989,
+              "group_count": 2,
+              "group_ids": [
+                139,
+                46
+              ],
+              "representative_titles": [
+                "Naba Brochure Eng",
+                "Fashion Design Program Brochure"
+              ],
+              "sample_urls": [
+                "akademik",
+                "media",
+                "uploads",
+                "unitact_brosur_eng1625469846021.pdf"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.85,
+              "representative_parents": []
+            }
+          }
+        },
+        "health_services_courses": {
+          "doc_count": 494,
+          "group_count": 1,
+          "leaves": {
+            "Vocational School Of Health Services Courses": {
+              "doc_count": 494,
+              "group_count": 1,
+              "group_ids": [
+                102
+              ],
+              "representative_titles": [
+                "TLT 300 - Basic Health Practices",
+                "ANS 250 - Vocational Development",
+                "ALH 250 - Vocational Development"
+              ],
+              "sample_urls": [
+                "course",
+                "detail",
+                "academic"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.93
+            }
+          }
+        },
+        "design_and_architecture_courses": {
+          "doc_count": 490,
+          "group_count": 1,
+          "leaves": {
+            "Design And Architecture Course Catalog Turkish": {
+              "doc_count": 490,
+              "group_count": 1,
+              "group_ids": [
+                16
+              ],
+              "representative_titles": [
+                "ID 101 - Temel Tasarım I",
+                "IND 101 - Temel Tasarım I",
+                "ARCH 111 - Temel Tasarım I"
+              ],
+              "sample_urls": [
+                "course",
+                "detail"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.92
+            }
+          }
+        },
+        "senior_design_projects": {
+          "doc_count": 632,
+          "group_count": 2,
+          "leaves": {
+            "Engineering And Design Senior Project Courses": {
+              "doc_count": 632,
+              "group_count": 2,
+              "group_ids": [
+                92,
+                127
+              ],
+              "representative_titles": [
+                "IE 491 - Senior Design Project I",
+                "IE 492 - Senior Design Project II",
+                "En Bilgi Ie Seniordesignprojectsguide"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "course",
+                "academic",
+                "akademik",
+                "faculty-of-engineering-and-natural-sciences"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.9,
+              "representative_parents": []
+            }
+          }
+        },
+        "english_language_programs": {
+          "doc_count": 899,
+          "group_count": 2,
+          "leaves": {
+            "English Language And Literature Programs And Courses": {
+              "doc_count": 899,
+              "group_count": 2,
+              "group_ids": [
+                50,
+                23
+              ],
+              "representative_titles": [
+                "2020 2021 Level 4 Student Syllabus En",
+                "2020 2021 Level 2 Student Syllabus En",
+                "2020 2021 Level 5 Student Syllabus En"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "academic",
+                "course",
+                "detail"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.92,
+              "representative_parents": [],
+              "taxonomy_url": "/taxonomy/academics/english-language-programs/english-language-and-literature-programs-and-courses"
+            }
+          }
+        },
+        "english_preparatory_program": {
+          "doc_count": 426,
+          "group_count": 1,
+          "leaves": {
+            "English Preparatory Program Handbook": {
+              "doc_count": 426,
+              "group_count": 1,
+              "group_ids": [
+                14
+              ],
+              "representative_titles": [
+                "Hazırlık Elkitabı2005 – 2006"
+              ],
+              "sample_urls": [
+                "uploads",
+                "media",
+                "akademik"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.9
+            }
+          }
+        },
+        "political_science_courses": {
+          "doc_count": 424,
+          "group_count": 1,
+          "leaves": {
+            "International Relations And Political Science Courses": {
+              "doc_count": 424,
+              "group_count": 1,
+              "group_ids": [
+                131
+              ],
+              "representative_titles": [
+                "IR 179 - Politics, Culture and Society I",
+                "IR 307 - Contemporary Political Theory",
+                "IR 305 - World Politics I"
+              ],
+              "sample_urls": [
+                "course",
+                "detail",
+                "media"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.92
+            }
+          }
+        },
+        "social_responsibility_courses": {
+          "doc_count": 392,
+          "group_count": 1,
+          "leaves": {
+            "Social Responsibility And Sustainability Courses": {
+              "doc_count": 392,
+              "group_count": 1,
+              "group_ids": [
+                143
+              ],
+              "representative_titles": [
+                "Sustainability in BİLGİ Curriculum",
+                "Social Responsibility Courses"
+              ],
+              "sample_urls": [
+                "about",
+                "university",
+                "institutional-principles"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.9
+            }
+          }
+        },
+        "clinical_psychology_program": {
+          "doc_count": 728,
+          "group_count": 2,
+          "leaves": {
+            "Clinical Psychology Graduate Program": {
+              "doc_count": 728,
+              "group_count": 2,
+              "group_ids": [
+                56,
+                54
+              ],
+              "representative_titles": [
+                "Klinik PsikolojiYüksek Lisans Programı",
+                "BİLGİ Klinik Psikoloji Yüksek Lisans Programı"
+              ],
+              "sample_urls": [
+                "akademik",
+                "lisansustu",
+                "psyma",
+                "course",
+                "detail",
+                "academic"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.93,
+              "representative_parents": []
+            }
+          }
+        },
+        "vocational_school_programs": {
+          "doc_count": 608,
+          "group_count": 2,
+          "leaves": {
+            "Vocational And Health Services School Programs And Info": {
+              "doc_count": 608,
+              "group_count": 2,
+              "group_ids": [
+                11,
+                126
+              ],
+              "representative_titles": [
+                "İletişim"
+              ],
+              "sample_urls": [
+                "akademik",
+                "iletisim",
+                "meslek-yuksekokulu",
+                "saglik-hizmetleri-meslek-yuksekokulu",
+                "tibbi-hizmetler-ve-teknikler"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.75,
+              "representative_parents": [],
+              "taxonomy_url": "/taxonomy/academics/vocational-school-programs/vocational-and-health-services-school-programs-and-info"
+            }
+          }
+        },
+        "gastronomy_and_culinary_courses": {
+          "doc_count": 338,
+          "group_count": 1,
+          "leaves": {
+            "Gastronomy And Culinary Arts Courses": {
+              "doc_count": 338,
+              "group_count": 1,
+              "group_ids": [
+                149
+              ],
+              "representative_titles": [
+                "CUL 101 - Introduction to Profession",
+                "ASC 103 - Introduction to Profession",
+                "CUL 406 - World Cuisines 2"
+              ],
+              "sample_urls": [
+                "course",
+                "detail",
+                "akademik"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.93
+            }
+          }
+        },
+        "film_and_television_courses": {
+          "doc_count": 646,
+          "group_count": 2,
+          "leaves": {
+            "Film Television And Media Programs And Courses": {
+              "doc_count": 646,
+              "group_count": 2,
+              "group_ids": [
+                150,
+                2
+              ],
+              "representative_titles": [
+                "FTV 434 - Special Topics in TV Scenario",
+                "FTV 451 - Anatomy of a Film",
+                "FTV 413 - Special Topics in Cinema II"
+              ],
+              "sample_urls": [
+                "course",
+                "detail",
+                "media",
+                "academic",
+                "faculty-of-communication",
+                "news"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.93,
+              "representative_parents": [],
+              "taxonomy_url": "/taxonomy/academics/film-and-television-courses/film-television-and-media-programs-and-courses"
+            }
+          }
+        },
+        "psychology_programs": {
+          "doc_count": 327,
+          "group_count": 1,
+          "leaves": {
+            "Organizational Psychology Program And Staff": {
+              "doc_count": 327,
+              "group_count": 1,
+              "group_ids": [
+                110
+              ],
+              "representative_titles": [
+                "About",
+                "Academic Staff"
+              ],
+              "sample_urls": [
+                "academic",
+                "media",
+                "uploads"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.85
+            }
+          }
+        },
+        "finance_and_economics_programs": {
+          "doc_count": 325,
+          "group_count": 1,
+          "leaves": {
+            "Banking Finance And Economics Programs": {
+              "doc_count": 325,
+              "group_count": 1,
+              "group_ids": [
+                111
+              ],
+              "representative_titles": [
+                "Bilgi Bankacilik Ve Finans Bulteni Temmuz2019",
+                "Finansal EkonomiYüksek Lisans Programı",
+                "Ekonomi ve Finans"
+              ],
+              "sample_urls": [
+                "akademik",
+                "media",
+                "uploads"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.88
+            }
+          }
+        },
+        "marketing_communication_program": {
+          "doc_count": 319,
+          "group_count": 1,
+          "leaves": {
+            "Ma In Marketing Communication Program": {
+              "doc_count": 319,
+              "group_count": 1,
+              "group_ids": [
+                69
+              ],
+              "representative_titles": [
+                "MA inMarketing Communication / markaokulu"
+              ],
+              "sample_urls": [
+                "academic",
+                "akademik",
+                "graduate"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.91
+            }
+          }
+        },
+        "faculty_of_health_sciences": {
+          "doc_count": 438,
+          "group_count": 2,
+          "leaves": {
+            "Faculty Of Health Sciences Staff And Programs": {
+              "doc_count": 438,
+              "group_count": 2,
+              "group_ids": [
+                27,
+                117
+              ],
+              "representative_titles": [
+                "Faculty of Health Sciences",
+                "About",
+                "Beslenme ve Diyetetik Bölümü / Etkinlikler"
+              ],
+              "sample_urls": [
+                "akademik",
+                "saglik-bilimleri-fakultesi",
+                "kadro",
+                "laboratuvarlar"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.9,
+              "representative_parents": []
+            }
+          }
+        },
+        "child_development_department": {
+          "doc_count": 310,
+          "group_count": 1,
+          "leaves": {
+            "Child Development Department Programs And Events": {
+              "doc_count": 310,
+              "group_count": 1,
+              "group_ids": [
+                113
+              ],
+              "representative_titles": [
+                "Bölüm Tanıtım Kataloğu",
+                "Çocuk Gelişimi Bölümü / Etkinlikler",
+                "Çocuk Gelişimi Bölümü"
+              ],
+              "sample_urls": [
+                "akademik",
+                "cocuk-gelisimi",
+                "saglik-bilimleri-fakultesi"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.92
+            }
+          }
+        },
+        "faculty_of_applied_sciences": {
+          "doc_count": 284,
+          "group_count": 1,
+          "leaves": {
+            "Applied Sciences Faculty Staff And Programs": {
+              "doc_count": 284,
+              "group_count": 1,
+              "group_ids": [
+                141
+              ],
+              "representative_titles": [
+                "Akademik Kadro",
+                "Lojistik Yönetimi Bölümü / Etkinlikler"
+              ],
+              "sample_urls": [
+                "akademik",
+                "uygulamali-bilimler-fakultesi",
+                "kadro"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.9
+            }
+          }
+        },
+        "music_department": {
+          "doc_count": 249,
+          "group_count": 1,
+          "leaves": {
+            "Music Department Courses And Programs": {
+              "doc_count": 249,
+              "group_count": 1,
+              "group_ids": [
+                135
+              ],
+              "representative_titles": [
+                "MUS 167 - Fundamentals of Music I",
+                "MUS 209 - Musicianship I",
+                "MUS 375 - Creative Workshop and Ensemble"
+              ],
+              "sample_urls": [
+                "course",
+                "detail",
+                "akademik"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.93
+            }
+          }
+        },
+        "turkish_german_law_program": {
+          "doc_count": 248,
+          "group_count": 1,
+          "leaves": {
+            "Turkish German Economic Law Joint Llm Program": {
+              "doc_count": 248,
+              "group_count": 1,
+              "group_ids": [
+                63
+              ],
+              "representative_titles": [
+                "TÜRK-ALMAN EKONOMİ HUKUKU Ortak Yüksek Lisans ProgramıLL.M. Köln/İstanbul, Joint Degree"
+              ],
+              "sample_urls": [
+                "akademik",
+                "media",
+                "uploads"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.93
+            }
+          }
+        },
+        "aviation_management_courses": {
+          "doc_count": 224,
+          "group_count": 1,
+          "leaves": {
+            "Aviation Management And Cabin Services Courses": {
+              "doc_count": 224,
+              "group_count": 1,
+              "group_ids": [
+                147
+              ],
+              "representative_titles": [
+                "SHU 105 - Airline Management",
+                "SHU 219 - Current Developments in Aviation",
+                "SHU 107 - Introduction to Civil Aviation"
+              ],
+              "sample_urls": [
+                "course",
+                "detail",
+                "akademik"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.93
+            }
+          }
+        },
+        "trauma_and_mental_health_program": {
+          "doc_count": 212,
+          "group_count": 1,
+          "leaves": {
+            "Trauma And Disaster Mental Health Graduate Program": {
+              "doc_count": 212,
+              "group_count": 1,
+              "group_ids": [
+                100
+              ],
+              "representative_titles": [
+                "Travma ve Afet Çalışmaları Uygulamalı Ruh SağlığıYüksek Lisans Programı"
+              ],
+              "sample_urls": [
+                "etkinlik",
+                "media",
+                "uploads"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.9
+            }
+          }
+        },
+        "physiotherapy_program": {
+          "doc_count": 559,
+          "group_count": 3,
+          "leaves": {
+            "Physiotherapy And Rehabilitation Department": {
+              "doc_count": 559,
+              "group_count": 3,
+              "group_ids": [
+                55,
+                79,
+                62
+              ],
+              "representative_titles": [
+                "Fizyoterapi ve RehabilitasyonYüksek Lisans Programı",
+                "Fizyoterapi ve Rehabilitasyon Bölümü / Haberler-Duyurular"
+              ],
+              "sample_urls": [
+                "akademik",
+                "kadro",
+                "saglik-bilimleri-fakultesi",
+                "fizyoterapi-ve-rehabilitasyon",
+                "course",
+                "detail"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.9,
+              "representative_parents": [],
+              "taxonomy_url": "/taxonomy/academics/physiotherapy-program/physiotherapy-and-rehabilitation-department"
+            }
+          }
+        },
+        "nutrition_and_dietetics_courses": {
+          "doc_count": 181,
+          "group_count": 1,
+          "leaves": {
+            "Nutrition And Dietetics Courses": {
+              "doc_count": 181,
+              "group_count": 1,
+              "group_ids": [
+                61
+              ],
+              "representative_titles": [
+                "NUT 502 - Advanced Nutrition -I",
+                "NUT 102 - Beslenme ve Diyetetiğe Giriş",
+                "NUT 403 - Seminar I"
+              ],
+              "sample_urls": [
+                "course",
+                "detail",
+                "academic"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.93
+            }
+          }
+        },
+        "game_design_department": {
+          "doc_count": 180,
+          "group_count": 1,
+          "leaves": {
+            "Digital Game Design Courses And Program": {
+              "doc_count": 180,
+              "group_count": 1,
+              "group_ids": [
+                97
+              ],
+              "representative_titles": [
+                "GAME 401 - Mezuniyet Projesi I",
+                "GAME 101 - Oyun Tasarımının Temelleri I",
+                "GAME 310 - Ciddi ve Eğitsel Oyun Tasarımı"
+              ],
+              "sample_urls": [
+                "course",
+                "detail",
+                "akademik"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.93
+            }
+          }
+        },
+        "sports_management_department": {
+          "doc_count": 175,
+          "group_count": 1,
+          "leaves": {
+            "Sports Management Department News And Events": {
+              "doc_count": 175,
+              "group_count": 1,
+              "group_ids": [
+                80
+              ],
+              "representative_titles": [
+                "Spor Yöneticiliği / Haberler-Duyurular",
+                "Spor Yoneticiligi Ar Gor On Deg",
+                "Spor Yöneticiliği / Ektinlikler"
+              ],
+              "sample_urls": [
+                "haber",
+                "akademik",
+                "uygulamali-bilimler-fakultesi"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.9
+            }
+          }
+        },
+        "opticianry_program": {
+          "doc_count": 100,
+          "group_count": 1,
+          "leaves": {
+            "Opticianry Program Courses And Info": {
+              "doc_count": 100,
+              "group_count": 1,
+              "group_ids": [
+                118
+              ],
+              "representative_titles": [
+                "OPT 112 - Opticianry Applications",
+                "Opticianry",
+                "OPT 212 - Seeing Optics and Refraction"
+              ],
+              "sample_urls": [
+                "course",
+                "detail",
+                "haber"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.9
+            }
+          }
+        }
+      }
+    },
+    "quality": {
+      "doc_count": 7346,
+      "group_count": 17,
+      "sub_levels": {
+        "accreditation_and_evaluation_reports": {
+          "doc_count": 4763,
+          "group_count": 7,
+          "leaves": {
+            "Accreditation And Institutional Evaluation Reports": {
+              "doc_count": 4763,
+              "group_count": 7,
+              "group_ids": [
+                5,
+                94,
+                76,
+                38,
+                66,
+                18,
+                22
+              ],
+              "representative_titles": [
+                "Report Pdf",
+                "Kurum Ic Degerlendirme Raporu 2017",
+                "Kurum Ic Degerlendirme Raporu 2019"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "upload",
+                "kurum-ic-degerlendirme-raporu-2020.pdf",
+                "kurum-ic-degerlendirme-raporu-2021.pdf",
+                "kurum-ic-degerlendirme-raporu-2019.pdf"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.95,
+              "representative_parents": [],
+              "taxonomy_url": "/taxonomy/quality/accreditation-and-evaluation-reports/accreditation-and-institutional-evaluation-reports"
+            }
+          }
+        },
+        "wscuc_accreditation_reports": {
+          "doc_count": 555,
+          "group_count": 1,
+          "leaves": {
+            "Wscuc Accreditation And Program Review Reports": {
+              "doc_count": 555,
+              "group_count": 1,
+              "group_ids": [
+                73
+              ],
+              "representative_titles": [
+                "Wscucselfstudyreportbybilgi2021"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "wscucselfstudyreportbybilgi2021.pdf"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.95
+            }
+          }
+        },
+        "quality_assurance_guides": {
+          "doc_count": 498,
+          "group_count": 1,
+          "leaves": {
+            "Quality Assurance And Institutional Reports": {
+              "doc_count": 498,
+              "group_count": 1,
+              "group_ids": [
+                4
+              ],
+              "representative_titles": [
+                "Bilgiqualityassuranceguide"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "about"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.85
+            }
+          }
+        },
+        "learning_outcomes_assessment": {
+          "doc_count": 306,
+          "group_count": 1,
+          "leaves": {
+            "Learning Outcomes Assessment Planning Guide": {
+              "doc_count": 306,
+              "group_count": 1,
+              "group_ids": [
+                120
+              ],
+              "representative_titles": [
+                "Bilgi Akademik Programlarda Ogrenme Kazanimlari Degerlendirmesinin Planlanmasi Ve Uygulanmasi Rehberi",
+                "Bilgi Guide To Planning And Implementing Learning Outcomes Assessment In Academic Programs"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "bilgi-unit-learning-outcomes-assessment-guide.pdf"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.93
+            }
+          }
+        },
+        "teaching_effectiveness_guide": {
+          "doc_count": 441,
+          "group_count": 2,
+          "leaves": {
+            "Teaching Effectiveness Guide": {
+              "doc_count": 441,
+              "group_count": 2,
+              "group_ids": [
+                67,
+                32
+              ],
+              "representative_titles": [
+                "Bilgi Teaching Effectiveness Guide"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "bilgi-teaching-effectiveness-guide.pdf",
+                "bilgi-etkin-egitim-ogretim-kilavuzu.pdf"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.91,
+              "representative_parents": []
+            }
+          }
+        },
+        "external_evaluation_reports": {
+          "doc_count": 219,
+          "group_count": 1,
+          "leaves": {
+            "Project Evaluation And Assessment Reports": {
+              "doc_count": 219,
+              "group_count": 1,
+              "group_ids": [
+                95
+              ],
+              "representative_titles": [
+                "Değerlendirme Raporu"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "sebeke-genclerin-katilimi-projesi-dis-degerlendirmesi.pdf"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.82
+            }
+          }
+        },
+        "distance_education_quality_reports": {
+          "doc_count": 196,
+          "group_count": 1,
+          "leaves": {
+            "Distance Education Quality And Evaluation Reports": {
+              "doc_count": 196,
+              "group_count": 1,
+              "group_ids": [
+                90
+              ],
+              "representative_titles": [
+                "Uzaktanegitimdekaliteguvencesiraporu1628077786453",
+                "Kurum Ic Degerlendirme Raporu 2020"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "uzaktanegitimdekaliteguvencesiraporu1628077786453.pdf"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.92
+            }
+          }
+        },
+        "program_evaluation_reports": {
+          "doc_count": 180,
+          "group_count": 1,
+          "leaves": {
+            "Civil Society And Sectoral Collaboration Evaluations": {
+              "doc_count": 180,
+              "group_count": 1,
+              "group_ids": [
+                34
+              ],
+              "representative_titles": [
+                "D_3_1_b_CSEP_Evaluation"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "civil-society-studies-center-civil-society-exhange-program-evaluation-report.pdf"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.78
+            }
+          }
+        },
+        "administrative_unit_assessment_guide": {
+          "doc_count": 98,
+          "group_count": 1,
+          "leaves": {
+            "Administrative Unit Learning Outcomes Assessment Guide": {
+              "doc_count": 98,
+              "group_count": 1,
+              "group_ids": [
+                134
+              ],
+              "representative_titles": [
+                "İSTANBUL BİLGİ ÜNİVERSİTESİ\nÖĞRENMEYİ DESTEKLEYİCİ İDARİ BİRİMLERE YÖNELİK KAZANIM ODAKLI DEĞERLENDİRME KILAVUZU"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "bilgi-birim-ogrenme-kazanimlari-degerlendirme-kilavuzu.pdf"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.9
+            }
+          }
+        },
+        "environmental_impact_assessment": {
+          "doc_count": 90,
+          "group_count": 1,
+          "leaves": {
+            "Environmental And Community Service Impact Assessment": {
+              "doc_count": 90,
+              "group_count": 1,
+              "group_ids": [
+                142
+              ],
+              "representative_titles": [
+                "BU_cevresel_etki_degerlendirme_arastirma_02.indd"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "istanbul-bilgi-universitesi-cevresel-etki-degerlendirmesi-arastirmasi.pdf"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.85
+            }
+          }
+        }
+      }
+    },
+    "research": {
+      "doc_count": 4467,
+      "group_count": 13,
+      "sub_levels": {
+        "frascati_manual": {
+          "doc_count": 2013,
+          "group_count": 3,
+          "leaves": {
+            "Frascati Manual And R&D Classification Guidelines": {
+              "doc_count": 2013,
+              "group_count": 3,
+              "group_ids": [
+                41,
+                6,
+                60
+              ],
+              "representative_titles": [
+                "Frascati Manual 2015: Guidelines for Collecting and Reporting Data on Research and Experimental Development"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "frascati_manual.pdf",
+                "frascati-klavuzu.pdf"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.93,
+              "representative_parents": [],
+              "taxonomy_url": "/taxonomy/research/frascati-manual/frascati-manual-and-r-d-classification-guidelines"
+            }
+          }
+        },
+        "funded_research_projects": {
+          "doc_count": 447,
+          "group_count": 1,
+          "leaves": {
+            "Researchers And Funded Research Projects": {
+              "doc_count": 447,
+              "group_count": 1,
+              "group_ids": [
+                47
+              ],
+              "representative_titles": [
+                "Araştırmacılar",
+                "Desteklenen Projeler"
+              ],
+              "sample_urls": [
+                "arastirma",
+                "arastirmacilar",
+                "akademik"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.93
+            }
+          }
+        },
+        "law_publications": {
+          "doc_count": 958,
+          "group_count": 3,
+          "leaves": {
+            "Legal Research Publications On Covid 19": {
+              "doc_count": 958,
+              "group_count": 3,
+              "group_ids": [
+                42,
+                82,
+                84
+              ],
+              "representative_titles": [
+                "Covid 19 Onlemler Pekcanitez Erisir"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "covid-19-onlemler-pekcanitez-erisir.pdf",
+                "academic",
+                "international-relations",
+                "faculty-of-social-sciences-and-humanities"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.72,
+              "representative_parents": []
+            }
+          }
+        },
+        "gender_violence_training_report": {
+          "doc_count": 182,
+          "group_count": 1,
+          "leaves": {
+            "Anti Discrimination And Violence Training Impact Report": {
+              "doc_count": 182,
+              "group_count": 1,
+              "group_ids": [
+                21
+              ],
+              "representative_titles": [
+                "Kadına Yönelik Ayrımcılık ve Şiddetle Mücadelede Hukuk Seminerleri: Eğitim Değerlendirme ve Etki Ölçümü Raporu"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "bilgi-morcati-egitim-degerlendirme-raporu.pdf"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.85
+            }
+          }
+        },
+        "civil_society_studies": {
+          "doc_count": 151,
+          "group_count": 1,
+          "leaves": {
+            "Civil Society Exchange Program Evaluation": {
+              "doc_count": 151,
+              "group_count": 1,
+              "group_ids": [
+                59
+              ],
+              "representative_titles": [
+                "ISTANBUL BILGI UNIVERSTIY CENTER FOR CIVIL SOCIETY STUDIES                CIVIL SOCIETY EXCHANGE PROGRAM"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "civil-society-studies-center-civil-society-exchange-program-final-external-evaluation-report.pdf"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.88
+            }
+          }
+        },
+        "child_studies_impact_report": {
+          "doc_count": 128,
+          "group_count": 1,
+          "leaves": {
+            "Child Studies Unit Impact Analysis Report": {
+              "doc_count": 128,
+              "group_count": 1,
+              "group_ids": [
+                17
+              ],
+              "representative_titles": [
+                "Cocuk Calismalari Birimi Soz Kucugun Kutu Oyunu Yayginlastirma Sureci Etki Analizi Raporu"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "cocuk-calismalari-birimi-soz-kucugun-kutu-oyunu-yayginlastirma-sureci-etki-analizi-raporu.pdf"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.85
+            }
+          }
+        },
+        "social_incubation_center": {
+          "doc_count": 289,
+          "group_count": 1,
+          "leaves": {
+            "Social Incubation Center Reports And Evaluation": {
+              "doc_count": 289,
+              "group_count": 1,
+              "group_ids": [
+                65
+              ],
+              "representative_titles": [
+                "Bilgi Sosyal Kulucka Merkezi 6 Yil Raporu Kasim 2014 Mayis 2021",
+                "Bilgi Sosyal Kulucka Merkezi Dis Degerlendirmesi"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "bilgi-sosyal-kulucka-merkezi-6-yil-raporu-kasim-2014-mayis-2021.pdf"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.88,
+              "taxonomy_url": "/taxonomy/research/social-incubation-center/social-incubation-center-reports-and-evaluation"
+            }
+          }
+        },
+        "thesis_writing_guide": {
+          "doc_count": 175,
+          "group_count": 1,
+          "leaves": {
+            "Thesis Writing Manual For English Programs": {
+              "doc_count": 175,
+              "group_count": 1,
+              "group_ids": [
+                144
+              ],
+              "representative_titles": [
+                "Lpe 2026 Thesiswriting Manuel Englishprograms"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "lpe-2026_thesiswriting_manuel_englishprograms.pdf"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.88,
+              "taxonomy_url": "/taxonomy/research/thesis-writing-guide/thesis-writing-manual-for-english-programs"
+            }
+          }
+        },
+        "project_writing_guide": {
+          "doc_count": 124,
+          "group_count": 1,
+          "leaves": {
+            "Lpe Project Writing Manual": {
+              "doc_count": 124,
+              "group_count": 1,
+              "group_ids": [
+                128
+              ],
+              "representative_titles": [
+                "Ibu Lpe Project Manuel Ing 2026",
+                "Ibu Lpe Proje Kilavuz Tr 2026"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "ibu_lpe_project_manuel_ing_2026_ov3mxl9.pdf"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.85,
+              "taxonomy_url": "/taxonomy/research/project-writing-guide/lpe-project-writing-manual"
+            }
+          }
+        }
+      }
+    },
+    "regulations": {
+      "doc_count": 935,
+      "sub_levels": {
+        "academic_regulations": {
+          "doc_count": 170,
+          "leaves": {
+            "Undergraduate Education And Examination Regulation": {
+              "doc_count": 63,
+              "doc_ids": [
+                "02c59ff1-f510-444a-bb2f-4bb1786e946a",
+                "10f6aec3-96b8-426b-8770-ecae7c3fbf47",
+                "144a11ef-3b4f-4f7c-acf5-3897ab99a3a1",
+                "144cf1de-bfa6-40f1-82b6-e56a369904fb",
+                "19330b5b-a545-4d2c-8f53-8e575a87b296",
+                "1935253c-71d3-4212-98ca-f1aa746d7d0f",
+                "1b71d4f3-6ebe-423f-bd5f-1d68df95138f",
+                "1d5cbb99-dd6b-4a17-a850-e462bcaf58a2",
+                "23dc108b-916c-44f4-b176-710f291231b7",
+                "2fb3f771-f64c-445f-ae65-a0b17db5cd4c",
+                "33ae059e-3490-453b-9062-36aa2f659b96",
+                "36388e74-d05a-4956-b2e6-77588eddcedb",
+                "38f38d09-4dad-4fa8-a96c-25cf58a23817",
+                "3b0582d6-1f08-4654-9e66-33dcabb85238",
+                "3fa2959d-3e77-4a9a-9d4f-57d12a9963b6",
+                "401942f7-2fbc-42a1-8e97-72124a9ae007",
+                "415c37b6-3753-4ed0-b45d-8b3d28fe19ec",
+                "449ec426-6174-44f5-8621-e40aa6e4825b",
+                "44be36de-1f99-478f-88a9-c4c7ec552047",
+                "47f76eb5-c6e8-4115-86bb-0b58d0ba2a42",
+                "4de9311c-1d6c-4618-9157-c39c8f322b66",
+                "505bb4a8-7bbf-47bb-b25c-a98d6c777533",
+                "5a905090-0531-4616-aa6f-c7a87f5c98af",
+                "689db29a-f307-4221-88c1-ff8644ee99c2",
+                "6ec4b46a-45fe-470a-b0b8-0591d2e5d524",
+                "6f4ad7ce-6c4c-482c-8f0e-62ab986839b2",
+                "6f534577-9cea-44be-bae7-97c0781ab0a2",
+                "75437c94-f91a-4810-8869-784248a5f7e9",
+                "7615d4ca-4da6-47d3-b934-9384578a02b4",
+                "789ea34a-0222-4ef8-96d7-f8089b986152",
+                "7f36ed72-2f5c-4b66-bb7d-717a5ecc50bd",
+                "82707ca3-c84b-492c-a2af-702915efbd8f",
+                "87c6e3bc-8ef4-4ea8-aa51-e42bc5b5942d",
+                "9115a6b5-22f3-4057-bfac-21447fb7472d",
+                "91e9dc2f-6716-4069-b601-ad9e6bdf0812",
+                "92d6350f-5138-4d27-b38d-985893c686a4",
+                "960c4d20-923f-49d7-9eb9-39b4c681fc67",
+                "98831645-1200-4f37-a6fb-106900479e9e",
+                "a178e95d-68ee-44de-bca5-03c887204fd6",
+                "a4731d26-2f4b-4152-a30d-c9f69cbc8857",
+                "a74107d9-c637-4e32-ad91-4e0aec8aa65c",
+                "ae016f72-e8f8-4fbc-847a-921655a235ae",
+                "bbf0c2c2-33dc-4725-85b7-b3886b910de3",
+                "c1bf17ce-13f1-4693-bebb-9c044b26e416",
+                "c419acd1-fb3f-410c-b27f-1d5a63f335ce",
+                "c47cd096-4f66-40af-b9bf-ef4979e1282a",
+                "c6b18cd9-6a3c-4f42-8bfe-7a8813d203a9",
+                "c95f8ec7-284f-4825-936d-c9272c545b08",
+                "cb63aa8b-5117-4ce7-aa70-069b2e091cea",
+                "cc125676-9b78-405e-9bd4-d33715fe2b35",
+                "d27a47c3-5bb7-492e-be9b-f5f5dadc4eb8",
+                "d7bb1118-f4a0-4402-8193-5f93e02b1ee0",
+                "d997aaf7-2c77-4f01-bbaa-74d584739d68",
+                "dcc46bc7-3b04-44f9-b209-e827940e0930",
+                "dd0338ec-c0fe-464c-ad5f-3b4e32f218cb",
+                "e039d9f2-a567-4c2d-bfe6-be846b404c79",
+                "e325112f-81af-47cc-86b5-dded3fb787cd",
+                "e51faa68-07ea-4bc8-99d2-ac7e4b663dd0",
+                "e7ba8762-807a-43b7-97ae-a7d93d503c70",
+                "ed155574-726c-4b00-88ab-458140911321",
+                "f3eba80a-8c2a-4e0f-b337-f2d75a5e1c51",
+                "faa64ce2-02b4-4ec5-a9d9-71f765c0a987",
+                "fee5190b-cd31-4c46-8ffe-20021def6a66"
+              ],
+              "sample_urls": [
+                "https://www.bilgi.edu.tr/upload/credit-system-bachelors-degree-and-associate-degree-education-and-examination-regulation/",
+                "https://www.bilgi.edu.tr/upload/credit-system-bachelors-degree-and-associate-degree-education-and-examination-regulation/",
+                "https://www.bilgi.edu.tr/upload/credit-system-bachelors-degree-and-associate-degree-education-and-examination-regulation/",
+                "https://www.bilgi.edu.tr/upload/credit-system-bachelors-degree-and-associate-degree-education-and-examination-regulation/",
+                "https://www.bilgi.edu.tr/upload/credit-system-bachelors-degree-and-associate-degree-education-and-examination-regulation/"
+              ],
+              "group_ids": [
+                10
+              ],
+              "sources": "regulation_targeted",
+              "quality_score": 0.95,
+              "representative_titles": [
+                "Credit System Bachelors Degree And Associate Degree Education And Examination Regulation",
+                "Credit System Bachelors Degree And Associate Degree Education And Examination Regulation",
+                "Credit System Bachelors Degree And Associate Degree Education And Examination Regulation",
+                "Credit System Bachelors Degree And Associate Degree Education And Examination Regulation",
+                "Credit System Bachelors Degree And Associate Degree Education And Examination Regulation"
+              ]
+            },
+            "Higher Education Law Implementation Procedures": {
+              "doc_count": 60,
+              "doc_ids": [
+                "01480086-0f14-4fbf-9bdb-db956629ab1f",
+                "0455294e-a64c-4256-8bf9-4f86ab8795ff",
+                "091f5c86-b816-4e69-949f-976eeb50b0d7",
+                "0932cf54-8edc-4bc2-9a1d-606b4eb2aae3",
+                "0a233c22-c27d-4d51-bf6e-257649dd4344",
+                "0bf9f2a6-5660-4c51-8e49-397350636670",
+                "1547bd34-7f1d-43a4-a79b-479ef35fc1b4",
+                "155e2d02-ae51-490b-a75b-a73f227bd0fc",
+                "16771e70-461f-4453-a41c-7a4db356e10d",
+                "17626e74-4cd2-43f9-a216-794d895ce105",
+                "1867ee77-08d2-48d9-89ff-a534b1b5dde8",
+                "1bc2c43c-990b-4d99-aa2e-91f784fbac69",
+                "258ca15d-e243-491b-aa61-c77ce8dedfde",
+                "2b380960-506d-46da-807a-45466903bb8c",
+                "3182b1e4-51a8-46fa-b38f-5a58646c1bc4",
+                "33f774fa-bf31-4043-a5a0-0fff8ea49526",
+                "36d0059a-cdd1-4a05-8b5f-fc9d49a30750",
+                "44d70377-9c0f-4432-b601-43327e395958",
+                "45ddb07a-e3e7-4c89-b3b0-61f1774ca60c",
+                "482297a8-b274-49f3-8c23-89c914485ec8",
+                "4959826a-1d36-4b35-a59d-9cc9215b4b15",
+                "499b23de-6f64-479a-b2ee-4c0a618461a5",
+                "5005b34d-600d-4a2a-bbe3-126bc9cb3ba0",
+                "5424e789-8d88-45c7-a6f8-4d5afe1bbb6e",
+                "5720bb3c-6534-4a54-82a5-f86d542ec60b",
+                "5ced5d05-8661-4f3c-acee-6543490a3483",
+                "5d53afef-b393-474d-950b-898135d51b80",
+                "5fecffa9-5637-45ad-97cc-82ef461f8f9c",
+                "60627de9-7e38-4eac-ac43-d9a69a07cccf",
+                "6b932072-2bec-4b79-84eb-243c34d92504",
+                "6cde3f7a-8dfc-4eeb-818c-136dcadd1bfe",
+                "74024873-5daf-4d88-8ed9-f472242bc192",
+                "7665bd2d-a210-453b-932d-7704cfb54163",
+                "77951a3c-ec89-4de1-9edc-88f0638ba5b8",
+                "790de90b-bd3b-429e-853b-b21d310f2143",
+                "7c0dc9aa-27c7-4fc0-9a68-97f98141ec78",
+                "8c06190c-3184-4621-95f4-2a5e2d3b9469",
+                "8f5919d2-cace-4859-8cd1-17ed5d833266",
+                "9430e104-301a-4bd6-b786-97c126e487c7",
+                "94db1b49-2d95-40ff-9139-301de0ad6bd2",
+                "9b65300a-0ccd-4dff-acf0-9e9a50683a2f",
+                "a0ca2437-98be-4ebd-9cd4-093ae228c14b",
+                "a573d2e6-9d21-4c3d-bad9-96305e1c0bef",
+                "a7a0d96b-4f8d-48dc-906f-00b704270638",
+                "ab0262e2-a091-4ab3-9e3b-94069de71ea9",
+                "ab5224a0-2483-4386-ac94-9935bd0bd071",
+                "b316d59f-0e4e-4fd4-825e-f188f8e7f866",
+                "be2942ae-0eb6-44fb-b5d6-cfe0177c7886",
+                "ccaf373e-1db3-4792-a107-1a3b1b228867",
+                "cdfcfea0-564e-4297-ae22-a23472443ed3",
+                "ce57aaf8-53b0-4f44-ac33-8ac49828a0ab",
+                "d5b91a7e-78b8-4caa-a3b5-f418f2de3090",
+                "da386af7-2094-4ae7-a323-80bb8abfa6f0",
+                "de6daac7-affb-4eaf-91f7-d1c5cc9b24d4",
+                "e0ef66c5-a938-448b-9931-ee98104b24d6",
+                "e2fc0e0b-5864-4fbd-82bc-1153595c6b1f",
+                "e3bbcc48-739b-4f0f-857b-5b676f92a2bf",
+                "ea7cb39e-82c0-4ee3-82e5-1bde73e649cc",
+                "ebcb67fb-0e36-4c3b-8f3d-5b4c5e075f45",
+                "eca2eb9b-2015-4234-82d9-65443d9c9225"
+              ],
+              "sample_urls": [
+                "https://www.bilgi.edu.tr/media/uploads/2019/04/10/istanbul-bilgi-universitesi-2547-s-yuksekogretim-kanunu-md-44-c-uygulama-usul-ve-esaslari_yqvkGH2.pdf",
+                "https://www.bilgi.edu.tr/media/uploads/2019/04/10/istanbul-bilgi-universitesi-2547-s-yuksekogretim-kanunu-md-44-c-uygulama-usul-ve-esaslari_yqvkGH2.pdf",
+                "https://www.bilgi.edu.tr/media/uploads/2023/08/24/bursvedestekprogramlariyonergesi.pdf",
+                "https://www.bilgi.edu.tr/media/uploads/2019/04/10/istanbul-bilgi-universitesi-2547-s-yuksekogretim-kanunu-md-44-c-uygulama-usul-ve-esaslari_yqvkGH2.pdf",
+                "https://www.bilgi.edu.tr/media/uploads/2019/04/10/istanbul-bilgi-universitesi-2547-s-yuksekogretim-kanunu-md-44-c-uygulama-usul-ve-esaslari_yqvkGH2.pdf"
+              ],
+              "group_ids": [
+                3
+              ],
+              "sources": "regulation_targeted",
+              "quality_score": 0.82,
+              "representative_titles": [
+                "Istanbul Bilgi Universitesi 2547 S Yuksekogretim Kanunu Md 44 C Uygulama Usul Ve Esaslari",
+                "Istanbul Bilgi Universitesi 2547 S Yuksekogretim Kanunu Md 44 C Uygulama Usul Ve Esaslari",
+                "Bursvedestekprogramlariyonergesi",
+                "Istanbul Bilgi Universitesi 2547 S Yuksekogretim Kanunu Md 44 C Uygulama Usul Ve Esaslari",
+                "Istanbul Bilgi Universitesi 2547 S Yuksekogretim Kanunu Md 44 C Uygulama Usul Ve Esaslari"
+              ]
+            },
+            "Undergraduate Education Regulation Supplementary": {
+              "doc_count": 29,
+              "doc_ids": [
+                "0caaa7b0-5c23-43d1-8586-b8f0e70f4d92",
+                "0da28e14-0bdd-4e0b-8ef9-c7966d9cb61c",
+                "0e0e00c1-14c9-4f6b-bca8-e5b3b117a395",
+                "0eef3252-3186-40f4-b587-2c195a8f7bcd",
+                "103d8363-3659-4fc7-9b52-919c9da1fdc2",
+                "18d12b10-f7d1-421f-afff-ee8e1bd9d208",
+                "1bbcaf0b-dc76-44f5-8892-976a201b705d",
+                "2153c986-5d5b-44cc-a572-4a6cf4a42119",
+                "25324ba2-b499-46b8-b180-f6226ced514f",
+                "2a82d194-2254-4913-8eda-ed5b0d16250a",
+                "2b3d1815-7fe4-4c14-921c-d9347306fbc8",
+                "38d7791f-e0ff-47ae-84f8-cf4f35343c99",
+                "42a9abdb-1009-4211-a2d6-a5b5c6e0923a",
+                "44c12439-ddf6-4334-8e60-bcd36693ab7d",
+                "4aa2bef8-763b-4b5f-9544-9d2f4c2d45eb",
+                "4af82265-bdbc-4d37-b7ff-bd2f462d4ed7",
+                "51cbb18c-d528-4d62-9395-4be9e60163ce",
+                "552825b2-d05b-4289-9718-9ffdbb4fb8c7",
+                "793dc4b5-693d-46d1-9e72-85818c129a76",
+                "794e932b-0ab5-4489-b300-5191ecbafd36",
+                "7f0eb9c5-e156-4917-8c7c-e4c651f11d2d",
+                "82d42211-80d2-44eb-890f-a92d5419b3d5",
+                "8b7728be-3f15-4706-9135-9c121543c8fe",
+                "9ab09559-239d-4fbf-b7c1-751ae4480972",
+                "9c76f491-3046-452e-b807-24788233375b",
+                "b0ce09e2-5213-48f3-b7fe-2498366bc95c",
+                "d3125969-4bc9-4f61-a752-b759acf11fa5",
+                "e424ba36-4092-43e0-bb6b-aafcc130ef45",
+                "eb75559b-6eb9-4820-aaa9-5da65f0bcde2"
+              ],
+              "sample_urls": [
+                "https://www.bilgi.edu.tr/upload/credit-system-bachelors-degree-and-associate-degree-education-and-examination-regulation/",
+                "https://www.bilgi.edu.tr/upload/graduate-student-handbook/",
+                "https://www.bilgi.edu.tr/en/life-at-bilgi/student/rules-and-regulations/",
+                "https://www.bilgi.edu.tr/upload/credit-system-bachelors-degree-and-associate-degree-education-and-examination-regulation/",
+                "https://www.bilgi.edu.tr/upload/undergraduate-student-handbook/"
+              ],
+              "group_ids": [
+                22
+              ],
+              "sources": "regulation_targeted",
+              "quality_score": 0.88,
+              "representative_titles": [
+                "Credit System Bachelors Degree And Associate Degree Education And Examination Regulation",
+                "2022-2023 Graduate-Student-Handbook",
+                "Rules and Regulations",
+                "Credit System Bachelors Degree And Associate Degree Education And Examination Regulation",
+                "2022-2023 Undergraduate Student Handbook-Revised"
+              ]
+            },
+            "Credit System Education Regulation": {
+              "doc_count": 18,
+              "doc_ids": [
+                "061dd25b-f17c-4e80-886c-54282e814769",
+                "07f2cd96-5a2e-4c45-a242-0aaeca7b8809",
+                "0a73a50c-3899-4b02-b085-eb0a511a5991",
+                "16f63df3-ebb5-474d-827e-d7c1eebc7b5d",
+                "19e5466f-710a-4d69-86ae-6ff9c177c5c5",
+                "205d728d-efc8-4eeb-9191-fbce9b101041",
+                "2f461354-b90a-4f11-9abe-07c8eeeceb09",
+                "398f834c-1cfe-4775-ac38-c1d1352f0578",
+                "64b03ada-1dc7-40df-8852-5d1a5a34fa10",
+                "65ce3853-1e77-4935-9201-63df8ba7cfa6",
+                "68991c12-ba97-4a58-8a3b-4dec4865edf5",
+                "6e43c248-0180-46ad-a0b3-85089fdcc0ff",
+                "76290fe1-1d3e-4b45-b726-0ad7f4f47004",
+                "818067ff-59f9-4953-ae3e-85d25cdedf6c",
+                "9c24a3e7-ad88-4dfa-9e54-4a7cf88c76e2",
+                "af0d362a-28e5-496c-9762-65282e1c7360",
+                "c19488c7-82f5-4676-8807-1a3141f61f3c",
+                "d8263ba3-852f-40f9-9906-704b587f9486"
+              ],
+              "sample_urls": [
+                "https://www.bilgi.edu.tr/upload/credit-system-bachelors-degree-and-associate-degree-education-and-examination-regulation/",
+                "https://www.bilgi.edu.tr/upload/credit-system-bachelors-degree-and-associate-degree-education-and-examination-regulation/",
+                "https://www.bilgi.edu.tr/upload/credit-system-bachelors-degree-and-associate-degree-education-and-examination-regulation/",
+                "https://www.bilgi.edu.tr/upload/credit-system-bachelors-degree-and-associate-degree-education-and-examination-regulation/",
+                "https://www.bilgi.edu.tr/upload/credit-system-bachelors-degree-and-associate-degree-education-and-examination-regulation/"
+              ],
+              "group_ids": [
+                17
+              ],
+              "sources": "regulation_targeted",
+              "quality_score": 0.93,
+              "representative_titles": [
+                "Credit System Bachelors Degree And Associate Degree Education And Examination Regulation",
+                "Credit System Bachelors Degree And Associate Degree Education And Examination Regulation",
+                "Credit System Bachelors Degree And Associate Degree Education And Examination Regulation",
+                "Credit System Bachelors Degree And Associate Degree Education And Examination Regulation",
+                "Credit System Bachelors Degree And Associate Degree Education And Examination Regulation"
+              ]
+            }
+          }
+        },
+        "double_major_minor_regulations": {
+          "doc_count": 56,
+          "leaves": {
+            "Double Major Minor Honors Programs": {
+              "doc_count": 56,
+              "doc_ids": [
+                "009a89e6-8286-42e9-abcf-8cdf3bd36c64",
+                "01dd9b69-d669-4659-9817-f50bb310b00f",
+                "05af67da-b6eb-4a67-a254-c0a59607f7fe",
+                "07aed1da-5a67-480f-9174-7c625dd0207f",
+                "10782ed3-45f6-4735-a432-5f01e629d9be",
+                "120e40c1-17eb-49a1-9b12-48f05810dc12",
+                "125fd459-0bca-4078-8deb-985f62437b49",
+                "19cc93bc-6234-4197-810b-0a28bdaa1410",
+                "1e1c67d5-7a07-49be-9609-8288ce07e10e",
+                "264492db-aa79-43f8-9052-f64095120eec",
+                "282e9bde-294d-42e6-9d22-6631580d4c19",
+                "3523723d-ff91-4890-ae14-9a4b17efe231",
+                "360a8acf-d662-43ca-a89a-8fb351137796",
+                "36a841e2-2518-4a0a-ab96-54d7f6d3a7b8",
+                "4240a555-e6f7-43d9-9f34-a85b6faed96d",
+                "433e3e8f-2463-459c-b649-e9571fd75a89",
+                "4626f0e8-5a0c-421f-81f2-4d74d44a9c6b",
+                "4a5ed8cd-ff78-4fc2-b5ab-f47f2a895e38",
+                "4ef52869-3ed4-495c-866a-e8450f00cfcd",
+                "58d701c0-2b83-4550-b7ad-2b786f51abc2",
+                "58f5b47c-a46d-46e3-90b4-0816b1f7ee84",
+                "60777f3e-fcfa-403d-bb17-b1b3d88dc703",
+                "69e2888b-ac8b-422e-b18d-547c60d9387e",
+                "6d8c8673-0b18-46dd-b592-59ffd8dcae72",
+                "72be3ea9-b10c-454a-8665-9b2ad19d9c6e",
+                "72d7ea64-8f5c-4e17-a8a7-ddcb4ea21f8b",
+                "74f3f804-80cd-4469-bc86-3ee4bc73d9a7",
+                "8056264a-4437-4ae5-bc48-e3a142d15616",
+                "80e90ca2-830c-47e3-a6c5-345a6411855a",
+                "846c2587-0055-4f92-a424-ca62e9ac77de",
+                "8f12ee01-b07b-466c-b4d9-4f38966e2044",
+                "9d7985ce-5e1b-4681-acc6-4317a5d2810d",
+                "9ed4429f-41fd-4fc9-90c9-913cca54019f",
+                "a01a2c50-a830-4d44-becb-70c03a984154",
+                "a3048004-3637-468f-90b4-f3aea7fc887c",
+                "a3cb4698-ef63-4a13-aea3-09bdeadad8fa",
+                "aba89ab3-1d5f-4d09-b857-f9a4c39324f5",
+                "af6eeb7e-aa55-4837-9a25-93a987b76613",
+                "b3a2a7f6-f977-4cbb-8739-45fe687da77b",
+                "beb1f567-daaa-4597-a54a-0bc082808c87",
+                "c4307895-5c35-4a65-a369-9aab8e3d222e",
+                "cf6d8f2b-ce0e-4506-bda0-d452c1143ef5",
+                "cfc1cb42-ba9f-43ca-a8f7-7dc4f856f4df",
+                "d2b332d4-fbc2-4efe-8bd5-99cbb0e9f88b",
+                "d4844461-b9a8-4caa-928a-12a4346729c2",
+                "da221383-a593-4300-8926-c4a60381a513",
+                "da8bf049-6a9d-492a-b07d-387e3191575b",
+                "db3fde7e-0a9a-4267-a4fd-452d962f003c",
+                "e1c328fb-664c-4099-9faf-ccfef7ae75a6",
+                "e3ca235f-8c59-4f63-abbf-6aa52b34243e",
+                "e6356a91-43cf-49e1-abb1-a797158358c0",
+                "ec4a7d36-5bf8-4f89-a004-44ee60707b96",
+                "f297abd2-2031-4f76-a4b3-626e0b037a43",
+                "f33009ae-f7e4-4ba4-8ed3-c88100539ec6",
+                "fd31a811-cc2f-4a84-89c5-7924cd55c27a",
+                "ffb82921-bffb-4b02-a1c5-0771aa94a72d"
+              ],
+              "sample_urls": [
+                "https://www.bilgi.edu.tr/media/uploads/2024/03/26/regulation-on-double-major-minor-and-honors-programs.pdf",
+                "https://www.bilgi.edu.tr/media/uploads/2024/03/26/regulation-on-double-major-minor-and-honors-programs.pdf",
+                "https://www.bilgi.edu.tr/media/uploads/2024/03/26/regulation-on-double-major-minor-and-honors-programs.pdf",
+                "https://www.bilgi.edu.tr/media/uploads/2024/03/26/regulation-on-double-major-minor-and-honors-programs.pdf",
+                "https://www.bilgi.edu.tr/media/uploads/2024/03/26/regulation-on-double-major-minor-and-honors-programs.pdf"
+              ],
+              "group_ids": [
+                0
+              ],
+              "sources": "regulation_targeted",
+              "quality_score": 0.98,
+              "representative_titles": [
+                "Regulation On Double Major Minor And Honors Programs",
+                "Regulation On Double Major Minor And Honors Programs",
+                "Regulation On Double Major Minor And Honors Programs",
+                "Regulation On Double Major Minor And Honors Programs",
+                "Regulation On Double Major Minor And Honors Programs"
+              ]
+            }
+          }
+        },
+        "student_handbooks": {
+          "doc_count": 279,
+          "leaves": {
+            "Student Handbooks 2022-2023": {
+              "doc_count": 56,
+              "doc_ids": [
+                "00c088c2-6232-4eb3-9772-f668563a44d9",
+                "0618973c-5383-4ae9-8951-0efe7594b252",
+                "0ac52d47-c98c-414d-a311-ec76af9d47e2",
+                "0ba17313-30f7-4726-b4e4-77883492f09a",
+                "0f1a290c-7133-494a-a334-4f5c57577d45",
+                "100f6714-285e-4dec-979f-c1d71a942b9d",
+                "14aa1747-008c-439d-ad6a-f086857b4d28",
+                "1fb2e8ad-e750-425a-aeca-133789ba236a",
+                "232d2094-1714-45a4-97bf-7114d363e41d",
+                "265d834b-584d-4ced-b1d2-9b0b5f60901a",
+                "27982541-163d-4d84-b5a3-b8a4a0d2f719",
+                "2f95833e-a770-488b-9dfa-d9ce97852c76",
+                "305e6813-dbeb-4362-8434-f97909c68da8",
+                "3194d38b-81ab-49c9-b565-e31a4d881f44",
+                "323aca92-c75f-4efe-bc8a-7fb82f794175",
+                "37c2d0f5-22fe-4340-a790-057ee6cefe2f",
+                "3c6b7a2e-3d6f-48a4-81c0-cacca2deb881",
+                "3f8debf3-6266-47c2-a293-d80910bfcc5e",
+                "45787db6-95c7-43a8-89fa-22eb9b29848e",
+                "49899854-747c-4236-8b68-11f320da4655",
+                "4d9983d5-54de-4fc9-b784-389631c56c6a",
+                "54e672a7-6697-4a8b-91cd-eccb330cf89c",
+                "567bbd01-4be1-477f-a580-3534a08a4353",
+                "6455d6c3-6e83-4b77-8a7c-ede5fe681b34",
+                "6ac1a7e9-d3e0-4fa2-b481-8ceb89205734",
+                "781e62d9-8fc6-4bdf-87c1-a67d731c06dc",
+                "7a45478d-685c-4b91-acec-54aaeea7b356",
+                "7fe5c22f-bad1-4d33-9e1c-f5f16430c04e",
+                "82e8bacc-df0a-42e9-a7e5-8b3f1c64e580",
+                "82ec18a0-84cd-42bf-a2e4-51a97f4a3c6e",
+                "83ca94ca-d00c-4794-b9ee-89b3393a91a5",
+                "847a6778-eed9-4554-a3d1-2c78669b260a",
+                "88059528-4481-4f30-b853-32a65373289a",
+                "92160f57-4fd0-47a8-b78f-9adebcdd2e18",
+                "9601b487-3f68-4f30-8187-0542a89ee238",
+                "9da2be7d-9baf-4193-91af-8e7547776b7b",
+                "9e1e5b31-a363-40ad-8ef5-31de19f8eec2",
+                "a751dcbe-3c55-418a-80dc-14458f663d4d",
+                "ada78d9f-57c0-48b2-831c-1fc41ee78b35",
+                "b19c2ac2-4a87-4748-88e0-546f3f2b3add",
+                "b58de40c-0576-4004-be46-0f30c240f5ac",
+                "b7017526-6cba-4f7e-941b-ca3e35c8ca92",
+                "bb2385bf-23b4-483c-9fe1-3df73821b275",
+                "bb62248e-d281-4fa7-8a0b-40b14164cc81",
+                "bf633aad-670e-4796-8a63-ee2b90664152",
+                "cd96ee43-580c-4506-bd1e-08af68877b6c",
+                "dc4fc6e5-484a-412d-9dad-848b7cb54688",
+                "dc5321bc-bf9a-4b23-a996-f78f38a085a1",
+                "dd8658c3-2232-4083-8cbb-28e4b40c1490",
+                "e03140d0-3208-4035-a84f-d4ce63d3f029",
+                "e16c940f-4ad4-408c-b1d2-0ab70ebdd41e",
+                "e63d6e98-95d7-49ef-b684-883a497f3041",
+                "f23928c3-c5be-4306-b83f-336aa048d3e3",
+                "f866ac2c-4e17-44a0-adf2-dfb6ab5a2e22",
+                "f90e3f86-1359-44c0-a19e-3f46b3d4435c",
+                "fbce853b-8de5-47f7-be69-704bb6bc6b33"
+              ],
+              "sample_urls": [
+                "https://www.bilgi.edu.tr/upload/undergraduate-student-handbook/",
+                "https://www.bilgi.edu.tr/upload/graduate-student-handbook/",
+                "https://www.bilgi.edu.tr/upload/graduate-student-handbook/",
+                "https://www.bilgi.edu.tr/upload/undergraduate-student-handbook/",
+                "https://www.bilgi.edu.tr/upload/undergraduate-student-handbook/"
+              ],
+              "group_ids": [
+                18
+              ],
+              "sources": "regulation_targeted",
+              "quality_score": 0.95,
+              "representative_titles": [
+                "2022-2023 Undergraduate Student Handbook-Revised",
+                "2022-2023 Graduate-Student-Handbook",
+                "2022-2023 Graduate-Student-Handbook",
+                "2022-2023 Undergraduate Student Handbook-Revised",
+                "2022-2023 Undergraduate Student Handbook-Revised"
+              ]
+            },
+            "Student Handbooks And Financial Procedures": {
+              "doc_count": 54,
+              "doc_ids": [
+                "0156413e-0c8a-4483-871a-8ad12cb27287",
+                "042f5453-42c1-4814-ab4f-ad2de4a25608",
+                "0afe85aa-5fbc-4cf3-9a73-48425b355d4d",
+                "117af159-6629-4c40-9dc4-e002c8a6904c",
+                "14fefbbc-edd4-4942-b588-bb01e5876fb4",
+                "1847d3e8-c739-4975-85df-35054dac9718",
+                "1c9625ba-44d0-4977-bfe1-6771cd5bd2a6",
+                "207f3615-d9bf-4349-b087-23e86ad3ef20",
+                "240c0f81-6634-404a-ad2d-e317bbd8b11d",
+                "25d602be-aaad-484a-94eb-85fdbf32dd02",
+                "263807e2-b119-4a2e-8f99-5803dd5510ad",
+                "2baae365-dfcc-41d5-85ad-e7ce2e47b736",
+                "2f64cb37-0370-463e-86d8-302dabf557cf",
+                "340c588d-5320-468d-af87-a8e2b3edb74f",
+                "40dc5184-7888-4a51-b505-51be7eded8f7",
+                "466ca667-a2db-4510-b9c2-21232727c6d6",
+                "59793408-416d-4067-8f19-8fd957053f17",
+                "5ebe2125-8687-4f6d-8b62-77749dc47603",
+                "60e37ee0-187d-4460-82a0-ac3cdaba5fa8",
+                "611fcbd1-ad70-47bd-8751-faa4e3bdc675",
+                "62366187-99cf-4249-84e8-b2caacd6bfa8",
+                "6318438c-703a-408b-91fd-5f455f951580",
+                "69c9f932-22eb-4bf0-978e-eff16bbd55c8",
+                "6bdc3983-86b1-4db4-a6bc-df4b3610203b",
+                "6fa20b92-52e5-4881-9a17-37ce2acb31f7",
+                "753b9af7-7801-413a-b9ea-5fdb036ae49c",
+                "7e303be1-e906-4ac7-ba7c-dc6576df717a",
+                "85c33026-a02b-4069-947e-3afb4013d78f",
+                "88ea9191-0d73-4dbb-ace2-9eefef0d245f",
+                "8f0260ba-97dd-4a51-ae2d-53bc9f9c03fa",
+                "93502bff-032a-4b03-9deb-6221c6029965",
+                "a92092b6-1963-4a7a-871f-61d17c67db47",
+                "a976c28f-ec61-419f-b828-40786f602882",
+                "ac6d7f84-27b5-492a-9eff-6f3fc87721f7",
+                "adb03faa-c84c-4e4d-9635-f0664219697f",
+                "b81dc99e-3627-48da-93e0-b5727f924878",
+                "bb83dd97-2a58-4d98-b2ab-f6d50ca13255",
+                "bc75c045-c2ea-498b-8557-26d90250d103",
+                "bd35fb03-6a88-4b5d-819d-7f365eadc812",
+                "c26bd376-4e58-4113-9008-640ae71fafa6",
+                "c790db26-d012-40fd-a0fc-5bf496b16854",
+                "c8aa5bbf-2e4b-4c92-b285-d885588785f1",
+                "ced4917e-ad02-4db6-94c2-c26a420c19ca",
+                "cf33c4c3-fced-44f1-940f-738f1becfbbe",
+                "d8b5dc80-a9de-4d7e-af33-16b0fcef4532",
+                "e109a9cc-5d93-4a58-a823-79558b9a877a",
+                "e55e6b6f-153b-4854-b640-b0c05313da5d",
+                "e86303b0-c214-4d2b-9b63-18d28702f5a2",
+                "eb8088ce-04ee-4f84-8b23-e5f96588da5e",
+                "ebe70ba0-e8e8-40fd-ab91-5b8a654e7525",
+                "ef4d4d2b-67f1-493b-97b2-995fb6cf06b2",
+                "efe26bb6-b38c-469a-968b-f5541808ebf9",
+                "f0eaadb1-e42e-437d-8c6e-f7e8e753a533",
+                "f859aec8-7350-4036-ba98-f604ad44d55b"
+              ],
+              "sample_urls": [
+                "https://www.bilgi.edu.tr/upload/undergraduate-student-handbook/",
+                "https://www.bilgi.edu.tr/upload/undergraduate-student-handbook/",
+                "https://www.bilgi.edu.tr/media/uploads/2023/08/24/bursvedestekprogramlariyonergesi.pdf",
+                "https://www.bilgi.edu.tr/upload/undergraduate-student-handbook/",
+                "https://www.bilgi.edu.tr/media/uploads/2022/03/04/lisansustu_mali_usul_ve_esaslar_21_2.pdf"
+              ],
+              "group_ids": [
+                8
+              ],
+              "sources": "regulation_targeted",
+              "quality_score": 0.85,
+              "representative_titles": [
+                "2022-2023 Undergraduate Student Handbook-Revised",
+                "2022-2023 Undergraduate Student Handbook-Revised",
+                "Bursvedestekprogramlariyonergesi",
+                "2022-2023 Undergraduate Student Handbook-Revised",
+                "Lisansustu Mali Usul Ve Esaslar 21 2"
+              ]
+            },
+            "Graduate And Undergraduate Handbooks": {
+              "doc_count": 44,
+              "doc_ids": [
+                "069dcba2-d677-44e6-8603-6ca8939f48ee",
+                "06fd6534-8156-4419-b2b2-33b3291d2be6",
+                "0e8bf2e4-7c9b-45c7-ae6f-759936324863",
+                "17d50f8d-c5d2-40b1-9090-0d44fe5bbce3",
+                "18b7ba08-35d2-488c-88a7-c752c5274e63",
+                "2ba0ecf1-6d26-4d4b-9589-667a67cc9eb5",
+                "2f6990f3-a743-4b45-aae4-10ef639675d0",
+                "42dd5800-c16b-42f3-be03-af5a6d3f46fe",
+                "4e0d5891-f2a4-4848-90f9-3f3a4375d4de",
+                "4f9ce9dc-30bd-49f9-b64c-5722a0661749",
+                "5b0fa85d-f983-4fe4-8de6-ba20386a4f65",
+                "5c31e3ad-3e4c-4c5c-ac3a-94b898bd6a3a",
+                "61958986-df26-44cd-abd6-2077be5b3f4f",
+                "650493a2-a152-4029-9a53-054ffe243ef8",
+                "7299f1b7-4a6f-4f33-b584-bc73d100ed57",
+                "7cbbe55f-27e7-4daa-b5e7-4d58ee111dba",
+                "7de469ef-8078-4d6b-8ec8-6588bed51454",
+                "7f101a0d-d812-48ec-b25d-6e84c69a1f51",
+                "804d34c6-df7d-41c9-9605-3b24090fe4e8",
+                "84f9be0c-9aab-46de-b3d5-aeadd20e912e",
+                "898e04bf-f9e7-4977-a329-44fa112dcdf3",
+                "8e55265e-4b9d-407d-8ec6-414658958158",
+                "8ed6a018-d7ec-4cd2-8ada-377561b23ac2",
+                "9fb809b8-1086-49c5-a437-685a80f658c9",
+                "a303b132-b579-4313-a2fe-27346a561cbf",
+                "b0dd1b08-a5fd-4f77-a105-a07663ccee42",
+                "b15e1a02-f8b2-4fcc-b20b-6dad02149745",
+                "b3d678ad-1bab-417b-b841-4a358d9907af",
+                "b57949dc-5f8f-46c1-a2f2-8e874c9a7da4",
+                "b64b7f36-29e5-4b9f-93ef-4b506b319272",
+                "c4f664eb-b73e-4c1e-a45c-2bad6fff3fe0",
+                "cfb185df-0fa9-4eba-97ec-ed506d2d4ac7",
+                "d1379afe-b618-4f22-bc86-4637095d6098",
+                "de030893-ac29-4d5c-8a89-ad4979994aa8",
+                "e0f7d6b2-ebdf-4225-b71d-94d5edfe8059",
+                "e4c2e9d6-026b-4d7b-84f0-34ac1da87761",
+                "e98bc3e1-a223-4ab8-8006-e854c025025e",
+                "ed179c14-d25b-4f79-9465-d617a8a2a422",
+                "eeebfe9b-b9c5-41fb-8cdc-24b2cdde5c7f",
+                "efd9aff6-5852-440f-9518-d771ef0f6eaf",
+                "f00152a1-85d4-4c53-ba46-345d38c460ea",
+                "f665691e-f114-4f8e-96a2-3d5a33dcc904",
+                "f81b8fbd-0629-4391-9954-dc2b02ccb52f",
+                "f9585261-14a7-4b92-87a6-185fcf1c1e56"
+              ],
+              "sample_urls": [
+                "https://www.bilgi.edu.tr/media/uploads/2023/04/28/kesisimsel-ve-disiplinlerarasi-perspektifler-degerlendirme-raporu-bilgi-secbir.pdf",
+                "https://www.bilgi.edu.tr/upload/gorevli-ogrenci-programi-ogrenci-calistirma-usul-ve-esaslari/",
+                "https://www.bilgi.edu.tr/upload/graduate-student-handbook/",
+                "https://www.bilgi.edu.tr/upload/graduate-student-handbook/",
+                "https://www.bilgi.edu.tr/upload/undergraduate-student-handbook/"
+              ],
+              "group_ids": [
+                5
+              ],
+              "sources": "regulation_targeted",
+              "quality_score": 0.85,
+              "representative_titles": [
+                "Kesisimsel Ve Disiplinlerarasi Perspektifler Degerlendirme Raporu Bilgi Secbir",
+                "Gorevli Ogrenci Programi Ogrenci Calistirma Usul Ve Esaslari",
+                "2022-2023 Graduate-Student-Handbook",
+                "2022-2023 Graduate-Student-Handbook",
+                "2022-2023 Undergraduate Student Handbook-Revised"
+              ]
+            },
+            "Student Handbooks General Policies": {
+              "doc_count": 37,
+              "doc_ids": [
+                "098dd4bf-c7b0-4a1c-b27a-43af5d252312",
+                "0cedc1b2-6db9-4e62-aa67-f730054e94f5",
+                "0e1472ae-eeab-4eb3-9683-505aa15f73a3",
+                "21591ad6-1e9b-42fc-8203-72da6c28ae79",
+                "3924ea9d-7f3a-416d-834c-5a5d1b1c5cde",
+                "397d6584-3aa5-4df8-802a-11d7bbf85587",
+                "45cc5ef5-7a7d-4333-a193-0872005bc9ba",
+                "4f120969-12cc-491e-bdf1-2ffefa0e3a77",
+                "5215e232-7722-43b2-b6a7-e4d4f2a5645d",
+                "555a48a0-b4db-4b0e-b739-c997a8bf17e9",
+                "5c84f460-171a-43d6-ab90-50399472eda8",
+                "6ad3df33-18b9-4ee4-b8d2-28802e60e584",
+                "7075af11-b1d2-46db-bd66-be35a21077b0",
+                "72d0b876-31fe-40ef-bf72-76356b8b5af1",
+                "76cdb65e-c223-417b-bc2c-6e38bd727fe0",
+                "7a52e8ed-f3a6-4f0c-9404-759b828c18fb",
+                "8ecb189d-9247-48f3-b293-bbc3246af77b",
+                "9252b68b-0269-4678-a5c4-ba1a2b17868d",
+                "952e6e8d-6c5e-4864-aec6-37e1c4ee55d5",
+                "98cc762a-e1d4-47b6-a8c7-d9768aeddf84",
+                "9ad33896-0b9b-40a0-a19a-eeb9dc677703",
+                "9b936906-e1a4-420e-a5d3-04dd823ce906",
+                "ab96f4d2-1ca1-4c24-9c61-72c2502448ad",
+                "b5cbe791-6419-4c57-8d70-f1ebef008b0f",
+                "b75b5561-9fee-489f-9336-870aef7b876f",
+                "c75b29ff-cca7-46e7-92c7-36930f0c34e8",
+                "cfb0d30a-77d7-4798-9285-2f327ae917b1",
+                "d88c1218-4712-41df-8e64-dee8c95a0c8f",
+                "dc7c388c-ae98-4e9d-93f5-6638ef477311",
+                "e63f370e-2124-4f37-9e88-7a3127ce2d1e",
+                "e755e4d7-802c-4b6c-9dca-11500bd0bebe",
+                "ec63c096-86d0-4b25-91ca-3e033046fdfb",
+                "ec80de8d-f0d0-4fa8-9354-98d17381e54d",
+                "ef43c061-0c2d-4ec0-8759-2dc59d2fdf91",
+                "f20165f0-dbdd-4b3e-a80f-cc2f28673851",
+                "f5d955c0-7a07-4ca7-a934-b8813409175b",
+                "fbf14d64-1a27-4840-acaa-41b25d4eeec5"
+              ],
+              "sample_urls": [
+                "https://www.bilgi.edu.tr/media/uploads/2023/04/28/kesisimsel-ve-disiplinlerarasi-perspektifler-degerlendirme-raporu-bilgi-secbir.pdf",
+                "https://www.bilgi.edu.tr/upload/undergraduate-student-handbook/",
+                "https://www.bilgi.edu.tr/upload/graduate-student-handbook/",
+                "https://www.bilgi.edu.tr/upload/undergraduate-student-handbook/",
+                "https://www.bilgi.edu.tr/upload/graduate-student-handbook/"
+              ],
+              "group_ids": [
+                20
+              ],
+              "sources": "regulation_targeted",
+              "quality_score": 0.88,
+              "representative_titles": [
+                "Kesisimsel Ve Disiplinlerarasi Perspektifler Degerlendirme Raporu Bilgi Secbir",
+                "2022-2023 Undergraduate Student Handbook-Revised",
+                "2022-2023 Graduate-Student-Handbook",
+                "2022-2023 Undergraduate Student Handbook-Revised",
+                "2022-2023 Graduate-Student-Handbook"
+              ]
+            },
+            "Student Handbooks Academic Procedures": {
+              "doc_count": 35,
+              "doc_ids": [
+                "032e4148-a165-47f9-84ff-ded58559c16e",
+                "0c861772-d41d-4a9d-89c2-b73668ad562c",
+                "190ba544-cf0c-4d3b-b3fb-8e3cd2c4de13",
+                "26c9f7db-c022-4cf0-bdf1-67a5aef978db",
+                "2a817b75-4c56-4312-8533-de8f85f76600",
+                "2e5c9d93-89ce-4b3d-b7b1-b9af3a6a746d",
+                "324e176c-bc5d-42e9-930e-73598247bbee",
+                "34b8df2f-5110-4e51-8743-ff0c8b14ca39",
+                "3ac53075-9a5b-4247-baee-fff018c21a36",
+                "49aea27b-b697-44d8-a2b0-cc9ead042ac5",
+                "4f1814b4-1ecf-4f15-8ac6-6aebc5c5a9bb",
+                "50dd9dc9-6441-40c6-a36a-bf8e8783e718",
+                "553b3821-e47f-4b75-811d-3de93db3d0f7",
+                "61762c0d-db4c-4f72-91af-80d84c31155e",
+                "68d89227-5112-43c4-b7a1-30e2c500656c",
+                "6e2b4948-92cb-4f68-948c-e301a023dbbb",
+                "71919a37-a423-4e0d-923e-ebe1c8b77b42",
+                "71d8eb05-0b80-4b06-8312-c4434af00d96",
+                "7450e5cd-0c08-4da4-af7d-72b454480fc2",
+                "76529b75-4f82-4ef0-9f77-4093a24a74d9",
+                "816b13fc-e7bc-409e-8213-f550ab32e389",
+                "87b02f61-86ef-4477-8417-f4f3f354aa6a",
+                "8c7c58b1-3edb-4cfb-85fe-9776e76c83f0",
+                "93e2fa0e-1831-431f-8162-d318c0341f01",
+                "93e3a8de-0011-4998-9c77-74d4dc7d6a8d",
+                "988d49d3-3490-4fdd-b650-e944b98cd4a5",
+                "a093c2ca-99fc-4d51-8de7-c99c467871f7",
+                "a462e39d-3aa7-42c8-9fca-da543f5819c6",
+                "baa8ed5e-6b4e-44b2-9ee2-b9f4b3e1149a",
+                "bce574ce-2054-4645-aed8-97c7b8d5f297",
+                "bd7e16a8-9946-4aeb-96a7-d79e47ada581",
+                "cce5eb16-3856-4fef-93f0-85ca46642bbb",
+                "e1bf4386-4c9e-46cc-b3ee-5690b4412929",
+                "ef7058bb-3216-48fd-9c99-7b84dd6f41a2",
+                "f1707929-8586-40c7-8ade-a4842d80480f"
+              ],
+              "sample_urls": [
+                "https://www.bilgi.edu.tr/upload/graduate-student-handbook/",
+                "https://www.bilgi.edu.tr/upload/undergraduate-student-handbook/",
+                "https://www.bilgi.edu.tr/upload/undergraduate-student-handbook/",
+                "https://www.bilgi.edu.tr/upload/graduate-student-handbook/",
+                "https://www.bilgi.edu.tr/upload/graduate-student-handbook/"
+              ],
+              "group_ids": [
+                23
+              ],
+              "sources": "regulation_targeted",
+              "quality_score": 0.9,
+              "representative_titles": [
+                "2022-2023 Graduate-Student-Handbook",
+                "2022-2023 Undergraduate Student Handbook-Revised",
+                "2022-2023 Undergraduate Student Handbook-Revised",
+                "2022-2023 Graduate-Student-Handbook",
+                "2022-2023 Graduate-Student-Handbook"
+              ]
+            },
+            "Student Handbooks Core Sections": {
+              "doc_count": 28,
+              "doc_ids": [
+                "1c4d1869-47f9-44a2-bbf3-1643e4fdc864",
+                "2373722c-f681-4143-a785-cc8e2c9f30e4",
+                "27028ef7-dfa2-4ae9-bb1d-df7c934f6904",
+                "276e5530-f31d-46f2-acb0-30b34a175f74",
+                "30c6fc15-a36a-4f6e-91a3-f3533e16199d",
+                "411e5524-3c9d-4bf6-9bf3-9814a936818a",
+                "42894d4c-404f-4d64-a107-fe38cbd2d932",
+                "49967be7-3fda-4d52-a52f-aaa07c17f452",
+                "50e2cd4a-a833-4318-98a6-39efa91e56f7",
+                "5711d7f8-1797-4e09-af7e-b3cb116589b1",
+                "5af7b376-d62c-46fe-a91f-5c79a24944fb",
+                "69290c15-dd83-4096-95fc-bbfbb562d901",
+                "77704e26-685a-4ad7-a659-f177f4089da9",
+                "80678d89-b8b6-459e-abda-dc4d0a81c5bb",
+                "88caa370-2f98-47ca-a587-5595dd03b2aa",
+                "8c1ca13e-bb41-4aa8-9462-da34fe46ed87",
+                "8db71f9f-b0f3-4e21-85ca-07f45e6da8ee",
+                "aab58738-45d6-48b1-9358-6a12a8098b34",
+                "b88d9c23-ba44-467b-9ccb-a768fb8b1fc1",
+                "c9f1e8b6-233e-46ee-bad8-b2adb2df166a",
+                "d78f9ce4-5efd-47be-80d1-faabb6c0a29b",
+                "dfe0d45c-2a32-44fb-bf2b-f8927461eef3",
+                "e8b2e6c9-fb27-44b0-91ae-af9da7c6946c",
+                "f1c27598-c419-4039-9fed-13ea5cad8247",
+                "f68a662c-f69a-4ab1-b7ee-ab49696b45ff",
+                "f7623944-8e8d-4435-9c9e-5347b0b893ea",
+                "fae3265e-aa03-434b-bbb5-b30547927910",
+                "fc415c8f-9317-4b07-b135-0521623144f1"
+              ],
+              "sample_urls": [
+                "https://www.bilgi.edu.tr/upload/undergraduate-student-handbook/",
+                "https://www.bilgi.edu.tr/upload/graduate-student-handbook/",
+                "https://www.bilgi.edu.tr/upload/graduate-student-handbook/",
+                "https://www.bilgi.edu.tr/upload/graduate-student-handbook/",
+                "https://www.bilgi.edu.tr/upload/graduate-student-handbook/"
+              ],
+              "group_ids": [
+                26
+              ],
+              "sources": "regulation_targeted",
+              "quality_score": 0.9,
+              "representative_titles": [
+                "2022-2023 Undergraduate Student Handbook-Revised",
+                "2022-2023 Graduate-Student-Handbook",
+                "2022-2023 Graduate-Student-Handbook",
+                "2022-2023 Graduate-Student-Handbook",
+                "2022-2023 Graduate-Student-Handbook"
+              ]
+            },
+            "Graduate Student Handbook Sections": {
+              "doc_count": 18,
+              "doc_ids": [
+                "15f64973-64b0-406e-bce7-d5bbf0af5b1f",
+                "2bd48428-eb23-4294-b648-f2515df616a8",
+                "460f9f73-ae24-4ddb-807f-c1a59b51e9b0",
+                "4c962326-5ad2-436b-9424-1c94603d6fb7",
+                "4f04099f-f164-4e1f-8461-0477eed7a059",
+                "563a987a-9cef-4f9d-861b-c0038a6833dc",
+                "5ae5392b-dab4-409f-a936-b921059492ad",
+                "68779c92-1a64-4ee0-a0f1-dd821abfada4",
+                "926d7281-556f-4d79-86b3-f9ef43c40aba",
+                "a7499d58-e803-4629-aaf6-2f6fb93436f9",
+                "b3e69bff-7e67-40ce-bb87-1d21be2fb794",
+                "bad4a258-b105-447a-af9c-23410113990f",
+                "bb19c4a8-f340-43f0-9e04-089ddfd5f229",
+                "c31c0118-a4c4-4079-aea9-fb74709c7533",
+                "d21087ca-79e4-4925-8904-94ea625595c9",
+                "d49202f1-41d5-4f23-a272-37a918302e1f",
+                "e7d410da-4e8c-4b46-8209-5ab4448a2180",
+                "fa908e18-7ca3-4c00-bc9b-f4aa2fed50a0"
+              ],
+              "sample_urls": [
+                "https://www.bilgi.edu.tr/upload/graduate-student-handbook/",
+                "https://www.bilgi.edu.tr/upload/undergraduate-student-handbook/",
+                "https://www.bilgi.edu.tr/upload/graduate-student-handbook/",
+                "https://www.bilgi.edu.tr/upload/graduate-student-handbook/",
+                "https://www.bilgi.edu.tr/upload/graduate-student-handbook/"
+              ],
+              "group_ids": [
+                14
+              ],
+              "sources": "regulation_targeted",
+              "quality_score": 0.9,
+              "representative_titles": [
+                "2022-2023 Graduate-Student-Handbook",
+                "2022-2023 Undergraduate Student Handbook-Revised",
+                "2022-2023 Graduate-Student-Handbook",
+                "2022-2023 Graduate-Student-Handbook",
+                "2022-2023 Graduate-Student-Handbook"
+              ]
+            },
+            "Graduate Undergraduate Handbook Overview": {
+              "doc_count": 7,
+              "doc_ids": [
+                "39af8fbb-7bda-4840-9ceb-7ba6b9a1df3a",
+                "63caa7d5-63f1-471c-afc6-25ef74bfb8c8",
+                "aa675e40-2be4-4512-827b-76b649ec63a9",
+                "d0800320-be49-4aa4-ac58-d8793c8ad9bc",
+                "e172b7de-c790-4d3c-a143-2b148f5be745",
+                "e83766da-8839-439f-a111-6798e5752205",
+                "f812d93d-cd73-4f30-a16e-f4fdbb2bd5c7"
+              ],
+              "sample_urls": [
+                "https://www.bilgi.edu.tr/upload/graduate-student-handbook/",
+                "https://www.bilgi.edu.tr/upload/undergraduate-student-handbook/",
+                "https://www.bilgi.edu.tr/upload/graduate-student-handbook/",
+                "https://www.bilgi.edu.tr/upload/graduate-student-handbook/",
+                "https://www.bilgi.edu.tr/upload/graduate-student-handbook/"
+              ],
+              "group_ids": [
+                25
+              ],
+              "sources": "regulation_targeted",
+              "quality_score": 0.88,
+              "representative_titles": [
+                "2022-2023 Graduate-Student-Handbook",
+                "2022-2023 Undergraduate Student Handbook-Revised",
+                "2022-2023 Graduate-Student-Handbook",
+                "2022-2023 Graduate-Student-Handbook",
+                "2022-2023 Graduate-Student-Handbook"
+              ]
+            }
+          }
+        },
+        "internship_student_work_regulations": {
+          "doc_count": 77,
+          "leaves": {
+            "Internship And Student Work Procedures": {
+              "doc_count": 47,
+              "doc_ids": [
+                "014a8cc8-54f5-4d3d-b75d-a04052c38609",
+                "022650ee-32d5-4822-bdfb-c7de7dafcc9e",
+                "0b2a7094-531a-4246-b3ad-2025780dc9e0",
+                "0dfd5777-6e0e-4a72-8490-0ef895c2128e",
+                "14edaa1d-fb86-4d7d-97b6-fddc2f57d92a",
+                "1572218a-976d-46b7-82c5-ba35b71c5a7f",
+                "1ad3e33a-60ac-4992-89d2-b7dea3ede064",
+                "1e79767f-406e-47f5-a9da-adfe2f666d60",
+                "238ce263-5474-4f53-8927-37d47000fd74",
+                "254dbb81-554f-4f43-b4cd-e6a4776780e0",
+                "3f57b0e9-7402-406d-b15d-94902a3489ed",
+                "433d051c-c05c-4b1d-a60e-662a7ad75741",
+                "4f0c821a-b591-4bf8-95c9-0050ac8e46ec",
+                "558759e2-581b-48a9-a891-b399d1c5755f",
+                "5b30e685-fe3f-4286-b717-d46eec7d2e04",
+                "5e8dd774-28fd-4597-a231-163f5b69e860",
+                "605bc533-9ef9-497c-a2cc-12b8e7bcae70",
+                "69c9e8c2-d684-435a-9481-6e6b8c0d4fdd",
+                "6c9adc82-dd04-42bf-9cff-92886f80a2c2",
+                "6cf8ec17-9bb4-4b1f-95e1-ba1a0bcbd2f3",
+                "6fe85ebd-6d5d-4561-ab4d-58507260267e",
+                "70c7c328-4744-4572-b30b-48ca749cac39",
+                "71fd1880-6481-4bac-8bff-8b8d98bfc992",
+                "74ff464e-b752-4155-992e-de7c3789fd99",
+                "75f7ebff-6b9e-4ab6-876a-0a9c673f8531",
+                "766181e8-0d40-4c5b-af9a-fe92c281681b",
+                "77929690-1060-4728-ac9b-235944545af6",
+                "7d099801-272d-4f01-bd80-5ab03cd09288",
+                "8a7c3f7d-4103-4113-9b7c-02ed6b997577",
+                "8f8146ae-aebb-4b72-a9c9-010521095d4f",
+                "908e71a7-1042-482f-af13-cb43288aec0b",
+                "988a5bba-77d7-4843-a37c-07c7ca13f230",
+                "a2ba73f9-edf0-4d5c-a746-58ba8ba5623a",
+                "a5ab07f8-72f6-439b-8748-fe8622c598cd",
+                "a6bb773e-7ceb-4d93-bece-dc222acdbe03",
+                "aa46cbb0-913c-4d57-b968-9df09cb01c62",
+                "b31b1b93-426c-4c27-a07b-b81c642f3f74",
+                "bcb6baaf-c3f3-494f-89e4-7e5cfcf53ef1",
+                "be846cb8-a241-4d6b-aa5b-9a7ee63e2763",
+                "ca6b63ca-0f34-4455-9964-fa76600c0cfc",
+                "ca7d7dc9-39fa-4e59-9747-59f66d2b2648",
+                "d28e98cb-d5fe-4e71-bc90-5dc24579b3a8",
+                "db4c077d-9058-4679-9984-8fb4d0dafd38",
+                "dee1b6a0-400c-4c0f-8760-061be49e0c34",
+                "e061d1ff-51f5-403e-a5ff-f5ece3b92492",
+                "e13e1fcc-985a-4c71-8f0b-a5ed6317c1c8",
+                "efead5a1-2ef3-41ba-bbdd-2307fd9e74e8"
+              ],
+              "sample_urls": [
+                "https://www.bilgi.edu.tr/upload/undergraduate-student-handbook/",
+                "https://www.bilgi.edu.tr/media/uploads/2023/04/28/kesisimsel-ve-disiplinlerarasi-perspektifler-degerlendirme-raporu-bilgi-secbir.pdf",
+                "https://www.bilgi.edu.tr/media/uploads/2018/08/09/bilgi-procedures-and-principles-on-the-education-training-and-examination-precautions-for-the-disabled-students.pdf",
+                "https://www.bilgi.edu.tr/media/uploads/2023/11/29/staj-kilavuzu.pdf",
+                "https://www.bilgi.edu.tr/upload/gorevli-ogrenci-programi-ogrenci-calistirma-usul-ve-esaslari/"
+              ],
+              "group_ids": [
+                4
+              ],
+              "sources": "regulation_targeted",
+              "quality_score": 0.8,
+              "representative_titles": [
+                "2022-2023 Undergraduate Student Handbook-Revised",
+                "Kesisimsel Ve Disiplinlerarasi Perspektifler Degerlendirme Raporu Bilgi Secbir",
+                "ENGELSİZ BİLGİ BİRİMİNİN ÇALIŞMA USUL VE ESASLARI",
+                "Staj Kilavuzu",
+                "Gorevli Ogrenci Programi Ogrenci Calistirma Usul Ve Esaslari"
+              ]
+            },
+            "Internship Directive And Guide": {
+              "doc_count": 30,
+              "doc_ids": [
+                "0756e268-2b9a-49b6-87c3-4d3656d401cb",
+                "0ee233ca-d396-4c64-b06a-381621828f17",
+                "228e441e-e843-4ded-9b2a-6c2d5eb71374",
+                "4d0c7683-18f8-41c8-b5e7-f04b4cbbc422",
+                "4e0c4769-6817-4d67-8151-5b5721931392",
+                "502d11c9-d5a7-4b45-ab8f-5f3073027437",
+                "51ca119e-4a10-4a61-8fca-9664778d39fb",
+                "5b188aea-fccd-4848-95fb-f61b01383a9d",
+                "5f88d532-f55d-4b0a-8446-9e5100dc2f33",
+                "67dd67aa-586e-4628-9aa0-9af92e4ce61d",
+                "6c26cbfb-da26-4e59-b836-87641d464e2f",
+                "70a861c5-cbf1-43dd-8dd7-64e34360fe38",
+                "837e5b63-3458-4c8d-ad44-ae9f24aa9b50",
+                "8770df5d-bad1-4850-acd2-a9a6712dab2b",
+                "920ede65-1fd0-402c-9cce-d667955125cb",
+                "928f38ef-f050-4bef-9b39-b7468060acb3",
+                "92c58427-893d-48d2-b40f-9294dead116c",
+                "9781e4e0-b5ff-44e8-8399-44919d0b086e",
+                "a1dcb0f1-ff5f-493b-a950-78ed4442eb4f",
+                "aa70a4ea-63f0-4a3b-bb7e-699f4aa94580",
+                "b023f222-c75d-4bda-8a61-50d1d7f10dc9",
+                "b1d422ba-034f-4444-a6c6-23f23f8160cf",
+                "ca5a6418-9ce1-4cee-b3c0-7b488b449706",
+                "d2387b5a-46de-47b8-a1d1-a94139795e44",
+                "e0b5a241-2f74-43cb-9940-740c7baa604f",
+                "e430de7a-64a1-4fb0-9945-92f3f638a063",
+                "e46005ca-8f32-45fb-b817-b255305f1279",
+                "eec26634-b4e9-4855-9677-79f0c9c27f77",
+                "f8d849cf-026c-44cc-bf5b-c2db89974aa2",
+                "fa80342f-f7b8-4cc2-9b25-68de383e5b89"
+              ],
+              "sample_urls": [
+                "https://www.bilgi.edu.tr/media/uploads/2020/01/16/internship_directive.pdf",
+                "https://www.bilgi.edu.tr/media/uploads/2023/11/29/internship-guide.pdf",
+                "https://www.bilgi.edu.tr/media/uploads/2023/11/29/internship-guide.pdf",
+                "https://www.bilgi.edu.tr/media/uploads/2020/01/16/internship_directive.pdf",
+                "https://www.bilgi.edu.tr/media/uploads/2023/11/29/internship-guide.pdf"
+              ],
+              "group_ids": [
+                12
+              ],
+              "sources": "regulation_targeted",
+              "quality_score": 0.95,
+              "representative_titles": [
+                "Internship Directive",
+                "Internship Guide",
+                "Internship Guide",
+                "Internship Directive",
+                "Internship Guide"
+              ]
+            }
+          }
+        },
+        "disciplinary_regulations": {
+          "doc_count": 44,
+          "leaves": {
+            "Student Discipline Regulations": {
+              "doc_count": 44,
+              "doc_ids": [
+                "03aa2c9d-ad86-40b5-b087-38afe2ea7608",
+                "048b6985-5625-4295-9e25-25704cbe4eb2",
+                "0a127554-05f7-4ff9-9367-3c49ac126bd4",
+                "0b496080-984f-4500-b009-c91ecc8c529e",
+                "10d75e5a-816f-49da-937e-6c7b0f3b63b3",
+                "11d4f354-cae8-4839-861f-a57c9a213c2d",
+                "162d2d51-f1d3-45b0-8823-033d705f9658",
+                "1ea8daba-ab3a-4556-812f-225fb74e58ef",
+                "2b1ff2d9-b5a2-4e2f-8c9d-e7cf9ead3426",
+                "2b3083a7-422f-4abe-9199-bde4bd173c37",
+                "2eea06b9-681f-4945-af35-65737fe71010",
+                "44c2982d-aebe-4270-8b76-364f75a3bfc6",
+                "4ec4b8ea-03fe-43b3-b055-b06f177e9e27",
+                "510e3f66-2fd3-4ba7-818c-8f9c37d379e5",
+                "5922123c-658b-4d0f-aaf1-7b741e869699",
+                "5b7e153e-36b9-4738-be1a-f87797594632",
+                "5dc095af-9f87-47a3-aa9c-de90ffd90973",
+                "71994dc0-b739-4808-8bd3-31201ad2f968",
+                "74cedb1f-7abb-4484-9350-49f3a7d62cdf",
+                "7e2c3b0a-ceb7-4160-abb2-d85e034d68e4",
+                "87fffd8a-c835-49f0-8445-2590446474bf",
+                "8bdf2e57-0bc7-4dd2-a53a-6a3f74e65b7f",
+                "8e10d249-22f8-44ec-9cef-542e7225dd8d",
+                "91ce9e2e-7817-48c8-abfb-131f4a087317",
+                "9404f508-626d-4992-bdfc-ecf0a8ac36c1",
+                "954f6bfd-dfe3-46c6-9464-3514403bef86",
+                "988f74d3-6bc8-45ab-838c-f795aa84bfa3",
+                "a86528ba-0cfe-4345-aa6f-94b53a7bf12c",
+                "b50a9cdc-2e8b-443f-a9d1-7746d0626944",
+                "b976078f-5246-4566-b722-6fcf8d664998",
+                "be1b55df-9174-4276-a72e-15bd83d770e3",
+                "c73b910c-89c2-4c68-9033-3077a7a6db1b",
+                "c987a6e0-dedd-418b-9b52-392be5e03764",
+                "cbdcc652-e17b-4312-ab27-be607f1c20ff",
+                "cce57e5f-edf8-48b0-936b-42f7c3ceecad",
+                "d0943998-3cfa-4102-aee1-f974937f1c2c",
+                "d2dacf73-a626-4606-a608-743cd33f70fc",
+                "d9a6b5fc-e531-434c-b033-cb7491032e79",
+                "e1758d8e-5dcc-4fed-9cc0-0ffa300d66aa",
+                "e2905ba8-3192-42ae-86f7-3b822cfef54e",
+                "e5038d23-544b-444a-a7c5-f7ad8a6d664e",
+                "e624d9de-de6a-4e2d-b39c-857addb25974",
+                "f089c541-0936-4fce-aadb-f90ab9623614",
+                "f79e7061-a99f-401f-8595-9d69755da437"
+              ],
+              "sample_urls": [
+                "https://www.bilgi.edu.tr/media/uploads/2019/01/07/yuksekogretimkurumlariogrencidisiplin-yonetmeligi.pdf",
+                "https://www.bilgi.edu.tr/media/uploads/2023/04/28/kesisimsel-ve-disiplinlerarasi-perspektifler-degerlendirme-raporu-bilgi-secbir.pdf",
+                "https://www.bilgi.edu.tr/media/uploads/2023/08/24/bursvedestekprogramlariyonergesi.pdf",
+                "https://www.bilgi.edu.tr/media/uploads/2019/01/07/yuksekogretimkurumlariogrencidisiplin-yonetmeligi.pdf",
+                "https://www.bilgi.edu.tr/media/uploads/2019/01/07/yuksekogretimkurumlariogrencidisiplin-yonetmeligi.pdf"
+              ],
+              "group_ids": [
+                2
+              ],
+              "sources": "regulation_targeted",
+              "quality_score": 0.9,
+              "representative_titles": [
+                "Yuksekogretimkurumlariogrencidisiplin Yonetmeligi",
+                "Kesisimsel Ve Disiplinlerarasi Perspektifler Degerlendirme Raporu Bilgi Secbir",
+                "Bursvedestekprogramlariyonergesi",
+                "Yuksekogretimkurumlariogrencidisiplin Yonetmeligi",
+                "Yuksekogretimkurumlariogrencidisiplin Yonetmeligi"
+              ]
+            }
+          }
+        },
+        "disability_accessibility_policy": {
+          "doc_count": 40,
+          "leaves": {
+            "Disability Unit Procedures And Policy": {
+              "doc_count": 40,
+              "doc_ids": [
+                "0af3fc94-ec51-4a75-86cc-eba32debcca9",
+                "0b4d1367-a131-43a6-aabb-60657f9f3a8b",
+                "13385d0d-b965-48ea-8da6-db5dc5b6403f",
+                "1b76dd5b-c1a0-4093-b515-759794040e65",
+                "20d874a6-772c-4d51-9bbe-89be65ebcca3",
+                "2479cdc0-535e-44fd-813e-34c41017397a",
+                "3074f91c-1ec4-4f28-aa02-6d0d0586f5ae",
+                "3989831a-95f9-4050-b5d0-7e24912bb72d",
+                "408b97f1-5732-4b89-bc67-0c8639aad79b",
+                "44b8b901-34d3-420a-b274-5ba6d8211993",
+                "49324814-277a-4c3b-8ce7-d5c3e63d9faf",
+                "5021d20c-890f-4241-aa2d-31031d623885",
+                "580f5a3e-e259-496d-ac97-3f93ca081de4",
+                "5a13e969-c4ae-4980-9246-4b4000afccba",
+                "5ae04470-b527-4c24-9cb7-8d7a78e1972f",
+                "5b80d2f9-7e4f-4397-8a8f-2a4df3e2774a",
+                "5c7c8393-4a8c-4b8b-9673-b70be30bec70",
+                "654a6091-5d08-46f3-9a49-117db3e592d6",
+                "6af6c179-2ed4-472c-8a25-3fde91fa212f",
+                "6e200826-f759-46ba-b49b-029f2c900980",
+                "6ffb7b54-5f84-4287-b7bf-89f13b8880be",
+                "836c6d91-3e93-41c1-ad37-9290d2214ba2",
+                "843dbce3-93c3-4965-b0ea-9871a25bf352",
+                "8b8339f7-8a56-4889-9681-6588aa15be90",
+                "90470bf8-334e-4236-a69e-9b8c8cf35830",
+                "94ca40f4-2e82-4923-b0e5-357d88f618b7",
+                "986ee0f7-c04a-4812-9d90-06d74d9b1429",
+                "98bd4d34-8c61-4d23-9892-248b40ea1fff",
+                "a485c608-710b-451b-bcc4-6c8eeca10a3c",
+                "a4a7dd53-c879-4ed2-b46b-340d3c10db44",
+                "a6156a69-5199-484e-868b-f758509532e5",
+                "ab2e276a-2bb8-41bc-9b29-ab2101d9886c",
+                "af4cf7ad-e7ad-42bf-82d2-1cef930e616d",
+                "d019eab6-6fe6-4a8e-a058-687e939ae93e",
+                "d38d9d98-f458-4a32-81fb-505c8560f167",
+                "d8004e2e-7ce7-4410-957c-a4b7ffb3772e",
+                "d847e746-3bfb-4708-b892-680a9352ec06",
+                "eef75331-b2a9-412e-a522-32f2a7c6bd87",
+                "ef4d7977-c0ee-4c7c-932b-0e00dda9daac",
+                "efcf67ec-fe68-4038-ad33-7b65774748a5"
+              ],
+              "sample_urls": [
+                "https://www.bilgi.edu.tr/media/uploads/2018/08/09/bilgi-procedures-and-principles-on-the-education-training-and-examination-precautions-for-the-disabled-students.pdf",
+                "https://www.bilgi.edu.tr/media/uploads/2018/10/03/istanbul-bilgi-university-disabled-students-unit-directive.pdf",
+                "https://www.bilgi.edu.tr/upload/engelli-ogrenci-birimi-yonergesi/",
+                "https://www.bilgi.edu.tr/media/uploads/2018/08/09/bilgi-procedures-and-principles-on-the-education-training-and-examination-precautions-for-the-disabled-students.pdf",
+                "https://www.bilgi.edu.tr/media/uploads/2018/10/03/istanbul-bilgi-university-disabled-students-unit-directive.pdf"
+              ],
+              "group_ids": [
+                1
+              ],
+              "sources": "regulation_targeted",
+              "quality_score": 0.95,
+              "representative_titles": [
+                "ENGELSİZ BİLGİ BİRİMİNİN ÇALIŞMA USUL VE ESASLARI",
+                "ENGELSİZ BİLGİ BİRİMİNİN ÇALIŞMA USUL VE ESASLARI",
+                "Engelli Öğrenci Birimi Yönergesi - İstanbul Bilgi Üniversitesi",
+                "ENGELSİZ BİLGİ BİRİMİNİN ÇALIŞMA USUL VE ESASLARI",
+                "ENGELSİZ BİLGİ BİRİMİNİN ÇALIŞMA USUL VE ESASLARI"
+              ]
+            }
+          }
+        },
+        "credit_transfer_lateral_entry": {
+          "doc_count": 37,
+          "leaves": {
+            "Faculty Decision And Credit Transfer Forms": {
+              "doc_count": 37,
+              "doc_ids": [
+                "06a37989-3179-415e-b4db-02de4251f5cb",
+                "0e730e84-052d-4882-96fa-3c9f2f9f69ca",
+                "11768a6f-bb47-4728-a170-7911e04c95f7",
+                "146d84dc-b07a-4728-8558-66ca0471cbca",
+                "15e6be52-0b13-41b4-8b77-858f438236a7",
+                "2893e79c-8c12-4f1a-a5e5-0b24899a173a",
+                "29b1b211-85c4-4ffa-aaeb-75831241d26b",
+                "31a80ddc-d563-45d0-acb5-88e8fa86b1e5",
+                "399ea87b-fbae-41c8-addd-4c79b3582c45",
+                "3d5623b0-a535-4627-8a67-bb037ae045cf",
+                "44666830-b817-4711-8b93-065c965d457c",
+                "493901a4-b072-4e65-8977-a481d3e2f792",
+                "4ecae7b3-03c5-495c-8104-55ce729e610b",
+                "530a9eaf-92a1-4911-bee1-7d7b52637b07",
+                "54879a77-7565-437e-9c75-27cdf3d4d5b9",
+                "561f1e8b-aeaa-49f6-bc9b-6029c852322c",
+                "6e6dd9a8-47ba-4bc2-a738-38aab8cae122",
+                "70aab782-b5b6-44db-b29a-f9db2de6e3f8",
+                "72a91659-5d5c-4fa5-8b3b-4249007846ef",
+                "7c524cbb-6098-466f-aab5-3db8f737d4fa",
+                "83628106-2815-4436-b220-3b185d5247dc",
+                "8a7c50d7-c632-4868-8b4b-b6ba473907f7",
+                "9ecea368-1184-4917-abc4-43f06079b3dd",
+                "a9552f8f-45e1-4732-b991-78ad389011fb",
+                "a97e0287-2ea6-48c7-b22e-6a75194a0aea",
+                "af9290c8-dd05-46da-9342-0116ec01572f",
+                "bd82b330-172a-4adc-8556-f0cfb6d9771d",
+                "c6acb400-73ce-4b0b-8a17-4de11dc2cc27",
+                "dce0f797-a2ad-4d5d-af23-dac4a66e117a",
+                "dd0e0519-2cf2-415a-87f2-8070587cfd62",
+                "e28966ad-1892-4f20-892f-e70c47fad5dc",
+                "e54f9900-2471-4890-9dd9-35dce38590d5",
+                "e7674d0a-5798-4181-82a1-c460a7fb102c",
+                "edadd963-44a4-4e9c-8a29-8f6a1ecc5a84",
+                "f189fc8c-e4f9-4e64-b216-995af7ab4bbd",
+                "f5c1709b-cacf-458e-88bb-5e9d3cc316ec",
+                "ff9f52f8-394e-418f-87c6-05721878e894"
+              ],
+              "sample_urls": [
+                "https://www.bilgi.edu.tr/media/uploads/2019/05/13/2019-2020-kredi-transfer-formu_lisans.pdf",
+                "https://www.bilgi.edu.tr/media/uploads/2025/04/29/lisansustu-kredi-transfer-formu.pdf",
+                "https://www.bilgi.edu.tr/media/uploads/2018/12/25/kredi-transfer-formu_ne0vikm_XpZRuTF.pdf",
+                "https://www.bilgi.edu.tr/media/uploads/2018/11/22/kredi-transfer-formu-lisans_395S49i.pdf",
+                "https://www.bilgi.edu.tr/media/uploads/2018/11/22/kredi-transfer-formu-yuksek-lisans.pdf"
+              ],
+              "group_ids": [
+                6
+              ],
+              "sources": "regulation_targeted",
+              "quality_score": 0.88,
+              "representative_titles": [
+                "Fakulte Karar Bildirim Formu",
+                "Fakulte Karar Bildirim Formu",
+                "Fakulte Karar Bildirim Formu",
+                "Kredi Transfer Formu Lisans",
+                "Kredi Transfer Formu Yuksek Lisans"
+              ]
+            }
+          }
+        },
+        "graduate_thesis_procedures": {
+          "doc_count": 58,
+          "leaves": {
+            "Graduation Project And Thesis Procedures": {
+              "doc_count": 33,
+              "doc_ids": [
+                "02e33090-db22-426c-9cde-225d7745b060",
+                "09aaa980-b834-4180-8ee4-18e2b7ff92b2",
+                "17a72d75-8d5d-410d-af7b-a4755090d54c",
+                "1ecc7537-5a9c-4d66-9abe-b2a5da46ba3a",
+                "2164fdf2-0891-4c8e-b726-329a3890a560",
+                "272ebe18-4095-46af-b0f6-3c3bf40be1db",
+                "274f9a8a-9cdd-4336-993e-335084971e4c",
+                "27b30951-1f2c-4a82-ac55-3a601db01960",
+                "2bf9322e-9c7c-4d98-a57d-a6b2711d025a",
+                "2cc02c66-4570-49ed-9d53-78401b3f5948",
+                "2e31d24c-317c-4fae-9519-faa5a6ec6078",
+                "406b425a-a04d-4163-84bc-b74f1d20d663",
+                "4428f70e-fd60-4ee5-b5fb-fd753f057f89",
+                "4a423863-6426-41b2-9427-bda3a574970c",
+                "532cc309-3bb9-44f9-b4fc-0e4b404789bf",
+                "760d2f60-41d0-404d-8338-b8aedfdceae3",
+                "7aa79957-bb33-4373-b8a6-1bc805ed18b3",
+                "7d8c8aa2-80e3-487b-89ff-a7f6e52e538e",
+                "7ef76e52-a20e-492f-8228-172968af3dc4",
+                "7f6b3462-061c-4182-9155-006e4a6b6dd5",
+                "813f37c6-68dc-4565-9b8a-475b8f8d86d1",
+                "8232e03e-e21b-43c7-b556-1d2e66ca42e9",
+                "8d1c57ce-e276-4b4a-9304-b3a8d7c58fa1",
+                "8d54ee6c-71f7-4232-8240-05c2e7fa0802",
+                "cb6d547e-e9d5-4800-b886-14fbc1874041",
+                "ce1ab9fd-cb0a-4065-8dd6-fa26bf87241a",
+                "d002c7dd-6268-4339-bf7d-07177045d5c7",
+                "d6273492-4450-4c0c-8b7b-ecd409474cab",
+                "d798af1f-a676-4e07-9cde-a6f6441adb99",
+                "d91c4b80-aa23-42f4-a6a7-cd110773a09b",
+                "d9bd835d-0d12-4bfd-a80f-6e7aa6ee07d5",
+                "e010e96a-b7a3-4cce-824c-19beb852d88e",
+                "f8522dfb-3983-435b-8f15-06b6859dece4"
+              ],
+              "sample_urls": [
+                "https://www.bilgi.edu.tr/media/uploads/2019/01/29/yuksekogretim-kurumlarinda-hazirlanan-lisansustu-tez-veri-girisi-ve-kompakt-disklerin-hazirlanmasi_30JGs3K.pdf",
+                "https://www.bilgi.edu.tr/media/uploads/2019/01/29/yuksekogretim-kurumlarinda-hazirlanan-lisansustu-tez-veri-girisi-ve-kompakt-disklerin-hazirlanmasi_30JGs3K.pdf",
+                "https://www.bilgi.edu.tr/media/uploads/2019/01/07/yuksekogretimkurumlariogrencidisiplin-yonetmeligi.pdf",
+                "https://www.bilgi.edu.tr/media/uploads/2019/01/29/yuksekogretim-kurumlarinda-hazirlanan-lisansustu-tez-veri-girisi-ve-kompakt-disklerin-hazirlanmasi.pdf",
+                "https://www.bilgi.edu.tr/media/uploads/2018/02/23/mezuniyet-tasarim-projesi-yonergesi-1.pdf"
+              ],
+              "group_ids": [
+                27
+              ],
+              "sources": "regulation_targeted",
+              "quality_score": 0.92,
+              "representative_titles": [
+                "Yuksekogretim Kurumlarinda Hazirlanan Lisansustu Tez Veri Girisi Ve Kompakt Disklerin Hazirlanmasi",
+                "Yuksekogretim Kurumlarinda Hazirlanan Lisansustu Tez Veri Girisi Ve Kompakt Disklerin Hazirlanmasi",
+                "Yuksekogretimkurumlariogrencidisiplin Yonetmeligi",
+                "Yuksekogretim Kurumlarinda Hazirlanan Lisansustu Tez Veri Girisi Ve Kompakt Disklerin Hazirlanmasi",
+                "Mezuniyet Tasarim Projesi Yonergesi 1"
+              ]
+            },
+            "Doctoral Program Forms And Decisions": {
+              "doc_count": 25,
+              "doc_ids": [
+                "028703af-864c-4379-bf5c-702ab846defd",
+                "0dac5352-fd6a-46fd-ade2-963b4998f8d1",
+                "160c7a3e-cf66-4a86-838d-32f86155892a",
+                "28a21e3b-789e-402c-8ce8-254d1682b7a2",
+                "299878be-1e2f-4a83-b5c8-cb4b05d718ba",
+                "2b81445f-7ea3-492d-a9c9-4f866aeb4fdb",
+                "390321dd-52a0-48fe-a9e2-661971b1a8b3",
+                "39744e60-478d-477f-bc9a-75209b02482a",
+                "3d4b03f7-1c78-485f-ac31-8127d138072c",
+                "5ccdf713-18d5-41e0-bbc4-b28b393a693a",
+                "609f495c-64e2-4f08-bea2-4063972e850e",
+                "663ea3b8-4c9c-4fef-b769-bf1fb6784f71",
+                "69b09e17-a813-41a2-871a-bec575a6d9fd",
+                "7a56bb99-8830-4d2d-901b-a943bb0e3340",
+                "aa923118-d830-4637-aade-f82bcd4b3977",
+                "aba693bb-49b2-45f0-9855-4829d99edf85",
+                "b1b65d6c-3fb2-43b5-b9fe-df48853afeea",
+                "b9d11c22-ece2-47da-bd56-951982368f90",
+                "c8826daf-ce57-4de0-8564-e105b8d05193",
+                "ca13f738-be27-4bb3-aa58-79723ed99e6d",
+                "d2e1d000-9033-4d2e-8296-de6266b27b44",
+                "e22f3e6a-3f4a-4211-89f0-4830b77d030c",
+                "e6cb350b-68ae-4a6c-9c58-6cec561d14bb",
+                "f97c6dd6-1151-4e16-b994-94a07dab7a33",
+                "fdc549f6-fbd7-4c62-9b5c-b30293c156af"
+              ],
+              "sample_urls": [
+                "https://www.bilgi.edu.tr/media/uploads/2019/05/06/doktora-programi-tez-teslim-formu.pdf",
+                "https://www.bilgi.edu.tr/media/uploads/2019/05/10/2019-2020-kredi-transfer-formu_yuksek-lisans.pdf",
+                "https://www.bilgi.edu.tr/media/uploads/2019/05/06/doktora-programi-tez-izleme-raporu-degerleme-tutanagi.pdf",
+                "https://www.bilgi.edu.tr/media/uploads/2018/11/22/kredi-transfer-formu-lisans.pdf",
+                "https://www.bilgi.edu.tr/media/uploads/2019/05/06/doktora-programi-tez-savunma-karar-formu.pdf"
+              ],
+              "group_ids": [
+                24
+              ],
+              "sources": "regulation_targeted",
+              "quality_score": 0.88,
+              "representative_titles": [
+                "Doktora Programi Tez Teslim Formu",
+                "Fakulte Karar Bildirim Formu",
+                "Doktora Programi Tez Izleme Raporu Degerleme Tutanagi",
+                "Kredi Transfer Formu Lisans",
+                "Doktora Programi Tez Savunma Karar Formu"
+              ]
+            }
+          }
+        },
+        "senate_board_regulations": {
+          "doc_count": 32,
+          "leaves": {
+            "Academic Advisory Board Procedures": {
+              "doc_count": 32,
+              "doc_ids": [
+                "041d4198-b7f4-4523-896f-48983cbb67aa",
+                "11e42ec0-7d40-4f29-84d4-b1d25fefb051",
+                "135a40e3-5ab8-455a-bb3b-fd4d987299ce",
+                "14152148-63c2-4fe5-991c-e7f71abf3397",
+                "21516047-af33-435c-903e-c22d80f7700f",
+                "25056fa7-e9f8-4eee-a5e5-ba709f65b163",
+                "30363fe5-7bd4-41fc-9875-9802892966b3",
+                "326b1a83-7b41-4dee-98e7-e06e744d8587",
+                "3352add1-ff64-40c4-8c56-704daa743e7d",
+                "486f5738-8bdc-4952-9b7a-a606d8d8acbf",
+                "6052b56d-b3cc-41b1-8aae-185609fb1ff6",
+                "6717dcce-2a35-4e82-a8fd-4769fb8d749f",
+                "67bdc2ed-7c2f-4efc-ad5b-d1c4381a4082",
+                "71068355-081f-4602-af38-cb9a7824495e",
+                "734bfdb2-b54f-4d92-a659-26ad56351e6a",
+                "88398bdf-3908-405e-86a0-2a6643cfe7a2",
+                "96016de6-a704-42e1-96ab-e381bb86fc8b",
+                "98c5b7fb-d53f-4618-b8fa-8978463711e7",
+                "99ba07a8-2f84-4792-9421-bf2ce98f4d3c",
+                "a445635e-480a-426d-94cc-8a167e016bbb",
+                "af40c5d1-664f-488a-8110-3a7cf4222cba",
+                "af7c9c17-9963-4786-9aa8-9f2084b25017",
+                "bb097e9b-81d8-4925-b9ea-732191789453",
+                "cb949837-4700-416d-865e-c22944449678",
+                "cbd0e32e-9b75-4c9c-8fa7-3a5121a33190",
+                "db0b1e73-910e-4529-8c76-e7553603c8fc",
+                "dbd76736-7393-41d6-9635-3d80e1fab08c",
+                "dfa30693-a913-48da-b304-7206fd3826f5",
+                "e7540949-1eac-4393-bcc7-1fe5376f2ade",
+                "eaa7f01f-c52e-4a4c-b67b-0e18e49119eb",
+                "f298a13a-26b7-44fd-9ac8-614a89371859",
+                "f6c9408b-a70f-446c-8195-e5a7535e2d9c"
+              ],
+              "sample_urls": [
+                "https://www.bilgi.edu.tr/media/uploads/2022/01/21/istanbul-bilgi-universitesi-universite-ve-akademik-birim-danisma-kurullari-calisma-usul-ve-esaslari-1_oJUqcxk.pdf",
+                "https://www.bilgi.edu.tr/media/uploads/2022/01/21/istanbul-bilgi-universitesi-universite-ve-akademik-birim-danisma-kurullari-calisma-usul-ve-esaslari-1_oJUqcxk.pdf",
+                "https://www.bilgi.edu.tr/upload/engelli-ogrenci-birimi-yonergesi/",
+                "https://www.bilgi.edu.tr/media/uploads/2022/01/21/istanbul-bilgi-universitesi-universite-ve-akademik-birim-danisma-kurullari-calisma-usul-ve-esaslari-1_oJUqcxk.pdf",
+                "https://www.bilgi.edu.tr/upload/gorevli-ogrenci-programi-ogrenci-calistirma-usul-ve-esaslari/"
+              ],
+              "group_ids": [
+                11
+              ],
+              "sources": "regulation_targeted",
+              "quality_score": 0.85,
+              "representative_titles": [
+                "Istanbul Bilgi Universitesi Universite Ve Akademik Birim Danisma Kurullari Calisma Usul Ve Esaslari 1 Ojuqcxk",
+                "Istanbul Bilgi Universitesi Universite Ve Akademik Birim Danisma Kurullari Calisma Usul Ve Esaslari 1 Ojuqcxk",
+                "Engelli Öğrenci Birimi Yönergesi - İstanbul Bilgi Üniversitesi",
+                "Istanbul Bilgi Universitesi Universite Ve Akademik Birim Danisma Kurullari Calisma Usul Ve Esaslari 1 Ojuqcxk",
+                "Gorevli Ogrenci Programi Ogrenci Calistirma Usul Ve Esaslari"
+              ]
+            }
+          }
+        },
+        "data_privacy_ethics_policy": {
+          "doc_count": 26,
+          "leaves": {
+            "Ethics Committee Directive": {
+              "doc_count": 26,
+              "doc_ids": [
+                "136f08f5-7571-43d9-8c01-10eae5b5dd8a",
+                "15106bcf-f847-4382-9062-c727583bc8db",
+                "27f9968b-b7b0-4b72-9d71-6e2dd6e66b5d",
+                "292b9c66-3782-4a26-8e87-a7a5b3184084",
+                "3aa8ae47-25a4-402a-978c-5126c5d60874",
+                "3acc8bc6-dac3-4277-b03a-71a60821bb5f",
+                "42fa4eea-07ea-432f-abd6-60e5d9f4f393",
+                "497b382b-bde7-4391-9e86-f46d42203b99",
+                "557dbe74-259c-4493-9f27-290eb0764aa9",
+                "58256fe1-658f-4a99-bc50-a431cce0d9a3",
+                "690302e0-95bd-4839-bd02-207eac1ea9a3",
+                "83e20478-dfc0-4b5a-9144-57e21b2abc25",
+                "86116fd3-465a-45f7-8649-ec2877069684",
+                "881cf4b5-43b5-40fe-ba30-877da4a6a2b2",
+                "91e5fac0-7c1f-4f76-b3c7-429ff79ca64a",
+                "94c3c197-591d-4b82-81e6-1b3b36587301",
+                "9885c26b-751a-4d80-b715-fca809e096dc",
+                "9b0833f5-277d-4f21-bcda-8228d125c13e",
+                "b774ae5b-b9b7-4c60-aab7-dfa30ee46a81",
+                "bcc17b23-6bc0-4948-8512-7cbcb1ace8de",
+                "cdb1f447-8bac-4a75-bbc0-a5b2d6fa4b1e",
+                "dfa73b06-3202-4342-83f4-dea03dfea251",
+                "f1a75d57-d6ab-42ab-bff5-9cd0087a6a80",
+                "f3d5ca6e-b85a-4b28-ac38-e16cbb155a5d",
+                "f98060ce-cc1e-4c25-8f04-dc71a8383fbc",
+                "fa60765c-18e5-40bc-8800-aab0361aa782"
+              ],
+              "sample_urls": [
+                "https://www.bilgi.edu.tr/media/uploads/2023/06/02/ibu_etik_kurul_yonergesi.pdf",
+                "https://www.bilgi.edu.tr/media/uploads/2023/06/02/ibu_etik_kurul_yonergesi.pdf",
+                "https://www.bilgi.edu.tr/media/uploads/2023/06/02/ibu_etik_kurul_yonergesi.pdf",
+                "https://www.bilgi.edu.tr/media/uploads/2023/06/02/ibu_etik_kurul_yonergesi.pdf",
+                "https://www.bilgi.edu.tr/media/uploads/2023/06/02/ibu_etik_kurul_yonergesi.pdf"
+              ],
+              "group_ids": [
+                16
+              ],
+              "sources": "regulation_targeted",
+              "quality_score": 0.97,
+              "representative_titles": [
+                "Ibu Etik Kurul Yonergesi",
+                "Ibu Etik Kurul Yonergesi",
+                "Ibu Etik Kurul Yonergesi",
+                "Ibu Etik Kurul Yonergesi",
+                "Ibu Etik Kurul Yonergesi"
+              ]
+            }
+          }
+        },
+        "international_program_regulations": {
+          "doc_count": 24,
+          "leaves": {
+            "Buddy Program Handbook": {
+              "doc_count": 24,
+              "doc_ids": [
+                "001efc07-e6cc-4f36-869a-f4d9b285cf60",
+                "0ae05db6-29a4-413c-a63f-a79ba0935158",
+                "0b202b5f-5c76-401c-be73-cff6a1ac80ce",
+                "13ac9e71-9fd6-4dbb-94bb-c8efa0dc9dbb",
+                "24c7d70e-0bfd-49f1-8d29-31878acce8ab",
+                "505d7696-cfa2-4d80-a551-9e4e9ee503ed",
+                "534f4130-657b-4097-969b-7ab895bacb22",
+                "5dcba514-954c-4c48-8876-7b468e7bf345",
+                "5e0bc8b5-cdb2-43c7-986d-2a9b1c4c9d51",
+                "6457c539-f82d-4249-b3ee-ef672621584d",
+                "683c1281-1d48-4723-9c30-0fc408c9586b",
+                "75cbbd2c-4628-4a40-9e72-7999abdb20f5",
+                "9805d2e9-55b5-4f0d-adf3-61b603342b24",
+                "9d56372b-18f7-4a0e-94b3-a64d669346f2",
+                "a20f474e-e8d3-4625-b009-dc059adc2ec1",
+                "b1bea616-9ce2-4b00-9114-a05b5b908eea",
+                "ccd7ebbc-348a-47af-9d35-2537fe17e280",
+                "d723e079-0ec9-4e4c-849f-e299ea6dbd64",
+                "e05aca20-f6fa-4a97-95b4-1c34bad6de73",
+                "e0bfc213-ce46-4481-8580-110b2c33f962",
+                "e2ad4d93-9a71-475c-8519-664464a09fbc",
+                "f245fc4d-4741-497c-b934-a91fb0ad8f0b",
+                "f81c2477-2a5b-4762-a0c2-09ca3c1a7c3b",
+                "ff8a054d-6ffe-45c2-8dc4-9a417e57a656"
+              ],
+              "sample_urls": [
+                "https://www.bilgi.edu.tr/upload/undergraduate-student-handbook/",
+                "https://www.bilgi.edu.tr/upload/graduate-student-handbook/",
+                "https://www.bilgi.edu.tr/media/uploads/2021/03/12/bilgi_buddy-program-handbook-2019-1.pdf",
+                "https://www.bilgi.edu.tr/media/uploads/2021/03/12/bilgi_buddy-program-handbook-2019-1_Q5plemk.pdf",
+                "https://www.bilgi.edu.tr/media/uploads/2021/03/12/bilgi_buddy-program-handbook-2019-1_Q5plemk.pdf"
+              ],
+              "group_ids": [
+                13
+              ],
+              "sources": "regulation_targeted",
+              "quality_score": 0.85,
+              "representative_titles": [
+                "2022-2023 Undergraduate Student Handbook-Revised",
+                "2022-2023 Graduate-Student-Handbook",
+                "Bilgi Buddy Program Handbook 2019 1",
+                "Bilgi Buddy Program Handbook 2019 1",
+                "Bilgi Buddy Program Handbook 2019 1"
+              ]
+            }
+          }
+        },
+        "quality_assurance_procedures": {
+          "doc_count": 23,
+          "leaves": {
+            "Co-Curricular Program Review Handbook": {
+              "doc_count": 23,
+              "doc_ids": [
+                "052590c5-0346-4999-8e96-64e8a8b9bc37",
+                "099025da-fe58-43a8-9b93-45514612754d",
+                "0bc4b74d-7043-4565-8ce6-268a588b1be0",
+                "230af90d-95aa-4a21-afd0-e4858f1b30a1",
+                "30da7443-2909-4a70-a64a-86ce103bebdb",
+                "4076a0c9-4e40-4ae6-ba5b-e345cc4c930a",
+                "50fc4069-c59a-4d97-a8fa-320fd5969f95",
+                "5b4ad360-96fd-4882-9b6b-c652f202b9ea",
+                "7b8238b4-f4c0-49e6-9eba-bacea9435ba7",
+                "7c6b5523-1543-489a-a59a-57a722d5b271",
+                "7ee8abf0-1da9-4630-be41-89130fa4dc25",
+                "8790dbff-c278-46df-be3b-b8c7f491c4b6",
+                "967604cc-2a6b-4217-aef9-e36d10b69189",
+                "b35ab2d3-48b3-48bc-8833-f472b8a095e3",
+                "b8285ad3-40ce-4851-b46b-676ace4ad332",
+                "d33a9a98-b883-4b09-b40f-6a7978a0f809",
+                "db0fe05e-7e1b-4dd9-873b-1191701dd940",
+                "dc5c8b27-c2df-402f-ab97-cfb10c94e394",
+                "e391d862-fe01-4536-a705-5d92e7f2fc7f",
+                "ec9bf2b4-4f81-4219-a8f1-729e7adf6269",
+                "f67f2207-65ca-4b1b-91e2-0572aa43a408",
+                "fcddad21-0239-4f67-879d-b94a4a054bcb",
+                "fd049e54-b8f6-4e55-88e6-2ebc01f5d333"
+              ],
+              "sample_urls": [
+                "https://www.bilgi.edu.tr/media/uploads/2021/07/30/bilgi-unit-review-guide.pdf",
+                "https://www.bilgi.edu.tr/media/uploads/2021/07/30/bilgi-unit-review-guide.pdf",
+                "https://www.bilgi.edu.tr/media/uploads/2021/07/30/bilgi-unit-review-guide.pdf",
+                "https://www.bilgi.edu.tr/media/uploads/2021/07/30/bilgi-unit-review-guide.pdf",
+                "https://www.bilgi.edu.tr/media/uploads/2021/07/30/bilgi-unit-review-guide.pdf"
+              ],
+              "group_ids": [
+                19
+              ],
+              "sources": "regulation_targeted",
+              "quality_score": 0.92,
+              "representative_titles": [
+                "İSTANBUL BİLGİ UNIVERSITY\nCo-curricular Program Review \nHandbook",
+                "İSTANBUL BİLGİ UNIVERSITY\nCo-curricular Program Review \nHandbook",
+                "İSTANBUL BİLGİ UNIVERSITY\nCo-curricular Program Review \nHandbook",
+                "İSTANBUL BİLGİ UNIVERSITY\nCo-curricular Program Review \nHandbook",
+                "İSTANBUL BİLGİ UNIVERSITY\nCo-curricular Program Review \nHandbook"
+              ]
+            }
+          }
+        },
+        "scholarship_financial_aid_regulations": {
+          "doc_count": 21,
+          "leaves": {
+            "Need-Based Scholarship Applications": {
+              "doc_count": 21,
+              "doc_ids": [
+                "026c2a83-9e80-4d02-a390-d9fd8f2ec307",
+                "0918d39d-4838-4875-b6bc-6c2e802fc35d",
+                "2bf75c35-9a0c-4ac3-80e2-092cb30c3e4c",
+                "2ed1a345-2a6d-42eb-8e5d-6a1f5ac85776",
+                "32443b75-d87c-494d-8afb-aa85ff62e9d3",
+                "39b482fe-8a38-4cd8-b02e-7ad29d05ad8d",
+                "43f4debf-fb4a-441a-a4c0-2938e086a4ce",
+                "4bb3dc15-4c2a-40b6-a1fa-2df1665066dc",
+                "522043e5-972e-4bfc-9364-0e9fcc5a0d27",
+                "55f42d04-d814-4375-900c-ac930a7175a0",
+                "571b2a2c-27ab-4aa3-8607-44a9d62c8ae1",
+                "6ac487a9-77f5-41bf-ab65-93cef5a36c7a",
+                "881f4daa-2777-4e24-97f0-d93d32e0acf8",
+                "8c69b4ec-41ad-4bdd-95d4-554bfd97cfd2",
+                "bde8f83c-39ec-4b3d-9f92-580c609ab54b",
+                "bf2f658f-52d3-45d0-9166-aa09142e67fc",
+                "c1729dbd-9ed3-4d6a-816a-33f2a1c0758d",
+                "d8456615-55b1-48a5-a88b-34c4c63e5fe7",
+                "da133d3d-94a5-483e-a596-f444c4f7ae0a",
+                "e17b177c-198c-4fc6-89dd-d3cf024dcde9",
+                "e3d8bef3-ab4c-4cd5-8bb7-3846a33bb960"
+              ],
+              "sample_urls": [
+                "http://www.bilgi.edu.tr/en/news/12633/need-based-scholarship-applications/",
+                "https://www.bilgi.edu.tr/media/uploads/2025/05/14/scholarship-application-manual.pdf",
+                "https://www.bilgi.edu.tr/media/uploads/2025/05/14/scholarship-application-manual.pdf",
+                "https://www.bilgi.edu.tr/media/uploads/2025/05/14/ihtiyac-bursu-basvuru-kilavuzu.pdf",
+                "https://www.bilgi.edu.tr/en/news/12633/need-based-scholarship-applications/"
+              ],
+              "group_ids": [
+                7
+              ],
+              "sources": "regulation_targeted",
+              "quality_score": 0.97,
+              "representative_titles": [
+                "Need-Based Scholarship Applications",
+                "Scholarship Application Manual",
+                "Scholarship Application Manual",
+                "İhtiyaç Bursu Başvuru Kılavuzu",
+                "Need-Based Scholarship Applications"
+              ]
+            }
+          }
+        },
+        "financial_regulations": {
+          "doc_count": 17,
+          "leaves": {
+            "Financial Procedures And Policies": {
+              "doc_count": 17,
+              "doc_ids": [
+                "00626c09-d6f1-4b89-a99e-ca60247dd5a1",
+                "053621d0-56d0-4d65-812a-9a9f054fe838",
+                "0aaebb00-29e7-4396-a7c2-d3b1bb3a0651",
+                "0caaac49-048c-4aad-89e0-f1ad76bd895a",
+                "18a8df69-d631-4737-82a7-8bba67a28047",
+                "1ab14561-db82-4abc-8cdd-bb709fd6e328",
+                "39d570dc-fb85-47a6-a29e-480d6d52bff6",
+                "8c36e60d-58df-46ce-86c1-7dd538af7a5e",
+                "8e4a27e4-e549-473d-a917-03e8a28a521b",
+                "a77e589c-9090-4634-a451-43e90ab8867a",
+                "aad6cc79-448a-4dec-b6ef-23c555e6f9d1",
+                "d3d42372-3317-4c4a-9ca5-98438eb1d184",
+                "ddcdb94c-8f33-457b-aa63-523876b27afa",
+                "e3eb13ee-dc94-45b2-9320-6867082bf829",
+                "ea1de0fa-46d3-488b-80b3-1d436fbf5a5e",
+                "ebb6ad41-135e-4c4d-88ed-f5d154e8d630",
+                "fbdadb74-75b2-427f-be15-e3ede7e4bd8e"
+              ],
+              "sample_urls": [
+                "https://www.bilgi.edu.tr/media/uploads/2022/03/04/lisansustu_mali_usul_ve_esaslar_21_2.pdf",
+                "https://www.bilgi.edu.tr/upload/gorevli-ogrenci-programi-ogrenci-calistirma-usul-ve-esaslari/",
+                "https://www.bilgi.edu.tr/media/uploads/2018/07/30/dikey-gecis-usul-ve-esaslari.pdf",
+                "https://www.bilgi.edu.tr/media/uploads/2022/01/21/istanbul-bilgi-universitesi-universite-ve-akademik-birim-danisma-kurullari-calisma-usul-ve-esaslari-1_oJUqcxk.pdf",
+                "https://www.bilgi.edu.tr/media/uploads/2022/03/04/lisans_mali_usul_ve_esaslar_21_2.pdf"
+              ],
+              "group_ids": [
+                21
+              ],
+              "sources": "regulation_targeted",
+              "quality_score": 0.88,
+              "representative_titles": [
+                "Lisansustu Mali Usul Ve Esaslar 21 2",
+                "Gorevli Ogrenci Programi Ogrenci Calistirma Usul Ve Esaslari",
+                "Dikey Gecis Usul Ve Esaslari",
+                "Istanbul Bilgi Universitesi Universite Ve Akademik Birim Danisma Kurullari Calisma Usul Ve Esaslari 1 Ojuqcxk",
+                "Lisans Mali Usul Ve Esaslar 21 2"
+              ]
+            }
+          }
+        },
+        "research_regulations": {
+          "doc_count": 31,
+          "leaves": {
+            "Research Projects Directive": {
+              "doc_count": 16,
+              "doc_ids": [
+                "1b99e0e2-56ef-4390-8581-5ee57787afa9",
+                "3473ae34-38c4-40cc-8de1-e4ddd2cdcc28",
+                "39c9be7d-65bb-44ac-b564-4ec1c6f43692",
+                "4ad906e8-6601-42d5-9477-7bc6a8a48f33",
+                "5d5a1ec8-afb0-4d1b-9f8b-c2075535a877",
+                "6e7beaa3-2ad6-4f59-8adb-bfb9ddc3e341",
+                "7368d75a-58cf-436e-bbb3-336565cbd88b",
+                "8ecb111c-d123-431e-a96e-753844e8a893",
+                "969c5694-d755-4db6-b739-00e25040b3a6",
+                "97742170-f10b-49a8-8ac0-f4d9631f01da",
+                "a67251f1-329f-437f-9f93-aa4a93551ec8",
+                "ae1c2cb6-93e2-4c90-bd86-a822eee97ba1",
+                "c774445a-2c30-46df-9ae6-01dcc4054bbb",
+                "ce81bdb3-49d6-4192-87ca-8a20bf81e200",
+                "dd1606d4-29f2-48ec-8d11-29241f14b250",
+                "e0aa62fc-3ec7-41c4-a6ee-5df873c66413"
+              ],
+              "sample_urls": [
+                "https://www.bilgi.edu.tr/media/uploads/2020/07/09/bilgi_research_projects__directive.pdf",
+                "https://www.bilgi.edu.tr/media/uploads/2020/07/09/bilgi_research_projects__directive.pdf",
+                "https://www.bilgi.edu.tr/media/uploads/2020/07/09/bilgi_research_projects__directive.pdf",
+                "https://www.bilgi.edu.tr/media/uploads/2020/07/09/bilgi_research_projects__directive.pdf",
+                "https://www.bilgi.edu.tr/media/uploads/2020/07/09/bilgi_research_projects__directive.pdf"
+              ],
+              "group_ids": [
+                15
+              ],
+              "sources": "regulation_targeted",
+              "quality_score": 0.97,
+              "representative_titles": [
+                "Bilgi Research Projects  Directive",
+                "Bilgi Research Projects  Directive",
+                "Bilgi Research Projects  Directive",
+                "Bilgi Research Projects  Directive",
+                "Bilgi Research Projects  Directive"
+              ]
+            },
+            "Intellectual Property Directive": {
+              "doc_count": 15,
+              "doc_ids": [
+                "0bf2f7e3-c37a-49ae-a153-468b8853e50b",
+                "18e90617-dda5-480d-9e2d-2764c6eda2cb",
+                "2e89c100-e487-4be2-a683-22c28d6a8581",
+                "2f6f7052-98cf-443b-9c4a-4a14959dee0b",
+                "393874db-c040-4b1f-b11e-ba48bd2a64d1",
+                "3a87ce97-b337-47ea-a471-71bb326f77f9",
+                "5fccf2e1-1b70-4c56-b428-3d19a7323ca9",
+                "606ef19a-ec4e-4d74-8ca3-954e9fa708c7",
+                "6116a49f-421f-4703-a7c3-f432fee55483",
+                "7aa6be0f-2355-4825-a4b0-d501a93e9227",
+                "83ec00d2-2624-4a41-9fce-c16f991748ba",
+                "a4dc8b56-0eb0-458f-98fb-a9d8ac8f0beb",
+                "a89a6621-08a2-4599-b074-8ae583b6cd6f",
+                "c143f45d-5b98-4e2f-b058-1d07ba7ca705",
+                "ec4ad749-ac05-48a0-8219-51c32c5c76a6"
+              ],
+              "sample_urls": [
+                "https://www.bilgi.edu.tr/media/uploads/2025/01/29/intellectual_property_directive.pdf",
+                "https://www.bilgi.edu.tr/media/uploads/2025/01/29/intellectual_property_directive.pdf",
+                "https://www.bilgi.edu.tr/media/uploads/2025/01/29/intellectual_property_directive.pdf",
+                "https://www.bilgi.edu.tr/media/uploads/2019/01/29/yuksekogretim-kurumlarinda-hazirlanan-lisansustu-tez-veri-girisi-ve-kompakt-disklerin-hazirlanmasi_30JGs3K.pdf",
+                "https://www.bilgi.edu.tr/media/uploads/2025/01/29/intellectual_property_directive.pdf"
+              ],
+              "group_ids": [
+                9
+              ],
+              "sources": "regulation_targeted",
+              "quality_score": 0.95,
+              "representative_titles": [
+                "Intellectual Property Directive",
+                "Intellectual Property Directive",
+                "Intellectual Property Directive",
+                "Yuksekogretim Kurumlarinda Hazirlanan Lisansustu Tez Veri Girisi Ve Kompakt Disklerin Hazirlanmasi",
+                "Intellectual Property Directive"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "administration": {
+      "doc_count": 567,
+      "group_count": 2,
+      "sub_levels": {
+        "institutional_policies_and_forms": {
+          "doc_count": 394,
+          "group_count": 1,
+          "leaves": {
+            "Institutional Policies Tenders And Consent Forms": {
+              "doc_count": 394,
+              "group_count": 1,
+              "group_ids": [
+                146
+              ],
+              "representative_titles": [
+                "4299",
+                "ONAY METNİ",
+                "Aydinlatma Metni"
+              ],
+              "sample_urls": [
+                "uploads",
+                "media",
+                "ihaleler"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.78
+            }
+          }
+        },
+        "campus_planning_records": {
+          "doc_count": 173,
+          "group_count": 1,
+          "leaves": {
+            "Campus Site Plans And Survey Records": {
+              "doc_count": 173,
+              "group_count": 1,
+              "group_ids": [
+                44
+              ],
+              "representative_titles": [
+                "bilgi-Ã¼ni.xlsx"
+              ],
+              "sample_urls": [
+                "media",
+                "attachments",
+                "2379497ek-2-olcu-ve-ozet-tablosu-ve-koordinatlar_ibwuulz.pdf"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.6
+            }
+          }
+        }
+      }
+    },
+    "events": {
+      "doc_count": 3034,
+      "group_count": 8,
+      "sub_levels": {
+        "events_archive": {
+          "doc_count": 558,
+          "group_count": 1,
+          "leaves": {
+            "All Events Archive": {
+              "doc_count": 558,
+              "group_count": 1,
+              "group_ids": [
+                98
+              ],
+              "representative_titles": [
+                "Tüm Etkinlikler Arşivi"
+              ],
+              "sample_urls": [
+                "etkinlik",
+                "etkinlikler",
+                "akademik"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.95
+            }
+          }
+        },
+        "faculty_events": {
+          "doc_count": 531,
+          "group_count": 1,
+          "leaves": {
+            "Sociology And Social Sciences Faculty Events": {
+              "doc_count": 531,
+              "group_count": 1,
+              "group_ids": [
+                35
+              ],
+              "representative_titles": [
+                "Sosyoloji Bölümü / Etkinlikler",
+                "Sosyal ve Beşeri Bilimler Fakültesi / Etkinlikler",
+                "Bölüm Öğrenci Etkinlikleri"
+              ],
+              "sample_urls": [
+                "etkinlik",
+                "akademik",
+                "sosyal-ve-beseri-bilimler-fakultesi"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.9
+            }
+          }
+        },
+        "academic_conferences": {
+          "doc_count": 976,
+          "group_count": 2,
+          "leaves": {
+            "Academic Conferences And Events Archive": {
+              "doc_count": 976,
+              "group_count": 2,
+              "group_ids": [
+                86,
+                103
+              ],
+              "representative_titles": [
+                "BİLGİ Graduate / Events",
+                "EMAC Fall Conference 202517-19 September 2025",
+                "Events Archive"
+              ],
+              "sample_urls": [
+                "academic",
+                "event",
+                "events",
+                "media",
+                "uploads"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.92,
+              "representative_parents": []
+            }
+          }
+        },
+        "exhibitions": {
+          "doc_count": 305,
+          "group_count": 1,
+          "leaves": {
+            "Art And Design Exhibitions": {
+              "doc_count": 305,
+              "group_count": 1,
+              "group_ids": [
+                48
+              ],
+              "representative_titles": [
+                "Copy of QR texts Clothes Off The Loom exhibition designers"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "event"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.75
+            }
+          }
+        },
+        "film_festival": {
+          "doc_count": 298,
+          "group_count": 1,
+          "leaves": {
+            "International Crime And Punishment Film Festival": {
+              "doc_count": 298,
+              "group_count": 1,
+              "group_ids": [
+                20
+              ],
+              "representative_titles": [
+                "14th International Crime and Punishment Film Festival Academic Program",
+                "14. Uluslararası Suç ve Ceza Film Festivali Akademik Programı"
+              ],
+              "sample_urls": [
+                "event",
+                "etkinlik",
+                "media"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.93
+            }
+          }
+        },
+        "fashion_show": {
+          "doc_count": 209,
+          "group_count": 1,
+          "leaves": {
+            "Bilgi Fashion Show Events": {
+              "doc_count": 209,
+              "group_count": 1,
+              "group_ids": [
+                140
+              ],
+              "representative_titles": [
+                "BILGI MODA SHOW 2022"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "bilgi_tekstil_ve_moda_defile_2022_fashion_show1679315382379.pdf"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.9
+            }
+          }
+        },
+        "law_symposium": {
+          "doc_count": 157,
+          "group_count": 1,
+          "leaves": {
+            "Mediation Symposium Proceedings": {
+              "doc_count": 157,
+              "group_count": 1,
+              "group_ids": [
+                45
+              ],
+              "representative_titles": [
+                "Arabulucugˆun Gelecegˆi Sempozyumu BI·LDI·RI· TAM METI·N KI·TABI -"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "tuketici-zorunlu-arabuluculugu-sorunlar.pdf"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.85
+            }
+          }
+        }
+      }
+    },
+    "student_life": {
+      "doc_count": 3367,
+      "group_count": 9,
+      "sub_levels": {
+        "frequently_asked_questions": {
+          "doc_count": 385,
+          "group_count": 1,
+          "leaves": {
+            "Student Frequently Asked Questions": {
+              "doc_count": 385,
+              "group_count": 1,
+              "group_ids": [
+                75
+              ],
+              "representative_titles": [
+                "Sıkça Sorulan Sorular"
+              ],
+              "sample_urls": [
+                "yasam",
+                "ogrenci",
+                "sss"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.88
+            }
+          }
+        },
+        "student_clubs": {
+          "doc_count": 360,
+          "group_count": 1,
+          "leaves": {
+            "Student Clubs And Campus Life": {
+              "doc_count": 360,
+              "group_count": 1,
+              "group_ids": [
+                145
+              ],
+              "representative_titles": [
+                "Akademik",
+                "Akademik İçerikli Kulüpler",
+                "Hakkında"
+              ],
+              "sample_urls": [
+                "yasam",
+                "ogrenci",
+                "ogrenci-destek-merkezi"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.9
+            }
+          }
+        },
+        "internship_offers": {
+          "doc_count": 349,
+          "group_count": 1,
+          "leaves": {
+            "Internship And Job Offers For Students": {
+              "doc_count": 349,
+              "group_count": 1,
+              "group_ids": [
+                43
+              ],
+              "representative_titles": [
+                "Internship Offer Futuro Digitale Lglbgmo",
+                "20181109 39",
+                "20181109 12"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "talent"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.82
+            }
+          }
+        },
+        "counseling_resources": {
+          "doc_count": 1009,
+          "group_count": 3,
+          "leaves": {
+            "Student Counseling And Wellness Resources": {
+              "doc_count": 1009,
+              "group_count": 3,
+              "group_ids": [
+                124,
+                87,
+                36
+              ],
+              "representative_titles": [
+                "Microsoft Word - Document19",
+                "Microsoft Word - Document4",
+                "Microsoft Word - Document1"
+              ],
+              "sample_urls": [
+                "upload",
+                "media",
+                "uploads",
+                "etkinlik"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.6,
+              "representative_parents": []
+            }
+          }
+        },
+        "community_service_projects": {
+          "doc_count": 1264,
+          "group_count": 3,
+          "leaves": {
+            "Community Service And Social Responsibility Projects": {
+              "doc_count": 1264,
+              "group_count": 3,
+              "group_ids": [
+                106,
+                91,
+                10
+              ],
+              "representative_titles": [
+                "Projeler 2014",
+                "Proje Listesi",
+                "Projeler 2018",
+                "Projeler 2013",
+                "Projeler 2013 Öncesi"
+              ],
+              "sample_urls": [
+                "universite",
+                "hakkinda",
+                "kurumsal-ilkeler",
+                "university",
+                "about",
+                "institutional-principles"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.9,
+              "taxonomy_url": "/taxonomy/student-life/community-service-projects/community-service-and-social-responsibility-projects",
+              "representative_parents": []
+            }
+          }
+        }
+      }
+    },
+    "admissions": {
+      "doc_count": 1314,
+      "group_count": 4,
+      "sub_levels": {
+        "university_of_london_application": {
+          "doc_count": 364,
+          "group_count": 1,
+          "leaves": {
+            "University Of London Honours Application Process": {
+              "doc_count": 364,
+              "group_count": 1,
+              "group_ids": [
+                64
+              ],
+              "representative_titles": [
+                "Application Process for University of London Honours Programmes (2022-2023)",
+                "Application Process for University of London Honours Programmes (2023-2024)",
+                "Application Process for University of London Honours Programmes (2025-2026)"
+              ],
+              "sample_urls": [
+                "news",
+                "haber",
+                "application-process-for-university-of-london-honours-programmes-2022-2023"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.9
+            }
+          }
+        },
+        "special_talent_exam_results": {
+          "doc_count": 130,
+          "group_count": 1,
+          "leaves": {
+            "Special Talent Exam Results For Arts Programs": {
+              "doc_count": 130,
+              "group_count": 1,
+              "group_ids": [
+                52
+              ],
+              "representative_titles": [
+                "Sahne ve Gösteri Sanatları Yönetimi Lisans Programı Özel Yetenek Sınavı Sonuçları (2025)",
+                "Sahne ve Gösteri Sanatları Yönetimi Özel Yetenek Sınavı Sonuçları (2023)"
+              ],
+              "sample_urls": [
+                "haber",
+                "tekstil-ve-moda-tasarimi-ozel-yetenek-sinavi-sonuclari-2021",
+                "sahne-ve-gosteri-sanatlari-yonetimi-ozel-yetenek-sinavi-sonuclari-2023"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.93
+            }
+          }
+        },
+        "international_student_admissions": {
+          "doc_count": 86,
+          "group_count": 1,
+          "leaves": {
+            "International Student Admission Procedures": {
+              "doc_count": 86,
+              "group_count": 1,
+              "group_ids": [
+                114
+              ],
+              "representative_titles": [
+                "Kabul Durumu Ve Genel Bilgi",
+                "International Students Admission Procedures"
+              ],
+              "sample_urls": [
+                "international",
+                "uluslararasi-aday-ogrenci",
+                "kabul-durumu-ve-genel-bilgi"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.95
+            }
+          }
+        },
+        "english_language_admissions": {
+          "doc_count": 734,
+          "group_count": 1,
+          "leaves": {
+            "English Language Programs Admission And Faq": {
+              "doc_count": 734,
+              "group_count": 1,
+              "group_ids": [
+                129
+              ],
+              "representative_titles": [
+                "Admission Requirements",
+                "Frequently Asked Questions",
+                "General Information"
+              ],
+              "sample_urls": [
+                "academic",
+                "international",
+                "international-office"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.9,
+              "taxonomy_url": "/taxonomy/admissions/english-language-admissions/english-language-programs-admission-and-faq"
+            }
+          }
+        }
+      }
+    }
+  },
+  "created_at_utc": "2026-04-05T16:54:40.611713+00:00",
+  "source": "12_cluster_regulations merged into 05_refactor_tree"
+}
