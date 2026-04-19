@@ -25,6 +25,10 @@ ALLOWED_MIME = {
     "application/pdf",
     "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
     "text/plain",
+    "text/x-python",
+    "text/x-python-script",
+    "application/x-python-code",
+    "application/octet-stream",
 }
 MAX_FILE_SIZE = 10 * 1024 * 1024  # 10 MB
 
@@ -38,6 +42,7 @@ def _extract_text(content: bytes, content_type: str) -> str:
         from docx import Document
         doc = Document(io.BytesIO(content))
         return "\n".join(p.text for p in doc.paragraphs)
+    # plain text, python, or any other text-based file
     return content.decode("utf-8", errors="ignore")
 
 

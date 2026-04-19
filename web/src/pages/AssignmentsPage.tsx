@@ -120,12 +120,12 @@ function SubmitModal({ assignment, onClose, onDone }: {
         >
           <Upload size={28} strokeWidth={1.5} style={{ marginBottom: 8 }} />
           <div style={{ fontSize: 14 }}>
-            {file ? file.name : 'Click to select a file (PDF, DOCX, TXT — max 10 MB)'}
+            {file ? file.name : 'Click to select a file (PDF, DOCX, TXT, PY, JS, ZIP… — max 10 MB)'}
           </div>
           <input
             ref={inputRef}
             type="file"
-            accept=".pdf,.docx,.txt"
+            accept=".pdf,.docx,.txt,.py,.js,.ts,.java,.c,.cpp,.cs,.go,.rb,.rs,.zip"
             style={{ display: 'none' }}
             onChange={e => {
               const f = e.target.files?.[0];
