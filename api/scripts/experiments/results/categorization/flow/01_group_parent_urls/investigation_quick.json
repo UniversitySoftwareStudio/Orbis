@@ -1,0 +1,802 @@
+{
+  "summary": {
+    "created_at_utc": "2026-04-04T14:49:16.770305+00:00",
+    "total_docs": 60649,
+    "candidate_count": 1993,
+    "accepted_parent_candidates": 105,
+    "final_parent_groups": 105,
+    "fallback_root_docs": 26,
+    "ai_calls": 0,
+    "ai_errors": 0,
+    "large_group_doc_threshold": 1000,
+    "large_group_accept_count": 8,
+    "accepted_by_depth": {
+      "1": 5,
+      "2": 24,
+      "3": 76
+    },
+    "decisions_by_depth": {
+      "depth_1": {
+        "accept": 5,
+        "reject": 1
+      },
+      "depth_2": {
+        "accept": 24,
+        "reject": 125
+      },
+      "depth_3": {
+        "accept": 76,
+        "reject": 1762
+      }
+    }
+  },
+  "top_parent_groups": [
+    {
+      "parent_key": "www.bilgi.edu.tr/media/uploads",
+      "chosen_depth": 2,
+      "doc_count": 20168
+    },
+    {
+      "parent_key": "ects.bilgi.edu.tr/course/detail",
+      "chosen_depth": 2,
+      "doc_count": 6482
+    },
+    {
+      "parent_key": "www.bilgi.edu.tr/tr/akademik/kadro",
+      "chosen_depth": 3,
+      "doc_count": 3438
+    },
+    {
+      "parent_key": "www.bilgi.edu.tr/en/academic/staff",
+      "chosen_depth": 3,
+      "doc_count": 2631
+    },
+    {
+      "parent_key": "www.bilgi.edu.tr/upload",
+      "chosen_depth": 1,
+      "doc_count": 2213
+    },
+    {
+      "parent_key": "www.bilgi.edu.tr/tr/haber",
+      "chosen_depth": 2,
+      "doc_count": 1754
+    },
+    {
+      "parent_key": "www.bilgi.edu.tr/tr/akademik/lisansustu",
+      "chosen_depth": 3,
+      "doc_count": 1657
+    },
+    {
+      "parent_key": "www.bilgi.edu.tr/tr/etkinlik",
+      "chosen_depth": 2,
+      "doc_count": 1614
+    },
+    {
+      "parent_key": "www.bilgi.edu.tr/en/academic/graduate",
+      "chosen_depth": 3,
+      "doc_count": 1551
+    },
+    {
+      "parent_key": "www.bilgi.edu.tr/en/news",
+      "chosen_depth": 2,
+      "doc_count": 1389
+    },
+    {
+      "parent_key": "www.bilgi.edu.tr/en/event",
+      "chosen_depth": 2,
+      "doc_count": 1106
+    },
+    {
+      "parent_key": "www.bilgi.edu.tr/en/university/about",
+      "chosen_depth": 3,
+      "doc_count": 976
+    },
+    {
+      "parent_key": "www.bilgi.edu.tr/tr/akademik/sosyal-ve-beseri-bilimler-fakultesi",
+      "chosen_depth": 3,
+      "doc_count": 972
+    },
+    {
+      "parent_key": "www.bilgi.edu.tr/en/international/international-office",
+      "chosen_depth": 3,
+      "doc_count": 818
+    },
+    {
+      "parent_key": "www.bilgi.edu.tr/tr/international/uluslararasi-ofis",
+      "chosen_depth": 3,
+      "doc_count": 768
+    },
+    {
+      "parent_key": "www.bilgi.edu.tr/tr/universite/hakkinda",
+      "chosen_depth": 3,
+      "doc_count": 726
+    },
+    {
+      "parent_key": "www.bilgi.edu.tr/en/academic/faculty-of-social-sciences-and-humanities",
+      "chosen_depth": 3,
+      "doc_count": 708
+    },
+    {
+      "parent_key": "www.bilgi.edu.tr/tr/akademik/muhendislik-ve-doga-bilimleri-fakultesi",
+      "chosen_depth": 3,
+      "doc_count": 665
+    },
+    {
+      "parent_key": "www.bilgi.edu.tr/en/academic/faculty-of-engineering-and-natural-sciences",
+      "chosen_depth": 3,
+      "doc_count": 576
+    },
+    {
+      "parent_key": "www.bilgi.edu.tr/tr/akademik/iletisim-fakultesi",
+      "chosen_depth": 3,
+      "doc_count": 540
+    }
+  ],
+  "top_accepted_candidates": [
+    {
+      "depth": 1,
+      "parent_key": "www.bilgi.edu.tr/media",
+      "doc_count": 20537,
+      "distinct_children": 2,
+      "semantic_ratio": 1.0,
+      "dynamic_ratio": 0.0,
+      "decision_source": "rule_large_group",
+      "reason": "large_group_keep_together"
+    },
+    {
+      "depth": 2,
+      "parent_key": "www.bilgi.edu.tr/media/uploads",
+      "doc_count": 20168,
+      "distinct_children": 10,
+      "semantic_ratio": 0.0,
+      "dynamic_ratio": 1.0,
+      "decision_source": "rule_large_group",
+      "reason": "large_group_keep_together"
+    },
+    {
+      "depth": 1,
+      "parent_key": "www.bilgi.edu.tr/tr",
+      "doc_count": 17000,
+      "distinct_children": 20,
+      "semantic_ratio": 1.0,
+      "dynamic_ratio": 0.0,
+      "decision_source": "rule_strong",
+      "reason": "strong_signal"
+    },
+    {
+      "depth": 1,
+      "parent_key": "www.bilgi.edu.tr/en",
+      "doc_count": 14391,
+      "distinct_children": 15,
+      "semantic_ratio": 1.0,
+      "dynamic_ratio": 0.0,
+      "decision_source": "rule_strong",
+      "reason": "strong_signal"
+    },
+    {
+      "depth": 2,
+      "parent_key": "www.bilgi.edu.tr/tr/akademik",
+      "doc_count": 10380,
+      "distinct_children": 20,
+      "semantic_ratio": 1.0,
+      "dynamic_ratio": 0.0,
+      "decision_source": "rule_strong",
+      "reason": "strong_signal"
+    },
+    {
+      "depth": 2,
+      "parent_key": "www.bilgi.edu.tr/en/academic",
+      "doc_count": 8910,
+      "distinct_children": 23,
+      "semantic_ratio": 1.0,
+      "dynamic_ratio": 0.0,
+      "decision_source": "rule_strong",
+      "reason": "strong_signal"
+    },
+    {
+      "depth": 1,
+      "parent_key": "ects.bilgi.edu.tr/course",
+      "doc_count": 6482,
+      "distinct_children": 1,
+      "semantic_ratio": 1.0,
+      "dynamic_ratio": 0.0,
+      "decision_source": "rule_large_group",
+      "reason": "large_group_keep_together"
+    },
+    {
+      "depth": 2,
+      "parent_key": "ects.bilgi.edu.tr/course/detail",
+      "doc_count": 6482,
+      "distinct_children": 0,
+      "semantic_ratio": 0.0,
+      "dynamic_ratio": 0.0,
+      "decision_source": "rule_large_group",
+      "reason": "large_group_keep_together"
+    },
+    {
+      "depth": 3,
+      "parent_key": "www.bilgi.edu.tr/tr/akademik/kadro",
+      "doc_count": 3438,
+      "distinct_children": 511,
+      "semantic_ratio": 1.0,
+      "dynamic_ratio": 0.0,
+      "decision_source": "rule_strong",
+      "reason": "strong_signal"
+    },
+    {
+      "depth": 3,
+      "parent_key": "www.bilgi.edu.tr/en/academic/staff",
+      "doc_count": 2631,
+      "distinct_children": 512,
+      "semantic_ratio": 1.0,
+      "dynamic_ratio": 0.0,
+      "decision_source": "rule_strong",
+      "reason": "strong_signal"
+    },
+    {
+      "depth": 1,
+      "parent_key": "www.bilgi.edu.tr/upload",
+      "doc_count": 2213,
+      "distinct_children": 110,
+      "semantic_ratio": 1.0,
+      "dynamic_ratio": 0.0,
+      "decision_source": "rule_strong",
+      "reason": "strong_signal"
+    },
+    {
+      "depth": 2,
+      "parent_key": "www.bilgi.edu.tr/tr/haber",
+      "doc_count": 1754,
+      "distinct_children": 477,
+      "semantic_ratio": 0.0,
+      "dynamic_ratio": 1.0,
+      "decision_source": "rule_large_group",
+      "reason": "large_group_keep_together"
+    },
+    {
+      "depth": 3,
+      "parent_key": "www.bilgi.edu.tr/tr/akademik/lisansustu",
+      "doc_count": 1657,
+      "distinct_children": 59,
+      "semantic_ratio": 1.0,
+      "dynamic_ratio": 0.0,
+      "decision_source": "rule_strong",
+      "reason": "strong_signal"
+    },
+    {
+      "depth": 2,
+      "parent_key": "www.bilgi.edu.tr/tr/etkinlik",
+      "doc_count": 1614,
+      "distinct_children": 561,
+      "semantic_ratio": 0.0,
+      "dynamic_ratio": 1.0,
+      "decision_source": "rule_large_group",
+      "reason": "large_group_keep_together"
+    },
+    {
+      "depth": 3,
+      "parent_key": "www.bilgi.edu.tr/en/academic/graduate",
+      "doc_count": 1551,
+      "distinct_children": 54,
+      "semantic_ratio": 1.0,
+      "dynamic_ratio": 0.0,
+      "decision_source": "rule_strong",
+      "reason": "strong_signal"
+    },
+    {
+      "depth": 2,
+      "parent_key": "www.bilgi.edu.tr/en/news",
+      "doc_count": 1389,
+      "distinct_children": 298,
+      "semantic_ratio": 0.0,
+      "dynamic_ratio": 1.0,
+      "decision_source": "rule_large_group",
+      "reason": "large_group_keep_together"
+    },
+    {
+      "depth": 2,
+      "parent_key": "www.bilgi.edu.tr/en/event",
+      "doc_count": 1106,
+      "distinct_children": 285,
+      "semantic_ratio": 0.0,
+      "dynamic_ratio": 1.0,
+      "decision_source": "rule_large_group",
+      "reason": "large_group_keep_together"
+    },
+    {
+      "depth": 2,
+      "parent_key": "www.bilgi.edu.tr/en/international",
+      "doc_count": 1092,
+      "distinct_children": 11,
+      "semantic_ratio": 1.0,
+      "dynamic_ratio": 0.0,
+      "decision_source": "rule_strong",
+      "reason": "strong_signal"
+    },
+    {
+      "depth": 2,
+      "parent_key": "www.bilgi.edu.tr/en/university",
+      "doc_count": 987,
+      "distinct_children": 4,
+      "semantic_ratio": 1.0,
+      "dynamic_ratio": 0.0,
+      "decision_source": "rule_strong",
+      "reason": "strong_signal"
+    },
+    {
+      "depth": 3,
+      "parent_key": "www.bilgi.edu.tr/en/university/about",
+      "doc_count": 976,
+      "distinct_children": 7,
+      "semantic_ratio": 1.0,
+      "dynamic_ratio": 0.0,
+      "decision_source": "rule_strong",
+      "reason": "strong_signal"
+    }
+  ],
+  "top_rejected_candidates": [
+    {
+      "depth": 3,
+      "parent_key": "www.bilgi.edu.tr/media/uploads/2023",
+      "doc_count": 3803,
+      "distinct_children": 12,
+      "semantic_ratio": 0.0,
+      "dynamic_ratio": 1.0,
+      "decision_source": "rule_invalid_parent_tail",
+      "reason": "parent_ends_with_dynamic_segment"
+    },
+    {
+      "depth": 3,
+      "parent_key": "www.bilgi.edu.tr/media/uploads/2020",
+      "doc_count": 2976,
+      "distinct_children": 12,
+      "semantic_ratio": 0.0,
+      "dynamic_ratio": 1.0,
+      "decision_source": "rule_invalid_parent_tail",
+      "reason": "parent_ends_with_dynamic_segment"
+    },
+    {
+      "depth": 3,
+      "parent_key": "www.bilgi.edu.tr/media/uploads/2021",
+      "doc_count": 2773,
+      "distinct_children": 11,
+      "semantic_ratio": 0.0,
+      "dynamic_ratio": 1.0,
+      "decision_source": "rule_invalid_parent_tail",
+      "reason": "parent_ends_with_dynamic_segment"
+    },
+    {
+      "depth": 3,
+      "parent_key": "www.bilgi.edu.tr/media/uploads/2022",
+      "doc_count": 2287,
+      "distinct_children": 12,
+      "semantic_ratio": 0.0,
+      "dynamic_ratio": 1.0,
+      "decision_source": "rule_invalid_parent_tail",
+      "reason": "parent_ends_with_dynamic_segment"
+    },
+    {
+      "depth": 3,
+      "parent_key": "www.bilgi.edu.tr/media/uploads/2025",
+      "doc_count": 2123,
+      "distinct_children": 12,
+      "semantic_ratio": 0.0,
+      "dynamic_ratio": 1.0,
+      "decision_source": "rule_invalid_parent_tail",
+      "reason": "parent_ends_with_dynamic_segment"
+    },
+    {
+      "depth": 3,
+      "parent_key": "www.bilgi.edu.tr/media/uploads/2024",
+      "doc_count": 2053,
+      "distinct_children": 12,
+      "semantic_ratio": 0.0,
+      "dynamic_ratio": 1.0,
+      "decision_source": "rule_invalid_parent_tail",
+      "reason": "parent_ends_with_dynamic_segment"
+    },
+    {
+      "depth": 3,
+      "parent_key": "www.bilgi.edu.tr/media/uploads/2018",
+      "doc_count": 1822,
+      "distinct_children": 11,
+      "semantic_ratio": 0.0,
+      "dynamic_ratio": 1.0,
+      "decision_source": "rule_invalid_parent_tail",
+      "reason": "parent_ends_with_dynamic_segment"
+    },
+    {
+      "depth": 3,
+      "parent_key": "www.bilgi.edu.tr/media/uploads/2019",
+      "doc_count": 1688,
+      "distinct_children": 11,
+      "semantic_ratio": 0.0,
+      "dynamic_ratio": 1.0,
+      "decision_source": "rule_invalid_parent_tail",
+      "reason": "parent_ends_with_dynamic_segment"
+    },
+    {
+      "depth": 3,
+      "parent_key": "www.bilgi.edu.tr/media/uploads/2026",
+      "doc_count": 642,
+      "distinct_children": 2,
+      "semantic_ratio": 0.0,
+      "dynamic_ratio": 1.0,
+      "decision_source": "rule_invalid_parent_tail",
+      "reason": "parent_ends_with_dynamic_segment"
+    },
+    {
+      "depth": 2,
+      "parent_key": "www.bilgi.edu.tr/media/attachments",
+      "doc_count": 369,
+      "distinct_children": 4,
+      "semantic_ratio": 0.0,
+      "dynamic_ratio": 1.0,
+      "decision_source": "rule_weak",
+      "reason": "weak_signal"
+    },
+    {
+      "depth": 2,
+      "parent_key": "www.bilgi.edu.tr/upload/kurum-ic-degerlendirme-raporu-2017",
+      "doc_count": 190,
+      "distinct_children": 0,
+      "semantic_ratio": 0.0,
+      "dynamic_ratio": 0.0,
+      "decision_source": "rule_weak",
+      "reason": "weak_signal"
+    },
+    {
+      "depth": 3,
+      "parent_key": "www.bilgi.edu.tr/media/attachments/2026",
+      "doc_count": 168,
+      "distinct_children": 1,
+      "semantic_ratio": 0.0,
+      "dynamic_ratio": 1.0,
+      "decision_source": "parent_not_accepted",
+      "reason": "parent_not_accepted:www.bilgi.edu.tr/media/attachments"
+    },
+    {
+      "depth": 2,
+      "parent_key": "www.bilgi.edu.tr/upload/kurum-ic-degerlendirme-raporu-2016",
+      "doc_count": 162,
+      "distinct_children": 0,
+      "semantic_ratio": 0.0,
+      "dynamic_ratio": 0.0,
+      "decision_source": "rule_weak",
+      "reason": "weak_signal"
+    },
+    {
+      "depth": 3,
+      "parent_key": "www.bilgi.edu.tr/media/attachments/2024",
+      "doc_count": 160,
+      "distinct_children": 3,
+      "semantic_ratio": 0.0,
+      "dynamic_ratio": 1.0,
+      "decision_source": "parent_not_accepted",
+      "reason": "parent_not_accepted:www.bilgi.edu.tr/media/attachments"
+    },
+    {
+      "depth": 2,
+      "parent_key": "www.bilgi.edu.tr/upload/undergraduate-student-handbook",
+      "doc_count": 157,
+      "distinct_children": 0,
+      "semantic_ratio": 0.0,
+      "dynamic_ratio": 0.0,
+      "decision_source": "rule_weak",
+      "reason": "weak_signal"
+    },
+    {
+      "depth": 2,
+      "parent_key": "www.bilgi.edu.tr/upload/kurum-ic-degerlendirme-raporu-2015",
+      "doc_count": 133,
+      "distinct_children": 0,
+      "semantic_ratio": 0.0,
+      "dynamic_ratio": 0.0,
+      "decision_source": "rule_weak",
+      "reason": "weak_signal"
+    },
+    {
+      "depth": 2,
+      "parent_key": "www.bilgi.edu.tr/upload/ogrenci-el-kitabi-lisans-onlisans",
+      "doc_count": 122,
+      "distinct_children": 0,
+      "semantic_ratio": 0.0,
+      "dynamic_ratio": 0.0,
+      "decision_source": "rule_weak",
+      "reason": "weak_signal"
+    },
+    {
+      "depth": 2,
+      "parent_key": "www.bilgi.edu.tr/upload/graduate-student-handbook",
+      "doc_count": 118,
+      "distinct_children": 0,
+      "semantic_ratio": 0.0,
+      "dynamic_ratio": 0.0,
+      "decision_source": "rule_weak",
+      "reason": "weak_signal"
+    },
+    {
+      "depth": 2,
+      "parent_key": "www.bilgi.edu.tr/upload/bilgide-sosyal-sorumluluk",
+      "doc_count": 106,
+      "distinct_children": 0,
+      "semantic_ratio": 0.0,
+      "dynamic_ratio": 0.0,
+      "decision_source": "rule_weak",
+      "reason": "weak_signal"
+    },
+    {
+      "depth": 3,
+      "parent_key": "www.bilgi.edu.tr/tr/arastirma/arastirmacilar",
+      "doc_count": 102,
+      "distinct_children": 1,
+      "semantic_ratio": 1.0,
+      "dynamic_ratio": 0.0,
+      "decision_source": "rule_weak",
+      "reason": "weak_signal"
+    }
+  ],
+  "large_group_candidates": [
+    {
+      "depth": 1,
+      "parent_key": "www.bilgi.edu.tr/media",
+      "doc_count": 20537,
+      "distinct_children": 2,
+      "semantic_ratio": 1.0,
+      "dynamic_ratio": 0.0,
+      "decision_source": "rule_large_group",
+      "reason": "large_group_keep_together"
+    },
+    {
+      "depth": 2,
+      "parent_key": "www.bilgi.edu.tr/media/uploads",
+      "doc_count": 20168,
+      "distinct_children": 10,
+      "semantic_ratio": 0.0,
+      "dynamic_ratio": 1.0,
+      "decision_source": "rule_large_group",
+      "reason": "large_group_keep_together"
+    },
+    {
+      "depth": 1,
+      "parent_key": "www.bilgi.edu.tr/tr",
+      "doc_count": 17000,
+      "distinct_children": 20,
+      "semantic_ratio": 1.0,
+      "dynamic_ratio": 0.0,
+      "decision_source": "rule_strong",
+      "reason": "strong_signal"
+    },
+    {
+      "depth": 1,
+      "parent_key": "www.bilgi.edu.tr/en",
+      "doc_count": 14391,
+      "distinct_children": 15,
+      "semantic_ratio": 1.0,
+      "dynamic_ratio": 0.0,
+      "decision_source": "rule_strong",
+      "reason": "strong_signal"
+    },
+    {
+      "depth": 2,
+      "parent_key": "www.bilgi.edu.tr/tr/akademik",
+      "doc_count": 10380,
+      "distinct_children": 20,
+      "semantic_ratio": 1.0,
+      "dynamic_ratio": 0.0,
+      "decision_source": "rule_strong",
+      "reason": "strong_signal"
+    },
+    {
+      "depth": 2,
+      "parent_key": "www.bilgi.edu.tr/en/academic",
+      "doc_count": 8910,
+      "distinct_children": 23,
+      "semantic_ratio": 1.0,
+      "dynamic_ratio": 0.0,
+      "decision_source": "rule_strong",
+      "reason": "strong_signal"
+    },
+    {
+      "depth": 1,
+      "parent_key": "ects.bilgi.edu.tr/course",
+      "doc_count": 6482,
+      "distinct_children": 1,
+      "semantic_ratio": 1.0,
+      "dynamic_ratio": 0.0,
+      "decision_source": "rule_large_group",
+      "reason": "large_group_keep_together"
+    },
+    {
+      "depth": 2,
+      "parent_key": "ects.bilgi.edu.tr/course/detail",
+      "doc_count": 6482,
+      "distinct_children": 0,
+      "semantic_ratio": 0.0,
+      "dynamic_ratio": 0.0,
+      "decision_source": "rule_large_group",
+      "reason": "large_group_keep_together"
+    },
+    {
+      "depth": 3,
+      "parent_key": "www.bilgi.edu.tr/media/uploads/2023",
+      "doc_count": 3803,
+      "distinct_children": 12,
+      "semantic_ratio": 0.0,
+      "dynamic_ratio": 1.0,
+      "decision_source": "rule_invalid_parent_tail",
+      "reason": "parent_ends_with_dynamic_segment"
+    },
+    {
+      "depth": 3,
+      "parent_key": "www.bilgi.edu.tr/tr/akademik/kadro",
+      "doc_count": 3438,
+      "distinct_children": 511,
+      "semantic_ratio": 1.0,
+      "dynamic_ratio": 0.0,
+      "decision_source": "rule_strong",
+      "reason": "strong_signal"
+    },
+    {
+      "depth": 3,
+      "parent_key": "www.bilgi.edu.tr/media/uploads/2020",
+      "doc_count": 2976,
+      "distinct_children": 12,
+      "semantic_ratio": 0.0,
+      "dynamic_ratio": 1.0,
+      "decision_source": "rule_invalid_parent_tail",
+      "reason": "parent_ends_with_dynamic_segment"
+    },
+    {
+      "depth": 3,
+      "parent_key": "www.bilgi.edu.tr/media/uploads/2021",
+      "doc_count": 2773,
+      "distinct_children": 11,
+      "semantic_ratio": 0.0,
+      "dynamic_ratio": 1.0,
+      "decision_source": "rule_invalid_parent_tail",
+      "reason": "parent_ends_with_dynamic_segment"
+    },
+    {
+      "depth": 3,
+      "parent_key": "www.bilgi.edu.tr/en/academic/staff",
+      "doc_count": 2631,
+      "distinct_children": 512,
+      "semantic_ratio": 1.0,
+      "dynamic_ratio": 0.0,
+      "decision_source": "rule_strong",
+      "reason": "strong_signal"
+    },
+    {
+      "depth": 3,
+      "parent_key": "www.bilgi.edu.tr/media/uploads/2022",
+      "doc_count": 2287,
+      "distinct_children": 12,
+      "semantic_ratio": 0.0,
+      "dynamic_ratio": 1.0,
+      "decision_source": "rule_invalid_parent_tail",
+      "reason": "parent_ends_with_dynamic_segment"
+    },
+    {
+      "depth": 1,
+      "parent_key": "www.bilgi.edu.tr/upload",
+      "doc_count": 2213,
+      "distinct_children": 110,
+      "semantic_ratio": 1.0,
+      "dynamic_ratio": 0.0,
+      "decision_source": "rule_strong",
+      "reason": "strong_signal"
+    },
+    {
+      "depth": 3,
+      "parent_key": "www.bilgi.edu.tr/media/uploads/2025",
+      "doc_count": 2123,
+      "distinct_children": 12,
+      "semantic_ratio": 0.0,
+      "dynamic_ratio": 1.0,
+      "decision_source": "rule_invalid_parent_tail",
+      "reason": "parent_ends_with_dynamic_segment"
+    },
+    {
+      "depth": 3,
+      "parent_key": "www.bilgi.edu.tr/media/uploads/2024",
+      "doc_count": 2053,
+      "distinct_children": 12,
+      "semantic_ratio": 0.0,
+      "dynamic_ratio": 1.0,
+      "decision_source": "rule_invalid_parent_tail",
+      "reason": "parent_ends_with_dynamic_segment"
+    },
+    {
+      "depth": 3,
+      "parent_key": "www.bilgi.edu.tr/media/uploads/2018",
+      "doc_count": 1822,
+      "distinct_children": 11,
+      "semantic_ratio": 0.0,
+      "dynamic_ratio": 1.0,
+      "decision_source": "rule_invalid_parent_tail",
+      "reason": "parent_ends_with_dynamic_segment"
+    },
+    {
+      "depth": 2,
+      "parent_key": "www.bilgi.edu.tr/tr/haber",
+      "doc_count": 1754,
+      "distinct_children": 477,
+      "semantic_ratio": 0.0,
+      "dynamic_ratio": 1.0,
+      "decision_source": "rule_large_group",
+      "reason": "large_group_keep_together"
+    },
+    {
+      "depth": 3,
+      "parent_key": "www.bilgi.edu.tr/media/uploads/2019",
+      "doc_count": 1688,
+      "distinct_children": 11,
+      "semantic_ratio": 0.0,
+      "dynamic_ratio": 1.0,
+      "decision_source": "rule_invalid_parent_tail",
+      "reason": "parent_ends_with_dynamic_segment"
+    },
+    {
+      "depth": 3,
+      "parent_key": "www.bilgi.edu.tr/tr/akademik/lisansustu",
+      "doc_count": 1657,
+      "distinct_children": 59,
+      "semantic_ratio": 1.0,
+      "dynamic_ratio": 0.0,
+      "decision_source": "rule_strong",
+      "reason": "strong_signal"
+    },
+    {
+      "depth": 2,
+      "parent_key": "www.bilgi.edu.tr/tr/etkinlik",
+      "doc_count": 1614,
+      "distinct_children": 561,
+      "semantic_ratio": 0.0,
+      "dynamic_ratio": 1.0,
+      "decision_source": "rule_large_group",
+      "reason": "large_group_keep_together"
+    },
+    {
+      "depth": 3,
+      "parent_key": "www.bilgi.edu.tr/en/academic/graduate",
+      "doc_count": 1551,
+      "distinct_children": 54,
+      "semantic_ratio": 1.0,
+      "dynamic_ratio": 0.0,
+      "decision_source": "rule_strong",
+      "reason": "strong_signal"
+    },
+    {
+      "depth": 2,
+      "parent_key": "www.bilgi.edu.tr/en/news",
+      "doc_count": 1389,
+      "distinct_children": 298,
+      "semantic_ratio": 0.0,
+      "dynamic_ratio": 1.0,
+      "decision_source": "rule_large_group",
+      "reason": "large_group_keep_together"
+    },
+    {
+      "depth": 2,
+      "parent_key": "www.bilgi.edu.tr/en/event",
+      "doc_count": 1106,
+      "distinct_children": 285,
+      "semantic_ratio": 0.0,
+      "dynamic_ratio": 1.0,
+      "decision_source": "rule_large_group",
+      "reason": "large_group_keep_together"
+    },
+    {
+      "depth": 2,
+      "parent_key": "www.bilgi.edu.tr/en/international",
+      "doc_count": 1092,
+      "distinct_children": 11,
+      "semantic_ratio": 1.0,
+      "dynamic_ratio": 0.0,
+      "decision_source": "rule_strong",
+      "reason": "strong_signal"
+    }
+  ],
+  "blocked_by_parent_not_accepted": []
+}

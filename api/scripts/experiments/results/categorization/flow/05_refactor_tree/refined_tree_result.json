@@ -1,0 +1,2783 @@
+{
+  "summary": {
+    "created_at_utc": "2026-04-05T12:14:15.710698+00:00",
+    "input_tree_json": "scripts/experiments/results/categorization/flow/05_refactor_tree/refined_tree.json",
+    "llm_provider": "outlier",
+    "llm_model": "claude-opus-4-6",
+    "max_iterations": 1,
+    "iterations_run": 1,
+    "ai_calls": 1,
+    "ai_errors": 1,
+    "source_tree_summary": {
+      "created_at_utc": "2026-04-05T12:14:02.092408+00:00",
+      "input_tree_json": "scripts/experiments/results/categorization/flow/05_refactor_tree/refined_tree.json",
+      "llm_provider": "outlier",
+      "llm_model": "claude-opus-4-6",
+      "max_iterations": 1,
+      "iterations_run": 1,
+      "ai_calls": 1,
+      "ai_errors": 0,
+      "source_tree_summary": {
+        "created_at_utc": "2026-04-05T12:13:23.519265+00:00",
+        "input_tree_json": "scripts/experiments/results/categorization/flow/05_refactor_tree/refined_tree.json",
+        "llm_provider": "outlier",
+        "llm_model": "claude-opus-4-6",
+        "max_iterations": 1,
+        "iterations_run": 1,
+        "ai_calls": 1,
+        "ai_errors": 0,
+        "source_tree_summary": {
+          "created_at_utc": "2026-04-05T12:12:37.622479+00:00",
+          "input_tree_json": "scripts/experiments/results/categorization/flow/05_refactor_tree/refined_tree.json",
+          "llm_provider": "outlier",
+          "llm_model": "claude-opus-4-6",
+          "max_iterations": 1,
+          "iterations_run": 1,
+          "ai_calls": 1,
+          "ai_errors": 0,
+          "source_tree_summary": {
+            "created_at_utc": "2026-04-05T12:11:51.695577+00:00",
+            "input_tree_json": "scripts/experiments/results/categorization/flow/05_refactor_tree/refined_tree.json",
+            "llm_provider": "outlier",
+            "llm_model": "claude-opus-4-6",
+            "max_iterations": 1,
+            "iterations_run": 1,
+            "ai_calls": 1,
+            "ai_errors": 0,
+            "source_tree_summary": {
+              "created_at_utc": "2026-04-05T12:11:06.890971+00:00",
+              "input_tree_json": "scripts/experiments/results/categorization/flow/11_build_taxonomy_bottomup/taxonomy_result.json",
+              "llm_provider": "outlier",
+              "llm_model": "claude-opus-4-6",
+              "max_iterations": 1,
+              "iterations_run": 1,
+              "ai_calls": 1,
+              "ai_errors": 0,
+              "source_tree_summary": {
+                "created_at_utc": "2026-04-05T12:10:02.829057+00:00",
+                "input_clusters": 151,
+                "final_rows": 151,
+                "tree_top": 10,
+                "tree_sub": 108,
+                "tree_leaves": 144,
+                "total_docs": 60516,
+                "avg_confidence": 0.8923,
+                "ai_errors": 0,
+                "llm_provider": "outlier"
+              },
+              "initial_tree_stats": {
+                "top": 10,
+                "sub": 108,
+                "leaves": 144,
+                "docs": 60516
+              },
+              "final_tree_stats": {
+                "top": 10,
+                "sub": 109,
+                "leaves": 131,
+                "docs": 60516
+              }
+            },
+            "initial_tree_stats": {
+              "top": 10,
+              "sub": 109,
+              "leaves": 131,
+              "docs": 60516
+            },
+            "final_tree_stats": {
+              "top": 10,
+              "sub": 109,
+              "leaves": 117,
+              "docs": 60516
+            }
+          },
+          "initial_tree_stats": {
+            "top": 10,
+            "sub": 109,
+            "leaves": 117,
+            "docs": 60516
+          },
+          "final_tree_stats": {
+            "top": 10,
+            "sub": 100,
+            "leaves": 108,
+            "docs": 60516
+          }
+        },
+        "initial_tree_stats": {
+          "top": 10,
+          "sub": 100,
+          "leaves": 108,
+          "docs": 60516
+        },
+        "final_tree_stats": {
+          "top": 10,
+          "sub": 93,
+          "leaves": 102,
+          "docs": 60516
+        }
+      },
+      "initial_tree_stats": {
+        "top": 10,
+        "sub": 93,
+        "leaves": 102,
+        "docs": 60516
+      },
+      "final_tree_stats": {
+        "top": 10,
+        "sub": 91,
+        "leaves": 91,
+        "docs": 60516
+      }
+    },
+    "initial_tree_stats": {
+      "top": 10,
+      "sub": 91,
+      "leaves": 91,
+      "docs": 60516
+    },
+    "final_tree_stats": {
+      "top": 10,
+      "sub": 91,
+      "leaves": 91,
+      "docs": 60516
+    }
+  },
+  "iterations": [
+    {
+      "iteration": 1,
+      "tree_before_stats": {
+        "top": 10,
+        "sub": 91,
+        "leaves": 91,
+        "docs": 60516
+      },
+      "tree_after_stats": {
+        "top": 10,
+        "sub": 91,
+        "leaves": 91,
+        "docs": 60516
+      },
+      "operations_proposed": [],
+      "operations_log": [],
+      "quality_assessment": "AI error: outlier_error:Remote end closed connection without response",
+      "ai_done": false,
+      "ai_error": "outlier_error:Remote end closed connection without response"
+    }
+  ],
+  "final_tree": {
+    "people": {
+      "doc_count": 8147,
+      "group_count": 20,
+      "sub_levels": {
+        "academic_staff": {
+          "doc_count": 1701,
+          "group_count": 2,
+          "leaves": {
+            "Academic Staff Directory": {
+              "doc_count": 1701,
+              "group_count": 2,
+              "group_ids": [
+                1,
+                119
+              ],
+              "representative_titles": [
+                "Akademik Kadro",
+                "Academic Staff"
+              ],
+              "sample_urls": [
+                "akademik",
+                "kadro",
+                "akademik-kadro",
+                "sosyal-ve-beseri-bilimler-fakultesi"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.95,
+              "representative_parents": []
+            }
+          }
+        },
+        "academic_staff_profiles": {
+          "doc_count": 4777,
+          "group_count": 14,
+          "leaves": {
+            "Academic Staff Profiles And Publications": {
+              "doc_count": 4777,
+              "group_count": 14,
+              "group_ids": [
+                15,
+                72,
+                116,
+                57,
+                28,
+                132,
+                0,
+                105,
+                39,
+                49,
+                125,
+                133,
+                137,
+                81
+              ],
+              "representative_titles": [
+                "Ayşegül Öztürk - Academic Staff | İstanbul Bilgi University",
+                "Selçuk Özaydın - Academic Staff | İstanbul Bilgi University",
+                "Ebru Temizsoy - Academic Staff | İstanbul Bilgi University",
+                "Academic Staff",
+                "Dtm Jahrbuch 11 2016",
+                "Ece Baş Süzel - Academic Staff | İstanbul Bilgi University"
+              ],
+              "sample_urls": [
+                "academic",
+                "staff",
+                "publications",
+                "akademik",
+                "kadro",
+                "yayimlar"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.95,
+              "representative_parents": []
+            }
+          }
+        },
+        "staff_contact_information": {
+          "doc_count": 902,
+          "group_count": 1,
+          "leaves": {
+            "Academic Staff Contact Information": {
+              "doc_count": 902,
+              "group_count": 1,
+              "group_ids": [
+                29
+              ],
+              "representative_titles": [
+                "Contact"
+              ],
+              "sample_urls": [
+                "academic",
+                "contact",
+                "staff"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.9
+            }
+          }
+        },
+        "research_assistant_evaluations": {
+          "doc_count": 767,
+          "group_count": 3,
+          "leaves": {
+            "Research Assistant Evaluation Forms": {
+              "doc_count": 767,
+              "group_count": 3,
+              "group_ids": [
+                58,
+                71,
+                89
+              ],
+              "representative_titles": [
+                "Isletme Ar Gor Deg",
+                "Yazilim Muh Ar Gor On Deg",
+                "Bilg Muh Ar Gor Deg"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "isletme-ar-gor-deg.pdf",
+                "detaylipuanlistesi_25-26.pdf",
+                "akademik"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.88,
+              "representative_parents": []
+            }
+          }
+        }
+      }
+    },
+    "international": {
+      "doc_count": 6144,
+      "group_count": 13,
+      "sub_levels": {
+        "erasmus_programs": {
+          "doc_count": 2011,
+          "group_count": 2,
+          "leaves": {
+            "Erasmus Study Mobility Programs": {
+              "doc_count": 2011,
+              "group_count": 2,
+              "group_ids": [
+                148,
+                37
+              ],
+              "representative_titles": [
+                "Study Mobility",
+                "Outgoing Student"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "international"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.95,
+              "representative_parents": []
+            }
+          }
+        },
+        "erasmus_study_quotas": {
+          "doc_count": 939,
+          "group_count": 2,
+          "leaves": {
+            "Erasmus Study Mobility Quota Lists": {
+              "doc_count": 939,
+              "group_count": 2,
+              "group_ids": [
+                96,
+                24
+              ],
+              "representative_titles": [
+                "Erasmus For Studies Quota List 2022 2023 Last",
+                "Erasmus For Studies Quota List 2022 2023 Last 1",
+                "Erasmus For Studies Quota List 2021 2022"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "erasmusforstudiesquotalist.pdf",
+                "erasmus-for-studies-quota-list-2022-2023-last_gobo306.pdf"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.95
+            }
+          }
+        },
+        "erasmus_mobility_results": {
+          "doc_count": 1363,
+          "group_count": 3,
+          "leaves": {
+            "Erasmus Mobility Application Results": {
+              "doc_count": 1363,
+              "group_count": 3,
+              "group_ids": [
+                68,
+                31,
+                51
+              ],
+              "representative_titles": [
+                "2022Projeerasmusogrenimhareketliligisonuclari040423"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "2022projeerasmusogrenimhareketliligisonuclari040423_vdtol8i.pdf",
+                "2023-proje-erasmus-avrupa-ogrenim-hareketliligi-sonuclari.pdf",
+                "2021-2022-after-objections-erasmus-europe-study-mobility-placement-results_vtnldpk.pdf"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.92,
+              "representative_parents": []
+            }
+          }
+        },
+        "erasmus_orientation": {
+          "doc_count": 499,
+          "group_count": 1,
+          "leaves": {
+            "Erasmus Student Orientation Presentations": {
+              "doc_count": 499,
+              "group_count": 1,
+              "group_ids": [
+                77
+              ],
+              "representative_titles": [
+                "2018 2019 Orientation Presentation Eng",
+                "2018 2019 Spring Orientation Presentation Eng",
+                "Erasmus Outgoing Student Orientation Spring 2019 20"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "international"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.93
+            }
+          }
+        },
+        "erasmus_internship_mobility": {
+          "doc_count": 478,
+          "group_count": 1,
+          "leaves": {
+            "Erasmus Internship And Traineeship Mobility": {
+              "doc_count": 478,
+              "group_count": 1,
+              "group_ids": [
+                30
+              ],
+              "representative_titles": [
+                "Staj Hareketliligi Ilan Ingilizce",
+                "Internship Mobility",
+                "Traineeship Mobility"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "international"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.95
+            }
+          }
+        },
+        "bilateral_exchange_programs": {
+          "doc_count": 274,
+          "group_count": 1,
+          "leaves": {
+            "Partner Universities For Exchange Programs": {
+              "doc_count": 274,
+              "group_count": 1,
+              "group_ids": [
+                121
+              ],
+              "representative_titles": [
+                "Partner Üniversiteler"
+              ],
+              "sample_urls": [
+                "international",
+                "uluslararasi-ofis",
+                "ikili-degisim-programlari"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.93
+            }
+          }
+        },
+        "erasmus_grant_agreements": {
+          "doc_count": 252,
+          "group_count": 1,
+          "leaves": {
+            "Erasmus Grant Agreement For Multiple Beneficiaries": {
+              "doc_count": 252,
+              "group_count": 1,
+              "group_ids": [
+                26
+              ],
+              "representative_titles": [
+                "GRANT AGREEMENT FOR AN ACTION WITH MULTIPLE BENEFICIARIES"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "general_conditions-1.pdf"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.88
+            }
+          }
+        },
+        "erasmus_staff_mobility": {
+          "doc_count": 240,
+          "group_count": 1,
+          "leaves": {
+            "Erasmus Outgoing Staff Mobility Programs": {
+              "doc_count": 240,
+              "group_count": 1,
+              "group_ids": [
+                19
+              ],
+              "representative_titles": [
+                "Outgoing Staff",
+                "2021-2022 Erasmus Europe Staff Training Mobility Application Call (2019 Project)",
+                "Giden Personel"
+              ],
+              "sample_urls": [
+                "international",
+                "uluslararasi-ofis",
+                "erasmus-programlari"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.94
+            }
+          }
+        },
+        "erasmus_language_exam": {
+          "doc_count": 88,
+          "group_count": 1,
+          "leaves": {
+            "Erasmus English Language Exam Announcement": {
+              "doc_count": 88,
+              "group_count": 1,
+              "group_ids": [
+                7
+              ],
+              "representative_titles": [
+                "2022-2023 Erasmus English Language Exam Announcement",
+                "2022-2023 Erasmus İngilizce Dil Sınavı Duyurusu"
+              ],
+              "sample_urls": [
+                "news",
+                "haber",
+                "media"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.93
+            }
+          }
+        }
+      }
+    },
+    "academics": {
+      "doc_count": 23533,
+      "group_count": 58,
+      "sub_levels": {
+        "university_overview": {
+          "doc_count": 1655,
+          "group_count": 2,
+          "leaves": {
+            "University Overview And General Academic Information": {
+              "doc_count": 1655,
+              "group_count": 2,
+              "group_ids": [
+                74,
+                85
+              ],
+              "representative_titles": [
+                "Academic",
+                "About",
+                "Internationality"
+              ],
+              "sample_urls": [
+                "academic",
+                "about",
+                "university",
+                "media",
+                "uploads"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.6,
+              "representative_parents": [],
+              "taxonomy_url": "/taxonomy/academics/university-overview/university-overview-and-general-academic-information"
+            }
+          }
+        },
+        "graduate_programs": {
+          "doc_count": 1242,
+          "group_count": 2,
+          "leaves": {
+            "Phd In Business Administration Program": {
+              "doc_count": 1242,
+              "group_count": 2,
+              "group_ids": [
+                33,
+                70
+              ],
+              "representative_titles": [
+                "İşletme (Organizasyon-Yönetim)Doktora Programı",
+                "Phd inBusiness Administration"
+              ],
+              "sample_urls": [
+                "academic",
+                "akademik",
+                "media",
+                "international",
+                "lisansustu"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.8,
+              "representative_parents": []
+            }
+          }
+        },
+        "faculty_of_law": {
+          "doc_count": 1091,
+          "group_count": 2,
+          "leaves": {
+            "Faculty Of Law Programs And Courses": {
+              "doc_count": 1091,
+              "group_count": 2,
+              "group_ids": [
+                8,
+                40
+              ],
+              "representative_titles": [
+                "LAW 201 - General Principles of Law",
+                "LAW/E 172 - Legal Thinking and Skills II",
+                "LAW 490 - Integrated Law Practices"
+              ],
+              "sample_urls": [
+                "course",
+                "detail",
+                "academic",
+                "akademik",
+                "lisansustu",
+                "sss"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.95,
+              "representative_parents": [],
+              "taxonomy_url": "/taxonomy/academics/faculty-of-law/faculty-of-law-programs-and-courses"
+            }
+          }
+        },
+        "political_science_programs": {
+          "doc_count": 991,
+          "group_count": 2,
+          "leaves": {
+            "Political Science Graduate Programs": {
+              "doc_count": 991,
+              "group_count": 2,
+              "group_ids": [
+                12,
+                107
+              ],
+              "representative_titles": [
+                "Phd inPolitical Science",
+                "Siyaset BilimiDoktora Programı",
+                "MA inPolitical Science and International Relations"
+              ],
+              "sample_urls": [
+                "academic",
+                "akademik",
+                "publications",
+                "sosyal-ve-beseri-bilimler-fakultesi",
+                "uluslararasi-iliskiler"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.9,
+              "representative_parents": []
+            }
+          }
+        },
+        "faculty_of_architecture": {
+          "doc_count": 1244,
+          "group_count": 2,
+          "leaves": {
+            "Faculty Of Architecture Programs": {
+              "doc_count": 1244,
+              "group_count": 2,
+              "group_ids": [
+                13,
+                88
+              ],
+              "representative_titles": [
+                "About",
+                "M.Arch inArchitectural Design"
+              ],
+              "sample_urls": [
+                "academic",
+                "news",
+                "faculty-of-architecture",
+                "akademik",
+                "mimarlik-fakultesi",
+                "haber"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.92,
+              "representative_parents": []
+            }
+          }
+        },
+        "faculty_of_business": {
+          "doc_count": 1198,
+          "group_count": 2,
+          "leaves": {
+            "Faculty Of Business Graduate Programs": {
+              "doc_count": 1198,
+              "group_count": 2,
+              "group_ids": [
+                99,
+                53
+              ],
+              "representative_titles": [
+                "MSc inFinancial Economics",
+                "About"
+              ],
+              "sample_urls": [
+                "academic",
+                "graduate",
+                "faculty-of-business",
+                "akademik",
+                "lisansustu",
+                "isletme-fakultesi"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.91,
+              "representative_parents": []
+            }
+          }
+        },
+        "cultural_management_programs": {
+          "doc_count": 1443,
+          "group_count": 3,
+          "leaves": {
+            "Arts Culture And Cultural Studies Programs And Courses": {
+              "doc_count": 1443,
+              "group_count": 3,
+              "group_ids": [
+                78,
+                104,
+                112
+              ],
+              "representative_titles": [
+                "Events of Department of Comparative Literature",
+                "MA inCultural Management"
+              ],
+              "sample_urls": [
+                "event",
+                "academic",
+                "akademik",
+                "course",
+                "detail",
+                "iletisim-fakultesi"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.75,
+              "representative_parents": [],
+              "taxonomy_url": "/taxonomy/academics/cultural-management-programs/arts-culture-and-cultural-studies-programs-and-courses"
+            }
+          }
+        },
+        "engineering_and_natural_sciences": {
+          "doc_count": 1364,
+          "group_count": 3,
+          "leaves": {
+            "Engineering And Natural Sciences Faculty Programs And Projects": {
+              "doc_count": 1364,
+              "group_count": 3,
+              "group_ids": [
+                83,
+                108,
+                115
+              ],
+              "representative_titles": [
+                "2022-2023 Projects",
+                "Faculty of Engineering and Natural Sciences / News-Announcements",
+                "2021-2022 Projects"
+              ],
+              "sample_urls": [
+                "academic",
+                "faculty-of-engineering-and-natural-sciences",
+                "news",
+                "akademik",
+                "muhendislik-ve-doga-bilimleri-fakultesi",
+                "haber"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.88,
+              "representative_parents": [],
+              "taxonomy_url": "/taxonomy/academics/engineering-and-natural-sciences/engineering-and-natural-sciences-faculty-programs-and-projects"
+            }
+          }
+        },
+        "business_courses": {
+          "doc_count": 1122,
+          "group_count": 2,
+          "leaves": {
+            "Business Administration Course Catalog": {
+              "doc_count": 1122,
+              "group_count": 2,
+              "group_ids": [
+                3,
+                93
+              ],
+              "representative_titles": [
+                "BUS 400 - Internship I",
+                "BUS 422 - Global Marketing Strategy",
+                "MYI 107 - Introduction to Business"
+              ],
+              "sample_urls": [
+                "course",
+                "detail",
+                "academic",
+                "news"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.93,
+              "representative_parents": []
+            }
+          }
+        },
+        "engineering_courses": {
+          "doc_count": 986,
+          "group_count": 2,
+          "leaves": {
+            "Engineering And Computing Course Catalog": {
+              "doc_count": 986,
+              "group_count": 2,
+              "group_ids": [
+                25,
+                130
+              ],
+              "representative_titles": [
+                "ESEN 351 - Applied Numerical Methods in Engineering",
+                "CMPE 100 - Introduction to Computing",
+                "CMPE 412 - Selected Topics in Computer Engineering II"
+              ],
+              "sample_urls": [
+                "course",
+                "detail",
+                "media"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.92,
+              "representative_parents": []
+            }
+          }
+        },
+        "program_brochures": {
+          "doc_count": 989,
+          "group_count": 2,
+          "leaves": {
+            "Academic Program Brochures": {
+              "doc_count": 989,
+              "group_count": 2,
+              "group_ids": [
+                139,
+                46
+              ],
+              "representative_titles": [
+                "Naba Brochure Eng",
+                "Fashion Design Program Brochure"
+              ],
+              "sample_urls": [
+                "akademik",
+                "media",
+                "uploads",
+                "unitact_brosur_eng1625469846021.pdf"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.85,
+              "representative_parents": []
+            }
+          }
+        },
+        "health_services_courses": {
+          "doc_count": 494,
+          "group_count": 1,
+          "leaves": {
+            "Vocational School Of Health Services Courses": {
+              "doc_count": 494,
+              "group_count": 1,
+              "group_ids": [
+                102
+              ],
+              "representative_titles": [
+                "TLT 300 - Basic Health Practices",
+                "ANS 250 - Vocational Development",
+                "ALH 250 - Vocational Development"
+              ],
+              "sample_urls": [
+                "course",
+                "detail",
+                "academic"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.93
+            }
+          }
+        },
+        "design_and_architecture_courses": {
+          "doc_count": 490,
+          "group_count": 1,
+          "leaves": {
+            "Design And Architecture Course Catalog Turkish": {
+              "doc_count": 490,
+              "group_count": 1,
+              "group_ids": [
+                16
+              ],
+              "representative_titles": [
+                "ID 101 - Temel Tasarım I",
+                "IND 101 - Temel Tasarım I",
+                "ARCH 111 - Temel Tasarım I"
+              ],
+              "sample_urls": [
+                "course",
+                "detail"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.92
+            }
+          }
+        },
+        "senior_design_projects": {
+          "doc_count": 632,
+          "group_count": 2,
+          "leaves": {
+            "Engineering And Design Senior Project Courses": {
+              "doc_count": 632,
+              "group_count": 2,
+              "group_ids": [
+                92,
+                127
+              ],
+              "representative_titles": [
+                "IE 491 - Senior Design Project I",
+                "IE 492 - Senior Design Project II",
+                "En Bilgi Ie Seniordesignprojectsguide"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "course",
+                "academic",
+                "akademik",
+                "faculty-of-engineering-and-natural-sciences"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.9,
+              "representative_parents": []
+            }
+          }
+        },
+        "english_language_programs": {
+          "doc_count": 899,
+          "group_count": 2,
+          "leaves": {
+            "English Language And Literature Programs And Courses": {
+              "doc_count": 899,
+              "group_count": 2,
+              "group_ids": [
+                50,
+                23
+              ],
+              "representative_titles": [
+                "2020 2021 Level 4 Student Syllabus En",
+                "2020 2021 Level 2 Student Syllabus En",
+                "2020 2021 Level 5 Student Syllabus En"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "academic",
+                "course",
+                "detail"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.92,
+              "representative_parents": [],
+              "taxonomy_url": "/taxonomy/academics/english-language-programs/english-language-and-literature-programs-and-courses"
+            }
+          }
+        },
+        "english_preparatory_program": {
+          "doc_count": 426,
+          "group_count": 1,
+          "leaves": {
+            "English Preparatory Program Handbook": {
+              "doc_count": 426,
+              "group_count": 1,
+              "group_ids": [
+                14
+              ],
+              "representative_titles": [
+                "Hazırlık Elkitabı2005 – 2006"
+              ],
+              "sample_urls": [
+                "uploads",
+                "media",
+                "akademik"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.9
+            }
+          }
+        },
+        "political_science_courses": {
+          "doc_count": 424,
+          "group_count": 1,
+          "leaves": {
+            "International Relations And Political Science Courses": {
+              "doc_count": 424,
+              "group_count": 1,
+              "group_ids": [
+                131
+              ],
+              "representative_titles": [
+                "IR 179 - Politics, Culture and Society I",
+                "IR 307 - Contemporary Political Theory",
+                "IR 305 - World Politics I"
+              ],
+              "sample_urls": [
+                "course",
+                "detail",
+                "media"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.92
+            }
+          }
+        },
+        "social_responsibility_courses": {
+          "doc_count": 392,
+          "group_count": 1,
+          "leaves": {
+            "Social Responsibility And Sustainability Courses": {
+              "doc_count": 392,
+              "group_count": 1,
+              "group_ids": [
+                143
+              ],
+              "representative_titles": [
+                "Sustainability in BİLGİ Curriculum",
+                "Social Responsibility Courses"
+              ],
+              "sample_urls": [
+                "about",
+                "university",
+                "institutional-principles"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.9
+            }
+          }
+        },
+        "clinical_psychology_program": {
+          "doc_count": 728,
+          "group_count": 2,
+          "leaves": {
+            "Clinical Psychology Graduate Program": {
+              "doc_count": 728,
+              "group_count": 2,
+              "group_ids": [
+                56,
+                54
+              ],
+              "representative_titles": [
+                "Klinik PsikolojiYüksek Lisans Programı",
+                "BİLGİ Klinik Psikoloji Yüksek Lisans Programı"
+              ],
+              "sample_urls": [
+                "akademik",
+                "lisansustu",
+                "psyma",
+                "course",
+                "detail",
+                "academic"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.93,
+              "representative_parents": []
+            }
+          }
+        },
+        "vocational_school_programs": {
+          "doc_count": 608,
+          "group_count": 2,
+          "leaves": {
+            "Vocational And Health Services School Programs And Info": {
+              "doc_count": 608,
+              "group_count": 2,
+              "group_ids": [
+                11,
+                126
+              ],
+              "representative_titles": [
+                "İletişim"
+              ],
+              "sample_urls": [
+                "akademik",
+                "iletisim",
+                "meslek-yuksekokulu",
+                "saglik-hizmetleri-meslek-yuksekokulu",
+                "tibbi-hizmetler-ve-teknikler"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.75,
+              "representative_parents": [],
+              "taxonomy_url": "/taxonomy/academics/vocational-school-programs/vocational-and-health-services-school-programs-and-info"
+            }
+          }
+        },
+        "gastronomy_and_culinary_courses": {
+          "doc_count": 338,
+          "group_count": 1,
+          "leaves": {
+            "Gastronomy And Culinary Arts Courses": {
+              "doc_count": 338,
+              "group_count": 1,
+              "group_ids": [
+                149
+              ],
+              "representative_titles": [
+                "CUL 101 - Introduction to Profession",
+                "ASC 103 - Introduction to Profession",
+                "CUL 406 - World Cuisines 2"
+              ],
+              "sample_urls": [
+                "course",
+                "detail",
+                "akademik"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.93
+            }
+          }
+        },
+        "film_and_television_courses": {
+          "doc_count": 646,
+          "group_count": 2,
+          "leaves": {
+            "Film Television And Media Programs And Courses": {
+              "doc_count": 646,
+              "group_count": 2,
+              "group_ids": [
+                150,
+                2
+              ],
+              "representative_titles": [
+                "FTV 434 - Special Topics in TV Scenario",
+                "FTV 451 - Anatomy of a Film",
+                "FTV 413 - Special Topics in Cinema II"
+              ],
+              "sample_urls": [
+                "course",
+                "detail",
+                "media",
+                "academic",
+                "faculty-of-communication",
+                "news"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.93,
+              "representative_parents": [],
+              "taxonomy_url": "/taxonomy/academics/film-and-television-courses/film-television-and-media-programs-and-courses"
+            }
+          }
+        },
+        "psychology_programs": {
+          "doc_count": 327,
+          "group_count": 1,
+          "leaves": {
+            "Organizational Psychology Program And Staff": {
+              "doc_count": 327,
+              "group_count": 1,
+              "group_ids": [
+                110
+              ],
+              "representative_titles": [
+                "About",
+                "Academic Staff"
+              ],
+              "sample_urls": [
+                "academic",
+                "media",
+                "uploads"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.85
+            }
+          }
+        },
+        "finance_and_economics_programs": {
+          "doc_count": 325,
+          "group_count": 1,
+          "leaves": {
+            "Banking Finance And Economics Programs": {
+              "doc_count": 325,
+              "group_count": 1,
+              "group_ids": [
+                111
+              ],
+              "representative_titles": [
+                "Bilgi Bankacilik Ve Finans Bulteni Temmuz2019",
+                "Finansal EkonomiYüksek Lisans Programı",
+                "Ekonomi ve Finans"
+              ],
+              "sample_urls": [
+                "akademik",
+                "media",
+                "uploads"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.88
+            }
+          }
+        },
+        "marketing_communication_program": {
+          "doc_count": 319,
+          "group_count": 1,
+          "leaves": {
+            "Ma In Marketing Communication Program": {
+              "doc_count": 319,
+              "group_count": 1,
+              "group_ids": [
+                69
+              ],
+              "representative_titles": [
+                "MA inMarketing Communication / markaokulu"
+              ],
+              "sample_urls": [
+                "academic",
+                "akademik",
+                "graduate"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.91
+            }
+          }
+        },
+        "faculty_of_health_sciences": {
+          "doc_count": 438,
+          "group_count": 2,
+          "leaves": {
+            "Faculty Of Health Sciences Staff And Programs": {
+              "doc_count": 438,
+              "group_count": 2,
+              "group_ids": [
+                27,
+                117
+              ],
+              "representative_titles": [
+                "Faculty of Health Sciences",
+                "About",
+                "Beslenme ve Diyetetik Bölümü / Etkinlikler"
+              ],
+              "sample_urls": [
+                "akademik",
+                "saglik-bilimleri-fakultesi",
+                "kadro",
+                "laboratuvarlar"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.9,
+              "representative_parents": []
+            }
+          }
+        },
+        "child_development_department": {
+          "doc_count": 310,
+          "group_count": 1,
+          "leaves": {
+            "Child Development Department Programs And Events": {
+              "doc_count": 310,
+              "group_count": 1,
+              "group_ids": [
+                113
+              ],
+              "representative_titles": [
+                "Bölüm Tanıtım Kataloğu",
+                "Çocuk Gelişimi Bölümü / Etkinlikler",
+                "Çocuk Gelişimi Bölümü"
+              ],
+              "sample_urls": [
+                "akademik",
+                "cocuk-gelisimi",
+                "saglik-bilimleri-fakultesi"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.92
+            }
+          }
+        },
+        "faculty_of_applied_sciences": {
+          "doc_count": 284,
+          "group_count": 1,
+          "leaves": {
+            "Applied Sciences Faculty Staff And Programs": {
+              "doc_count": 284,
+              "group_count": 1,
+              "group_ids": [
+                141
+              ],
+              "representative_titles": [
+                "Akademik Kadro",
+                "Lojistik Yönetimi Bölümü / Etkinlikler"
+              ],
+              "sample_urls": [
+                "akademik",
+                "uygulamali-bilimler-fakultesi",
+                "kadro"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.9
+            }
+          }
+        },
+        "music_department": {
+          "doc_count": 249,
+          "group_count": 1,
+          "leaves": {
+            "Music Department Courses And Programs": {
+              "doc_count": 249,
+              "group_count": 1,
+              "group_ids": [
+                135
+              ],
+              "representative_titles": [
+                "MUS 167 - Fundamentals of Music I",
+                "MUS 209 - Musicianship I",
+                "MUS 375 - Creative Workshop and Ensemble"
+              ],
+              "sample_urls": [
+                "course",
+                "detail",
+                "akademik"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.93
+            }
+          }
+        },
+        "turkish_german_law_program": {
+          "doc_count": 248,
+          "group_count": 1,
+          "leaves": {
+            "Turkish German Economic Law Joint Llm Program": {
+              "doc_count": 248,
+              "group_count": 1,
+              "group_ids": [
+                63
+              ],
+              "representative_titles": [
+                "TÜRK-ALMAN EKONOMİ HUKUKU Ortak Yüksek Lisans ProgramıLL.M. Köln/İstanbul, Joint Degree"
+              ],
+              "sample_urls": [
+                "akademik",
+                "media",
+                "uploads"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.93
+            }
+          }
+        },
+        "aviation_management_courses": {
+          "doc_count": 224,
+          "group_count": 1,
+          "leaves": {
+            "Aviation Management And Cabin Services Courses": {
+              "doc_count": 224,
+              "group_count": 1,
+              "group_ids": [
+                147
+              ],
+              "representative_titles": [
+                "SHU 105 - Airline Management",
+                "SHU 219 - Current Developments in Aviation",
+                "SHU 107 - Introduction to Civil Aviation"
+              ],
+              "sample_urls": [
+                "course",
+                "detail",
+                "akademik"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.93
+            }
+          }
+        },
+        "trauma_and_mental_health_program": {
+          "doc_count": 212,
+          "group_count": 1,
+          "leaves": {
+            "Trauma And Disaster Mental Health Graduate Program": {
+              "doc_count": 212,
+              "group_count": 1,
+              "group_ids": [
+                100
+              ],
+              "representative_titles": [
+                "Travma ve Afet Çalışmaları Uygulamalı Ruh SağlığıYüksek Lisans Programı"
+              ],
+              "sample_urls": [
+                "etkinlik",
+                "media",
+                "uploads"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.9
+            }
+          }
+        },
+        "physiotherapy_program": {
+          "doc_count": 559,
+          "group_count": 3,
+          "leaves": {
+            "Physiotherapy And Rehabilitation Department": {
+              "doc_count": 559,
+              "group_count": 3,
+              "group_ids": [
+                55,
+                79,
+                62
+              ],
+              "representative_titles": [
+                "Fizyoterapi ve RehabilitasyonYüksek Lisans Programı",
+                "Fizyoterapi ve Rehabilitasyon Bölümü / Haberler-Duyurular"
+              ],
+              "sample_urls": [
+                "akademik",
+                "kadro",
+                "saglik-bilimleri-fakultesi",
+                "fizyoterapi-ve-rehabilitasyon",
+                "course",
+                "detail"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.9,
+              "representative_parents": [],
+              "taxonomy_url": "/taxonomy/academics/physiotherapy-program/physiotherapy-and-rehabilitation-department"
+            }
+          }
+        },
+        "nutrition_and_dietetics_courses": {
+          "doc_count": 181,
+          "group_count": 1,
+          "leaves": {
+            "Nutrition And Dietetics Courses": {
+              "doc_count": 181,
+              "group_count": 1,
+              "group_ids": [
+                61
+              ],
+              "representative_titles": [
+                "NUT 502 - Advanced Nutrition -I",
+                "NUT 102 - Beslenme ve Diyetetiğe Giriş",
+                "NUT 403 - Seminar I"
+              ],
+              "sample_urls": [
+                "course",
+                "detail",
+                "academic"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.93
+            }
+          }
+        },
+        "game_design_department": {
+          "doc_count": 180,
+          "group_count": 1,
+          "leaves": {
+            "Digital Game Design Courses And Program": {
+              "doc_count": 180,
+              "group_count": 1,
+              "group_ids": [
+                97
+              ],
+              "representative_titles": [
+                "GAME 401 - Mezuniyet Projesi I",
+                "GAME 101 - Oyun Tasarımının Temelleri I",
+                "GAME 310 - Ciddi ve Eğitsel Oyun Tasarımı"
+              ],
+              "sample_urls": [
+                "course",
+                "detail",
+                "akademik"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.93
+            }
+          }
+        },
+        "sports_management_department": {
+          "doc_count": 175,
+          "group_count": 1,
+          "leaves": {
+            "Sports Management Department News And Events": {
+              "doc_count": 175,
+              "group_count": 1,
+              "group_ids": [
+                80
+              ],
+              "representative_titles": [
+                "Spor Yöneticiliği / Haberler-Duyurular",
+                "Spor Yoneticiligi Ar Gor On Deg",
+                "Spor Yöneticiliği / Ektinlikler"
+              ],
+              "sample_urls": [
+                "haber",
+                "akademik",
+                "uygulamali-bilimler-fakultesi"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.9
+            }
+          }
+        },
+        "opticianry_program": {
+          "doc_count": 100,
+          "group_count": 1,
+          "leaves": {
+            "Opticianry Program Courses And Info": {
+              "doc_count": 100,
+              "group_count": 1,
+              "group_ids": [
+                118
+              ],
+              "representative_titles": [
+                "OPT 112 - Opticianry Applications",
+                "Opticianry",
+                "OPT 212 - Seeing Optics and Refraction"
+              ],
+              "sample_urls": [
+                "course",
+                "detail",
+                "haber"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.9
+            }
+          }
+        }
+      }
+    },
+    "quality": {
+      "doc_count": 7346,
+      "group_count": 17,
+      "sub_levels": {
+        "accreditation_and_evaluation_reports": {
+          "doc_count": 4763,
+          "group_count": 7,
+          "leaves": {
+            "Accreditation And Institutional Evaluation Reports": {
+              "doc_count": 4763,
+              "group_count": 7,
+              "group_ids": [
+                5,
+                94,
+                76,
+                38,
+                66,
+                18,
+                22
+              ],
+              "representative_titles": [
+                "Report Pdf",
+                "Kurum Ic Degerlendirme Raporu 2017",
+                "Kurum Ic Degerlendirme Raporu 2019"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "upload",
+                "kurum-ic-degerlendirme-raporu-2020.pdf",
+                "kurum-ic-degerlendirme-raporu-2021.pdf",
+                "kurum-ic-degerlendirme-raporu-2019.pdf"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.95,
+              "representative_parents": [],
+              "taxonomy_url": "/taxonomy/quality/accreditation-and-evaluation-reports/accreditation-and-institutional-evaluation-reports"
+            }
+          }
+        },
+        "wscuc_accreditation_reports": {
+          "doc_count": 555,
+          "group_count": 1,
+          "leaves": {
+            "Wscuc Accreditation And Program Review Reports": {
+              "doc_count": 555,
+              "group_count": 1,
+              "group_ids": [
+                73
+              ],
+              "representative_titles": [
+                "Wscucselfstudyreportbybilgi2021"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "wscucselfstudyreportbybilgi2021.pdf"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.95
+            }
+          }
+        },
+        "quality_assurance_guides": {
+          "doc_count": 498,
+          "group_count": 1,
+          "leaves": {
+            "Quality Assurance And Institutional Reports": {
+              "doc_count": 498,
+              "group_count": 1,
+              "group_ids": [
+                4
+              ],
+              "representative_titles": [
+                "Bilgiqualityassuranceguide"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "about"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.85
+            }
+          }
+        },
+        "learning_outcomes_assessment": {
+          "doc_count": 306,
+          "group_count": 1,
+          "leaves": {
+            "Learning Outcomes Assessment Planning Guide": {
+              "doc_count": 306,
+              "group_count": 1,
+              "group_ids": [
+                120
+              ],
+              "representative_titles": [
+                "Bilgi Akademik Programlarda Ogrenme Kazanimlari Degerlendirmesinin Planlanmasi Ve Uygulanmasi Rehberi",
+                "Bilgi Guide To Planning And Implementing Learning Outcomes Assessment In Academic Programs"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "bilgi-unit-learning-outcomes-assessment-guide.pdf"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.93
+            }
+          }
+        },
+        "teaching_effectiveness_guide": {
+          "doc_count": 441,
+          "group_count": 2,
+          "leaves": {
+            "Teaching Effectiveness Guide": {
+              "doc_count": 441,
+              "group_count": 2,
+              "group_ids": [
+                67,
+                32
+              ],
+              "representative_titles": [
+                "Bilgi Teaching Effectiveness Guide"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "bilgi-teaching-effectiveness-guide.pdf",
+                "bilgi-etkin-egitim-ogretim-kilavuzu.pdf"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.91,
+              "representative_parents": []
+            }
+          }
+        },
+        "external_evaluation_reports": {
+          "doc_count": 219,
+          "group_count": 1,
+          "leaves": {
+            "Project Evaluation And Assessment Reports": {
+              "doc_count": 219,
+              "group_count": 1,
+              "group_ids": [
+                95
+              ],
+              "representative_titles": [
+                "Değerlendirme Raporu"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "sebeke-genclerin-katilimi-projesi-dis-degerlendirmesi.pdf"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.82
+            }
+          }
+        },
+        "distance_education_quality_reports": {
+          "doc_count": 196,
+          "group_count": 1,
+          "leaves": {
+            "Distance Education Quality And Evaluation Reports": {
+              "doc_count": 196,
+              "group_count": 1,
+              "group_ids": [
+                90
+              ],
+              "representative_titles": [
+                "Uzaktanegitimdekaliteguvencesiraporu1628077786453",
+                "Kurum Ic Degerlendirme Raporu 2020"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "uzaktanegitimdekaliteguvencesiraporu1628077786453.pdf"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.92
+            }
+          }
+        },
+        "program_evaluation_reports": {
+          "doc_count": 180,
+          "group_count": 1,
+          "leaves": {
+            "Civil Society And Sectoral Collaboration Evaluations": {
+              "doc_count": 180,
+              "group_count": 1,
+              "group_ids": [
+                34
+              ],
+              "representative_titles": [
+                "D_3_1_b_CSEP_Evaluation"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "civil-society-studies-center-civil-society-exhange-program-evaluation-report.pdf"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.78
+            }
+          }
+        },
+        "administrative_unit_assessment_guide": {
+          "doc_count": 98,
+          "group_count": 1,
+          "leaves": {
+            "Administrative Unit Learning Outcomes Assessment Guide": {
+              "doc_count": 98,
+              "group_count": 1,
+              "group_ids": [
+                134
+              ],
+              "representative_titles": [
+                "İSTANBUL BİLGİ ÜNİVERSİTESİ\nÖĞRENMEYİ DESTEKLEYİCİ İDARİ BİRİMLERE YÖNELİK KAZANIM ODAKLI DEĞERLENDİRME KILAVUZU"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "bilgi-birim-ogrenme-kazanimlari-degerlendirme-kilavuzu.pdf"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.9
+            }
+          }
+        },
+        "environmental_impact_assessment": {
+          "doc_count": 90,
+          "group_count": 1,
+          "leaves": {
+            "Environmental And Community Service Impact Assessment": {
+              "doc_count": 90,
+              "group_count": 1,
+              "group_ids": [
+                142
+              ],
+              "representative_titles": [
+                "BU_cevresel_etki_degerlendirme_arastirma_02.indd"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "istanbul-bilgi-universitesi-cevresel-etki-degerlendirmesi-arastirmasi.pdf"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.85
+            }
+          }
+        }
+      }
+    },
+    "research": {
+      "doc_count": 4467,
+      "group_count": 13,
+      "sub_levels": {
+        "frascati_manual": {
+          "doc_count": 2013,
+          "group_count": 3,
+          "leaves": {
+            "Frascati Manual And R&D Classification Guidelines": {
+              "doc_count": 2013,
+              "group_count": 3,
+              "group_ids": [
+                41,
+                6,
+                60
+              ],
+              "representative_titles": [
+                "Frascati Manual 2015: Guidelines for Collecting and Reporting Data on Research and Experimental Development"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "frascati_manual.pdf",
+                "frascati-klavuzu.pdf"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.93,
+              "representative_parents": [],
+              "taxonomy_url": "/taxonomy/research/frascati-manual/frascati-manual-and-r-d-classification-guidelines"
+            }
+          }
+        },
+        "funded_research_projects": {
+          "doc_count": 447,
+          "group_count": 1,
+          "leaves": {
+            "Researchers And Funded Research Projects": {
+              "doc_count": 447,
+              "group_count": 1,
+              "group_ids": [
+                47
+              ],
+              "representative_titles": [
+                "Araştırmacılar",
+                "Desteklenen Projeler"
+              ],
+              "sample_urls": [
+                "arastirma",
+                "arastirmacilar",
+                "akademik"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.93
+            }
+          }
+        },
+        "law_publications": {
+          "doc_count": 958,
+          "group_count": 3,
+          "leaves": {
+            "Legal Research Publications On Covid 19": {
+              "doc_count": 958,
+              "group_count": 3,
+              "group_ids": [
+                42,
+                82,
+                84
+              ],
+              "representative_titles": [
+                "Covid 19 Onlemler Pekcanitez Erisir"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "covid-19-onlemler-pekcanitez-erisir.pdf",
+                "academic",
+                "international-relations",
+                "faculty-of-social-sciences-and-humanities"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.72,
+              "representative_parents": []
+            }
+          }
+        },
+        "gender_violence_training_report": {
+          "doc_count": 182,
+          "group_count": 1,
+          "leaves": {
+            "Anti Discrimination And Violence Training Impact Report": {
+              "doc_count": 182,
+              "group_count": 1,
+              "group_ids": [
+                21
+              ],
+              "representative_titles": [
+                "Kadına Yönelik Ayrımcılık ve Şiddetle Mücadelede Hukuk Seminerleri: Eğitim Değerlendirme ve Etki Ölçümü Raporu"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "bilgi-morcati-egitim-degerlendirme-raporu.pdf"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.85
+            }
+          }
+        },
+        "civil_society_studies": {
+          "doc_count": 151,
+          "group_count": 1,
+          "leaves": {
+            "Civil Society Exchange Program Evaluation": {
+              "doc_count": 151,
+              "group_count": 1,
+              "group_ids": [
+                59
+              ],
+              "representative_titles": [
+                "ISTANBUL BILGI UNIVERSTIY CENTER FOR CIVIL SOCIETY STUDIES                CIVIL SOCIETY EXCHANGE PROGRAM"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "civil-society-studies-center-civil-society-exchange-program-final-external-evaluation-report.pdf"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.88
+            }
+          }
+        },
+        "child_studies_impact_report": {
+          "doc_count": 128,
+          "group_count": 1,
+          "leaves": {
+            "Child Studies Unit Impact Analysis Report": {
+              "doc_count": 128,
+              "group_count": 1,
+              "group_ids": [
+                17
+              ],
+              "representative_titles": [
+                "Cocuk Calismalari Birimi Soz Kucugun Kutu Oyunu Yayginlastirma Sureci Etki Analizi Raporu"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "cocuk-calismalari-birimi-soz-kucugun-kutu-oyunu-yayginlastirma-sureci-etki-analizi-raporu.pdf"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.85
+            }
+          }
+        },
+        "social_incubation_center": {
+          "doc_count": 289,
+          "group_count": 1,
+          "leaves": {
+            "Social Incubation Center Reports And Evaluation": {
+              "doc_count": 289,
+              "group_count": 1,
+              "group_ids": [
+                65
+              ],
+              "representative_titles": [
+                "Bilgi Sosyal Kulucka Merkezi 6 Yil Raporu Kasim 2014 Mayis 2021",
+                "Bilgi Sosyal Kulucka Merkezi Dis Degerlendirmesi"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "bilgi-sosyal-kulucka-merkezi-6-yil-raporu-kasim-2014-mayis-2021.pdf"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.88,
+              "taxonomy_url": "/taxonomy/research/social-incubation-center/social-incubation-center-reports-and-evaluation"
+            }
+          }
+        },
+        "thesis_writing_guide": {
+          "doc_count": 175,
+          "group_count": 1,
+          "leaves": {
+            "Thesis Writing Manual For English Programs": {
+              "doc_count": 175,
+              "group_count": 1,
+              "group_ids": [
+                144
+              ],
+              "representative_titles": [
+                "Lpe 2026 Thesiswriting Manuel Englishprograms"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "lpe-2026_thesiswriting_manuel_englishprograms.pdf"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.88,
+              "taxonomy_url": "/taxonomy/research/thesis-writing-guide/thesis-writing-manual-for-english-programs"
+            }
+          }
+        },
+        "project_writing_guide": {
+          "doc_count": 124,
+          "group_count": 1,
+          "leaves": {
+            "Lpe Project Writing Manual": {
+              "doc_count": 124,
+              "group_count": 1,
+              "group_ids": [
+                128
+              ],
+              "representative_titles": [
+                "Ibu Lpe Project Manuel Ing 2026",
+                "Ibu Lpe Proje Kilavuz Tr 2026"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "ibu_lpe_project_manuel_ing_2026_ov3mxl9.pdf"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.85,
+              "taxonomy_url": "/taxonomy/research/project-writing-guide/lpe-project-writing-manual"
+            }
+          }
+        }
+      }
+    },
+    "regulations": {
+      "doc_count": 2597,
+      "group_count": 7,
+      "sub_levels": {
+        "student_handbooks": {
+          "doc_count": 1075,
+          "group_count": 2,
+          "leaves": {
+            "Undergraduate And Graduate Student Handbooks": {
+              "doc_count": 1075,
+              "group_count": 2,
+              "group_ids": [
+                9,
+                101
+              ],
+              "representative_titles": [
+                "2022-2023 Graduate-Student-Handbook",
+                "2022-2023 Undergraduate Student Handbook-Revised"
+              ],
+              "sample_urls": [
+                "uploads",
+                "media",
+                "upload",
+                "ogrenci-el-kitabi-lisans-onlisans"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.9,
+              "representative_parents": []
+            }
+          }
+        },
+        "academic_regulations": {
+          "doc_count": 804,
+          "group_count": 2,
+          "leaves": {
+            "Undergraduate And Graduate Academic Regulations": {
+              "doc_count": 804,
+              "group_count": 2,
+              "group_ids": [
+                122,
+                136
+              ],
+              "representative_titles": [
+                "YNT_Bilgi_Lisans_Kredili_Rega_Codified_2019.09.19",
+                "YNT_bilgi_lisansustu_rega_codified_2019.09.19",
+                "İstanbul Bilgi Üniversitesi"
+              ],
+              "sample_urls": [
+                "uploads",
+                "media",
+                "istanbul-bilgi-universitesi-lisansustu-egitim-ve-ogretim-yonetmeligi.pdf",
+                "universite"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.94,
+              "representative_parents": []
+            }
+          }
+        },
+        "double_major_minor_regulations": {
+          "doc_count": 586,
+          "group_count": 2,
+          "leaves": {
+            "Double Major Minor And Honors Program Regulations": {
+              "doc_count": 586,
+              "group_count": 2,
+              "group_ids": [
+                138,
+                123
+              ],
+              "representative_titles": [
+                "Cift Anadal Yan Dal Ve Ustun Basari Programlari Yonetmeligi "
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "istanbul-bilgi-universitesi-cift-anadal-yan-dal-ve-ustun-basari-programlari-yonetmeligi.pdf",
+                "upload"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.95,
+              "representative_parents": []
+            }
+          }
+        },
+        "financial_contractual_terms": {
+          "doc_count": 132,
+          "group_count": 1,
+          "leaves": {
+            "Financial And Contractual Terms And Conditions": {
+              "doc_count": 132,
+              "group_count": 1,
+              "group_ids": [
+                109
+              ],
+              "representative_titles": [
+                "Genel Sartlar"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "genel_sartlar.pdf"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.8
+            }
+          }
+        }
+      }
+    },
+    "administration": {
+      "doc_count": 567,
+      "group_count": 2,
+      "sub_levels": {
+        "institutional_policies_and_forms": {
+          "doc_count": 394,
+          "group_count": 1,
+          "leaves": {
+            "Institutional Policies Tenders And Consent Forms": {
+              "doc_count": 394,
+              "group_count": 1,
+              "group_ids": [
+                146
+              ],
+              "representative_titles": [
+                "4299",
+                "ONAY METNİ",
+                "Aydinlatma Metni"
+              ],
+              "sample_urls": [
+                "uploads",
+                "media",
+                "ihaleler"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.78
+            }
+          }
+        },
+        "campus_planning_records": {
+          "doc_count": 173,
+          "group_count": 1,
+          "leaves": {
+            "Campus Site Plans And Survey Records": {
+              "doc_count": 173,
+              "group_count": 1,
+              "group_ids": [
+                44
+              ],
+              "representative_titles": [
+                "bilgi-Ã¼ni.xlsx"
+              ],
+              "sample_urls": [
+                "media",
+                "attachments",
+                "2379497ek-2-olcu-ve-ozet-tablosu-ve-koordinatlar_ibwuulz.pdf"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.6
+            }
+          }
+        }
+      }
+    },
+    "events": {
+      "doc_count": 3034,
+      "group_count": 8,
+      "sub_levels": {
+        "events_archive": {
+          "doc_count": 558,
+          "group_count": 1,
+          "leaves": {
+            "All Events Archive": {
+              "doc_count": 558,
+              "group_count": 1,
+              "group_ids": [
+                98
+              ],
+              "representative_titles": [
+                "Tüm Etkinlikler Arşivi"
+              ],
+              "sample_urls": [
+                "etkinlik",
+                "etkinlikler",
+                "akademik"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.95
+            }
+          }
+        },
+        "faculty_events": {
+          "doc_count": 531,
+          "group_count": 1,
+          "leaves": {
+            "Sociology And Social Sciences Faculty Events": {
+              "doc_count": 531,
+              "group_count": 1,
+              "group_ids": [
+                35
+              ],
+              "representative_titles": [
+                "Sosyoloji Bölümü / Etkinlikler",
+                "Sosyal ve Beşeri Bilimler Fakültesi / Etkinlikler",
+                "Bölüm Öğrenci Etkinlikleri"
+              ],
+              "sample_urls": [
+                "etkinlik",
+                "akademik",
+                "sosyal-ve-beseri-bilimler-fakultesi"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.9
+            }
+          }
+        },
+        "academic_conferences": {
+          "doc_count": 976,
+          "group_count": 2,
+          "leaves": {
+            "Academic Conferences And Events Archive": {
+              "doc_count": 976,
+              "group_count": 2,
+              "group_ids": [
+                86,
+                103
+              ],
+              "representative_titles": [
+                "BİLGİ Graduate / Events",
+                "EMAC Fall Conference 202517-19 September 2025",
+                "Events Archive"
+              ],
+              "sample_urls": [
+                "academic",
+                "event",
+                "events",
+                "media",
+                "uploads"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.92,
+              "representative_parents": []
+            }
+          }
+        },
+        "exhibitions": {
+          "doc_count": 305,
+          "group_count": 1,
+          "leaves": {
+            "Art And Design Exhibitions": {
+              "doc_count": 305,
+              "group_count": 1,
+              "group_ids": [
+                48
+              ],
+              "representative_titles": [
+                "Copy of QR texts Clothes Off The Loom exhibition designers"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "event"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.75
+            }
+          }
+        },
+        "film_festival": {
+          "doc_count": 298,
+          "group_count": 1,
+          "leaves": {
+            "International Crime And Punishment Film Festival": {
+              "doc_count": 298,
+              "group_count": 1,
+              "group_ids": [
+                20
+              ],
+              "representative_titles": [
+                "14th International Crime and Punishment Film Festival Academic Program",
+                "14. Uluslararası Suç ve Ceza Film Festivali Akademik Programı"
+              ],
+              "sample_urls": [
+                "event",
+                "etkinlik",
+                "media"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.93
+            }
+          }
+        },
+        "fashion_show": {
+          "doc_count": 209,
+          "group_count": 1,
+          "leaves": {
+            "Bilgi Fashion Show Events": {
+              "doc_count": 209,
+              "group_count": 1,
+              "group_ids": [
+                140
+              ],
+              "representative_titles": [
+                "BILGI MODA SHOW 2022"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "bilgi_tekstil_ve_moda_defile_2022_fashion_show1679315382379.pdf"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.9
+            }
+          }
+        },
+        "law_symposium": {
+          "doc_count": 157,
+          "group_count": 1,
+          "leaves": {
+            "Mediation Symposium Proceedings": {
+              "doc_count": 157,
+              "group_count": 1,
+              "group_ids": [
+                45
+              ],
+              "representative_titles": [
+                "Arabulucugˆun Gelecegˆi Sempozyumu BI·LDI·RI· TAM METI·N KI·TABI -"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "tuketici-zorunlu-arabuluculugu-sorunlar.pdf"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.85
+            }
+          }
+        }
+      }
+    },
+    "student_life": {
+      "doc_count": 3367,
+      "group_count": 9,
+      "sub_levels": {
+        "frequently_asked_questions": {
+          "doc_count": 385,
+          "group_count": 1,
+          "leaves": {
+            "Student Frequently Asked Questions": {
+              "doc_count": 385,
+              "group_count": 1,
+              "group_ids": [
+                75
+              ],
+              "representative_titles": [
+                "Sıkça Sorulan Sorular"
+              ],
+              "sample_urls": [
+                "yasam",
+                "ogrenci",
+                "sss"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.88
+            }
+          }
+        },
+        "student_clubs": {
+          "doc_count": 360,
+          "group_count": 1,
+          "leaves": {
+            "Student Clubs And Campus Life": {
+              "doc_count": 360,
+              "group_count": 1,
+              "group_ids": [
+                145
+              ],
+              "representative_titles": [
+                "Akademik",
+                "Akademik İçerikli Kulüpler",
+                "Hakkında"
+              ],
+              "sample_urls": [
+                "yasam",
+                "ogrenci",
+                "ogrenci-destek-merkezi"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.9
+            }
+          }
+        },
+        "internship_offers": {
+          "doc_count": 349,
+          "group_count": 1,
+          "leaves": {
+            "Internship And Job Offers For Students": {
+              "doc_count": 349,
+              "group_count": 1,
+              "group_ids": [
+                43
+              ],
+              "representative_titles": [
+                "Internship Offer Futuro Digitale Lglbgmo",
+                "20181109 39",
+                "20181109 12"
+              ],
+              "sample_urls": [
+                "media",
+                "uploads",
+                "talent"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.82
+            }
+          }
+        },
+        "counseling_resources": {
+          "doc_count": 1009,
+          "group_count": 3,
+          "leaves": {
+            "Student Counseling And Wellness Resources": {
+              "doc_count": 1009,
+              "group_count": 3,
+              "group_ids": [
+                124,
+                87,
+                36
+              ],
+              "representative_titles": [
+                "Microsoft Word - Document19",
+                "Microsoft Word - Document4",
+                "Microsoft Word - Document1"
+              ],
+              "sample_urls": [
+                "upload",
+                "media",
+                "uploads",
+                "etkinlik"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.6,
+              "representative_parents": []
+            }
+          }
+        },
+        "community_service_projects": {
+          "doc_count": 1264,
+          "group_count": 3,
+          "leaves": {
+            "Community Service And Social Responsibility Projects": {
+              "doc_count": 1264,
+              "group_count": 3,
+              "group_ids": [
+                106,
+                91,
+                10
+              ],
+              "representative_titles": [
+                "Projeler 2014",
+                "Proje Listesi",
+                "Projeler 2018",
+                "Projeler 2013",
+                "Projeler 2013 Öncesi"
+              ],
+              "sample_urls": [
+                "universite",
+                "hakkinda",
+                "kurumsal-ilkeler",
+                "university",
+                "about",
+                "institutional-principles"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.9,
+              "taxonomy_url": "/taxonomy/student-life/community-service-projects/community-service-and-social-responsibility-projects",
+              "representative_parents": []
+            }
+          }
+        }
+      }
+    },
+    "admissions": {
+      "doc_count": 1314,
+      "group_count": 4,
+      "sub_levels": {
+        "university_of_london_application": {
+          "doc_count": 364,
+          "group_count": 1,
+          "leaves": {
+            "University Of London Honours Application Process": {
+              "doc_count": 364,
+              "group_count": 1,
+              "group_ids": [
+                64
+              ],
+              "representative_titles": [
+                "Application Process for University of London Honours Programmes (2022-2023)",
+                "Application Process for University of London Honours Programmes (2023-2024)",
+                "Application Process for University of London Honours Programmes (2025-2026)"
+              ],
+              "sample_urls": [
+                "news",
+                "haber",
+                "application-process-for-university-of-london-honours-programmes-2022-2023"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.9
+            }
+          }
+        },
+        "special_talent_exam_results": {
+          "doc_count": 130,
+          "group_count": 1,
+          "leaves": {
+            "Special Talent Exam Results For Arts Programs": {
+              "doc_count": 130,
+              "group_count": 1,
+              "group_ids": [
+                52
+              ],
+              "representative_titles": [
+                "Sahne ve Gösteri Sanatları Yönetimi Lisans Programı Özel Yetenek Sınavı Sonuçları (2025)",
+                "Sahne ve Gösteri Sanatları Yönetimi Özel Yetenek Sınavı Sonuçları (2023)"
+              ],
+              "sample_urls": [
+                "haber",
+                "tekstil-ve-moda-tasarimi-ozel-yetenek-sinavi-sonuclari-2021",
+                "sahne-ve-gosteri-sanatlari-yonetimi-ozel-yetenek-sinavi-sonuclari-2023"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.93
+            }
+          }
+        },
+        "international_student_admissions": {
+          "doc_count": 86,
+          "group_count": 1,
+          "leaves": {
+            "International Student Admission Procedures": {
+              "doc_count": 86,
+              "group_count": 1,
+              "group_ids": [
+                114
+              ],
+              "representative_titles": [
+                "Kabul Durumu Ve Genel Bilgi",
+                "International Students Admission Procedures"
+              ],
+              "sample_urls": [
+                "international",
+                "uluslararasi-aday-ogrenci",
+                "kabul-durumu-ve-genel-bilgi"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.95
+            }
+          }
+        },
+        "english_language_admissions": {
+          "doc_count": 734,
+          "group_count": 1,
+          "leaves": {
+            "English Language Programs Admission And Faq": {
+              "doc_count": 734,
+              "group_count": 1,
+              "group_ids": [
+                129
+              ],
+              "representative_titles": [
+                "Admission Requirements",
+                "Frequently Asked Questions",
+                "General Information"
+              ],
+              "sample_urls": [
+                "academic",
+                "international",
+                "international-office"
+              ],
+              "sources": [
+                "discovered"
+              ],
+              "quality_score": 0.9,
+              "taxonomy_url": "/taxonomy/admissions/english-language-admissions/english-language-programs-admission-and-faq"
+            }
+          }
+        }
+      }
+    }
+  }
+}

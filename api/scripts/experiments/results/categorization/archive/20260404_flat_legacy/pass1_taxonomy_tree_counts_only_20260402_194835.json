@@ -1,0 +1,224 @@
+{
+  "summary": {
+    "created_at_utc": "2026-04-02T19:48:35.761169+00:00",
+    "source_tree_json": "/home/zperson/Orbis/api/scripts/experiments/results/categorization/pass1_taxonomy_tree_directional_sota_v4_20260402_181852.json",
+    "top_level_count": 13,
+    "mapped_category_count": 208,
+    "mapped_doc_count": 39520,
+    "unresolved_count": 0
+  },
+  "tree_counts": {
+    "academics": {
+      "category_count": 35,
+      "doc_count": 15588,
+      "sub_levels": {
+        "academic_information": {
+          "category_count": 35,
+          "doc_count": 15588,
+          "leaves": {
+            "Academic Unit Pages": {
+              "category_count": 34,
+              "doc_count": 9106
+            },
+            "Course Catalog Pages": {
+              "category_count": 1,
+              "doc_count": 6482
+            }
+          }
+        }
+      }
+    },
+    "administration": {
+      "category_count": 10,
+      "doc_count": 1806,
+      "sub_levels": {
+        "institutional_governance": {
+          "category_count": 10,
+          "doc_count": 1806,
+          "leaves": {
+            "Institutional Governance Pages": {
+              "category_count": 10,
+              "doc_count": 1806
+            }
+          }
+        }
+      }
+    },
+    "admissions": {
+      "category_count": 4,
+      "doc_count": 9,
+      "sub_levels": {
+        "admissions_information": {
+          "category_count": 4,
+          "doc_count": 9,
+          "leaves": {
+            "Admissions Information": {
+              "category_count": 4,
+              "doc_count": 9
+            }
+          }
+        }
+      }
+    },
+    "announcements": {
+      "category_count": 7,
+      "doc_count": 3209,
+      "sub_levels": {
+        "news_announcements": {
+          "category_count": 7,
+          "doc_count": 3209,
+          "leaves": {
+            "University Announcements": {
+              "category_count": 7,
+              "doc_count": 3209
+            }
+          }
+        }
+      }
+    },
+    "events": {
+      "category_count": 7,
+      "doc_count": 2778,
+      "sub_levels": {
+        "events_calendar": {
+          "category_count": 7,
+          "doc_count": 2778,
+          "leaves": {
+            "University Events": {
+              "category_count": 7,
+              "doc_count": 2778
+            }
+          }
+        }
+      }
+    },
+    "international": {
+      "category_count": 12,
+      "doc_count": 2076,
+      "sub_levels": {
+        "international_programs": {
+          "category_count": 12,
+          "doc_count": 2076,
+          "leaves": {
+            "International Office and Programs": {
+              "category_count": 12,
+              "doc_count": 2076
+            }
+          }
+        }
+      }
+    },
+    "media_library": {
+      "category_count": 76,
+      "doc_count": 1305,
+      "sub_levels": {
+        "uploaded_documents": {
+          "category_count": 76,
+          "doc_count": 1305,
+          "leaves": {
+            "Uploaded Documents": {
+              "category_count": 76,
+              "doc_count": 1305
+            }
+          }
+        }
+      }
+    },
+    "people": {
+      "category_count": 3,
+      "doc_count": 6071,
+      "sub_levels": {
+        "academic_staff": {
+          "category_count": 3,
+          "doc_count": 6071,
+          "leaves": {
+            "Academic Staff Profiles": {
+              "category_count": 3,
+              "doc_count": 6071
+            }
+          }
+        }
+      }
+    },
+    "programs": {
+      "category_count": 7,
+      "doc_count": 3706,
+      "sub_levels": {
+        "degree_programs": {
+          "category_count": 7,
+          "doc_count": 3706,
+          "leaves": {
+            "Program Information": {
+              "category_count": 7,
+              "doc_count": 3706
+            }
+          }
+        }
+      }
+    },
+    "regulations_policies": {
+      "category_count": 2,
+      "doc_count": 169,
+      "sub_levels": {
+        "regulatory_documents": {
+          "category_count": 2,
+          "doc_count": 169,
+          "leaves": {
+            "Regulations and Policies": {
+              "category_count": 2,
+              "doc_count": 169
+            }
+          }
+        }
+      }
+    },
+    "research": {
+      "category_count": 4,
+      "doc_count": 146,
+      "sub_levels": {
+        "research_units": {
+          "category_count": 4,
+          "doc_count": 146,
+          "leaves": {
+            "Research Pages": {
+              "category_count": 4,
+              "doc_count": 146
+            }
+          }
+        }
+      }
+    },
+    "services": {
+      "category_count": 20,
+      "doc_count": 926,
+      "sub_levels": {
+        "campus_services": {
+          "category_count": 20,
+          "doc_count": 926,
+          "leaves": {
+            "Campus Services": {
+              "category_count": 20,
+              "doc_count": 926
+            }
+          }
+        }
+      }
+    },
+    "student_life": {
+      "category_count": 21,
+      "doc_count": 1731,
+      "sub_levels": {
+        "student_resources": {
+          "category_count": 21,
+          "doc_count": 1731,
+          "leaves": {
+            "Student Life and Resources": {
+              "category_count": 21,
+              "doc_count": 1731
+            }
+          }
+        }
+      }
+    }
+  }
+}

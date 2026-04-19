@@ -1,0 +1,296 @@
+{
+  "summary": {
+    "created_at_utc": "2026-04-04T16:12:48.616860+00:00",
+    "source_input_json": "/home/zperson/Orbis/api/scripts/experiments/results/categorization/flow/01_group_parent_urls/parent_groups_result.json",
+    "total_groups": 105,
+    "total_docs": 60649,
+    "known_groups": 74,
+    "known_docs": 39325,
+    "unknown_groups": 31,
+    "unknown_docs": 21324
+  },
+  "known_top_groups": [
+    {
+      "group_id": 2,
+      "parent_key": "ects.bilgi.edu.tr/course/detail",
+      "doc_count": 6482,
+      "reason_code": "parent_explains_group_no_tail",
+      "reason_text": "Known: most URLs end at parent depth, so this parent already explains the group (no_tail_ratio=1.00)."
+    },
+    {
+      "group_id": 3,
+      "parent_key": "www.bilgi.edu.tr/tr/akademik/kadro",
+      "doc_count": 3438,
+      "reason_code": "semantic_tail_signal",
+      "reason_text": "Known: tail URLs carry clear semantic structure and variety (semantic_tail_ratio=1.00, unique_tail_patterns=615, tail_entropy=8.12, dominant_pattern_share=0.05)."
+    },
+    {
+      "group_id": 4,
+      "parent_key": "www.bilgi.edu.tr/en/academic/staff",
+      "doc_count": 2631,
+      "reason_code": "semantic_tail_signal",
+      "reason_text": "Known: tail URLs carry clear semantic structure and variety (semantic_tail_ratio=0.99, unique_tail_patterns=617, tail_entropy=8.38, dominant_pattern_share=0.03)."
+    },
+    {
+      "group_id": 5,
+      "parent_key": "www.bilgi.edu.tr/upload",
+      "doc_count": 2213,
+      "reason_code": "semantic_tail_signal",
+      "reason_text": "Known: tail URLs carry clear semantic structure and variety (semantic_tail_ratio=1.00, unique_tail_patterns=107, tail_entropy=4.98, dominant_pattern_share=0.26)."
+    },
+    {
+      "group_id": 6,
+      "parent_key": "www.bilgi.edu.tr/tr/haber",
+      "doc_count": 1754,
+      "reason_code": "semantic_tail_signal",
+      "reason_text": "Known: tail URLs carry clear semantic structure and variety (semantic_tail_ratio=0.50, unique_tail_patterns=449, tail_entropy=8.24, dominant_pattern_share=0.07)."
+    },
+    {
+      "group_id": 7,
+      "parent_key": "www.bilgi.edu.tr/tr/akademik/lisansustu",
+      "doc_count": 1657,
+      "reason_code": "semantic_tail_signal",
+      "reason_text": "Known: tail URLs carry clear semantic structure and variety (semantic_tail_ratio=1.00, unique_tail_patterns=340, tail_entropy=7.65, dominant_pattern_share=0.08)."
+    },
+    {
+      "group_id": 8,
+      "parent_key": "www.bilgi.edu.tr/tr/etkinlik",
+      "doc_count": 1614,
+      "reason_code": "semantic_tail_signal",
+      "reason_text": "Known: tail URLs carry clear semantic structure and variety (semantic_tail_ratio=0.50, unique_tail_patterns=541, tail_entropy=8.69, dominant_pattern_share=0.03)."
+    },
+    {
+      "group_id": 9,
+      "parent_key": "www.bilgi.edu.tr/en/academic/graduate",
+      "doc_count": 1551,
+      "reason_code": "semantic_tail_signal",
+      "reason_text": "Known: tail URLs carry clear semantic structure and variety (semantic_tail_ratio=1.00, unique_tail_patterns=280, tail_entropy=7.11, dominant_pattern_share=0.08)."
+    },
+    {
+      "group_id": 10,
+      "parent_key": "www.bilgi.edu.tr/en/news",
+      "doc_count": 1389,
+      "reason_code": "semantic_tail_signal",
+      "reason_text": "Known: tail URLs carry clear semantic structure and variety (semantic_tail_ratio=0.50, unique_tail_patterns=285, tail_entropy=7.60, dominant_pattern_share=0.07)."
+    },
+    {
+      "group_id": 11,
+      "parent_key": "www.bilgi.edu.tr/en/event",
+      "doc_count": 1106,
+      "reason_code": "semantic_tail_signal",
+      "reason_text": "Known: tail URLs carry clear semantic structure and variety (semantic_tail_ratio=0.50, unique_tail_patterns=287, tail_entropy=7.59, dominant_pattern_share=0.05)."
+    },
+    {
+      "group_id": 12,
+      "parent_key": "www.bilgi.edu.tr/en/university/about",
+      "doc_count": 976,
+      "reason_code": "semantic_tail_signal",
+      "reason_text": "Known: tail URLs carry clear semantic structure and variety (semantic_tail_ratio=1.00, unique_tail_patterns=47, tail_entropy=3.71, dominant_pattern_share=0.30)."
+    },
+    {
+      "group_id": 13,
+      "parent_key": "www.bilgi.edu.tr/tr/akademik/sosyal-ve-beseri-bilimler-fakultesi",
+      "doc_count": 972,
+      "reason_code": "semantic_tail_signal",
+      "reason_text": "Known: tail URLs carry clear semantic structure and variety (semantic_tail_ratio=1.00, unique_tail_patterns=101, tail_entropy=5.14, dominant_pattern_share=0.17)."
+    },
+    {
+      "group_id": 14,
+      "parent_key": "www.bilgi.edu.tr/en/international/international-office",
+      "doc_count": 818,
+      "reason_code": "semantic_tail_signal",
+      "reason_text": "Known: tail URLs carry clear semantic structure and variety (semantic_tail_ratio=1.00, unique_tail_patterns=56, tail_entropy=4.82, dominant_pattern_share=0.11)."
+    },
+    {
+      "group_id": 15,
+      "parent_key": "www.bilgi.edu.tr/tr/international/uluslararasi-ofis",
+      "doc_count": 768,
+      "reason_code": "semantic_tail_signal",
+      "reason_text": "Known: tail URLs carry clear semantic structure and variety (semantic_tail_ratio=1.00, unique_tail_patterns=59, tail_entropy=4.87, dominant_pattern_share=0.12)."
+    },
+    {
+      "group_id": 16,
+      "parent_key": "www.bilgi.edu.tr/tr/universite/hakkinda",
+      "doc_count": 726,
+      "reason_code": "semantic_tail_signal",
+      "reason_text": "Known: tail URLs carry clear semantic structure and variety (semantic_tail_ratio=1.00, unique_tail_patterns=48, tail_entropy=3.90, dominant_pattern_share=0.32)."
+    },
+    {
+      "group_id": 17,
+      "parent_key": "www.bilgi.edu.tr/en/academic/faculty-of-social-sciences-and-humanities",
+      "doc_count": 708,
+      "reason_code": "semantic_tail_signal",
+      "reason_text": "Known: tail URLs carry clear semantic structure and variety (semantic_tail_ratio=1.00, unique_tail_patterns=93, tail_entropy=5.02, dominant_pattern_share=0.23)."
+    },
+    {
+      "group_id": 18,
+      "parent_key": "www.bilgi.edu.tr/tr/akademik/muhendislik-ve-doga-bilimleri-fakultesi",
+      "doc_count": 665,
+      "reason_code": "semantic_tail_signal",
+      "reason_text": "Known: tail URLs carry clear semantic structure and variety (semantic_tail_ratio=1.00, unique_tail_patterns=137, tail_entropy=6.05, dominant_pattern_share=0.18)."
+    },
+    {
+      "group_id": 19,
+      "parent_key": "www.bilgi.edu.tr/en/academic/faculty-of-engineering-and-natural-sciences",
+      "doc_count": 576,
+      "reason_code": "semantic_tail_signal",
+      "reason_text": "Known: tail URLs carry clear semantic structure and variety (semantic_tail_ratio=1.00, unique_tail_patterns=115, tail_entropy=5.77, dominant_pattern_share=0.20)."
+    },
+    {
+      "group_id": 20,
+      "parent_key": "www.bilgi.edu.tr/tr/akademik/iletisim-fakultesi",
+      "doc_count": 540,
+      "reason_code": "semantic_tail_signal",
+      "reason_text": "Known: tail URLs carry clear semantic structure and variety (semantic_tail_ratio=1.00, unique_tail_patterns=115, tail_entropy=6.52, dominant_pattern_share=0.04)."
+    },
+    {
+      "group_id": 21,
+      "parent_key": "www.bilgi.edu.tr/en/academic/school-of-advanced-vocational-studies",
+      "doc_count": 532,
+      "reason_code": "semantic_tail_signal",
+      "reason_text": "Known: tail URLs carry clear semantic structure and variety (semantic_tail_ratio=1.00, unique_tail_patterns=190, tail_entropy=7.42, dominant_pattern_share=0.02)."
+    }
+  ],
+  "unknown_top_groups": [
+    {
+      "group_id": 1,
+      "parent_key": "www.bilgi.edu.tr/media/uploads",
+      "doc_count": 20168,
+      "reason_code": "dynamic_tail_low_signal",
+      "reason_text": "Unknown: tail URLs are mostly dynamic/id-like and weak in semantic signal (dynamic_tail_ratio=0.75, semantic_tail_ratio=0.25)."
+    },
+    {
+      "group_id": 33,
+      "parent_key": "www.bilgi.edu.tr/media",
+      "doc_count": 369,
+      "reason_code": "mixed_or_weak_signal",
+      "reason_text": "Unknown: tail signals are mixed or weak and do not meet known-group thresholds (semantic_tail_ratio=0.40, dynamic_tail_ratio=0.60, unique_tail_patterns=15)."
+    },
+    {
+      "group_id": 38,
+      "parent_key": "www.bilgi.edu.tr/tr/arastirma",
+      "doc_count": 176,
+      "reason_code": "mixed_or_weak_signal",
+      "reason_text": "Unknown: tail signals are mixed or weak and do not meet known-group thresholds (semantic_tail_ratio=1.00, dynamic_tail_ratio=0.00, unique_tail_patterns=11)."
+    },
+    {
+      "group_id": 47,
+      "parent_key": "www.bilgi.edu.tr/tr/arastirma/dis-kaynakli-projeler",
+      "doc_count": 106,
+      "reason_code": "repetitive_tail_low_signal",
+      "reason_text": "Unknown: tail URLs are repetitive with low information gain (dominant_pattern_share=0.90, tail_entropy=0.60)."
+    },
+    {
+      "group_id": 52,
+      "parent_key": "www.bilgi.edu.tr/tr/arastirma/bilgi-arastirma-fonlari",
+      "doc_count": 76,
+      "reason_code": "mixed_or_weak_signal",
+      "reason_text": "Unknown: tail signals are mixed or weak and do not meet known-group thresholds (semantic_tail_ratio=1.00, dynamic_tail_ratio=0.00, unique_tail_patterns=7)."
+    },
+    {
+      "group_id": 55,
+      "parent_key": "www.bilgi.edu.tr/tr/mezun",
+      "doc_count": 62,
+      "reason_code": "repetitive_tail_low_signal",
+      "reason_text": "Unknown: tail URLs are repetitive with low information gain (dominant_pattern_share=0.79, tail_entropy=1.11)."
+    },
+    {
+      "group_id": 56,
+      "parent_key": "www.bilgi.edu.tr/tr/arastirma/mukemmeliyet-alanlari",
+      "doc_count": 58,
+      "reason_code": "repetitive_tail_low_signal",
+      "reason_text": "Unknown: tail URLs are repetitive with low information gain (dominant_pattern_share=0.61, tail_entropy=0.97)."
+    },
+    {
+      "group_id": 59,
+      "parent_key": "www.bilgi.edu.tr/tr/arastirma/universite-sanayi-is-birligi",
+      "doc_count": 50,
+      "reason_code": "repetitive_tail_low_signal",
+      "reason_text": "Unknown: tail URLs are repetitive with low information gain (dominant_pattern_share=0.62, tail_entropy=1.50)."
+    },
+    {
+      "group_id": 70,
+      "parent_key": "www.bilgi.edu.tr/",
+      "doc_count": 26,
+      "reason_code": "repetitive_tail_low_signal",
+      "reason_text": "Unknown: tail URLs are repetitive with low information gain (dominant_pattern_share=0.62, tail_entropy=2.24)."
+    },
+    {
+      "group_id": 73,
+      "parent_key": "www.bilgi.edu.tr/en/uzem",
+      "doc_count": 26,
+      "reason_code": "mixed_or_weak_signal",
+      "reason_text": "Unknown: tail signals are mixed or weak and do not meet known-group thresholds (semantic_tail_ratio=1.00, dynamic_tail_ratio=0.00, unique_tail_patterns=3)."
+    },
+    {
+      "group_id": 78,
+      "parent_key": "www.bilgi.edu.tr/tr/uzem",
+      "doc_count": 22,
+      "reason_code": "mixed_or_weak_signal",
+      "reason_text": "Unknown: tail signals are mixed or weak and do not meet known-group thresholds (semantic_tail_ratio=1.00, dynamic_tail_ratio=0.00, unique_tail_patterns=3)."
+    },
+    {
+      "group_id": 80,
+      "parent_key": "www.bilgi.edu.tr/tr/arastirma/teknoloji-transfer-ofisi",
+      "doc_count": 20,
+      "reason_code": "repetitive_tail_low_signal",
+      "reason_text": "Unknown: tail URLs are repetitive with low information gain (dominant_pattern_share=0.86, tail_entropy=0.59)."
+    },
+    {
+      "group_id": 83,
+      "parent_key": "www.bilgi.edu.tr/en/quality/accreditations",
+      "doc_count": 14,
+      "reason_code": "repetitive_tail_low_signal",
+      "reason_text": "Unknown: tail URLs are repetitive with low information gain (dominant_pattern_share=0.86, tail_entropy=0.59)."
+    },
+    {
+      "group_id": 86,
+      "parent_key": "www.bilgi.edu.tr/tr/kalite/akreditasyonlar",
+      "doc_count": 12,
+      "reason_code": "repetitive_tail_low_signal",
+      "reason_text": "Unknown: tail URLs are repetitive with low information gain (dominant_pattern_share=0.83, tail_entropy=0.65)."
+    },
+    {
+      "group_id": 87,
+      "parent_key": "www.bilgi.edu.tr/en/university",
+      "doc_count": 11,
+      "reason_code": "mixed_or_weak_signal",
+      "reason_text": "Unknown: tail signals are mixed or weak and do not meet known-group thresholds (semantic_tail_ratio=1.00, dynamic_tail_ratio=0.00, unique_tail_patterns=3)."
+    },
+    {
+      "group_id": 88,
+      "parent_key": "www.bilgi.edu.tr/en/alumni",
+      "doc_count": 10,
+      "reason_code": "repetitive_tail_low_signal",
+      "reason_text": "Unknown: tail URLs are repetitive with low information gain (dominant_pattern_share=0.67, tail_entropy=0.92)."
+    },
+    {
+      "group_id": 89,
+      "parent_key": "www.bilgi.edu.tr/en/quality",
+      "doc_count": 10,
+      "reason_code": "repetitive_tail_low_signal",
+      "reason_text": "Unknown: tail URLs are repetitive with low information gain (dominant_pattern_share=0.75, tail_entropy=0.81)."
+    },
+    {
+      "group_id": 90,
+      "parent_key": "www.bilgi.edu.tr/en/quality/commissions-and-boards",
+      "doc_count": 10,
+      "reason_code": "mixed_or_weak_signal",
+      "reason_text": "Unknown: tail signals are mixed or weak and do not meet known-group thresholds (semantic_tail_ratio=1.00, dynamic_tail_ratio=0.00, unique_tail_patterns=3)."
+    },
+    {
+      "group_id": 92,
+      "parent_key": "www.bilgi.edu.tr/tr/kalite",
+      "doc_count": 10,
+      "reason_code": "repetitive_tail_low_signal",
+      "reason_text": "Unknown: tail URLs are repetitive with low information gain (dominant_pattern_share=0.75, tail_entropy=0.81)."
+    },
+    {
+      "group_id": 93,
+      "parent_key": "www.bilgi.edu.tr/tr/kalite/komisyonlar-ve-kurullar",
+      "doc_count": 10,
+      "reason_code": "mixed_or_weak_signal",
+      "reason_text": "Unknown: tail signals are mixed or weak and do not meet known-group thresholds (semantic_tail_ratio=1.00, dynamic_tail_ratio=0.00, unique_tail_patterns=3)."
+    }
+  ]
+}
