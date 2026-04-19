@@ -6,6 +6,7 @@ import { LoginPage } from './pages/LoginPage';
 import { ChatPage } from './pages/ChatPage';
 import { CalendarPage } from './pages/CalendarPage';
 import { SchedulePage } from './pages/SchedulePage';
+import { AssignmentsPage } from './pages/AssignmentsPage';
 import { Sidebar } from './components/Sidebar';
 import './index.css';
 
@@ -20,6 +21,7 @@ function ProtectedLayout() {
           <Route path="/chat" element={<ChatPage />} />
           <Route path="/calendar" element={<CalendarPage />} />
           <Route path="/schedule" element={<SchedulePage />} />
+          <Route path="/assignments" element={<AssignmentsPage />} />
           <Route path="*" element={<Navigate to="/chat" replace />} />
         </Routes>
       </main>

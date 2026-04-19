@@ -189,6 +189,23 @@ class Assignment(Base):
     is_published = Column(Boolean, default=False)
 
     section = relationship("CourseSection", back_populates="assignments")
+    submissions = relationship("AssignmentSubmission", back_populates="assignment")
+
+
+class AssignmentSubmission(Base):
+    __tablename__ = "assignment_submissions"
+
+    id = Column(Integer, primary_key=True)
+    assignment_id = Column(Integer, ForeignKey("assignments.id"), nullable=False)
+    student_id = Column(Integer, ForeignKey("students.id"), nullable=False)
+    file_path = Column(String(500), nullable=False)
+    original_filename = Column(String(255), nullable=False)
+    status = Column(SQLEnum("pending", "approved", "rejected", name="submissionstatus"), nullable=False, server_default="pending")
+    ai_feedback = Column(Text)
+    submitted_at = Column(DateTime, default=datetime.utcnow)
+
+    assignment = relationship("Assignment", back_populates="submissions")
+    student = relationship("Student")
 
 
 class AcademicCalendarEntry(Base):

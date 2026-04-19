@@ -77,6 +77,12 @@ class RuleStatus(enum.Enum):
     REJECTED = "rejected"           # pass 2 said remove it
 
 
+class SubmissionStatus(enum.Enum):
+    PENDING = "pending"
+    APPROVED = "approved"
+    REJECTED = "rejected"
+
+
 class AssignmentStatus(enum.Enum):
     ACTIVE = "active"
     DISMISSED = "dismissed"
