@@ -1,0 +1,67 @@
+{
+  "sidebar": {
+    "appName": "Orbis",
+    "chat": "Chat",
+    "calendar": "Academic Calendar",
+    "schedule": "My Schedule",
+    "logout": "Logout"
+  },
+  "login": {
+    "title": "Sign in to Orbis",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Sign In",
+    "error": "Login failed"
+  },
+  "chat": {
+    "placeholder": "Ask me about courses, regulations, or campus life...",
+    "send": "Send",
+    "empty": "Ask me about courses, regulations, or campus life!",
+    "greeting": "Hello! I'm **Orbis**, the academic assistant of Istanbul Bilgi University.\nI can help you with:\n- 📚 Courses, curricula, and prerequisites\n- 📋 Regulations, internship, and Erasmus procedures\n- 🗓️ Academic calendar and important dates\n- 🏫 Faculties, departments, and contact information\n\nHow can I help you today?"
+  },
+  "calendar": {
+    "title": "Academic Calendar 2025-2026",
+    "date": "Date",
+    "event": "Event",
+    "type": "Type",
+    "fall": "Fall Semester 2025",
+    "spring": "Spring Semester 2026",
+    "loading": "Loading...",
+    "empty": "No calendar data found.",
+    "months": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    "entryTypes": {
+      "holiday": "Holiday",
+      "exam_period": "Exam Period",
+      "registration": "Registration",
+      "add_drop": "Add/Drop",
+      "semester_start": "Semester Start",
+      "semester_end": "Semester End",
+      "other": "Other"
+    }
+  },
+  "schedule": {
+    "title": "My Weekly Schedule",
+    "notStudent": "This page is only available for students.",
+    "noData": "No enrolled courses found.",
+    "loading": "Loading schedule...",
+    "online": "Online",
+    "hour": "TIME",
+    "days": {
+      "MON": "Mon",
+      "TUE": "Tue",
+      "WED": "Wed",
+      "THU": "Thu",
+      "FRI": "Fri"
+    }
+  },
+  "theme": {
+    "darkMode": "Dark Mode",
+    "lightMode": "Light Mode",
+    "colorScheme": "Theme",
+    "light": "Light",
+    "dark": "Dark",
+    "background": "Background",
+    "accentColor": "Accent Color",
+    "customize": "Customize theme"
+  }
+}

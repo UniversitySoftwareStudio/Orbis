@@ -1,0 +1,67 @@
+{
+  "sidebar": {
+    "appName": "Orbis",
+    "chat": "Sohbet",
+    "calendar": "Akademik Takvim",
+    "schedule": "Haftalık Programım",
+    "logout": "Çıkış"
+  },
+  "login": {
+    "title": "Orbis'e Giriş",
+    "email": "E-posta",
+    "password": "Şifre",
+    "submit": "Giriş Yap",
+    "error": "Giriş başarısız"
+  },
+  "chat": {
+    "placeholder": "Kurslar, yönetmelikler veya kampüs hayatı hakkında sorun...",
+    "send": "Gönder",
+    "empty": "Kurslar, yönetmelikler veya kampüs hayatı hakkında bana sorun!",
+    "greeting": "Merhaba! Ben **Orbis**, İstanbul Bilgi Üniversitesi'nin akademik asistanıyım.\nSize şu konularda yardımcı olabilirim:\n- 📚 Dersler, müfredatlar ve ön koşullar\n- 📋 Yönetmelikler, staj ve Erasmus prosedürleri\n- 🗓️ Akademik takvim ve önemli tarihler\n- 🏫 Fakülteler, bölümler ve iletişim bilgileri\n\nNasıl yardımcı olmamı istersiniz?"
+  },
+  "calendar": {
+    "title": "Akademik Takvim 2025-2026",
+    "date": "Tarih",
+    "event": "Etkinlik",
+    "type": "Tür",
+    "fall": "Güz Yarıyılı 2025",
+    "spring": "Bahar Yarıyılı 2026",
+    "loading": "Yükleniyor...",
+    "empty": "Takvim verisi bulunamadı.",
+    "months": ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"],
+    "entryTypes": {
+      "holiday": "Tatil",
+      "exam_period": "Sınav Dönemi",
+      "registration": "Kayıt",
+      "add_drop": "Ders Ekleme/Bırakma",
+      "semester_start": "Dönem Başlangıcı",
+      "semester_end": "Dönem Sonu",
+      "other": "Diğer"
+    }
+  },
+  "schedule": {
+    "title": "Haftalık Programım",
+    "notStudent": "Bu sayfa yalnızca öğrenciler için kullanılabilir.",
+    "noData": "Kayıtlı ders bulunamadı.",
+    "loading": "Program yükleniyor...",
+    "online": "Online",
+    "hour": "SAAT",
+    "days": {
+      "MON": "Pzt",
+      "TUE": "Sal",
+      "WED": "Çar",
+      "THU": "Per",
+      "FRI": "Cum"
+    }
+  },
+  "theme": {
+    "darkMode": "Karanlık Mod",
+    "lightMode": "Aydınlık Mod",
+    "colorScheme": "Tema",
+    "light": "Aydınlık",
+    "dark": "Karanlık",
+    "background": "Arkaplan",
+    "accentColor": "Vurgu Rengi",
+    "customize": "Temayı özelleştir"
+  }
+}

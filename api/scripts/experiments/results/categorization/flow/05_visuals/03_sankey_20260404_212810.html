@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Pipeline Sankey — Document Flow</title>
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+<style>
+  body{margin:0;background:#0f0f13;color:#e8e8e8;font-family:'Segoe UI',system-ui,sans-serif;}
+  #header{padding:18px 24px 0;}
+  h1{font-size:1.45rem;font-weight:600;margin:0 0 4px 0;}
+  .sub{font-size:.82rem;color:#888;}
+  #chart{height:calc(100vh - 80px);width:100%;}
+</style>
+</head>
+<body>
+<div id="header">
+  <h1>Pipeline Sankey — Document Flow</h1>
+  <span class="sub">60,649 total documents &nbsp;|&nbsp; 2026-04-04 21:28 UTC</span>
+</div>
+<div id="chart"></div>
+<script>
+Plotly.newPlot("chart",[{"type": "sankey", "arrangement": "snap", "node": {"pad": 20, "thickness": 22, "label": ["URL Groups", "Known", "Unknown", "Academics", "Administration", "Events", "International", "News", "People", "Quality", "Research", "Services", "Student Life", "Unknown"], "color": ["#5a5aaa", "#59a14f", "#e15759", "#4e79a7", "#f28e2b", "#e15759", "#59a14f", "#b07aa1", "#76b7b2", "#bab0ac", "#9c755f", "#edc948", "#ff9da7", "#cccccc"], "line": {"color": "#333", "width": 0.5}}, "link": {"source": [0, 0, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], "target": [2, 1, 10, 6, 4, 12, 3, 11, 9, 3, 8, 11, 7, 5, 4, 6, 12, 13, 10, 9], "value": [21324, 39325, 20420, 387, 260, 153, 56, 36, 12, 19687, 6069, 2615, 3143, 2720, 1902, 2032, 988, 115, 36, 18], "color": ["rgba(90,90,170,0.35)", "rgba(90,90,170,0.35)", "#9c755f77", "#59a14f77", "#f28e2b77", "#ff9da777", "#4e79a777", "#edc94877", "#bab0ac77", "#4e79a777", "#76b7b277", "#edc94877", "#b07aa177", "#e1575977", "#f28e2b77", "#59a14f77", "#ff9da777", "#cccccc77", "#9c755f77", "#bab0ac77"]}}],{
+  paper_bgcolor:"#0f0f13",
+  font:{color:"#e8e8e8",family:"'Segoe UI',system-ui,sans-serif",size:13},
+  margin:{t:10,b:30,l:10,r:10},
+},{responsive:true,displaylogo:false});
+</script>
+</body>
+</html>

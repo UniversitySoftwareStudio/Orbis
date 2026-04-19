@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Orbis Taxonomy Tree</title>
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+          background: #0f1117; color: #e0e0e0; }
+  header { padding: 24px 32px; border-bottom: 1px solid #2a2a3a; }
+  header h1 { font-size: 1.6rem; font-weight: 700; color: #fff; }
+  header p  { margin-top: 4px; font-size: 0.85rem; color: #888; }
+  .stats { display: flex; gap: 24px; padding: 20px 32px; flex-wrap: wrap; }
+  .stat-card { background: #1a1a2e; border-radius: 10px; padding: 16px 24px;
+                min-width: 140px; flex: 1; }
+  .stat-card .val { font-size: 2rem; font-weight: 800; color: #7eb8f7; }
+  .stat-card .lbl { font-size: 0.75rem; color: #888; margin-top: 2px; }
+  .charts { display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+             padding: 0 32px 20px; }
+  .chart-card { background: #1a1a2e; border-radius: 10px; padding: 16px; }
+  .chart-card h2 { font-size: 0.9rem; font-weight: 600; color: #aaa;
+                   margin-bottom: 10px; text-transform: uppercase; letter-spacing: .05em; }
+  .full-width { grid-column: 1 / -1; }
+  .tbl-wrap { padding: 0 32px 32px; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+  th { text-align: left; padding: 8px 12px; color: #888;
+        border-bottom: 1px solid #2a2a3a; font-weight: 500; }
+  td { padding: 7px 12px; border-bottom: 1px solid #1e1e2e; }
+  .badge { border-radius: 4px; padding: 2px 8px; font-size: 0.75rem;
+            font-weight: 600; color: #fff; }
+  footer { padding: 16px 32px; font-size: 0.75rem; color: #555;
+            border-top: 1px solid #2a2a3a; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Orbis Taxonomy Tree</h1>
+  <p>Istanbul Bilgi University · 8 top-levels · 21 leaves · 60,649 docs · generated 2026-04-05T11:43:39</p>
+</header>
+
+<div class="stats">
+  <div class="stat-card"><div class="val">60,649</div><div class="lbl">Total Documents</div></div>
+  <div class="stat-card"><div class="val">8</div><div class="lbl">Top Categories</div></div>
+  <div class="stat-card"><div class="val">21</div><div class="lbl">Taxonomy Leaves</div></div>
+  <div class="stat-card"><div class="val">13</div><div class="lbl">Discovered Leaves</div></div>
+  <div class="stat-card"><div class="val">45,851</div><div class="lbl">Discovered Docs</div></div>
+</div>
+
+<div class="charts">
+  <div class="chart-card">
+    <h2>Sunburst — Document Distribution</h2>
+    <div id="sun" style="height:460px"></div>
+  </div>
+  <div class="chart-card">
+    <h2>Icicle — Taxonomy Hierarchy</h2>
+    <div id="ice" style="height:460px"></div>
+  </div>
+  <div class="chart-card full-width">
+    <h2>Top 30 Leaves by Doc Count &nbsp;<small style="color:#e15759;font-weight:normal">⭐ = discovered by embedding</small></h2>
+    <div id="bar" style="height:620px"></div>
+  </div>
+  <div class="chart-card">
+    <h2>Source Breakdown</h2>
+    <div id="don" style="height:340px"></div>
+  </div>
+  <div class="chart-card">
+    <h2>Top-Level Summary</h2>
+    <div style="overflow-y:auto;max-height:340px">
+      <table>
+        <tr><th>Category</th><th>Docs</th><th>Leaves</th></tr>
+        <tr><td><span class='badge' style='background:#4e79a7'>academics</span></td><td style='text-align:right'>21,202</td><td style='text-align:right'>12</td></tr><tr><td><span class='badge' style='background:#76b7b2'>events</span></td><td style='text-align:right'>7,291</td><td style='text-align:right'>1</td></tr><tr><td><span class='badge' style='background:#9c755f'>quality</span></td><td style='text-align:right'>6,801</td><td style='text-align:right'>1</td></tr><tr><td><span class='badge' style='background:#59a14f'>international</span></td><td style='text-align:right'>6,077</td><td style='text-align:right'>1</td></tr><tr><td><span class='badge' style='background:#ff9da7'>people</span></td><td style='text-align:right'>6,069</td><td style='text-align:right'>1</td></tr><tr><td><span class='badge' style='background:#bab0ac'>regulations</span></td><td style='text-align:right'>5,302</td><td style='text-align:right'>1</td></tr><tr><td><span class='badge' style='background:#86bcb6'>research</span></td><td style='text-align:right'>5,081</td><td style='text-align:right'>2</td></tr><tr><td><span class='badge' style='background:#d4a6c8'>student_life</span></td><td style='text-align:right'>2,826</td><td style='text-align:right'>2</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<footer>Orbis RAG · Taxonomy Pipeline · Step 06</footer>
+
+<script>
+const layout = {
+  paper_bgcolor: '#1a1a2e', plot_bgcolor: '#1a1a2e',
+  font: {color: '#cccccc', size: 12},
+  margin: {t: 10, b: 10, l: 10, r: 10},
+};
+const cfg = {responsive: true, displayModeBar: false};
+
+Plotly.newPlot('sun', [{"type": "sunburst", "ids": ["root", "events", "academics", "quality", "international", "people", "regulations", "research", "student_life", "events/events", "academics/course_catalog", "quality/accreditation_reports", "international/erasmus_mobility_applications", "people/academic_staff", "regulations/institutional_documents", "academics/graduate_programs", "research/research_centers", "student_life/campus_units_and_counseling", "academics/vocational_school", "research/funded_research_projects", "academics/faculties", "academics/preparatory_programs", "academics/teaching_learning_resources", "student_life/career_alumni", "events/events/Events, Seminars and Conferences", "academics/course_catalog/Course Catalog and Curricula", "quality/accreditation_reports/Accreditation and Quality Assurance", "international/erasmus_mobility_applications/International Exchange and Mobility Programs", "people/academic_staff/Faculty and Staff Directory", "regulations/institutional_documents/University Policies, Regulations and Official Documents", "academics/graduate_programs/Graduate Programs", "research/research_centers/Research Centers And Institutes", "student_life/campus_units_and_counseling/Student Wellbeing, Counseling and Campus Services", "academics/vocational_school/Vocational School and Associate Degree Programs", "research/funded_research_projects/Research Projects And Grants", "academics/faculties/Faculty of Arts, Social Sciences and Humanities", "academics/faculties/Faculty Of Applied Sciences", "academics/faculties/Faculty Of Engineering And Natural Sciences", "academics/preparatory_programs/Language Preparatory Programs", "academics/faculties/Faculty Of Communication", "academics/faculties/Faculty Of Business", "academics/teaching_learning_resources/Teaching and Learning Support", "student_life/career_alumni/Career Services And Alumni Network", "academics/faculties/Faculty Of Architecture", "academics/faculties/Faculty Of Law"], "labels": ["Orbis KB", "Events", "Academics", "Quality", "International", "People", "Regulations", "Research", "Student Life", "Events", "Course Catalog", "Accreditation Reports", "Erasmus Mobility Applications", "Academic Staff", "Institutional Documents", "Graduate Programs", "Research Centers", "Campus Units And Counseling", "Vocational School", "Funded Research Projects", "Faculties", "Preparatory Programs", "Teaching Learning Resources", "Career Alumni", "Events, Seminars and Conferences", "Course Catalog and Curricula", "Accreditation and Quality Assurance", "International Exchange and Mobilit\u2026", "Faculty and Staff Directory", "University Policies, Regulations a\u2026", "Graduate Programs", "Research Centers And Institutes", "Student Wellbeing, Counseling and \u2026", "Vocational School and Associate De\u2026", "Research Projects And Grants", "Faculty of Arts, Social Sciences a\u2026", "Faculty Of Applied Sciences", "Faculty Of Engineering And Natural\u2026", "Language Preparatory Programs", "Faculty Of Communication", "Faculty Of Business", "Teaching and Learning Support", "Career Services And Alumni Network", "Faculty Of Architecture", "Faculty Of Law"], "parents": ["", "root", "root", "root", "root", "root", "root", "root", "root", "events", "academics", "quality", "international", "people", "regulations", "academics", "research", "student_life", "academics", "research", "academics", "academics", "academics", "student_life", "events/events", "academics/course_catalog", "quality/accreditation_reports", "international/erasmus_mobility_applications", "people/academic_staff", "regulations/institutional_documents", "academics/graduate_programs", "research/research_centers", "student_life/campus_units_and_counseling", "academics/vocational_school", "research/funded_research_projects", "academics/faculties", "academics/faculties", "academics/faculties", "academics/preparatory_programs", "academics/faculties", "academics/faculties", "academics/teaching_learning_resources", "student_life/career_alumni", "academics/faculties", "academics/faculties"], "values": [60649, 7291, 21202, 6801, 6077, 6069, 5302, 5081, 2826, 7291, 6802, 6801, 6077, 6069, 5302, 3533, 3337, 2346, 2130, 1744, 6969, 945, 823, 480, 7291, 6802, 6801, 6077, 6069, 5302, 3533, 3337, 2346, 2130, 1744, 1680, 1420, 1285, 945, 922, 902, 823, 480, 390, 370], "marker": {"colors": ["#ffffff", "#76b7b2", "#4e79a7", "#9c755f", "#59a14f", "#ff9da7", "#bab0ac", "#86bcb6", "#d4a6c8", "#76b7b2bb", "#4e79a7bb", "#9c755fbb", "#59a14fbb", "#ff9da7bb", "#bab0acbb", "#4e79a7bb", "#86bcb6bb", "#d4a6c8bb", "#4e79a7bb", "#86bcb6bb", "#4e79a7bb", "#4e79a7bb", "#4e79a7bb", "#d4a6c8bb", "#76b7b277", "#4e79a777", "#9c755f77", "#59a14f77", "#ff9da777", "#bab0ac77", "#4e79a777", "#86bcb677", "#d4a6c877", "#4e79a777", "#86bcb677", "#4e79a777", "#4e79a777", "#4e79a777", "#4e79a777", "#4e79a777", "#4e79a777", "#4e79a777", "#d4a6c877", "#4e79a777", "#4e79a777"]}, "text": ["60,649 docs", "7,291 docs", "21,202 docs", "6,801 docs", "6,077 docs", "6,069 docs", "5,302 docs", "5,081 docs", "2,826 docs", "7,291 docs", "6,802 docs", "6,801 docs", "6,077 docs", "6,069 docs", "5,302 docs", "3,533 docs", "3,337 docs", "2,346 docs", "2,130 docs", "1,744 docs", "6,969 docs", "945 docs", "823 docs", "480 docs", "7,291 docs [disc]", "6,802 docs [disc]", "6,801 docs [disc]", "6,077 docs [disc]", "6,069 docs", "5,302 docs [disc]", "3,533 docs [disc]", "3,337 docs [disc]", "2,346 docs [disc]", "2,130 docs", "1,744 docs [disc]", "1,680 docs", "1,420 docs", "1,285 docs", "945 docs [disc]", "922 docs", "902 docs", "823 docs [disc]", "480 docs [disc]", "390 docs", "370 docs [disc]"], "hovertemplate": "%{label}<br>%{text}<extra></extra>", "branchvalues": "total", "maxdepth": 3}], {...layout, margin:{t:0,b:0,l:0,r:0}}, cfg);
+Plotly.newPlot('ice', [{"type": "icicle", "ids": ["root", "events", "academics", "quality", "international", "people", "regulations", "research", "student_life", "events/events", "academics/course_catalog", "quality/accreditation_reports", "international/erasmus_mobility_applications", "people/academic_staff", "regulations/institutional_documents", "academics/graduate_programs", "research/research_centers", "student_life/campus_units_and_counseling", "academics/vocational_school", "research/funded_research_projects", "academics/faculties", "academics/preparatory_programs", "academics/teaching_learning_resources", "student_life/career_alumni", "events/events/Events, Seminars and Conferences", "academics/course_catalog/Course Catalog and Curricula", "quality/accreditation_reports/Accreditation and Quality Assurance", "international/erasmus_mobility_applications/International Exchange and Mobility Programs", "people/academic_staff/Faculty and Staff Directory", "regulations/institutional_documents/University Policies, Regulations and Official Documents", "academics/graduate_programs/Graduate Programs", "research/research_centers/Research Centers And Institutes", "student_life/campus_units_and_counseling/Student Wellbeing, Counseling and Campus Services", "academics/vocational_school/Vocational School and Associate Degree Programs", "research/funded_research_projects/Research Projects And Grants", "academics/faculties/Faculty of Arts, Social Sciences and Humanities", "academics/faculties/Faculty Of Applied Sciences", "academics/faculties/Faculty Of Engineering And Natural Sciences", "academics/preparatory_programs/Language Preparatory Programs", "academics/faculties/Faculty Of Communication", "academics/faculties/Faculty Of Business", "academics/teaching_learning_resources/Teaching and Learning Support", "student_life/career_alumni/Career Services And Alumni Network", "academics/faculties/Faculty Of Architecture", "academics/faculties/Faculty Of Law"], "labels": ["Orbis KB", "Events", "Academics", "Quality", "International", "People", "Regulations", "Research", "Student Life", "Events", "Course Catalog", "Accreditation Reports", "Erasmus Mobility Applications", "Academic Staff", "Institutional Documents", "Graduate Programs", "Research Centers", "Campus Units And Counseling", "Vocational School", "Funded Research Projects", "Faculties", "Preparatory Programs", "Teaching Learning Resources", "Career Alumni", "Events, Seminars and Conferences", "Course Catalog and Curricula", "Accreditation and Quality Assurance", "International Exchange and Mobilit\u2026", "Faculty and Staff Directory", "University Policies, Regulations a\u2026", "Graduate Programs", "Research Centers And Institutes", "Student Wellbeing, Counseling and \u2026", "Vocational School and Associate De\u2026", "Research Projects And Grants", "Faculty of Arts, Social Sciences a\u2026", "Faculty Of Applied Sciences", "Faculty Of Engineering And Natural\u2026", "Language Preparatory Programs", "Faculty Of Communication", "Faculty Of Business", "Teaching and Learning Support", "Career Services And Alumni Network", "Faculty Of Architecture", "Faculty Of Law"], "parents": ["", "root", "root", "root", "root", "root", "root", "root", "root", "events", "academics", "quality", "international", "people", "regulations", "academics", "research", "student_life", "academics", "research", "academics", "academics", "academics", "student_life", "events/events", "academics/course_catalog", "quality/accreditation_reports", "international/erasmus_mobility_applications", "people/academic_staff", "regulations/institutional_documents", "academics/graduate_programs", "research/research_centers", "student_life/campus_units_and_counseling", "academics/vocational_school", "research/funded_research_projects", "academics/faculties", "academics/faculties", "academics/faculties", "academics/preparatory_programs", "academics/faculties", "academics/faculties", "academics/teaching_learning_resources", "student_life/career_alumni", "academics/faculties", "academics/faculties"], "values": [60649, 7291, 21202, 6801, 6077, 6069, 5302, 5081, 2826, 7291, 6802, 6801, 6077, 6069, 5302, 3533, 3337, 2346, 2130, 1744, 6969, 945, 823, 480, 7291, 6802, 6801, 6077, 6069, 5302, 3533, 3337, 2346, 2130, 1744, 1680, 1420, 1285, 945, 922, 902, 823, 480, 390, 370], "marker": {"colors": ["#ffffff", "#76b7b2", "#4e79a7", "#9c755f", "#59a14f", "#ff9da7", "#bab0ac", "#86bcb6", "#d4a6c8", "#76b7b2bb", "#4e79a7bb", "#9c755fbb", "#59a14fbb", "#ff9da7bb", "#bab0acbb", "#4e79a7bb", "#86bcb6bb", "#d4a6c8bb", "#4e79a7bb", "#86bcb6bb", "#4e79a7bb", "#4e79a7bb", "#4e79a7bb", "#d4a6c8bb", "#76b7b277", "#4e79a777", "#9c755f77", "#59a14f77", "#ff9da777", "#bab0ac77", "#4e79a777", "#86bcb677", "#d4a6c877", "#4e79a777", "#86bcb677", "#4e79a777", "#4e79a777", "#4e79a777", "#4e79a777", "#4e79a777", "#4e79a777", "#4e79a777", "#d4a6c877", "#4e79a777", "#4e79a777"]}, "text": ["60,649 docs", "7,291 docs", "21,202 docs", "6,801 docs", "6,077 docs", "6,069 docs", "5,302 docs", "5,081 docs", "2,826 docs", "7,291 docs", "6,802 docs", "6,801 docs", "6,077 docs", "6,069 docs", "5,302 docs", "3,533 docs", "3,337 docs", "2,346 docs", "2,130 docs", "1,744 docs", "6,969 docs", "945 docs", "823 docs", "480 docs", "7,291 docs [disc]", "6,802 docs [disc]", "6,801 docs [disc]", "6,077 docs [disc]", "6,069 docs", "5,302 docs [disc]", "3,533 docs [disc]", "3,337 docs [disc]", "2,346 docs [disc]", "2,130 docs", "1,744 docs [disc]", "1,680 docs", "1,420 docs", "1,285 docs", "945 docs [disc]", "922 docs", "902 docs", "823 docs [disc]", "480 docs [disc]", "390 docs", "370 docs [disc]"], "hovertemplate": "%{label}<br>%{text}<extra></extra>", "branchvalues": "total", "maxdepth": 3, "tiling": {"orientation": "v"}}], {...layout, margin:{t:0,b:0,l:0,r:0}}, cfg);
+Plotly.newPlot('bar', [{"type": "bar", "x": [7291, 6802, 6801, 6077, 6069, 5302, 3533, 3337, 2346, 2130, 1744, 1680, 1420, 1285, 945, 922, 902, 823, 480, 390, 370], "y": ["\u2b50 Events, Seminars and Conferen\u2026", "\u2b50 Course Catalog and Curricula", "\u2b50 Accreditation and Quality Ass\u2026", "\u2b50 International Exchange and Mo\u2026", "Faculty and Staff Directory", "\u2b50 University Policies, Regulati\u2026", "\u2b50 Graduate Programs", "\u2b50 Research Centers And Institut\u2026", "\u2b50 Student Wellbeing, Counseling\u2026", "Vocational School and Associate\u2026", "\u2b50 Research Projects And Grants", "Faculty of Arts, Social Science\u2026", "Faculty Of Applied Sciences", "Faculty Of Engineering And Natu\u2026", "\u2b50 Language Preparatory Programs", "Faculty Of Communication", "Faculty Of Business", "\u2b50 Teaching and Learning Support", "\u2b50 Career Services And Alumni Ne\u2026", "Faculty Of Architecture", "\u2b50 Faculty Of Law"], "orientation": "h", "marker": {"color": ["#76b7b2", "#4e79a7", "#9c755f", "#59a14f", "#ff9da7", "#bab0ac", "#4e79a7", "#86bcb6", "#d4a6c8", "#4e79a7", "#86bcb6", "#4e79a7", "#4e79a7", "#4e79a7", "#4e79a7", "#4e79a7", "#4e79a7", "#4e79a7", "#d4a6c8", "#4e79a7", "#4e79a7"]}, "text": ["7,291", "6,802", "6,801", "6,077", "6,069", "5,302", "3,533", "3,337", "2,346", "2,130", "1,744", "1,680", "1,420", "1,285", "945", "922", "902", "823", "480", "390", "370"], "textposition": "outside", "hovertemplate": "%{y}<br>%{x:,} docs<extra></extra>"}], {
+  ...layout,
+  xaxis: {gridcolor:'#2a2a3a', zeroline:false},
+  yaxis: {automargin:true, tickfont:{size:11}},
+  margin: {t:10, b:30, l:260, r:80},
+}, cfg);
+Plotly.newPlot('don', [{"type": "pie", "labels": ["URL-known", "Discovered"], "values": [14798, 45851], "hole": 0.55, "marker": {"colors": ["#4e79a7", "#e15759"]}, "hovertemplate": "%{label}: %{value:,} docs (%{percent})<extra></extra>", "textinfo": "label+percent"}], {
+  ...layout,
+  showlegend: true,
+  legend: {font:{color:'#ccc'}, bgcolor:'#1a1a2e'},
+  margin: {t:10, b:10, l:10, r:10},
+}, cfg);
+</script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+{
+  "created_at_utc": "2026-04-02T20:10:29.254591+00:00",
+  "inputs": {
+    "umbrella_json": "/home/zperson/Orbis/api/scripts/experiments/results/categorization/pass1_url_umbrella_d23_20260402_174054.json",
+    "depth_json": "/home/zperson/Orbis/api/scripts/experiments/results/categorization/pass1_url_depth_diversity_20260402_174134.json",
+    "shortlist_json": "/home/zperson/Orbis/api/scripts/experiments/results/categorization/pass1_url_shortlist_20260402_174138.json",
+    "taxonomy_json": "/home/zperson/Orbis/api/scripts/experiments/results/categorization/pass1_ai_taxonomy_outlier_full_sota_v4_20260402_181846.json",
+    "tree_json": "/home/zperson/Orbis/api/scripts/experiments/results/categorization/pass1_taxonomy_tree_directional_sota_v4_20260402_181852.json"
+  },
+  "core_counts": {
+    "umbrella_clusters": 250,
+    "depth_total_groups": 250,
+    "depth_url_only_parent": 143,
+    "depth_url_only_categorize": 65,
+    "depth_needs_algorithm": 42,
+    "taxonomy_selected_count": 208,
+    "taxonomy_mapped_count": 208,
+    "taxonomy_unresolved_count": 0,
+    "tree_top_level_count": 13
+  },
+  "figures": [
+    {
+      "step": "1",
+      "title": "Chosen URL Depth Distribution",
+      "file": "/home/zperson/Orbis/api/scripts/experiments/results/categorization/pass1_pipeline_visual_pack_assets/01_depth_distribution_20260402_201024.png"
+    },
+    {
+      "step": "1",
+      "title": "Largest Parent Clusters",
+      "file": "/home/zperson/Orbis/api/scripts/experiments/results/categorization/pass1_pipeline_visual_pack_assets/02_top_parent_clusters_20260402_201024.png"
+    },
+    {
+      "step": "2",
+      "title": "Decision Distribution",
+      "file": "/home/zperson/Orbis/api/scripts/experiments/results/categorization/pass1_pipeline_visual_pack_assets/03_decision_distribution_20260402_201024.png"
+    },
+    {
+      "step": "2",
+      "title": "Tail Signal Scatter",
+      "file": "/home/zperson/Orbis/api/scripts/experiments/results/categorization/pass1_pipeline_visual_pack_assets/04_tail_signal_scatter_20260402_201024.png"
+    },
+    {
+      "step": "2",
+      "title": "Entropy vs Dominance",
+      "file": "/home/zperson/Orbis/api/scripts/experiments/results/categorization/pass1_pipeline_visual_pack_assets/05_entropy_dominance_scatter_20260402_201024.png"
+    },
+    {
+      "step": "2",
+      "title": "Needs-Algorithm Top Groups",
+      "file": "/home/zperson/Orbis/api/scripts/experiments/results/categorization/pass1_pipeline_visual_pack_assets/06_needs_algorithm_top_groups_20260402_201024.png"
+    },
+    {
+      "step": "3",
+      "title": "Shortlist Priority Load",
+      "file": "/home/zperson/Orbis/api/scripts/experiments/results/categorization/pass1_pipeline_visual_pack_assets/07_shortlist_priority_docs_20260402_201024.png"
+    },
+    {
+      "step": "4",
+      "title": "Mapping Source Contribution",
+      "file": "/home/zperson/Orbis/api/scripts/experiments/results/categorization/pass1_pipeline_visual_pack_assets/08_mapping_source_docs_20260402_201024.png"
+    },
+    {
+      "step": "4",
+      "title": "Top-Level Taxonomy Load",
+      "file": "/home/zperson/Orbis/api/scripts/experiments/results/categorization/pass1_pipeline_visual_pack_assets/09_top_level_docs_20260402_201024.png"
+    },
+    {
+      "step": "4",
+      "title": "Decision to Top-Level Heatmap",
+      "file": "/home/zperson/Orbis/api/scripts/experiments/results/categorization/pass1_pipeline_visual_pack_assets/10_decision_top_level_heatmap_20260402_201024.png"
+    },
+    {
+      "step": "5",
+      "title": "Directional Tree Coverage",
+      "file": "/home/zperson/Orbis/api/scripts/experiments/results/categorization/pass1_pipeline_visual_pack_assets/11_tree_top_level_category_counts_20260402_201024.png"
+    }
+  ]
+}
