@@ -1,0 +1,9 @@
+# Uploaded assignment files
+api/uploads/
+
+# Codex
+.codex
+
+# Screenshots / docs images (generated)
+docs/*.png
+docs/*.jpg
