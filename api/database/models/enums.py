@@ -81,6 +81,7 @@ class SubmissionStatus(enum.Enum):
     PENDING = "pending"
     APPROVED = "approved"
     REJECTED = "rejected"
+    FLAGGED = "flagged"
 
 
 class AssignmentStatus(enum.Enum):
@@ -93,4 +94,3 @@ class AssignmentUrgency(enum.Enum):
     HIGH = "high"      # blocking=True
     MEDIUM = "medium"  # has deadline or consequence
     LOW = "low"        # informational
-

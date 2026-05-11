@@ -55,6 +55,20 @@ class AssignmentRepository(BaseRepository[Assignment]):
         )
         return list(self.session.scalars(stmt).all())
 
+    def student_is_enrolled_for_assignment(self, student_id: int, assignment_id: int) -> bool:
+        from ..models import Enrollment, EnrollmentStatus
+
+        stmt = (
+            select(Assignment.id)
+            .join(Enrollment, Enrollment.section_id == Assignment.section_id)
+            .where(
+                Assignment.id == assignment_id,
+                Enrollment.student_id == student_id,
+                Enrollment.status == EnrollmentStatus.ENROLLED,
+            )
+        )
+        return self.session.scalar(stmt) is not None
+
     def validate_submission_window(self, assignment_id: int) -> dict[str, object]:
         assignment = self.get_by_id(assignment_id)
         if assignment is None:
