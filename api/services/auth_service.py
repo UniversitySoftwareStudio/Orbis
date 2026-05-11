@@ -1,27 +1,26 @@
+import hashlib
+import hmac
 import os
 from datetime import datetime, timedelta
 from typing import Any
 
+import bcrypt
 from jose import JWTError, jwt
-from passlib.context import CryptContext
 from sqlalchemy.orm import Session
 
 from database.models import User, UserType
 from database.repositories.user_repository import UserRepository
 
-pwd_context = CryptContext(schemes=["bcrypt_sha256", "bcrypt"], deprecated="auto")
 SECRET_KEY = os.getenv("JWT_SECRET_KEY", "your-secret-key-change-in-production")
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", "30"))
 
-def _prime_passlib() -> None:
-    try:
-        pwd_context.hash("__passlib_init__")
-    except (ValueError, AttributeError):
-        return
 
-
-_prime_passlib()
+def _to_bcrypt_safe(password: str) -> bytes:
+    # passlib bcrypt_sha256 prehashes with sha256 to bypass the 72-byte limit
+    digest = hmac.new(b"", password.encode("utf-8"), hashlib.sha256).digest()
+    import base64
+    return base64.b64encode(digest)
 
 
 class AuthService:
@@ -29,24 +28,30 @@ class AuthService:
         self.session = session
         self.users = UserRepository(session)
 
-    @staticmethod
-    def _run_bcrypt(fn: Any, password: str, *args: str) -> Any:
-        try:
-            return fn(password, *args)
-        except ValueError as exc:
-            msg = str(exc)
-            if "72 bytes" not in msg and "longer than 72 bytes" not in msg:
-                raise
-            safe = password.encode("utf-8")[:72].decode("utf-8", errors="ignore")
-            return fn(safe, *args)
-
     @classmethod
     def hash_password(cls, password: str) -> str:
-        return cls._run_bcrypt(pwd_context.hash, password)
+        hashed = bcrypt.hashpw(_to_bcrypt_safe(password), bcrypt.gensalt(rounds=12))
+        return hashed.decode("utf-8")
 
     @classmethod
     def verify_password(cls, plain_password: str, hashed_password: str) -> bool:
-        return cls._run_bcrypt(pwd_context.verify, plain_password, hashed_password)
+        h = hashed_password.encode("utf-8")
+        # Support both new plain-bcrypt hashes and legacy passlib bcrypt_sha256 hashes
+        if hashed_password.startswith("$bcrypt-sha256$"):
+            # passlib bcrypt_sha256: extract the inner bcrypt hash after the prefix
+            # format: $bcrypt-sha256$v=2,t=2b,r=12$<salt>$<hash>
+            # passlib prehashes password as: sha256_hmac -> base64 -> bcrypt
+            try:
+                from passlib.context import CryptContext
+                ctx = CryptContext(schemes=["bcrypt_sha256"], deprecated="auto")
+                return ctx.verify(plain_password, hashed_password)
+            except Exception:
+                pass
+            return False
+        try:
+            return bcrypt.checkpw(_to_bcrypt_safe(plain_password), h)
+        except Exception:
+            return False
 
     def authenticate_user(self, email: str, password: str) -> User | None:
         user = self.users.get_by_email(email)

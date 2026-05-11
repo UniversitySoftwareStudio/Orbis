@@ -4,6 +4,7 @@
     "chat": "Chat",
     "calendar": "Academic Calendar",
     "schedule": "My Schedule",
+    "assignments": "Assignments",
     "logout": "Logout"
   },
   "login": {

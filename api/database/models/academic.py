@@ -19,6 +19,7 @@ from sqlalchemy import (
     UniqueConstraint,
     func,
 )
+from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import relationship
 
 from .base import Base, EMBEDDING_DIM
@@ -189,6 +190,31 @@ class Assignment(Base):
     is_published = Column(Boolean, default=False)
 
     section = relationship("CourseSection", back_populates="assignments")
+    submissions = relationship("AssignmentSubmission", back_populates="assignment")
+
+
+class AssignmentSubmission(Base):
+    __tablename__ = "assignment_submissions"
+
+    id = Column(Integer, primary_key=True)
+    assignment_id = Column(Integer, ForeignKey("assignments.id"), nullable=False)
+    student_id = Column(Integer, ForeignKey("students.id"), nullable=False)
+    file_path = Column(String(500), nullable=False)
+    original_filename = Column(String(255), nullable=False)
+    status = Column(SQLEnum("pending", "approved", "rejected", "flagged", name="submissionstatus"), nullable=False, server_default="pending")
+    ai_feedback = Column(Text)
+    evaluation_report = Column(JSONB)
+    flagged_by_student = Column(Boolean, nullable=False, default=False, server_default="false")
+    student_flag_reason = Column(Text)
+    flagged_at = Column(DateTime)
+    submitted_at = Column(DateTime, default=datetime.utcnow)
+
+    assignment = relationship("Assignment", back_populates="submissions")
+    student = relationship("Student")
+
+    __table_args__ = (
+        UniqueConstraint("assignment_id", "student_id", name="uq_assignment_submission_student_assignment"),
+    )
 
 
 class AcademicCalendarEntry(Base):

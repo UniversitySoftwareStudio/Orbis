@@ -51,6 +51,9 @@ class LLMService:
             logger.exception("LLM generation failed")
             yield f"[Error: {exc}]"
 
+    def complete(self, prompt: str) -> str:
+        return "".join(self.generate(prompt))
+
 
 def get_llm_service() -> LLMService:
     return LLMService()

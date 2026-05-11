@@ -85,6 +85,51 @@ export const api = {
     return response.json();
   },
 
+  // 5. My Assignments
+  getMyAssignments: async () => {
+    const response = await fetch(`${API_BASE_URL}/assignments/me`, {
+      credentials: 'include',
+    });
+    if (response.status === 401) { handleUnauthorized(response); return; }
+    if (!response.ok) {
+      const error = await response.json().catch(() => ({ detail: response.statusText }));
+      throw new Error(error.detail || 'API Error');
+    }
+    return response.json();
+  },
+
+  // 6. Submit Assignment
+  submitAssignment: async (assignmentId: number, file: File) => {
+    const formData = new FormData();
+    formData.append('file', file);
+    const response = await fetch(`${API_BASE_URL}/assignments/${assignmentId}/submit`, {
+      method: 'POST',
+      body: formData,
+      credentials: 'include',
+    });
+    if (response.status === 401) { handleUnauthorized(response); return; }
+    if (!response.ok) {
+      const error = await response.json().catch(() => ({ detail: response.statusText }));
+      throw new Error(error.detail || 'API Error');
+    }
+    return response.json();
+  },
+
+  flagSubmissionRejection: async (submissionId: number, reason: string) => {
+    const response = await fetch(`${API_BASE_URL}/assignments/submissions/${submissionId}/flag`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ reason }),
+      credentials: 'include',
+    });
+    if (response.status === 401) { handleUnauthorized(response); return; }
+    if (!response.ok) {
+      const error = await response.json().catch(() => ({ detail: response.statusText }));
+      throw new Error(error.detail || 'API Error');
+    }
+    return response.json();
+  },
+
   // 4. Student Schedule
   getMySchedule: async () => {
     const response = await fetch(`${API_BASE_URL}/sis/schedule/me`, {

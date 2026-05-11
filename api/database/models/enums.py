@@ -77,6 +77,13 @@ class RuleStatus(enum.Enum):
     REJECTED = "rejected"           # pass 2 said remove it
 
 
+class SubmissionStatus(enum.Enum):
+    PENDING = "pending"
+    APPROVED = "approved"
+    REJECTED = "rejected"
+    FLAGGED = "flagged"
+
+
 class AssignmentStatus(enum.Enum):
     ACTIVE = "active"
     DISMISSED = "dismissed"
@@ -87,4 +94,3 @@ class AssignmentUrgency(enum.Enum):
     HIGH = "high"      # blocking=True
     MEDIUM = "medium"  # has deadline or consequence
     LOW = "low"        # informational
-

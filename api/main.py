@@ -8,6 +8,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from core.logging import configure_logging, get_logger
 from database.session import init_db
+from routes.assignments import router as assignments_router
 from routes.auth import router as auth_router
 from routes.events import router as events_router
 from routes.logout import router as logout_router
@@ -25,7 +26,7 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=["http://localhost:5173", "http://localhost:5174"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -40,6 +41,7 @@ app.include_router(search_router, prefix="/api", tags=["search"])
 app.include_router(logout_router, prefix="/api", tags=["logout"])
 app.include_router(sis_router, prefix="/api", tags=["sis"])
 app.include_router(events_router, prefix="/api", tags=["events"])
+app.include_router(assignments_router, prefix="/api", tags=["assignments"])
 
 
 @app.get("/")

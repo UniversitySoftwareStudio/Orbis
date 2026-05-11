@@ -6,6 +6,7 @@ import {
   MessageSquare,
   CalendarDays,
   CalendarRange,
+  ClipboardList,
   LogOut,
   ChevronLeft,
   ChevronRight,
@@ -23,7 +24,8 @@ const NAV_ITEMS: Array<{ path: string; icon: LucideIcon; labelKey: string }> = [
 ];
 
 const STUDENT_ITEMS: Array<{ path: string; icon: LucideIcon; labelKey: string }> = [
-  { path: '/schedule', icon: CalendarRange, labelKey: 'sidebar.schedule' },
+  { path: '/schedule',     icon: CalendarRange,  labelKey: 'sidebar.schedule'     },
+  { path: '/assignments',  icon: ClipboardList,  labelKey: 'sidebar.assignments'  },
 ];
 
 const COLLAPSED_KEY = 'orbis_sidebar_collapsed';
