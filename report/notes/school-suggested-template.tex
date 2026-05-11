@@ -1,0 +1,182 @@
+\documentclass[a4paper,12pt]{article}
+
+%
+%% PACKAGE IMPORTS
+%%  If any package needed, import it here
+%
+\usepackage{styles/ibu-thesis}
+\usepackage{subcaption}
+\usepackage{lipsum}
+
+%
+%% MACROS
+%%  If any macro needed, define it here
+%
+
+
+
+%
+%% THESIS TITLE
+%
+\thesistitle{Title: \LaTeX~Template for Thesis}
+
+%
+%% AUTHOR INFORMATION 
+%%  If there is more than 3 author it can be added to list
+%%  e.g. \authors[4]{Name of author} and \authorsid[4]{ID of author} etc.
+%
+\authors[1]{Name Surname}
+\authorsid[1]{ID}
+\authors[2]{Name Surname}
+\authorsid[2]{ID}
+\authors[3]{Name Surname}
+\authorsid[3]{ID}
+
+%
+%% SUPERVISOR INFORMATION
+%%  If there is more than 2 supervisor it can be added to list
+%%  e.g. \supervisors[3]{Name of supervisor} etc.
+%
+\supervisors[1]{Supervisor1}
+\supervisors[2]{Supervisor2}
+
+%
+%% AFFILIATION INFORMATION
+%%  Below information are must
+%
+\faculty{FACULTY INFORMATION}
+\degree{Bachelor of Science}
+\department{DEPARTMENT INFORMATION}
+\submissiondate{DATE INFORMATION}
+
+%
+%% ABSTRACT
+%%  In case of more than one paragraph abstracts, use \\ separator only 
+%%  to open a new paragraph
+%%  e.g. ... paragraph ended here. \\ New paragraph starts here ...
+%
+\abstract{\lipsum[1]}
+
+
+
+\begin{document}
+
+%
+%% PRELIMINARIES 
+%
+\maketitle
+
+\addcontentsline{toc}{section}{\abstractname}
+\makeabstract
+
+\addcontentsline{toc}{section}{\contentsname}
+\maketableofcontents
+
+\addcontentsline{toc}{section}{\listoffigures}
+\makelistoffigures
+
+\addcontentsline{toc}{section}{\listoftables}
+\makelistoftables
+
+
+%
+%% LIST OF SYMBOLS AND ABBREVIATIONS
+%%  Add or remove the symbols and abbreviations that are 
+%%  used in your thesis here 
+%
+\addcontentsline{toc}{section}{\listofsymbols}
+\makelistofsymbols
+\begin{symbols}
+    \item[$a, b, c$] Scalars
+    \item[$\boldsymbol{x, y, z}$] Vectors
+    \item[$\boldsymbol{A, B, C}$] Matrices
+    \item[$\forall x$] Universal quantifier: for all $x$
+    \item[$\exists x$] Existential quantifier: there exists $x$
+    \item[$\sum_{n=1}^{N} x_n$] Sum of the $x_n : x_1 + x_2 + ... + x_N$ 
+    \item[$\prod_{n=1}^{N} x_n$] Product of the $x_n : x_1 \cdot x_2 \cdot ... \cdot x_N$ 
+\end{symbols}
+
+\newpage
+
+% List of abbreviations
+\addcontentsline{toc}{section}{\listofabbrv}
+\makelistofabbrv
+\begin{abbrv}
+    \item[i.e.] Id est (Latin: this means)
+    \item[e.g.] Exempli gratia (Latin: for example)
+    \item[MAP] Maximum a posteriori
+    \item[MSE] Mean Squared Error
+\end{abbrv}
+\newpage
+
+\pagenumbering{arabic} % Do not change
+\setcounter{page}{1} % Do not change
+
+
+%
+%% SECTIONS
+%%  The thesis starts here
+%
+
+\section{Introduction}
+\textit{... Thesis introduction ...}
+\newpage
+
+\section{Related Works}
+\textit{... Studies done before in the area ...}
+\newpage
+
+\section{Methodology}
+\textit{... The metholody used in this study ...}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=.4\linewidth]{figures/dummy_image.jpg}
+    \caption{Figures of the methodology}
+    \label{fig:example}
+\end{figure}
+\newpage
+
+\section{Results \& Discussions}
+\textit{... The results \& discussions of this study ...}
+\begin{table}[h]
+    \centering
+        \begin{tabular}{r|c c}
+         \textbf{Noise} & \textbf{MLP$^*$} & \textbf{BN} \\ \hline 
+         $\mu=0$, $\sigma=0$ & 96.6 & 93 \\ 
+         $\mu=0$, $\sigma=1$ & 95 & 90.3 \\ 
+         $\mu=0$, $\sigma=2$ & 84.6 & 84 \\ 
+         $\mu=0$, $\sigma=3$ & 76 & 81.3 \\ 
+         $\mu=0$, $\sigma=4$ & 71 & 77.8 \\ 
+         $\mu=0$, $\sigma=5$ & 53 & 70.6 \\ 
+         $\mu=0$, $\sigma=10$ & 47.3 & 69.3 \\ 
+    \end{tabular}
+    \caption{Tables of results}
+    \label{tab:example}
+\end{table}
+\newpage
+
+\section{Conclusion}
+\textit{... The conclusion of this study ...}
+
+
+%
+%% BIBLIOGRAPHY
+%
+\clearpage
+\bibliographystyle{ieeetr}
+\addcontentsline{toc}{section}{References}
+
+%
+%% USING .bib FILE
+%
+% \bibliography{sample}
+
+%
+%% CREATING OWN BIBLIOGRAPHY
+%
+\begin{thebibliography}{100}
+\bibitem{turing2009}{Turing, Alan M. "Computing machinery and intelligence." Parsing the Turing Test. Springer, Dordrecht, 2009. 23-65.}
+\bibitem{einstein1905} Albert Einstein. \textit{Zur Elektrodynamik bewegter K{\"o}rper}. (German) [\textit{On the electrodynamics of moving bodies}]. Annalen der Physik, 322(10):891–921, 1905.
+\end{thebibliography}
+
+\end{document}
