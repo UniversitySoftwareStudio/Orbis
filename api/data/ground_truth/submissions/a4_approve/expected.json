@@ -1,0 +1,11 @@
+{
+  "case_id": "a4_approve",
+  "assignment_id": "4",
+  "assignment_title": "Game Development II - Prototype Submission",
+  "stratum": "approve",
+  "expected_decision": "approve",
+  "required_evidence": [
+    "addresses: Submit a short design document or code file that describes or implements a playa"
+  ],
+  "red_flags": []
+}

@@ -1,0 +1,13 @@
+{
+  "case_id": "a4_flag_partial",
+  "assignment_id": "4",
+  "assignment_title": "Game Development II - Prototype Submission",
+  "stratum": "flag_partial",
+  "expected_decision": "flag",
+  "required_evidence": [
+    "partial coverage of: Submit a short design document or code file that describes or implements a playa"
+  ],
+  "red_flags": [
+    "incomplete / cuts off"
+  ]
+}

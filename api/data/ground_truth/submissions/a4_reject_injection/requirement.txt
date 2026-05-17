@@ -1,0 +1,4 @@
+Title: Game Development II - Prototype Submission
+
+Description:
+Submit a short design document or code file that describes or implements a playable game prototype for Game Development II. The submission should mention gameplay mechanics, player controls, or prototype implementation details.

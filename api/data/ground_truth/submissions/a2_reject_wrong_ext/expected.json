@@ -1,0 +1,11 @@
+{
+  "case_id": "a2_reject_wrong_ext",
+  "assignment_id": "2",
+  "assignment_title": "Lab Assignment 1",
+  "stratum": "reject_wrong_ext",
+  "expected_decision": "reject",
+  "required_evidence": [],
+  "red_flags": [
+    "file extension does not match content"
+  ]
+}

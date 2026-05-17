@@ -1,0 +1,13 @@
+{
+  "case_id": "a3_flag_partial",
+  "assignment_id": "3",
+  "assignment_title": "Research Paper",
+  "stratum": "flag_partial",
+  "expected_decision": "flag",
+  "required_evidence": [
+    "partial coverage of: Submit a research paper on any topic related to the course syllabus."
+  ],
+  "red_flags": [
+    "incomplete / cuts off"
+  ]
+}

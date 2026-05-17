@@ -1,0 +1,150 @@
+{
+  "sample_size": 51,
+  "agreement": 0.5294117647058824,
+  "disagreements": [
+    {
+      "candidate_id": "17b37742-5d24-4bd0-b6af-19f41d8d06cb",
+      "text": "Request your student certificate through SIS (Document Request \u2192 Student Certificate \u2192 New Request), select the language, and save; the e-signed certi",
+      "qwen3.5_flash": "non_obligation",
+      "deepseek_v3.2": "true_obligation"
+    },
+    {
+      "candidate_id": "c2663690-3924-47c4-bcbf-860720fbff15",
+      "text": "Check your GPA before applying for a double major; you must have a minimum GPA of 3.00 over 4.00, have successfully passed all courses taken, and rank",
+      "qwen3.5_flash": "non_obligation",
+      "deepseek_v3.2": "true_obligation"
+    },
+    {
+      "candidate_id": "1b93def8-7ac3-41fd-9ba6-5a631479c3f7",
+      "text": "If you are in an extended exam period and more than one course remains failed at the end of the three- or four-semester extended period, your enrollme",
+      "qwen3.5_flash": "non_obligation",
+      "deepseek_v3.2": "true_obligation"
+    },
+    {
+      "candidate_id": "944bc468-60d0-4d55-a53f-69a5a911192d",
+      "text": "Apply through the Disabled Student Unit for free educational tools if you are a disabled student with financial hardship; provision requires Scholarsh",
+      "qwen3.5_flash": "non_obligation",
+      "deepseek_v3.2": "true_obligation"
+    },
+    {
+      "candidate_id": "7ec5896d-62dd-4da5-9117-f9c8ea02666c",
+      "text": "If you hold a scholarship and cancel your registration, your financial obligation will be calculated on your net tuition (total tuition minus scholars",
+      "qwen3.5_flash": "non_obligation",
+      "deepseek_v3.2": "true_obligation"
+    },
+    {
+      "candidate_id": "7310b7c5-3a2e-4e0a-9517-0005091c397c",
+      "text": "Request additional exam time if you have muscle diseases, dyslexia, hearing difficulty, writing difficulty, or attention deficit; the Disabled Student",
+      "qwen3.5_flash": "non_obligation",
+      "deepseek_v3.2": "true_obligation"
+    },
+    {
+      "candidate_id": "13574dcf-e60d-4839-a13e-b2d9ffb6ceb6",
+      "text": "If you have muscular disease, dyslexia, severe hearing loss, writing difficulty, or attention deficit, you may receive up to half of the standard exam",
+      "qwen3.5_flash": "non_obligation",
+      "deepseek_v3.2": "true_obligation"
+    },
+    {
+      "candidate_id": "88527500-2dc5-41c3-b54d-0e40ad10be72",
+      "text": "Object to your grades within 3 workdays following the announcement of grades by filling out the 'Factual Error Form' and submitting it to the Student ",
+      "qwen3.5_flash": "non_obligation",
+      "deepseek_v3.2": "true_obligation"
+    },
+    {
+      "candidate_id": "932acdcc-21d1-46f0-85ab-cd6024abbfec",
+      "text": "Budget for full tuition when enrolling in summer school courses; \u00d6SYS scholarships do not cover summer school.",
+      "qwen3.5_flash": "non_obligation",
+      "deepseek_v3.2": "true_obligation"
+    },
+    {
+      "candidate_id": "517496a2-e2b4-477b-8fb9-83b2733bd1d9",
+      "text": "When calculating your remaining study duration, do not count semesters in which you only sit additional or extended-period exams under Article 44/c \u2014 ",
+      "qwen3.5_flash": "non_obligation",
+      "deepseek_v3.2": "true_obligation"
+    },
+    {
+      "candidate_id": "edbd6eca-a6da-42b9-ab9f-3aeea1c62271",
+      "text": "Do not schedule classes or exams on your internship days if completing the internship during the semester; the internship must cover at least three wo",
+      "qwen3.5_flash": "non_obligation",
+      "deepseek_v3.2": "true_obligation"
+    },
+    {
+      "candidate_id": "e9eb6d4f-d382-4324-a93d-3146d54edf1a",
+      "text": "No tuition discount or refund will be provided if education is delivered partially or fully online. Do not apply for a tuition reduction on this basis",
+      "qwen3.5_flash": "non_obligation",
+      "deepseek_v3.2": "true_obligation"
+    },
+    {
+      "candidate_id": "dcbaf36e-d55e-4fed-94b6-4966b2b51cc6",
+      "text": "If you have exactly one failed course remaining at the end of the maximum study period, after using both additional exam rights, or after the three-/f",
+      "qwen3.5_flash": "non_obligation",
+      "deepseek_v3.2": "true_obligation"
+    },
+    {
+      "candidate_id": "de25ca68-0e61-48fd-bb82-38ce87097204",
+      "text": "If you go two consecutive semesters without registering for courses (and you are not on leave of absence or an exchange program), your Academic Adviso",
+      "qwen3.5_flash": "non_obligation",
+      "deepseek_v3.2": "true_obligation"
+    },
+    {
+      "candidate_id": "80179e1f-c606-4a2c-89e5-458ac73b7ea8",
+      "text": "If attending standard daytime classes is impractical due to your disability, apply to the Disabled Student Unit to switch to the evening (second) educ",
+      "qwen3.5_flash": "non_obligation",
+      "deepseek_v3.2": "true_obligation"
+    },
+    {
+      "candidate_id": "55b3ef33-92ce-4816-b7fc-1f47640cdeee",
+      "text": "If your thesis is in a publisher's publication process or a patent application has been filed, you may request postponement of public access for up to",
+      "qwen3.5_flash": "non_obligation",
+      "deepseek_v3.2": "true_obligation"
+    },
+    {
+      "candidate_id": "c070d37e-bacc-4d46-951f-58f50e1e5f39",
+      "text": "Do not rely on excuses for additional graduation exams under Article 36; excuses are not accepted, and resit/make-up exam provisions do not apply to t",
+      "qwen3.5_flash": "non_obligation",
+      "deepseek_v3.2": "true_obligation"
+    },
+    {
+      "candidate_id": "a69330eb-4b79-49bd-83e2-f2527dba9f9c",
+      "text": "Before making a lateral transfer between programs within the same graduate institute, verify how your tuition will change: it will be recalculated bas",
+      "qwen3.5_flash": "non_obligation",
+      "deepseek_v3.2": "true_obligation"
+    },
+    {
+      "candidate_id": "8636c49f-b51d-46d8-84b4-619cb3cd18f4",
+      "text": "Verify that you have completed at least 162 curriculum-slot credits before expecting to be classified as a 7th-semester (senior) student for undergrad",
+      "qwen3.5_flash": "non_obligation",
+      "deepseek_v3.2": "true_obligation"
+    },
+    {
+      "candidate_id": "7ffa1e37-fb45-4b10-84db-8d7f7faf1264",
+      "text": "If your late registration excuse is rejected and you have not fulfilled financial obligations, you will lose student rights: no student certificate wi",
+      "qwen3.5_flash": "non_obligation",
+      "deepseek_v3.2": "true_obligation"
+    },
+    {
+      "candidate_id": "73829d9a-f266-452b-983e-e1a1c863eb61",
+      "text": "Access free individual counseling at the Psychological Counseling Unit (PCU) by filling out the appointment form on the PCU website and sending it via",
+      "qwen3.5_flash": "non_obligation",
+      "deepseek_v3.2": "true_obligation"
+    },
+    {
+      "candidate_id": "eabd93c1-d4ed-4116-ada8-5fe10764bd45",
+      "text": "Attend all scheduled Disabled Students Unit meetings; missing three consecutive meetings without an excuse terminates your membership automatically.",
+      "qwen3.5_flash": "non_obligation",
+      "deepseek_v3.2": "true_obligation"
+    },
+    {
+      "candidate_id": "42533757-c3e1-454e-83d4-2e311198a948",
+      "text": "If you earn graduation eligibility at the end of your seventh semester (one semester early), half of the annual tuition you paid will be refunded to y",
+      "qwen3.5_flash": "non_obligation",
+      "deepseek_v3.2": "true_obligation"
+    },
+    {
+      "candidate_id": "04aa7bc0-7092-4315-8248-f5a4ac6248ec",
+      "text": "If you have partial or total vision loss, ensure the Disabled Student Unit has arranged your exam papers in the format you need (enlarged font, audio ",
+      "qwen3.5_flash": "ambiguous",
+      "deepseek_v3.2": "true_obligation"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "case_id": "a1_reject_empty",
+  "assignment_id": "1",
+  "assignment_title": "Midterm Report",
+  "stratum": "reject_empty",
+  "expected_decision": "reject",
+  "required_evidence": [],
+  "red_flags": [
+    "empty submission"
+  ]
+}

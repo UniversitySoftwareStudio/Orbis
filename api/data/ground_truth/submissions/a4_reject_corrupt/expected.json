@@ -1,0 +1,11 @@
+{
+  "case_id": "a4_reject_corrupt",
+  "assignment_id": "4",
+  "assignment_title": "Game Development II - Prototype Submission",
+  "stratum": "reject_corrupt",
+  "expected_decision": "reject",
+  "required_evidence": [],
+  "red_flags": [
+    "unreadable binary content"
+  ]
+}

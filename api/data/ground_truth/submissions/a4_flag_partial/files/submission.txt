@@ -1,0 +1,4 @@
+Game Title: Neon Runner
+This prototype focuses on core movement mechanics. The player controls a cube that runs forward automatically. The jump function uses a gravity variable. When spacebar is pressed, velocity Y increases. Double jump is not finished. The score counter updates when an obstacle is passed.
+Controls: Spacebar Jump, Left/Right Move, Shift Dash (WIP).
+Collision detection uses BoxColliders. I need to fix the bug where the player clips through walls. The main menu is not connected to the scene. The audio system is missing. I was going to add a pause menu but ran out of time. physics material needs adjustment because friction is high and character slides too much when trying to stop. I will finish the

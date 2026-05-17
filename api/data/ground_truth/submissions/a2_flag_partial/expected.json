@@ -1,0 +1,13 @@
+{
+  "case_id": "a2_flag_partial",
+  "assignment_id": "2",
+  "assignment_title": "Lab Assignment 1",
+  "stratum": "flag_partial",
+  "expected_decision": "flag",
+  "required_evidence": [
+    "partial coverage of: Complete the lab exercises and submit your solution files."
+  ],
+  "red_flags": [
+    "incomplete / cuts off"
+  ]
+}

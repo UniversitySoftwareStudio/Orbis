@@ -1,0 +1,11 @@
+{
+  "case_id": "a1_reject_wrong_content",
+  "assignment_id": "1",
+  "assignment_title": "Midterm Report",
+  "stratum": "reject_wrong_content",
+  "expected_decision": "reject",
+  "required_evidence": [],
+  "red_flags": [
+    "content matches different assignment: Game Development II - Prototype Submission"
+  ]
+}
