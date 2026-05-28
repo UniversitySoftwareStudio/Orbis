@@ -9,6 +9,7 @@ from rich.table import Table
 from core.logging import get_logger
 from rag.console import RAG_DEBUG, console
 from rag.constants import ROUTER_PROMPT
+from rag.eval_logger import get_eval_state
 
 logger = get_logger(__name__)
 
@@ -33,6 +34,12 @@ def route_query(llm_service: Any, query: str) -> list[dict[str, Any]]:
         intents = [payload]
     else:
         intents = _default_intent(query)
+
+    eval_state = get_eval_state()
+    router_decision = {}
+    for i, intent in enumerate(intents):
+        router_decision[f"search_{i+1}"] = intent
+    eval_state["routing_phase"]["router_decision"] = router_decision
 
     if RAG_DEBUG:
         table = Table(box=box.SIMPLE, show_header=True)
