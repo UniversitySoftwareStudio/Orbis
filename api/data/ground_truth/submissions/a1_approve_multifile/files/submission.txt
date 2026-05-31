@@ -1,0 +1,15 @@
+John Doe
+Student ID: 12345678
+Course: ECON 201 - Principles of Macroeconomics
+Date: October 15, 2023
+Assignment: Midterm Report
+
+This report provides a comprehensive review of the core concepts covered during the first seven weeks of the semester. The primary focus has been on understanding how national economies function, specifically regarding production, prices, and the role of financial institutions. The material presented in the lectures and readings has established a foundational framework for analyzing economic policy and market behavior. This document synthesizes the key learning objectives and theoretical models introduced thus far.
+
+The initial weeks focused on national income accounting. We examined Gross Domestic Product as the primary measure of economic activity. The distinction between nominal and real GDP was crucial for understanding inflation adjustments. Furthermore, the Consumer Price Index was analyzed as a tool for measuring the cost of living. These metrics are essential for determining the health of an economy and comparing performance over time. We also discussed the limitations of GDP as a welfare measure, noting that it does not account for leisure time or environmental degradation.
+
+Following the measurement of output, the course shifted to the financial system. The loanable funds market was introduced to explain how savings are transformed into investment. The interaction between supply and demand in this market determines the real interest rate. We discussed how changes in fiscal policy, such as government budget deficits, can crowd out private investment by increasing the demand for loanable funds. This section highlighted the interconnectedness of government spending and private sector behavior. Additionally, we explored the risk-return tradeoff in financial assets.
+
+The final weeks of the term addressed monetary policy and the role of the central bank. The money supply is controlled by the Federal Reserve through open market operations. We learned that an increase in the money supply generally lowers interest rates in the short run but leads to higher price levels in the long run. The quantity theory of money was applied to explain the relationship between money growth and inflation. Understanding these mechanisms is vital for interpreting current economic news and policy decisions. We also briefly touched upon the Phillips Curve and the short-run tradeoff between unemployment and inflation.
+
+In conclusion, the first seven weeks have provided a robust understanding of macroeconomic variables. The ability to analyze GDP, inflation, and interest rates allows for a deeper appreciation of economic challenges. Moving forward, I intend to apply these concepts to case studies involving recent fiscal stimulus packages. This report serves as a summary of the theoretical knowledge gained and prepares for the final examination. The synthesis of these topics confirms that macroeconomic stability relies on the coordination of fiscal and monetary authorities.

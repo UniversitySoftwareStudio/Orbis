@@ -1,0 +1,11 @@
+{
+  "case_id": "a1_approve",
+  "assignment_id": "1",
+  "assignment_title": "Midterm Report",
+  "stratum": "approve",
+  "expected_decision": "approve",
+  "required_evidence": [
+    "addresses: Write a 5-page report on the main topic covered in the first 7 weeks of the cour"
+  ],
+  "red_flags": []
+}

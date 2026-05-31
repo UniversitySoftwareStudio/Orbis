@@ -1,0 +1,27 @@
+To: Dr. Sarah Jenkins
+From: Michael Chen
+Student ID: 4589201
+Course: CS 201 - Introduction to Algorithms
+Date: October 14, 2023
+Subject: Lab Assignment 1 Submission
+
+Dear Dr. Jenkins,
+
+Please accept this document and the attached archive as my formal submission for Lab Assignment 1. I have completed all three required exercises and adhered to the coding standards outlined in the course syllabus.
+
+For Exercise 1, I focused on implementing the basic data structures as requested. I spent additional time ensuring that memory management was handled correctly, particularly regarding the dynamic array resizing logic. I ran multiple test cases locally to verify edge cases, such as empty inputs and maximum capacity limits, before finalizing the code. I utilized GDB to trace memory leaks during this phase.
+
+Exercise 2 involved optimizing the sorting algorithm. I initially used a standard bubble sort but realized it did not meet the performance constraints for larger datasets. I switched to a quicksort implementation to ensure the time complexity remained within acceptable bounds. I included comments in the code explaining the pivot selection strategy and the recursive steps taken. I also measured execution time against the provided benchmark suite to confirm efficiency.
+
+In Exercise 3, I integrated the previous modules into a cohesive system. This required careful debugging of the interface between the data structure and the sorting logic. I encountered a few compilation errors related to header file dependencies, which I resolved by updating the include paths in the build configuration. I also wrote a brief test script to automate the verification process, which is included in the submission folder.
+
+The attached zip file contains the source code for all exercises, a compiled binary where applicable, and a README file with build instructions. I have also included a screenshot of the terminal output demonstrating successful execution of the test suite. The README details the dependencies required, such as GCC version 9.0 or higher, and lists the specific commands needed to compile the project.
+
+I have reviewed the submission guidelines one last time to ensure all formatting requirements are met. If there are any issues with the files or if further clarification is needed regarding my implementation choices, please do not hesitate to contact me. I am available during office hours on Tuesdays and Thursdays if you wish to discuss the lab in person.
+
+Thank you for your time and guidance throughout this module.
+
+Sincerely,
+
+Michael Chen
+Student ID: 4589201

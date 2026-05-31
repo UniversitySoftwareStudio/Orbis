@@ -1,0 +1,11 @@
+{
+  "case_id": "a2_approve",
+  "assignment_id": "2",
+  "assignment_title": "Lab Assignment 1",
+  "stratum": "approve",
+  "expected_decision": "approve",
+  "required_evidence": [
+    "addresses: Complete the lab exercises and submit your solution files."
+  ],
+  "red_flags": []
+}

@@ -1,0 +1,13 @@
+{
+  "case_id": "a1_flag_partial",
+  "assignment_id": "1",
+  "assignment_title": "Midterm Report",
+  "stratum": "flag_partial",
+  "expected_decision": "flag",
+  "required_evidence": [
+    "partial coverage of: Write a 5-page report on the main topic covered in the first 7 weeks of the cour"
+  ],
+  "red_flags": [
+    "incomplete / cuts off"
+  ]
+}

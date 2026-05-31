@@ -1,0 +1,11 @@
+{
+  "case_id": "a3_reject_corrupt",
+  "assignment_id": "3",
+  "assignment_title": "Research Paper",
+  "stratum": "reject_corrupt",
+  "expected_decision": "reject",
+  "required_evidence": [],
+  "red_flags": [
+    "unreadable binary content"
+  ]
+}

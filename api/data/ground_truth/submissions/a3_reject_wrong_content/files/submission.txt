@@ -1,0 +1,17 @@
+John Doe
+Student ID: 12345678
+Course: ECON 101 - Principles of Macroeconomics
+Date: October 15, 2023
+Assignment: Midterm Report
+
+This report summarizes the key economic concepts and analytical frameworks covered during the first seven weeks of the semester. The primary focus has been on understanding how national economies function, specifically regarding production, price levels, and employment. The objective is to synthesize these topics into a coherent understanding of macroeconomic stability.
+
+The initial weeks focused on national income accounting. We examined Gross Domestic Product (GDP) as the primary measure of economic activity. The distinction between nominal and real GDP was crucial for understanding inflation adjustments. We analyzed the expenditure approach, breaking down consumption, investment, government spending, and net exports. This foundation allowed us to understand the circular flow of income within an economy. We also discussed the limitations of GDP as a welfare measure, noting that it does not account for leisure time or environmental degradation.
+
+Subsequently, the course shifted to price stability and the cost of living. The Consumer Price Index (CPI) was introduced as a tool to measure inflation. We discussed the limitations of CPI, such as substitution bias and quality changes, and how these metrics influence monetary policy decisions. Understanding inflation is vital because it erodes purchasing power and creates uncertainty for businesses planning long-term investments. We also reviewed the Fisher Effect, which links nominal interest rates to expected inflation.
+
+Weeks four through six addressed the labor market and unemployment. We distinguished between frictional, structural, and cyclical unemployment. The natural rate of unemployment was defined as the level consistent with stable inflation. We analyzed the Phillips Curve, which illustrates the short-run trade-off between inflation and unemployment. This relationship is central to current debates regarding central bank mandates and the effectiveness of stimulus packages during recessions.
+
+Finally, the last week covered the role of the Federal Reserve and monetary policy. We studied how interest rates are used to control the money supply. The transmission mechanism explains how changes in policy rates affect aggregate demand. This connects back to our earlier discussions on GDP and inflation, showing how policy tools aim to stabilize the business cycle.
+
+In conclusion, the material from the first seven weeks provides a comprehensive framework for analyzing economic performance. By integrating production, price levels, and labor markets, we can better interpret current economic news and policy decisions. This knowledge is essential for further study in intermediate macroeconomics and for understanding the broader financial landscape. Future analysis will likely require applying these models to specific historical case studies to test their predictive validity.

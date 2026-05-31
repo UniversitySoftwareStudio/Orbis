@@ -1,0 +1,26 @@
+Student Name: Alex Johnson
+Student ID: 10293847
+Course: Game Development II
+Assignment: Prototype Submission
+Date: October 24, 2023
+
+Project Title: Shadowbound Prototype
+
+1. Executive Summary
+This submission outlines the vertical slice prototype for Shadowbound, a 2D top-down action game. The primary goal of this prototype is to validate the core combat loop and movement physics within the Unity engine. The current build focuses on player mobility, enemy interaction, and basic health management systems. The scope is limited to a single arena environment to ensure performance stability during testing.
+
+2. Gameplay Mechanics
+The core loop involves navigating a procedurally generated arena while defeating waves of enemies. The player character possesses a stamina bar that limits sprinting and heavy attacks. When stamina is depleted, the player enters a cooldown state. Combat is real-time, requiring precise timing for dodging and attacking. Enemies utilize simple state machines, transitioning between idle, chase, and attack states based on player proximity. Damage calculation is based on weapon type and enemy armor values.
+
+3. Player Controls
+Input handling is mapped to standard keyboard configurations. Movement is controlled via the W, A, S, and D keys, utilizing Vector2 normalization for consistent speed. The Spacebar triggers a light attack, while Shift initiates a dodge roll. The E key is reserved for interacting with environmental objects or picking up items. All inputs are processed through the Unity Input System package to ensure scalability for future controller support.
+
+4. Technical Implementation
+The prototype is built using Unity 2022 LTS with C#. The PlayerController.cs script manages character state using a finite state machine pattern. Attack logic checks for overlap with enemy colliders using Physics2D.OverlapCircleNonAlloc to optimize memory usage during combat. The enemy health script reduces HP on hit and triggers a flash material change before destroying the object upon reaching zero.
+
+Physics interactions are handled via Rigidbody2D components with gravity scale set to zero for top-down movement. Collision detection relies on BoxCollider2D with isTrigger flags enabled for item pickups. The enemy AI is implemented using NavMeshAgent for pathfinding, though a custom steering behavior was tested for better responsiveness. Health data is stored in a separate GameManager.cs script to maintain persistence across scenes. Debugging was performed using Unity Profiler to ensure frame rates remain stable at 60 FPS on mid-range hardware.
+
+5. Known Issues and Future Work
+Current limitations include the lack of sound effects and placeholder art assets. The enemy spawn rate occasionally spikes, causing performance hiccups. Future iterations will implement a particle system for hit feedback and refine the stamina regeneration curve. This prototype serves as the foundation for the final project submission in Week 12.
+
+End of Document.

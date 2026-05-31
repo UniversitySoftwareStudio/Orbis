@@ -1,0 +1,12 @@
+Title: The Effects of Climate Change on Coastal Ecosystems
+Student: Alex Smith
+Course: ENV 101
+
+Introduction
+Climate change is accelerating the degradation of coastal wetlands globally. Rising sea levels threaten biodiversity in these critical zones. Mangroves act as natural barriers, yet their survival is uncertain. This paper argues that immediate policy intervention is necessary. Previous studies indicate that carbon sequestration rates drop significantly when vegetation dies off. However, the economic impact on local fishing communities is often overlooked.
+
+Literature Review
+Smith et al. (2020) found a 15% decline in marsh area. Similarly, Johnson (2019) highlighted sediment transport. But there is a gap in understanding how salinity changes affect root systems. I need to find more sources on that.
+
+Methodology
+I will use satellite imagery from NASA to track changes. The data is available online but I haven't downloaded it yet. I was planning to compare images from 2010 and 2020. The problem is the resolution isn't high enough. I think I need a different dataset. I was going to interview fishermen but didn't get permission forms. The professor said we need a hypothesis. My hypothesis is erosion is faster than predicted. I need to write the conclusion but I don't have results. I was going to say conservation efforts are failing but I need to back it up. The main issue is funding. Without money,

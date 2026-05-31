@@ -1,0 +1,22 @@
+Alex Mercer
+Student ID: 8842910
+Course: ENV 301: Environmental Policy and Society
+Date: October 24, 2023
+Assignment: Research Paper
+
+Title: The Impact of Urban Green Spaces on Local Mental Health Outcomes
+
+Introduction
+Rapid urbanization has fundamentally altered human living environments, often at the expense of natural landscapes. As cities expand, the availability of green spaces decreases, raising significant concerns about the psychological well-being of residents. This paper argues that increased access to urban green spaces significantly reduces stress levels and improves overall mental health outcomes among city dwellers. By examining recent studies on park usage and cortisol levels, this research highlights the necessity of integrating nature into urban planning policies.
+
+Body
+Numerous studies support the correlation between nature exposure and mental health. A 2021 study published in the Journal of Environmental Psychology found that individuals who spent at least 120 minutes per week in nature reported significantly lower stress levels compared to those who did not. This suggests that even short durations of exposure can yield measurable physiological benefits. The mechanism behind this is often attributed to the biophilia hypothesis, which posits that humans possess an innate tendency to seek connections with nature. Furthermore, the presence of green spaces encourages physical activity, which is a known mitigator for anxiety and depression. When parks are accessible, residents are more likely to engage in walking, jogging, or recreational sports, creating a dual benefit for physical and mental health.
+
+However, the distribution of these spaces is often unequal. Low-income neighborhoods frequently lack adequate park infrastructure, leading to environmental injustice. This disparity means that the mental health benefits of green spaces are not equally distributed across the population. Urban planners must prioritize equitable access to ensure that all residents, regardless of socioeconomic status, can benefit from these natural environments. Policy recommendations should include mandatory green space ratios in new development projects and the conversion of underutilized lots into community gardens. Without intervention, the mental health gap between wealthy and poor districts will continue to widen.
+
+Conclusion
+The evidence is clear: urban green spaces are not merely aesthetic additions but essential components of public health infrastructure. As cities continue to grow, the integration of nature must become a priority in zoning and development laws. Future research should focus on longitudinal studies to track long-term mental health improvements in areas with new green initiatives. Ultimately, investing in urban nature is an investment in the psychological resilience of the community.
+
+References
+Bratman, G. N., et al. (2021). Nature and Mental Health. Journal of Environmental Psychology.
+World Health Organization. (2022). Urban Green Spaces and Health.

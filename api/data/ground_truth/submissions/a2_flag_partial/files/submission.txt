@@ -1,0 +1,5 @@
+</think>
+
+Subject: Lab Assignment 1 - Alex Johnson
+Dear Professor,
+Please find attached my work for Lab Assignment 1. I have completed the first two exercises and included the screenshots as requested. For exercise three, I am currently stuck on the loop logic. I wrote the code but it is not compiling correctly. I think I am missing a semicolon somewhere but I cannot find it. I have not finished the written report yet because I ran out of time. The instructions said to submit a PDF with my analysis. I only have the draft open on my screen. I will email it to you tomorrow morning. Also, I forgot to name the files correctly. They are just named code.py instead of lab1_ex1.py. I hope this is okay. I am sorry for the delay. I was sick yesterday. I will make sure to follow the rubric next time. I just need to finish the last paragraph about the results. The results show that the algorithm works but I need to explain why. I am writing that now. I think the time complexity is O(n) but I am not sure. I will check the textbook. Please let me know if you received the

@@ -1,0 +1,11 @@
+{
+  "case_id": "a1_reject_corrupt",
+  "assignment_id": "1",
+  "assignment_title": "Midterm Report",
+  "stratum": "reject_corrupt",
+  "expected_decision": "reject",
+  "required_evidence": [],
+  "red_flags": [
+    "unreadable binary content"
+  ]
+}

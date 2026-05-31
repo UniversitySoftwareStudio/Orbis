@@ -1,0 +1,11 @@
+{
+  "case_id": "a2_reject_empty",
+  "assignment_id": "2",
+  "assignment_title": "Lab Assignment 1",
+  "stratum": "reject_empty",
+  "expected_decision": "reject",
+  "required_evidence": [],
+  "red_flags": [
+    "empty submission"
+  ]
+}

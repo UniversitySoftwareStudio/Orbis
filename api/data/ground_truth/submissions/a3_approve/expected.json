@@ -1,0 +1,11 @@
+{
+  "case_id": "a3_approve",
+  "assignment_id": "3",
+  "assignment_title": "Research Paper",
+  "stratum": "approve",
+  "expected_decision": "approve",
+  "required_evidence": [
+    "addresses: Submit a research paper on any topic related to the course syllabus."
+  ],
+  "red_flags": []
+}
