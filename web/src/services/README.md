@@ -1,18 +1,14 @@
-# services/
+# `web/src/services/`
 
-Talk to the backend.
+Backend API helpers.
 
-**Example:** Using `api.ts`
-```tsx
-import api from '../services/api'
+- `api.ts`: authenticated `fetch` wrappers for auth, RAG chat, SIS pages,
+  assignments, streaming assignment review, rejection flagging, and regulation
+  assignment status updates.
 
-const response = await api.post('/chat/message', {
-  text: 'Hello!'
-})
-```
+Important conventions:
 
-**Contains:**
-- `api.ts` - HTTP calls to backend
-- Add more services as needed (e.g., `auth.ts`, `storage.ts`)
-
-Keep API logic separate from UI
+- All authenticated calls use `credentials: 'include'`.
+- A `401` clears local user state and redirects to `/login`.
+- Streaming assignment review parses Server-Sent Events from
+  `/api/assignments/{id}/submit/stream`.

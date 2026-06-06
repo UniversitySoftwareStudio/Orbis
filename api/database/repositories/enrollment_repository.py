@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from sqlalchemy import select
+from sqlalchemy import select, text
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session
 
@@ -76,6 +76,34 @@ class EnrollmentRepository(BaseRepository[Enrollment]):
     def is_student_enrolled(self, student_id: int, section_id: int) -> bool:
         enrollment = self.get_enrollment(student_id, section_id)
         return enrollment is not None and enrollment.status == EnrollmentStatus.ENROLLED
+
+    def get_enrolled_with_details(self, student_id: int) -> list[dict]:
+        """Return the student's currently-enrolled courses with section and
+        schedule details, one row per schedule slot (mirrors the schedule
+        query used by SectionScheduleRepository.get_student_schedule)."""
+        query = text("""
+            SELECT
+                c.code as course_code,
+                c.name as course_name,
+                cs.section_number,
+                cs.section_type,
+                cs.instructor_name,
+                e.status as status,
+                ss.day_of_week,
+                ss.start_time,
+                ss.end_time,
+                ss.location,
+                ss.is_online
+            FROM enrollments e
+            JOIN course_sections cs ON e.section_id = cs.id
+            JOIN courses c ON cs.course_id = c.id
+            LEFT JOIN section_schedules ss ON ss.section_id = cs.id
+            WHERE e.student_id = :student_id
+              AND e.status = 'ENROLLED'
+            ORDER BY c.code, ss.day_of_week, ss.start_time
+        """)
+        result = self.session.execute(query, {"student_id": student_id})
+        return [dict(row._mapping) for row in result]
 
     def get_completed_courses(self, student_id: int) -> list[int]:
         stmt = (

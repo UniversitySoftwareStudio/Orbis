@@ -19,7 +19,10 @@ flowchart TD
 
 ## Rule
 - Keep service files focused and small.
-- Route code calls services; services own decision logic.
+- Route code calls services or repositories; services own decision logic when a
+  workflow needs coordination.
+- `rag_service.py` and `embedding_service.py` are compatibility exports. Do not
+  reintroduce parallel RAG or embedding implementations here.
 
 ## LLM Switching
 - `LLM_PROVIDER`: `gemini` | `groq` | `openai`

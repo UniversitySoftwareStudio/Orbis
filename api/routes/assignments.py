@@ -1,13 +1,15 @@
+import json
 import os
 import uuid
 from datetime import datetime
 from pathlib import Path
 
 from fastapi import APIRouter, Depends, File, HTTPException, UploadFile, status
+from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
 
-from agents.submission_agent import evaluate_submission
+from agents.submission_agent import evaluate_submission, stream_submission_evaluation
 from core.logging import get_logger
 from database.models import User
 from database.repositories.assignment_repository import AssignmentRepository
@@ -101,14 +103,33 @@ async def submit_assignment(
     if any("too large" in error for error in file_errors):
         raise HTTPException(status_code=400, detail=file_errors[0])
 
-    ext = Path(file.filename or "file").suffix
+    return _persist_submission(
+        db=db,
+        assignment_id=assignment_id,
+        student_id=student_id,
+        evaluation=evaluation,
+        content=content,
+        original_filename=file.filename or "",
+    )
+
+
+def _persist_submission(
+    *,
+    db: Session,
+    assignment_id: int,
+    student_id: int,
+    evaluation,
+    content: bytes,
+    original_filename: str,
+) -> dict:
+    """Save the uploaded file and upsert the submission row, returning the API payload."""
+    ext = Path(original_filename or "file").suffix
     saved_name = f"{uuid.uuid4()}{ext}"
     file_path = UPLOAD_DIR / saved_name
     file_path.write_bytes(content)
 
     sub_repo = AssignmentSubmissionRepository(db)
     existing = sub_repo.get_by_student_and_assignment(student_id, assignment_id)
-
     final_status = evaluation.decision
 
     if existing:
@@ -118,7 +139,7 @@ async def submit_assignment(
             ai_feedback=evaluation.feedback,
             evaluation_report=evaluation.report,
             file_path=str(file_path),
-            original_filename=file.filename or saved_name,
+            original_filename=original_filename or saved_name,
             submitted_at=datetime.utcnow(),
             flagged_by_student=False,
             student_flag_reason=None,
@@ -130,12 +151,11 @@ async def submit_assignment(
             assignment_id=assignment_id,
             student_id=student_id,
             file_path=str(file_path),
-            original_filename=file.filename or saved_name,
+            original_filename=original_filename or saved_name,
             status=final_status,
             ai_feedback=evaluation.feedback,
             evaluation_report=evaluation.report,
         )
-
     db.commit()
 
     return {
@@ -145,6 +165,88 @@ async def submit_assignment(
         "evaluation_report": evaluation.report,
         "can_flag_rejection": final_status == "rejected",
     }
+
+
+@router.post("/assignments/{assignment_id}/submit/stream")
+async def submit_assignment_stream(
+    assignment_id: int,
+    file: UploadFile = File(...),
+    db: Session = Depends(get_db),
+    current_user: User = Depends(require_student),
+) -> StreamingResponse:
+    """Same as /submit, but streams the agent's reasoning steps as SSE events.
+
+    Emits one `data:` line per step (file inspection, requirement decomposition,
+    each requirement finding, the verdict) and finally a `result` event carrying
+    the persisted submission payload — identical in shape to the blocking endpoint.
+    """
+    role_info = UserRepository(db).resolve_user_role(current_user.id)
+    if not role_info or role_info.get("role") != "student" or role_info.get("entity_id") is None:
+        raise HTTPException(status_code=404, detail="Student profile not found")
+    student_id = role_info["entity_id"]
+
+    assignment_repo = AssignmentRepository(db)
+    assignment = assignment_repo.get_by_id(assignment_id)
+    if not assignment or not assignment.is_published:
+        raise HTTPException(status_code=404, detail="Assignment not found")
+
+    if not assignment_repo.student_is_enrolled_for_assignment(student_id, assignment_id):
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="You are not enrolled in this assignment's section")
+
+    window = assignment_repo.validate_submission_window(assignment_id)
+    if not window["open"]:
+        raise HTTPException(status_code=400, detail="Submission deadline has passed")
+
+    content = await file.read()
+    original_filename = file.filename or ""
+    content_type = file.content_type
+
+    def event_stream():
+        def sse(event_type: str, data: dict) -> str:
+            return f"event: {event_type}\ndata: {json.dumps(data, ensure_ascii=False)}\n\n"
+
+        try:
+            from llm.service import get_llm_service
+
+            llm = get_llm_service()
+            evaluation = None
+            for event in stream_submission_evaluation(
+                assignment_title=assignment.title,
+                assignment_description=assignment.description,
+                content=content,
+                filename=original_filename,
+                content_type=content_type,
+                llm_complete=llm.complete,
+                llm_stream=llm.generate,
+            ):
+                if event.type == "complete":
+                    evaluation = event.data["evaluation"]
+                    continue
+                yield sse(event.type, event.data)
+
+            file_errors = ((evaluation.report.get("file") or {}).get("blocking_errors") or [])
+            if any("too large" in error for error in file_errors):
+                yield sse("error", {"detail": file_errors[0]})
+                return
+
+            payload = _persist_submission(
+                db=db,
+                assignment_id=assignment_id,
+                student_id=student_id,
+                evaluation=evaluation,
+                content=content,
+                original_filename=original_filename,
+            )
+            yield sse("result", payload)
+        except Exception as exc:  # pragma: no cover - defensive guard for the stream
+            logger.exception("Streaming submission failed")
+            yield sse("error", {"detail": str(exc)})
+
+    return StreamingResponse(
+        event_stream(),
+        media_type="text/event-stream",
+        headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"},
+    )
 
 
 @router.post("/assignments/submissions/{submission_id}/flag")

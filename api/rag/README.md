@@ -15,6 +15,8 @@ RAG domain internals (no black box).
 - `/api/chat` -> `RAGService.process_query`
 - `/api/search` -> `RAGService.search_courses`
 - `/api/ask` -> `RAGService.stream_answer`
+- `api/rag_service/app.py` can expose the same service as a separate process,
+  but the default app path is still `api/main.py`.
 
 ## Full Flow (`/api/chat`)
 ```mermaid

@@ -1,11 +1,132 @@
 {
   "sidebar": {
     "appName": "Orbis",
+    "dashboard": "Dashboard",
     "chat": "Chat",
     "calendar": "Academic Calendar",
     "schedule": "My Schedule",
+    "courses": "My Courses",
     "assignments": "Assignments",
+    "transcript": "Transcript",
+    "regulations": "My Regulations",
+    "profile": "Profile",
+    "settings": "Settings",
     "logout": "Logout"
+  },
+  "common": {
+    "comingSoon": "This page is coming soon."
+  },
+  "dashboard": {
+    "greeting": "Welcome, {{name}}",
+    "subtitle": "Here is an overview of your academic life.",
+    "loading": "Loading dashboard...",
+    "empty": "No dashboard data found.",
+    "deadlines": "Upcoming Deadlines",
+    "noDeadlines": "No upcoming deadlines.",
+    "calendar": "Upcoming Calendar",
+    "noCalendar": "No upcoming calendar entries.",
+    "quickLinks": "Quick Links",
+    "stats": {
+      "gpa": "GPA",
+      "creditsCompleted": "Credits Completed",
+      "courses": "Enrolled Courses",
+      "assignments": "Pending Assignments",
+      "regulations": "Active Regulations"
+    },
+    "links": {
+      "courses": "My Courses",
+      "transcript": "Transcript",
+      "assignments": "Assignments",
+      "regulations": "Regulations"
+    }
+  },
+  "profile": {
+    "title": "Profile",
+    "loading": "Loading profile...",
+    "empty": "No profile data found.",
+    "email": "Email",
+    "userType": "Account Type",
+    "studentId": "Student ID",
+    "gpa": "GPA",
+    "academic": "Academic Context",
+    "department": "Department",
+    "faculty": "Faculty",
+    "programLevel": "Program Level",
+    "academicYear": "Year in Program",
+    "semester": "Semester",
+    "creditsCompleted": "Credits Completed",
+    "creditsEnrolled": "Credits Enrolled",
+    "status": "Status",
+    "noFlags": "No active status flags.",
+    "flags": {
+      "probation": "On Probation",
+      "advisorHold": "Advisor Hold",
+      "financialHold": "Financial Hold",
+      "exchange": "Exchange Student",
+      "doubleMajor": "Double Major",
+      "minor": "Minor"
+    }
+  },
+  "transcript": {
+    "title": "Transcript",
+    "loading": "Loading transcript...",
+    "empty": "No completed courses found.",
+    "cumulativeGpa": "Cumulative GPA",
+    "totalCredits": "Total Credits",
+    "gpa": "GPA",
+    "code": "Code",
+    "course": "Course",
+    "credits": "Credits",
+    "grade": "Grade"
+  },
+  "courses": {
+    "title": "My Courses",
+    "loading": "Loading courses...",
+    "empty": "You are not enrolled in any courses.",
+    "count": "{{count}} enrolled course(s)",
+    "section": "Section",
+    "online": "Online",
+    "status": {
+      "enrolled": "Enrolled"
+    },
+    "days": {
+      "MON": "Mon",
+      "TUE": "Tue",
+      "WED": "Wed",
+      "THU": "Thu",
+      "FRI": "Fri"
+    }
+  },
+  "regulations": {
+    "title": "My Regulations",
+    "subtitle": "Regulatory obligations the system has matched to your record.",
+    "loading": "Loading regulations...",
+    "empty": "No regulations are currently assigned to you.",
+    "deadline": "Deadline",
+    "consequence": "Consequence",
+    "markActioned": "Mark as Done",
+    "dismiss": "Dismiss",
+    "urgency": {
+      "high": "High",
+      "medium": "Medium",
+      "low": "Low"
+    },
+    "statusLabel": {
+      "active": "Active",
+      "actioned": "Done",
+      "dismissed": "Dismissed"
+    }
+  },
+  "catalog": {
+    "title": "Course Catalog"
+  },
+  "notifications": {
+    "title": "Notifications"
+  },
+  "settings": {
+    "title": "Settings",
+    "colorScheme": "Color Scheme",
+    "language": "Language"
   },
   "login": {
     "title": "Sign in to Orbis",

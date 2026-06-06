@@ -1,6 +1,20 @@
 # Uploaded assignment files
 api/uploads/
 
+# LaTeX report build artifacts
+report/build/
+report/report.pdf
+report/*.aux
+report/*.bbl
+report/*.blg
+report/*.fdb_latexmk
+report/*.fls
+report/*.lof
+report/*.log
+report/*.lot
+report/*.out
+report/*.synctex.gz
+report/*.toc
+
 # Codex
 .codex
-

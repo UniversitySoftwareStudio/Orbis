@@ -8,7 +8,7 @@ from pydantic import BaseModel
 from database.session import SessionLocal
 from rag.pipeline import RAGService
 
-app = FastAPI(title="UniChatBot RAG Service", version="1.0.0")
+app = FastAPI(title="Orbis RAG Service", version="1.0.0")
 rag = RAGService()
 
 

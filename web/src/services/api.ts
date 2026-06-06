@@ -7,6 +7,20 @@ function handleUnauthorized(response: Response): void {
   }
 }
 
+// Shared authenticated GET → JSON helper (mirrors the inline pattern used by
+// the older endpoints: cookie credentials, 401 redirect, detail-aware errors).
+async function getJson(endpoint: string) {
+  const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+    credentials: 'include',
+  });
+  if (response.status === 401) { handleUnauthorized(response); return; }
+  if (!response.ok) {
+    const error = await response.json().catch(() => ({ detail: response.statusText }));
+    throw new Error(error.detail || 'API Error');
+  }
+  return response.json();
+}
+
 export const api = {
   // 1. Standard POST (for Login)
   post: async (endpoint: string, data: any, token?: string) => {
@@ -115,6 +129,56 @@ export const api = {
     return response.json();
   },
 
+  // 6b. Submit Assignment (streaming) — emits agent reasoning steps via SSE.
+  submitAssignmentStream: async (
+    assignmentId: number,
+    file: File,
+    onEvent: (type: string, data: any) => void,
+  ) => {
+    const formData = new FormData();
+    formData.append('file', file);
+    const response = await fetch(`${API_BASE_URL}/assignments/${assignmentId}/submit/stream`, {
+      method: 'POST',
+      body: formData,
+      credentials: 'include',
+    });
+    if (response.status === 401) { handleUnauthorized(response); return; }
+    if (!response.ok) {
+      const error = await response.json().catch(() => ({ detail: response.statusText }));
+      throw new Error(error.detail || 'API Error');
+    }
+    if (!response.body) throw new Error('No response body');
+
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder();
+    let buffer = '';
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      buffer += decoder.decode(value, { stream: true });
+
+      // SSE frames are separated by a blank line.
+      let sep: number;
+      while ((sep = buffer.indexOf('\n\n')) !== -1) {
+        const frame = buffer.slice(0, sep);
+        buffer = buffer.slice(sep + 2);
+        let eventType = 'message';
+        const dataLines: string[] = [];
+        for (const line of frame.split('\n')) {
+          if (line.startsWith('event:')) eventType = line.slice(6).trim();
+          else if (line.startsWith('data:')) dataLines.push(line.slice(5).trim());
+        }
+        if (dataLines.length === 0) continue;
+        try {
+          onEvent(eventType, JSON.parse(dataLines.join('\n')));
+        } catch {
+          // ignore malformed frames
+        }
+      }
+    }
+  },
+
   flagSubmissionRejection: async (submissionId: number, reason: string) => {
     const response = await fetch(`${API_BASE_URL}/assignments/submissions/${submissionId}/flag`, {
       method: 'POST',
@@ -139,6 +203,40 @@ export const api = {
       handleUnauthorized(response);
       return;
     }
+    if (!response.ok) {
+      const error = await response.json().catch(() => ({ detail: response.statusText }));
+      throw new Error(error.detail || 'API Error');
+    }
+    return response.json();
+  },
+
+  // 7. Dashboard aggregate
+  getDashboard: () => getJson('/sis/dashboard'),
+
+  // 8. Profile
+  getProfile: () => getJson('/sis/profile/me'),
+
+  // 9. Transcript
+  getTranscript: () => getJson('/sis/transcript/me'),
+
+  // 10. Current enrolled courses
+  getMyCourses: () => getJson('/sis/courses/me'),
+
+  // 11. My regulation assignments
+  getMyRegulations: () => getJson('/regulations/me'),
+
+  // 12. Update a regulation assignment status (actioned | dismissed | active)
+  updateRegulationStatus: async (assignmentId: string, status: string) => {
+    const response = await fetch(
+      `${API_BASE_URL}/regulations/assignments/${assignmentId}`,
+      {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status }),
+        credentials: 'include',
+      },
+    );
+    if (response.status === 401) { handleUnauthorized(response); return; }
     if (!response.ok) {
       const error = await response.json().catch(() => ({ detail: response.statusText }));
       throw new Error(error.detail || 'API Error');

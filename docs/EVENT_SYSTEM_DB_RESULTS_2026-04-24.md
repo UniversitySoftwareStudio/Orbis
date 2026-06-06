@@ -2,6 +2,12 @@
 
 Source database: `orbisdb`
 
+Status: historical report-evidence snapshot. These numbers are the basis for
+the report's regulation extraction and assignment-matching tables. They refer
+to the action-object pipeline stored in `regulation_rules`,
+`user_rule_assignments`, and `event_candidate_logs`; the currently wired
+`/api/events/trigger` route writes extraction output to `regulatory_events`.
+
 ## Executive Summary
 
 The event system has one completed DB run from 2026-04-10. It processed 80 regulation sources and 935 knowledge-base chunks, evaluated 323 candidate rules, accepted 178 active regulation rules, and produced 176 active user-rule assignments for 4 test students.

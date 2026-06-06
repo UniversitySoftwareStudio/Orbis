@@ -1,7 +1,7 @@
 import logging
 import os
 
-APP_LOGGER_NAME = "unichatbot"
+APP_LOGGER_NAME = "orbis"
 
 
 def configure_logging() -> None:

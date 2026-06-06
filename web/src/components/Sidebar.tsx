@@ -7,6 +7,12 @@ import {
   CalendarDays,
   CalendarRange,
   ClipboardList,
+  LayoutDashboard,
+  User,
+  GraduationCap,
+  BookOpen,
+  ShieldAlert,
+  Settings,
   LogOut,
   ChevronLeft,
   ChevronRight,
@@ -19,13 +25,22 @@ import { useAuth } from '../contexts/AuthContext';
 import { useTheme, ACCENT_PRESETS, BG_PRESETS_DARK, BG_PRESETS_LIGHT } from '../contexts/ThemeContext';
 
 const NAV_ITEMS: Array<{ path: string; icon: LucideIcon; labelKey: string }> = [
-  { path: '/chat',     icon: MessageSquare, labelKey: 'sidebar.chat'     },
-  { path: '/calendar', icon: CalendarDays,  labelKey: 'sidebar.calendar' },
+  { path: '/dashboard', icon: LayoutDashboard, labelKey: 'sidebar.dashboard' },
+  { path: '/chat',      icon: MessageSquare,   labelKey: 'sidebar.chat'      },
+  { path: '/calendar',  icon: CalendarDays,    labelKey: 'sidebar.calendar'  },
 ];
 
 const STUDENT_ITEMS: Array<{ path: string; icon: LucideIcon; labelKey: string }> = [
   { path: '/schedule',     icon: CalendarRange,  labelKey: 'sidebar.schedule'     },
+  { path: '/courses',      icon: BookOpen,       labelKey: 'sidebar.courses'      },
   { path: '/assignments',  icon: ClipboardList,  labelKey: 'sidebar.assignments'  },
+  { path: '/transcript',   icon: GraduationCap,  labelKey: 'sidebar.transcript'   },
+  { path: '/regulations',  icon: ShieldAlert,    labelKey: 'sidebar.regulations'  },
+];
+
+const BOTTOM_NAV_ITEMS: Array<{ path: string; icon: LucideIcon; labelKey: string }> = [
+  { path: '/profile',  icon: User,     labelKey: 'sidebar.profile'  },
+  { path: '/settings', icon: Settings, labelKey: 'sidebar.settings' },
 ];
 
 const COLLAPSED_KEY = 'orbis_sidebar_collapsed';
@@ -63,8 +78,8 @@ export function Sidebar() {
   if (!user) return null;
 
   const allItems = user.userType === 'student'
-    ? [...NAV_ITEMS, ...STUDENT_ITEMS]
-    : NAV_ITEMS;
+    ? [...NAV_ITEMS, ...STUDENT_ITEMS, ...BOTTOM_NAV_ITEMS]
+    : [...NAV_ITEMS, ...BOTTOM_NAV_ITEMS];
 
   const toggleCollapsed = () => {
     setCollapsed(prev => {

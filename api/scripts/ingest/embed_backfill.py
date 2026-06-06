@@ -235,7 +235,7 @@ def main():
     args = parser.parse_args()
 
     print("=" * 60)
-    print("  UniChatBot — Embedding Backfill")
+    print("  Orbis - Embedding Backfill")
     print("=" * 60)
 
     t0 = time.time()

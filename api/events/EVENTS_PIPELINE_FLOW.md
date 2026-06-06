@@ -1,5 +1,12 @@
 # Events Pipeline Flow
 
+Updated: 2026-06-03.
+
+This file documents the currently wired `/api/events/*` extraction route. It
+creates `regulatory_events` and telemetry rows. The report's assignment-matching
+metrics use historical `regulation_rules` / `user_rule_assignments` artifacts;
+that boundary is documented in the root `EVENT_SYSTEM.md`.
+
 ## Architecture Flow
 This is the high-level agent flow only. The orchestrator is the hub, and every other agent talks through it.
 

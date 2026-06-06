@@ -1,46 +1,52 @@
 # Orbis Frontend
 
-React frontend. The UI.
+React + Vite + TypeScript frontend for the Orbis student experience.
 
-## What's inside?
+## Active Screens
 
-```
+- `/dashboard`: SIS summary, active regulation count, deadlines, calendar.
+- `/chat`: streaming RAG assistant.
+- `/calendar`: academic calendar.
+- `/schedule`: current student's weekly schedule.
+- `/courses`: enrolled course cards.
+- `/assignments`: pending assignments, file upload, live submission-agent
+  reasoning, rejection flagging.
+- `/transcript`: transcript projection.
+- `/regulations`: active regulation assignments with status updates.
+- `/profile`: authenticated user's academic profile.
+- `/settings`: local UI settings.
+
+## Structure
+
+```text
 web/
-├── index.html       # Entry HTML
-├── vite.config.ts   # Vite settings
-├── tsconfig.json    # TypeScript settings
-└── src/
-    ├── main.tsx         # App starts here
-    ├── App.tsx          # Main component
-    ├── index.css        # Global styles
-    ├── components/      # Reusable UI pieces
-    ├── pages/           # Full page views
-    ├── services/        # API calls (talks to backend)
-    └── types/           # TypeScript types
+  src/
+    App.tsx              protected route shell
+    components/          shared UI such as Sidebar
+    contexts/            auth, theme, i18n state
+    pages/               full screen views
+    services/api.ts      backend calls and SSE readers
+    locales/             English/Turkish strings
 ```
 
-## Run it
+## Run
 
 ```bash
+npm install
 npm run dev
 ```
 
-Goes to: http://localhost:5173
+Default URL: `http://localhost:5173`
 
-## How to add stuff
+The frontend expects the backend at `http://localhost:8000/api`. Auth is
+cookie-based (`credentials: include`), so both frontend and backend need to run
+on the allowed local origins from `api/main.py`.
 
-**Add a component:**
-1. Create file in `src/components/` (e.g., `ChatBox.tsx`)
-2. Export your component
-3. Import and use in pages or App
+## Notes For Documentation And Demo
 
-**Add a page:**
-1. Create file in `src/pages/` (e.g., `Dashboard.tsx`)
-2. Use components inside
-3. Add to App routing (when you add routes)
-
-**Call backend:**
-1. Use `src/services/api.ts`
-2. Example: `api.post('/chat/message', {text: 'hi'})`
-
-Keep it simple!
+- The assignment page stores the latest local review snapshot in
+  `localStorage` for UI continuity, while the backend persists the authoritative
+  submission row.
+- Submission review is streamed over `/api/assignments/{id}/submit/stream`.
+- Regulation assignments are read from `/api/regulations/me`; the UI does not
+  trigger the historical rule-assignment pipeline.

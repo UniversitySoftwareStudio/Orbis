@@ -1,32 +1,43 @@
 # SIS (Student Information System) — Instructions
 
-Applies to: `api/database/models.py` (SIS models), `api/database/repositories/` (non-RAG repos), `api/routes/sis.py`, `api/schemas/sis.py`
+Applies to: `api/database/models/` (SIS models — a **package**, not the dead `models.py` file), `api/database/repositories/` (non-RAG repos), `api/routes/sis.py`, `api/routes/student.py`, `api/schemas/sis.py`, `api/schemas/student.py`
 
 > ⚠️ **The SIS is under active development and will undergo significant refactoring.**
 > Do not treat the current structure as a stable reference architecture.
 > When in doubt about a SIS-related design decision, ask before implementing.
+
+> 🛑 **Models live in the `api/database/models/` package, split by domain** (`identity.py`,
+> `academic.py`, `knowledge.py`, `events.py`, `enums.py`, `base.py`). The old monolithic
+> `api/database/models.py` *file* still exists but is **dead, shadowed code** — Python imports the
+> package. Always import from `database.models` (the package re-exports everything) and edit the
+> package files. Never edit `database/models.py`.
 
 ---
 
 ## Current State
 
 The SIS backend provides a relational data layer for:
-- Users (Students, Instructors, Admins)
+- Users (Students, Instructors, Admins) and **UserProfile** (enriched per-user context for any role)
 - Courses and their weekly content
 - Academic Terms
 - Course Sections (a course offered in a specific term by a specific instructor)
 - Enrollments (student ↔ section registration)
-- Assignments
+- Assignments and **AssignmentSubmission** (submission-check records)
 - **Section Schedules** (weekly time slots for course sections)
 - **Academic Calendar** (university-wide calendar entries: holidays, exam periods, registration windows)
 
 It has **models, repositories, routes, schemas, seed scripts, and SQL migrations**.
-Two SIS routes are currently exposed via `/api/sis/`.
+The route surface has grown beyond `/api/sis/`:
+- `api/routes/sis.py` — `/api/sis/calendar`, `/api/sis/schedule/me`
+- `api/routes/student.py` — student-facing read projections: `/api/sis/dashboard`, `/api/sis/profile/me`, `/api/sis/transcript/me`, `/api/sis/courses/me`
+- `api/routes/regulations.py` — `/api/regulations/me`, `/api/regulations/assignments/{id}` (reads precomputed rule assignments — see `EVENT_SYSTEM.md`)
+- `api/routes/assignments.py` — `/api/assignments/me`, submit (+ streaming), and submission flagging
+
 The SIS is also integrated into the RAG pipeline via `rag/context_injectors.py`.
 
 ---
 
-## Models (in `database/models.py`)
+## Models (in `database/models/`)
 
 All models share the same `Base` from `DeclarativeBase`. Key relationships:
 
@@ -60,6 +71,19 @@ EmbeddingModel (1) ──── (N) KnowledgeBaseEmbedding ──── (1) Know
 - `entry_type` — constrained to: `holiday`, `exam_period`, `registration`, `add_drop`, `section_change`, `withdrawal_deadline`, `semester_start`, `semester_end`, `makeup_exam`, `graduation`, `orientation`, `grade_announcement`, `freeze_period`, `summer_school`, `other`
 - `applies_to` — constrained to: `undergraduate`, `graduate`, `prep`, `all`
 - `academic_year`, `notes`
+
+**`UserProfile`** (`database/models/identity.py`) — enriched per-user context for **any** role (student, instructor, admin), one-to-one with `User` (`User.profile`):
+- Student fields: `department`, `faculty`, `program_level`, `academic_year`, `semester_number`, `total_credits_completed`, `total_credits_enrolled`
+- Instructor/staff fields: `title`, `office`, `responsibilities`
+- Status flags: `is_on_probation`, `has_advisor_hold`, `has_financial_hold`, `is_exchange_student`, `is_double_major`, `is_minor`
+- `extra_context` (JSONB) — free-form key/value injection point for facts not in structured columns
+- Read by the (historical) regulation assignment agent to build a per-user context blob, and projected by `/api/sis/profile/me` and `/api/sis/dashboard`
+
+**`RegulationRule` / `UserRuleAssignment`** (`database/models/events.py`) — the regulation-extraction action objects and per-user assignments. See `EVENT_SYSTEM.md` for how they're populated (historical LLM pipeline) and surfaced (`/api/regulations/me`).
+
+**`AssignmentSubmission`** (`database/models/academic.py`) — records produced by the submission-check agent.
+
+**Event models** (`EventRun`, `EventSourceLog`, `EventSourceCheckpoint`, `Event` → `regulatory_events`, `EventAgentLog`, `EventCandidateLog`) — telemetry + output of the wired `/api/events/trigger` extraction pipeline.
 
 **`EmbeddingModel` / `KnowledgeBaseEmbedding`** — Scaffolded for future versioned embedding support. These models have no migration, no repository, and no usage yet.
 
@@ -101,21 +125,53 @@ the standardized repository structure and may be refactored.
 - `get_student_schedule(student_id)` — raw SQL joining enrollments, sections, courses, and schedules to get a student's full weekly timetable (only `ENROLLED` status)
 - `format_for_rag(schedule_rows)` — formats into structured text with Turkish day names, pipe-separated fields
 
+**`UserRuleAssignmentRepository`** — extends `BaseRepository[UserRuleAssignment]`:
+- `get_for_user(user_id)` — all assignments for a user, with the linked `RegulationRule` eagerly loaded (`joinedload`), sorted by urgency (high → low) then most-recent
+- `get_for_user_by_id(user_id, assignment_id)` — single assignment scoped to the user
+- `count_active_for_user(user_id)` — count of `ACTIVE` assignments (used by the dashboard)
+- `update_status(user_id, assignment_id, new_status)` — flips status; returns `None` if not found/owned
+
+**`AssignmentSubmissionRepository`** — backs the submission-check records written by the submission agent (`api/agents/submission_agent.py`) via `api/routes/assignments.py`.
+
+`EnrollmentRepository`, `StudentRepository`, and `UserRepository` gained methods used by `routes/student.py`: `EnrollmentRepository.get_enrolled_with_details` / `get_student_enrollments`, `StudentRepository.get_transcript` / `calculate_gpa` / `get_by_user_id`, `UserRepository.resolve_user_role` (returns `{role, entity_id}`).
+
 ---
 
-## API Routes (`api/routes/sis.py`)
+## API Routes
 
-Two endpoints under `/api/sis/`:
+### `api/routes/sis.py` — under `/api/sis/`
 
 | Endpoint | Method | Auth | Description |
 |----------|--------|------|-------------|
 | `/api/sis/calendar` | GET | Required | Returns academic calendar entries. Query params: `academic_year` (default `2025-2026`), `applies_to` (default `undergraduate`) |
 | `/api/sis/schedule/me` | GET | Required | Returns the current student's weekly schedule. Non-student accounts get `{"slots": [], "message": "Not a student account"}` |
 
-### Response Schemas (`api/schemas/sis.py`)
+### `api/routes/student.py` — student-facing read projections (also under `/api/sis/`)
 
-- `CalendarEntryResponse` — `id`, `title_tr`, `title_en`, `start_date`, `end_date`, `entry_type`, `applies_to`, `academic_year`, `notes`
-- `ScheduleSlotResponse` — `course_code`, `course_name`, `section_number`, `section_type`, `instructor_name`, `day_of_week`, `start_time`, `end_time`, `location`, `is_online`
+All endpoints resolve the student from the authenticated user — a client never supplies a `student_id`. Non-student accounts get empty/zeroed payloads rather than errors.
+
+| Endpoint | Method | Auth | Description |
+|----------|--------|------|-------------|
+| `/api/sis/dashboard` | GET | Required | Aggregate for the Dashboard page: stats (gpa, credits, enrolled/pending counts, active regulation count), upcoming assignment deadlines, upcoming calendar items |
+| `/api/sis/profile/me` | GET | Required | Identity (User + Student) merged with `UserProfile` academic context and status flags |
+| `/api/sis/transcript/me` | GET | Required | Completed-course transcript entries + cumulative GPA + total credits |
+| `/api/sis/courses/me` | GET | Required | Current enrolled courses, each collapsed into one card with a list of schedule slots |
+
+### `api/routes/regulations.py` — under `/api/regulations/`
+
+| Endpoint | Method | Auth | Description |
+|----------|--------|------|-------------|
+| `/api/regulations/me` | GET | Required | Caller's `UserRuleAssignment` rows (joined to `RegulationRule`), sorted by urgency then recency. **Reads precomputed data** — there is no live assignment-trigger route (see `EVENT_SYSTEM.md`) |
+| `/api/regulations/assignments/{assignment_id}` | PATCH | Required | Mark one assignment `active` / `actioned` / `dismissed` (status in body) |
+
+### Response Schemas
+
+- `api/schemas/sis.py` — `CalendarEntryResponse`, `ScheduleSlotResponse`
+- `api/schemas/student.py` — `ProfileResponse`, `TranscriptResponse`/`TranscriptEntry`, `EnrolledCourseResponse`/`EnrolledCourseSlot`, `DashboardResponse`/`DashboardStats`/`DashboardDeadline`/`DashboardCalendarItem`
+- `api/schemas/regulations.py` — `RuleAssignmentResponse`, `RuleAssignmentStatusUpdate`
+
+`ScheduleSlotResponse` fields: `course_code`, `course_name`, `section_number`, `section_type`, `instructor_name`, `day_of_week`, `start_time`, `end_time`, `location`, `is_online`.
+`CalendarEntryResponse` fields: `id`, `title_tr`, `title_en`, `start_date`, `end_date`, `entry_type`, `applies_to`, `academic_year`, `notes`.
 
 ---
 
@@ -142,6 +198,14 @@ The router agent recognizes two SIS-specific tools:
 Located in `api/scripts/migrations/`:
 - `001_academic_calendar.sql` — creates `academic_calendar_entries` table with CHECK constraints and indexes
 - `002_section_schedule.sql` — alters `course_sections` (adds `section_type`, `parent_section_id`, `instructor_name`), creates `section_schedules` table
+- `003_regulation_rules.sql` — creates the `regulation_rules` table
+- `004_regulation_rule_action_fields.sql` — renames `condition`→`trigger` and adds action-object fields to `regulation_rules` (`valid_from`, `valid_until`, `blocking`, `consequence`, …)
+- `005_assignment_submission_agent.sql` — alters `assignment_submissions` (adds `evaluation_report` JSONB, `flagged_by_student`, `student_flag_reason`, `flagged_at`)
+
+> Note: not every table has a hand-written migration here — there is no migration in this folder for
+> `user_profiles`, `user_rule_assignments`, or the `event_runs`/`regulatory_events`/log tables.
+> Verify the live schema before assuming one exists. `init_db()` (SQLAlchemy `create_all`) creates
+> all model-defined tables on a fresh DB.
 
 ---
 
@@ -190,7 +254,9 @@ Example: John Doe (student) → `j.doe@bilgiedu.net`
 
 ## Known Incomplete / Missing Things
 
-1. **`EmbeddingModel` / `KnowledgeBaseEmbedding` models** — defined in `models.py` but have no migration, no repository, and no usage. Scaffolded for future versioned embedding support.
+0. **`database/models.py` (file) is dead, shadowed code** — the `database/models/` package wins on import. Edit the package, never the file. It should eventually be deleted.
+
+1. **`EmbeddingModel` / `KnowledgeBaseEmbedding` models** — defined in `database/models/knowledge.py` but have no migration, no repository, and no usage. Scaffolded for future versioned embedding support.
 
 2. **`CourseRepository` uses legacy `.query()` style** — intentionally, because pgvector's
    `cosine_distance` ordering with SQLAlchemy 2.0 `select()` requires workarounds. Do not
