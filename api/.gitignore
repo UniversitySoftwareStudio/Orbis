@@ -30,6 +30,8 @@ wheels/
 # Data files - exclude all JSONL files in data folder
 data/*.jsonl
 
+!data/rag_evaluation_logs.jsonl
+
 # But include the example file(s)
 !data/*_example.jsonl
 
