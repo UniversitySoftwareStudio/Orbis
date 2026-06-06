@@ -496,7 +496,7 @@ def main():
     args = parser.parse_args()
 
     print("=" * 60)
-    print("  UniChatBot — Data Ingestion")
+    print("  Orbis - Data Ingestion")
     print("=" * 60)
 
     # ── DB setup ────────────────────────────────────────────────────────

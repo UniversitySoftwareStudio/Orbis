@@ -1,11 +1,132 @@
 {
   "sidebar": {
     "appName": "Orbis",
+    "dashboard": "Panel",
     "chat": "Sohbet",
     "calendar": "Akademik Takvim",
     "schedule": "Haftalık Programım",
+    "courses": "Derslerim",
     "assignments": "Ödevler",
+    "transcript": "Transkript",
+    "regulations": "Yönetmeliklerim",
+    "profile": "Profil",
+    "settings": "Ayarlar",
     "logout": "Çıkış"
+  },
+  "common": {
+    "comingSoon": "Bu sayfa yakında geliyor."
+  },
+  "dashboard": {
+    "greeting": "Hoş geldin, {{name}}",
+    "subtitle": "İşte akademik hayatının bir özeti.",
+    "loading": "Panel yükleniyor...",
+    "empty": "Panel verisi bulunamadı.",
+    "deadlines": "Yaklaşan Son Tarihler",
+    "noDeadlines": "Yaklaşan son tarih yok.",
+    "calendar": "Yaklaşan Takvim",
+    "noCalendar": "Yaklaşan takvim kaydı yok.",
+    "quickLinks": "Hızlı Bağlantılar",
+    "stats": {
+      "gpa": "GNO",
+      "creditsCompleted": "Tamamlanan Kredi",
+      "courses": "Kayıtlı Ders",
+      "assignments": "Bekleyen Ödev",
+      "regulations": "Aktif Yönetmelik"
+    },
+    "links": {
+      "courses": "Derslerim",
+      "transcript": "Transkript",
+      "assignments": "Ödevler",
+      "regulations": "Yönetmelikler"
+    }
+  },
+  "profile": {
+    "title": "Profil",
+    "loading": "Profil yükleniyor...",
+    "empty": "Profil verisi bulunamadı.",
+    "email": "E-posta",
+    "userType": "Hesap Türü",
+    "studentId": "Öğrenci No",
+    "gpa": "GNO",
+    "academic": "Akademik Bilgiler",
+    "department": "Bölüm",
+    "faculty": "Fakülte",
+    "programLevel": "Program Seviyesi",
+    "academicYear": "Program Yılı",
+    "semester": "Dönem",
+    "creditsCompleted": "Tamamlanan Kredi",
+    "creditsEnrolled": "Kayıtlı Kredi",
+    "status": "Durum",
+    "noFlags": "Aktif durum işareti yok.",
+    "flags": {
+      "probation": "Şartlı",
+      "advisorHold": "Danışman Engeli",
+      "financialHold": "Mali Engel",
+      "exchange": "Değişim Öğrencisi",
+      "doubleMajor": "Çift Anadal",
+      "minor": "Yandal"
+    }
+  },
+  "transcript": {
+    "title": "Transkript",
+    "loading": "Transkript yükleniyor...",
+    "empty": "Tamamlanmış ders bulunamadı.",
+    "cumulativeGpa": "Genel GNO",
+    "totalCredits": "Toplam Kredi",
+    "gpa": "GNO",
+    "code": "Kod",
+    "course": "Ders",
+    "credits": "Kredi",
+    "grade": "Not"
+  },
+  "courses": {
+    "title": "Derslerim",
+    "loading": "Dersler yükleniyor...",
+    "empty": "Hiçbir derse kayıtlı değilsiniz.",
+    "count": "{{count}} kayıtlı ders",
+    "section": "Şube",
+    "online": "Çevrimiçi",
+    "status": {
+      "enrolled": "Kayıtlı"
+    },
+    "days": {
+      "MON": "Pzt",
+      "TUE": "Sal",
+      "WED": "Çar",
+      "THU": "Per",
+      "FRI": "Cum"
+    }
+  },
+  "regulations": {
+    "title": "Yönetmeliklerim",
+    "subtitle": "Sistemin kaydınızla eşleştirdiği yönetmelik yükümlülükleri.",
+    "loading": "Yönetmelikler yükleniyor...",
+    "empty": "Şu anda size atanmış yönetmelik yok.",
+    "deadline": "Son Tarih",
+    "consequence": "Sonuç",
+    "markActioned": "Tamamlandı Olarak İşaretle",
+    "dismiss": "Yoksay",
+    "urgency": {
+      "high": "Yüksek",
+      "medium": "Orta",
+      "low": "Düşük"
+    },
+    "statusLabel": {
+      "active": "Aktif",
+      "actioned": "Tamamlandı",
+      "dismissed": "Yoksayıldı"
+    }
+  },
+  "catalog": {
+    "title": "Ders Kataloğu"
+  },
+  "notifications": {
+    "title": "Bildirimler"
+  },
+  "settings": {
+    "title": "Ayarlar",
+    "colorScheme": "Renk Teması",
+    "language": "Dil"
   },
   "login": {
     "title": "Orbis'e Giriş",

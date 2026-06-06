@@ -1,104 +1,115 @@
-# Orbis (SIS & RAG System)
+# Orbis
 
-An intelligent Student Information System (SIS) designed for Istanbul Bilgi University. This project integrates a traditional administrative backend with an advanced **RAG (Retrieval-Augmented Generation)** chatbot, allowing students to query course catalogs, university regulations, and administrative procedures in natural language.
+Orbis is a student-built academic support system for Istanbul Bilgi University.
+It combines a conventional SIS-style backend, a retrieval-augmented chat/search
+interface, a regulation-event extraction pipeline, and an agentic assignment
+submission reviewer.
 
-![Status](https://img.shields.io/badge/Status-Prototype-orange)
-![Tech](https://img.shields.io/badge/Stack-FastAPI_|_PostgreSQL_|_Angular-blue)
+The project is a prototype, but the report artifacts are evidence-backed:
+the repository contains the LaTeX report, evaluation scripts, silver ground
+truth data, and archived categorization experiments used to support the
+reported metrics.
 
-## 🌟 Key Features
+## Current Capabilities
 
-### 🧠 Advanced RAG Pipeline (Double Reranking)
-Unlike standard RAG systems, UniChat uses a multi-stage retrieval process to ensure high precision:
-1.  **Hybrid Search:** Retrieves N candidates using Vector Similarity (Semantic) + PostgreSQL `tsvector` (Keyword).
-2.  **Pre-Expansion Rerank:** Uses Jina AI to identify the "True Top N" documents from the initial pool.
-3.  **Smart Context Expansion:** Fetches neighboring chunks *only* for those top N documents to provide full context (e.g., the whole regulation article).
-4.  **Final Rerank:** Re-scores the expanded context (N chunks) to feed the absolute best data to the LLM.
+- Authenticated React student shell with dashboard, chat, academic calendar,
+  weekly schedule, courses, assignments, transcript, regulations, profile, and
+  settings pages.
+- FastAPI backend with cookie-based auth, PostgreSQL/SQLAlchemy models,
+  student/SIS projections, course/regulation search, and assignment submission
+  endpoints.
+- RAG pipeline that routes between SQL-like course lookup and vector retrieval,
+  expands source context, reranks results, and streams LLM answers.
+- Regulation-event pipeline exposed through `/api/events/*` for admin-triggered
+  extraction runs over categorized regulation knowledge-base rows.
+- Student-facing regulation assignments exposed through `/api/regulations/me`
+  from precomputed `user_rule_assignments`.
+- Assignment submission reviewer that performs deterministic file inspection,
+  extracts text from PDF/DOCX/ZIP/text-like files, decomposes requirements, and
+  streams per-requirement evaluation over Server-Sent Events.
 
-### ⚡ Stateless & Scalable
-* **Zero-History Context:** The RAG engine is stateless to prevent "Context Bloat" and token overflow (413 errors).
-* **Strict Router:** An intelligent router prevents SQL overload by detecting generic queries ("Staj") and routing them to Vector search, reserving SQL only for specific Course Code lookups.
+## Evidence Used By The Report
 
-### 🎓 Student Information System (Planned)
-* **Course Management:** CRUD operations for courses and sections.
-* **Event System:** (Upcoming) Automated deadlines and regulation checks.
-* **Submission Checks:** (Upcoming) Automated assignment validation.
+- Main report: `report/report.tex`
+- Bibliography: `report/references.bib`
+- Report samples and writing notes: `report/reports/`, `report/notes/`
+- Event/assignment ground truth: `api/data/ground_truth/events/`
+- Submission-review ground truth: `api/data/ground_truth/submissions/`
+- Evaluation scripts: `api/scripts/experiments/eval_*.py`
+- Final taxonomy artifacts:
+  - `api/scripts/experiments/results/categorization/runs/20260404_130324_taxonomy_clean/`
+  - `api/scripts/experiments/results/categorization/flow/12_cluster_regulations/`
+  - `api/scripts/experiments/results/categorization/flow/14_final_tree/`
 
-## 🛠️ Tech Stack
+## Important Implementation Boundary
 
-* **Backend:** Python, FastAPI, SQLAlchemy
-* **Database:** PostgreSQL with `pgvector` extension
-* **LLM Engine:** Llama 3.3 70B (via Groq API)
-* **Embeddings:** `sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2`
-* **Reranker:** Jina AI
-* **Frontend:** React
-* **Infrastructure:** Docker, Docker Compose
+There are two related regulation pipelines in the repository:
 
-## 🚀 Getting Started
+- The currently wired `/api/events/trigger` path creates rows in
+  `regulatory_events` using `SearchAgent`, deterministic `ReasoningAgent`,
+  `EventCreator`, and optional `ReasoningReviewer`.
+- The report's assignment-matching metrics use historical database/evaluation
+  artifacts around `regulation_rules`, `user_rule_assignments`, and
+  `event_candidate_logs`. Those artifacts are preserved for reproducibility,
+  but there is no currently exposed `/api/events/assign/me` route.
 
-### Prerequisites
-* Docker & Docker Compose (Only to run db locally)
-* Python 3.10+
-* Groq API Key (for LLM)
-* Jina AI API Key (for Reranking)
+This boundary is intentional to document honestly: the demo UI reads existing
+regulation assignments through `/api/regulations/me`, while event extraction
+telemetry is exposed separately through `/api/events/*`.
 
-### Installation
+## Tech Stack
 
-1.  **Clone the repository:**
-    ```bash
-    git clone [https://github.com/your-username/unichat-agent.git](https://github.com/your-username/unichat-agent.git)
-    cd unichat-agent
-    ```
+- Backend: Python 3.10, FastAPI, SQLAlchemy, PostgreSQL, pgvector
+- Frontend: React, Vite, TypeScript, lucide-react
+- Runtime / infra: Uvicorn for the API; Docker Compose currently defines the
+  optional TEI embedding load balancer, not a full application stack
+- LLMs: Gemini by default through `api/llm/service.py`, Groq/OpenAI-compatible
+  providers through environment configuration; evaluation scripts use
+  OpenRouter directly through `api/scripts/experiments/_llm_judge.py`
+- Embeddings: local/TEI providers under `api/embedding/`
 
-2.  **Set up Environment Variables:**
-    Create a `.env` file in the `api/` directory:
-    ```ini
-    DB_NAME=postgres
-    DB_USER=postgres
-    DB_PASSWORD=yourpassword
-    DB_HOST=db
-    DB_PORT=5432
-    GROQ_API_KEY=gsk_...
-    JINA_API_KEY=jina_...
-    ```
-### How to Run
+## Run Locally
 
-Details on how to run both front and backend of the project can be found at `api/README.md` and `web/README.md`
+Backend:
 
-## 📂 Project Structure
+```bash
+cd api
+python main.py
+```
 
-* `api/`: FastAPI backend, RAG logic, and database scripts.
-* `api/data/`: Raw PDF documents and scraped JSONL data.
-* `api/scripts/`: Various scripts used to load and embed data into db.
-* `web/`: Angular frontend application.
+Frontend:
 
-## ✅ Completed Milestones
+```bash
+cd web
+npm install
+npm run dev
+```
 
-* **Core RAG Architecture:** "One-Table" approach unifying Courses, Web Pages, and PDFs.
-* **Data Pipeline:**
-    * Scrapers for Courses (JSONL) and Web Pages.
-    * PDF Pipeline: Hybrid cleaning and language detection.
-* **Advanced Retrieval:**
-    * **Intent Router:** Distinguishes between "List", "Compare", and "Explain" queries.
-    * **Auto-Repair Logic:** Fixes malformed SQL queries automatically.
-    * **Smart Expansion:** Fetches full context for relevant documents with soft diversity caps.
-* **Persona & Safety:** "Reference Librarian" persona that enforces citations and strict administrative safety rules.
+LaTeX report:
 
-## 🚧 Roadmap
+```bash
+cd report
+./render.sh
+```
 
-* [ ] Implement SIS Relational Tables (Students, Enrollments).
-* [ ] Integrate Relational Data into RAG (Text-to-SQL for schedule/grades).
-* [ ] Admin Dashboard for managing knowledge base.
+## Repository Map
 
-## 🔑 Use Cases
+- `api/`: FastAPI backend, RAG, SIS routes, event pipeline, submission agent,
+  database models/repositories, seed/migration/evaluation scripts.
+- `web/`: React/Vite frontend.
+- `report/`: LaTeX report, references, sample reports, report notes.
+- `docs/`: short engineering notes and audits.
+- `archive/`: old experiment runs moved out of the active path but preserved.
 
-### Chatbot
+## Main Verification Commands
 
-A RAG based chatbot system that has access to all non-sensitive university data that will be able to answer various queries of users (instructors & students alike)
+```bash
+python3 api/scripts/experiments/eval_event_extraction.py
+python3 api/scripts/experiments/eval_assignment_matching.py
+python3 api/scripts/experiments/eval_submission_agent.py
+cd report && latexmk -pdf -interaction=nonstopmode -halt-on-error -outdir=build report.tex
+```
 
-### Submission Check
-
-A simple AI based system that will compare a document submitted aganist a ruleset (something like submission guidelines - a good example can be a homework submission guide that an instructor has provided) to give information to the user before submission about whether the submission is valid or not.
-
-### SIS Related
-
-A "Student Information System". Students and instructors can login, there can be departments, courses, sections, registrations, rules & guidelines, etc. to provide a comprehensive online platform for entirety of a university.
+Some commands depend on a live PostgreSQL database with the historical Orbis
+evaluation data. The report PDF can be rebuilt from source without running the
+database-backed experiments.

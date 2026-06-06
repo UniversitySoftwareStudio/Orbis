@@ -1,21 +1,7 @@
-# types/
+# `web/src/types/`
 
-TypeScript types.
+Shared TypeScript type definitions belong here when they are used by more than
+one page or service.
 
-**Example:** `chat.ts`
-```typescript
-export interface Message {
-  id: string
-  text: string
-  sender: 'user' | 'bot'
-}
-
-export interface ChatResponse {
-  message: string
-  agent?: string
-}
-```
-
-**Used everywhere:** Import when you need type safety
-
-Define once, use everywhere
+Several pages currently keep small local interfaces inline. Move them here only
+when reuse becomes real; avoid abstracting one-off response shapes too early.

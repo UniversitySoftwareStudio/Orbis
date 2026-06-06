@@ -1,6 +1,8 @@
 # `rag_service/`
 
-Standalone RAG microservice shell.
+Optional standalone RAG microservice shell. The main application uses the
+monolith entrypoint in `api/main.py`; this package is a deploy boundary for
+running the same RAG service separately.
 
 ## Modules
 - `app.py`: FastAPI app + RAG endpoints.
@@ -18,5 +20,7 @@ flowchart TD
 ```
 
 ## Relevance
-- deploy boundary for RAG as a separate service.
-- keeps same models/session layer as monolith.
+- deploy boundary for RAG as a separate service;
+- keeps the same models/session layer as the monolith;
+- should stay thin and import `RAGService` from `rag.pipeline`, not duplicate
+  retrieval logic.

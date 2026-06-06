@@ -83,5 +83,6 @@ def test_submission_agent_rejects_empty_file_before_llm():
     )
 
     assert result.decision == "rejected"
-    assert "file is empty" in result.feedback
+    assert "empty" in result.feedback.lower()
+    assert result.report["file"]["blocking_errors"] == ["file is empty"]
     assert called is False

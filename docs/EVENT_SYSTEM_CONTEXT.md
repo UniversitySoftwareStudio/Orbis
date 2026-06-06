@@ -1,187 +1,87 @@
-# Orbis Event System - Complete Technical Context
+# Event System Context
 
-## Overview
+Updated: 2026-06-03
 
-The Orbis Event System is a production-grade AI pipeline that automatically extracts actionable rules from regulatory documents and delivers personalized assignments to students. It processes 80+ regulation sources, extracts 178 actionable rules with 55% acceptance rate, and generates 176 personalized student assignments in under 1 hour.
+This note is the short technical context for the regulation/event system. The
+root `EVENT_SYSTEM.md` is the canonical overview; this file keeps the report
+and demo boundaries explicit.
 
-## System Architecture
+## Current Runtime Path
 
-### 1. Input Layer
+The active FastAPI route is:
 
-- **Regulation Sources**: 80+ regulatory documents (PDF/HTML/TXT formats)
-- **Document Ingestion**: Automated parsing and preprocessing pipeline
-- **Knowledge Base Storage**: PostgreSQL database with vector embeddings
-- **Current Scale**: 935 knowledge chunks indexed for semantic search
-
-### 2. Processing Pipeline
-
-- **Semantic Chunking**: Context-aware segmentation of regulations into actionable units
-- **Rule Extraction Engine**: LLM-based extraction of candidate obligations using fine-tuned models
-- **Quality Filtering**: 55% acceptance rate (178 accepted from 323 candidates)
-- **Rejection Reasons**: 128/145 rejected candidates marked "not imperative enough"
-
-### 3. Contextual Matching Engine
-
-- **Matching Strategies**:
-  - **LLM Contextual Matching (94%)**: Reasoning-based applicability assessment
-  - **SQL Exact Matching (6%)**: Direct database lookups for explicit rule matches
-- **Rule Validation**: Multi-stage verification with confidence scoring
-- **Active Rules Database**: 178 validated, actionable obligations
-
-### 4. Personalization Layer
-
-- **Student Profile Integration**: GPA, course history, past compliance records
-- **Context-Aware Assignment Engine**: Rule-to-student matching based on relevance
-- **Urgency-Based Triage**:
-  - HIGH urgency: 122 assignments
-  - MEDIUM urgency: 36 assignments
-  - LOW urgency: 18 assignments
-- **Assignment Delivery**: 176 personalized tasks delivered to students
-
-## Data Flow Architecture
-
-```
-Regulation Sources (80+) → 
-Document Ingestion → 
-Semantic Chunking (935 chunks) → 
-Rule Extraction (323 candidates) → 
-Quality Filtering (178 accepted, 55% rate) → 
-Contextual Matching (94% LLM, 6% SQL) → 
-Student Profile Integration → 
-Personalized Assignment Generation (176 tasks) → 
-Event Log Tracking
+```text
+POST /api/events/trigger
 ```
 
-## Performance Metrics (Current Production Data)
+It creates an `event_runs` row, runs `EventPipelineOrchestrator` in the
+background, reads regulation sources from `knowledge_base`, extracts obligation
+candidates, validates/deduplicates them, and writes accepted rows to
+`regulatory_events`.
 
-### Throughput Efficiency
+Core runtime tables:
 
-- **Processing Time**: 59 minutes for complete pipeline (80 sources → 176 assignments)
-- **Rule Extraction Rate**: 3.0 rules per minute
-- **Chunk Efficiency**: 5.25 knowledge chunks consumed per extracted rule
-- **Pipeline Speed**: Under 1 hour for full regulation processing cycle
+- `event_runs`
+- `event_source_logs`
+- `event_source_checkpoints`
+- `event_agent_logs`
+- `event_candidate_logs`
+- `regulatory_events`
 
-### Quality Metrics
+Core runtime files:
 
-- **Acceptance Rate**: 55% (178 accepted from 323 candidates)
-- **Filter Precision**: 128/145 rejected for "not imperative enough" criteria
-- **Contextual Intelligence**: 94% of matches use LLM reasoning vs 6% SQL exact matches
-- **Rule Actionability**: All 178 accepted rules categorized as actionable obligations
+- `api/routes/events.py`
+- `api/events/orchestrator.py`
+- `api/events/search_agent.py`
+- `api/events/reasoning_agent.py`
+- `api/events/event_creator.py`
+- `api/events/reasoning_reviewer.py`
 
-### Scale Metrics
+## Current Student Regulation Path
 
-- **Source Coverage**: 80 regulation documents processed
-- **Knowledge Base**: 935 semantic chunks indexed
-- **Rule Repository**: 178 active, actionable rules
-- **Student Impact**: 176 personalized assignments delivered
+The student-facing regulations page does not trigger extraction. It reads
+precomputed assignments:
 
-## Technical Implementation Details
-
-### Database Schema
-
-```sql
--- Core Tables
-event_runs: id, status, started_at, completed_at, sources_processed, chunks_processed, events_created
-events: id, run_id, status, rule_text, assigned_to, urgency_level, context
-event_candidate_log: id, run_id, decision, rule_text, rejection_reason, confidence_score
+```text
+GET /api/regulations/me
+PATCH /api/regulations/assignments/{assignment_id}
 ```
 
-### API Architecture
+These endpoints read/write `user_rule_assignments`, joined to
+`regulation_rules`.
 
-- **FastAPI-based Microservices**: Modular service design
-- **Async Processing**: Celery-based task queues for parallel processing
-- **Vector Database**: ChromaDB for semantic similarity search
-- **LLM Integration**: OpenAI GPT-4 + local LLMs for contextual matching
+## Report Evidence Path
 
-### Processing Components
+The report uses measured artifacts from the historical action-object pipeline:
 
-1. **Document Preprocessor**: PDF extraction, text normalization, section detection
-2. **Chunking Engine**: Semantic boundary detection with overlap handling
-3. **Rule Extractor**: Prompt-based LLM extraction with validation loops
-4. **Context Matcher**: Multi-strategy matching (semantic + exact)
-5. **Assignment Generator**: Student profile integration and urgency scoring
-6. **Event Logger**: Complete audit trail for compliance tracking
+- 80 regulation sources.
+- 935 regulation chunks.
+- 323 candidate rules.
+- 178 accepted obligations.
+- 145 rejected candidates.
+- 176 precomputed user-rule assignments over 4 test profiles.
+- Silver event labels in `api/data/ground_truth/events/candidates_gt.jsonl`.
+- Silver assignment labels in
+  `api/data/ground_truth/events/assignment_matching_gt.jsonl`.
 
-## System Performance Characteristics
+Reproduction commands:
 
-### Strengths
+```bash
+python3 api/scripts/experiments/eval_event_extraction.py
+python3 api/scripts/experiments/eval_assignment_matching.py
+```
 
-- **High Throughput**: Complete regulation processing in under 1 hour
-- **Intelligent Filtering**: 55% acceptance rate shows discernment quality
-- **Context-Aware**: 94% of matches use sophisticated LLM reasoning
-- **Scalable Design**: Processed 80 sources with 935 chunks efficiently
+The first command only needs JSONL artifacts. The second command also queries
+the historical PostgreSQL database to recover the system's positive
+profile-rule pairs.
 
-### Limitations & Challenges
+## Known Gaps
 
-- **Manual Verification Required**: 178 rules need human review for final activation
-- **Rejection Learning**: System doesn't currently learn from rejection patterns
-- **Context Window**: Limited by LLM context sizes for large regulation sets
-- **Integration Complexity**: Student profile data integration requires careful data modeling
-
-## Real-World Impact
-
-### Educational Outcomes
-
-- **Student Workload Reduction**: Automated rule identification saves hours of manual review
-- **Compliance Improvement**: Systematic tracking ensures no obligations are missed
-- **Personalized Guidance**: 176 tailored assignments based on individual student context
-- **Administrative Efficiency**: 80-source processing in 59 minutes vs days manually
-
-### Technical Innovations
-
-- **Hybrid Matching**: Combines LLM reasoning (94%) with exact SQL matching (6%)
-- **Quality-First Design**: 55% acceptance rate prioritizes precision over recall
-- **End-to-End Automation**: Complete pipeline from raw documents to student assignments
-- **Scalable Architecture**: Designed for processing thousands of regulation sources
-
-## Future Development Directions
-
-### Short-Term Improvements
-
-- **Automated Learning**: Incorporate rejection feedback into extraction models
-- **Confidence Scoring**: Add probabilistic confidence to rule extractions
-- **Batch Optimization**: Parallel processing for large regulation corpora
-- **API Expansion**: Expose rule extraction as standalone service
-
-### Long-Term Vision
-
-- **Cross-Institutional Learning**: Share patterns across universities
-- **Predictive Analytics**: Anticipate regulatory changes and impacts
-- **Interactive Refinement**: Human-in-the-loop system for continuous improvement
-- **Multi-Language Support**: Extend beyond English regulations
-
-## Data Visualization Opportunities
-
-### Charts & Graphs
-
-1. **Processing Funnel**: 80 sources → 935 chunks → 323 candidates → 178 rules → 176 assignments
-2. **Timeline Visualization**: 59-minute processing window with component breakdown
-3. **Quality Metrics Dashboard**: Acceptance rates, rejection reasons, confidence scores
-4. **Student Impact Analysis**: Urgency distribution, assignment completion rates
-
-### Key Performance Indicators
-
-- **Time-to-Insight**: Minutes from document upload to actionable rules
-- **Rule Precision**: Percentage of extracted rules that are truly actionable
-- **Student Relevance**: Assignment appropriateness scores from student feedback
-- **Administrative Burden Reduction**: Hours saved per regulation source processed
-
-## Implementation Resources
-
-### Code Repository
-
-- **Primary Language**: Python 3.10+
-- **Framework**: FastAPI + SQLAlchemy + Celery
-- **AI/ML Stack**: OpenAI API, LangChain, ChromaDB
-- **Database**: PostgreSQL + pgvector extension
-
-### Infrastructure
-
-- **Containerization**: Docker + Docker Compose
-- **Deployment**: Kubernetes-ready configuration
-- **Monitoring**: Prometheus + Grafana metrics
-- **Logging**: Structured JSON logging with ELK stack
-
----
-
-_This document provides comprehensive technical context about the Orbis Event System for integration into LaTeX-based academic articles. All metrics are from production database queries and actual system performance data._
+- No currently exposed `/api/events/assign/me` endpoint.
+- Current extraction route writes `regulatory_events`; report assignment metrics
+  use `regulation_rules` and `user_rule_assignments`.
+- The event extraction labels are silver LLM labels, not human gold labels.
+- Inter-judge agreement is 0.529 on a 51-candidate sample, so recall should be
+  interpreted conservatively.
+- Future work should reconnect extraction, rule assignment, and the regulations
+  UI into one live end-to-end flow.

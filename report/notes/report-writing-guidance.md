@@ -114,41 +114,49 @@ Current source: `report/report.tex`.
 
 ### Strengths
 
-The current report already has the right broad skeleton: Introduction, Related Works, Dataset, Theoretical Background, Proposed Methodology, Experimental Setup, Experiments and Discussion, Results, Realistic Constraints, and Conclusion.
+The current report now satisfies the sample-report pattern much better than the
+initial draft. It has a compileable thesis structure, a category-based Related
+Works section, dataset statistics, methodology diagrams, experiment tables,
+quantitative evaluation, realistic constraints, cost analysis, and future work.
 
-It also has useful project-specific numbers: 60,649 chunks, 935 regulatory chunks, 323 candidate rules, 178 accepted obligations, 145 rejections, 176 generated assignments, 4 student profiles, and 59 minutes runtime. These are exactly the kind of quantified claims the samples use.
+It also includes the project-specific numbers the samples reward: 60,649 chunks,
+935 regulatory chunks, 323 candidate rules, 178 accepted obligations, 145
+rejections, 176 generated assignments, 4 student profiles, 59 minutes runtime,
+and 32 submission-review cases.
 
-The Orchestrator-led event pipeline is a strong thesis contribution. It can become the core of the report if the writing shows how it behaves, why it is safer than a plain chatbot, and how it was evaluated.
+The Related Works section is now evidence-aware. It compares Orbis against RAG
+academic chatbots, degree-audit systems, regulatory information extraction,
+local HermiOne context, automated submission assessment, and LLM-as-a-judge
+evaluation. The baseline-validity table is a good academic move because it
+labels external comparisons as contextual or partial rather than claiming false
+head-to-head wins.
 
-The recent assignment submission agent work fits the report well. It gives Orbis a concrete user-facing evaluation workflow: understand assignment requirements, inspect submitted files, reason through relevance, accept/reject, and allow rejected students to flag for review.
+The assignment submission agent is now represented as a concrete user-facing
+workflow: deterministic file gate, text extraction, requirement decomposition,
+per-requirement judgment, streamed evidence, approve/reject verdict, and
+student flag-for-review path.
 
 ### Critical gaps
 
-The report does not compile right now. `latexmk -pdf -interaction=nonstopmode -halt-on-error report.tex` fails because `styles/ibu-thesis.sty` is missing. The source also calls `\bibliography{references}` but no `references.bib` or `references` file exists under `report/`. There is also a broken placeholder citation at `report/report.tex:187`: `fragments[cite: 4]`.
+The biggest remaining gap is implementation-boundary clarity. The report's
+regulation assignment metrics are based on preserved historical database
+artifacts (`regulation_rules`, `user_rule_assignments`, and
+`event_candidate_logs`), while the currently wired `/api/events/trigger` route
+writes extraction output into `regulatory_events`. This does not invalidate the
+metrics, but the report should be careful to call them evaluation artifacts and
+not imply that the current API exposes a live `/api/events/assign/me` route.
 
-The report is too short for the full-report standard shown by the samples. `texcount` reports about 1,617 text words and only 3 floats. The stronger full reports range from 16 to 43 pages and are much denser in figures, tables, citations, datasets, experiments, and discussion.
+The HermiOne comparison is still the softest external claim. It is carefully
+worded as public behavior and lack of design-document access, which is fine, but
+it would be stronger with a public source or screenshot.
 
-The abstract overclaims before the body proves the claims. It says Orbis bridges the gap with AI/RAG and gives many metrics, but it does not yet state evaluation limitations, baselines, or whether the data came from production logs, generated profiles, or manual tests.
+The event labels are silver LLM labels, not human gold labels. The report
+already says this, but the low inter-judge agreement (0.529 on 51 candidates)
+should stay visible anywhere recall is discussed.
 
-The Related Works section is underdeveloped and uncited. It currently gives a generic RAG explanation and then claims HermiOne lacks logical reasoning. That HermiOne comparison is risky unless we cite a source, show direct testing, or soften it to "appears to operate primarily as a reactive support chatbot based on public behavior."
-
-The Dataset section needs reproducibility. It says 80 official URLs and 60,649 chunks, but should include source categories, crawl date, inclusion/exclusion rules, deduplication, language handling, chunking size/strategy, storage schema, and examples of noisy vs regulatory content.
-
-The Theoretical Background section is very thin. Shannon entropy, embeddings, and clustering are each only a few lines. The samples usually explain formulas enough for a reader to understand why they are used in the project.
-
-The methodology is promising but too high-level. It needs actual pipeline detail: inputs, outputs, data structures, database tables, prompt roles, validation rules, idempotency, failure handling, human review points, and screenshots or diagrams for user flows.
-
-The assignment submission review agent is not yet represented in the report. Since it is now a major product feature, it should get its own subsection under Methodology and Evaluation. It should explain directory/file inspection, file size/type checks, text extraction, requirement matching, reasoning trace, approve/reject decision, rejection reason, and student flag-for-review path.
-
-The Experimental Setup section needs exact test protocol. Current text names FastAPI, Celery, PostgreSQL, pgvector, OpenAI API, and `claude-opus-4-6`, but the model name looks suspicious and should be verified or removed. The section should include versions, runtime environment, API model names, temperature/settings if applicable, DB size, task queue config, and evaluation dataset.
-
-The Performance Metrics section defines accuracy and precision formulas but the project does not yet provide TP/TN/FP/FN counts. Either add a labeled evaluation set and report those counts, or replace the formulas with metrics actually measured: acceptance rate, manual precision on audited rules, assignment applicability precision, rejection correctness, time per document, cost per run, and override/flag rate.
-
-The Experiments and Results sections need more than aggregate counts. The samples show class-level metrics, confusion matrices, experiment tables, and explanation of errors. Orbis should show accepted/rejected rule examples, false positive/false negative examples, profile-by-profile assignment reasoning, and submission-agent approve/reject cases.
-
-The Realistic Constraints section is too shallow compared with Report 2 samples. It needs a separate Risk Analysis section with named risks and mitigations: incorrect academic advice, stale regulations, hallucinated reasoning, privacy leakage, prompt injection in submitted documents, unfair rejection of submissions, over-reliance by students, API cost spikes, and downtime.
-
-The Conclusion repeats the claims but not the evidence gaps. It should restate the measured results, mention limitations, and make future work concrete: SIS integration, larger labeled evaluation, advisor dashboard, audit logs, model/provider evaluation, and appeal workflow analytics.
+Submission injection resistance is only 4/4 tested cases. Keep it framed as a
+directional finding for the tested payload family, not a general security
+guarantee.
 
 ## What to add to make the Orbis report feel like the samples
 
@@ -247,14 +255,16 @@ Use honest limitations. This will make the report stronger, not weaker.
 
 ## High-priority checklist
 
-- [ ] Make `report/report.tex` compile.
-- [ ] Add real references and replace placeholder citation text.
-- [ ] Expand Related Works with real sources and a baseline comparison.
-- [ ] Add a reproducible data collection/chunking subsection.
-- [ ] Add a full assignment submission review agent subsection.
-- [ ] Add figures for architecture, event pipeline, assignment matching, and submission review flow.
-- [ ] Add tables for dataset/corpus statistics, extraction audit, assignment results, submission review cases, and costs.
-- [ ] Add risk analysis with mitigation for wrong advice, stale rules, privacy, prompt injection, false rejection, and student appeal.
-- [ ] Replace broad model/provider claims with exact verified model names and settings.
-- [ ] Add limitations and future work that match the current implementation status.
-
+- [x] Make `report/report.tex` compile.
+- [x] Add real references and replace draft citation placeholders.
+- [x] Expand Related Works with real sources and a baseline comparison.
+- [x] Add a reproducible data collection/chunking subsection.
+- [x] Add a full assignment submission review agent subsection.
+- [x] Add figures for architecture, event pipeline, taxonomy, and submission review flow.
+- [x] Add tables for dataset/corpus statistics, extraction audit, assignment results, submission review cases, and costs.
+- [x] Add risk analysis with mitigation for wrong advice, stale rules, privacy, prompt injection, false rejection, and student appeal.
+- [x] Add limitations and future work that match the current implementation status.
+- [ ] Keep implementation-boundary wording explicit: current `/api/events/*`
+  extraction route vs report's preserved `regulation_rules`/assignment metrics.
+- [ ] Strengthen or source the HermiOne local-context paragraph.
+- [ ] Replace silver ground truth with human-validated gold when time permits.

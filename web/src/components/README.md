@@ -1,14 +1,11 @@
-# components/
+# `web/src/components/`
 
-Reusable UI pieces.
+Reusable UI components.
 
-**Example:** `ChatBox.tsx`
-```tsx
-export function ChatBox() {
-  return <div>Chat goes here</div>
-}
-```
+Current core component:
 
-**Used in:** Pages and other components
+- `Sidebar.tsx`: authenticated app navigation, language toggle, theme controls,
+  logout, and student-only nav items.
 
-Import like: `import { ChatBox } from './components/ChatBox'`
+Keep page-specific layout inside `pages/` unless multiple screens share it.
+Prefer lucide-react icons for controls so the UI stays consistent.

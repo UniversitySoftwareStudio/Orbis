@@ -6,9 +6,11 @@ Orbis is a RAG-based academic assistant for Istanbul Bilgi University, built by 
 Users (students and staff) query course data, university regulations, handbooks, and announcements
 in natural language across two languages: Turkish and English.
 
-The system has two major components in active development:
+The system has several components in active development:
 1. **RAG Chatbot** — the core feature, largely complete
-2. **SIS (Student Information System)** — a relational backend for students, courses, instructors, enrollments. Partially built, subject to significant refactoring
+2. **SIS (Student Information System)** — a relational backend for students, courses, instructors, enrollments. Built out, subject to refactoring
+3. **Regulation Event System** (`api/events/`) — extracts actionable obligations from regulation documents. The **wired** path (`POST /api/events/trigger`) is deterministic regex extraction with an optional LLM reviewer, writing `Event` rows to `regulatory_events`. A second, **historical** flow (`RegulationRule` + `UserRuleAssignment`, per-user LLM matching in `events/user_agent.py`) produced the report metrics but is **not** exposed by a live route; the UI only reads precomputed assignments via `/api/regulations/me`. Do not assume `user_agent.py` is reachable from an endpoint — see `EVENT_SYSTEM.md`.
+4. **Submission Agent** (`api/agents/`) — validates an uploaded document against a ruleset before the student submits (streams reasoning over SSE)
 
 ---
 
@@ -38,22 +40,31 @@ orbis/
 │   ├── requirements.txt
 │   ├── .env.example                 # Reference for required env vars
 │   ├── core/                        # Shared infrastructure (logging)
+│   ├── agents/                      # Submission-check agent (submission_agent.py)
+│   ├── events/                      # Regulation event system (orchestrator + assignment agents)
 │   ├── database/
-│   │   ├── models.py                # ALL SQLAlchemy models (single source of truth)
+│   │   ├── models/                  # SQLAlchemy models AS A PACKAGE — the source of truth
+│   │   │   ├── base.py              # Base (DeclarativeBase) + EMBEDDING_DIM
+│   │   │   ├── enums.py             # All enum types
+│   │   │   ├── identity.py          # User, UserProfile, Student, Instructor
+│   │   │   ├── academic.py          # Course, CourseSection, SectionSchedule, Enrollment, Assignment, AcademicTerm, AcademicCalendarEntry, ...
+│   │   │   ├── knowledge.py         # KnowledgeBase, EmbeddingModel, KnowledgeBaseEmbedding
+│   │   │   └── events.py            # EventRun/Event/...Log, RegulationRule, UserRuleAssignment
+│   │   ├── models.py                # DEAD CODE — shadowed by the package above; do NOT edit (see Known Bugs)
 │   │   ├── session.py               # DB engine, SessionLocal, get_db()
 │   │   └── repositories/            # Data access layer
 │   ├── embedding/                   # Embedding provider package (TEI / Ollama / Local)
 │   ├── llm/                         # LLM provider package (Groq / Gemini / OpenAI)
 │   ├── rag/                         # RAG pipeline package (router, retrieval, rerank, context, SIS injection)
 │   ├── rag_service/                 # Optional standalone RAG microservice (port 8010)
-│   ├── routes/                      # FastAPI routers
-│   ├── services/                    # Thin re-export wrappers for backward compatibility
+│   ├── routes/                      # FastAPI routers (auth, search, logout, sis, student, regulations, events, assignments)
+│   ├── services/                    # Thin wrappers / compatibility exports
 │   │   ├── rag_service.py           # Re-exports RAGService from rag.pipeline
 │   │   ├── embedding_service.py     # Re-exports from embedding.runtime
 │   │   └── auth_service.py          # Authentication and JWT logic
-│   ├── schemas/                     # Pydantic request/response schemas (incl. SIS schemas)
-│   ├── scripts/                     # ACTIVE: data processing, scraping, seeding, and categorization
-│   │   ├── experiments/             # LEGACY — old RAG experiments, kept but not in use
+│   ├── schemas/                     # Pydantic request/response schemas (auth, sis, student, regulations)
+│   ├── scripts/                     # Data processing, scraping, seeding, categorization, report evals
+│   │   ├── experiments/             # Mixed: current report eval scripts + legacy RAG experiments
 │   │   ├── ingest/                  # LEGACY — old ingestion pipeline, kept but not in use
 │   │   ├── categorization/          # URL clustering and data categorization
 │   │   ├── migrations/              # SQL migration scripts for SIS tables
@@ -73,12 +84,16 @@ orbis/
         │   ├── AuthContext.tsx       # Auth state, login/logout, token refresh
         │   └── ThemeContext.tsx      # Dark/light mode, accent colors
         ├── components/
-        │   └── Sidebar.tsx          # Collapsible nav sidebar
-        ├── pages/
+        │   └── Sidebar.tsx          # Collapsible nav sidebar (Main / Student / Bottom sections)
+        ├── pages/                   # 13 pages — see frontend.instructions.md for the full list
         │   ├── LoginPage.tsx        # Login form
+        │   ├── DashboardPage.tsx    # Default landing — stats, deadlines, calendar
         │   ├── ChatPage.tsx         # RAG chat interface
         │   ├── CalendarPage.tsx     # Academic calendar view
-        │   └── SchedulePage.tsx     # Weekly schedule grid
+        │   ├── SchedulePage.tsx     # Weekly schedule grid
+        │   ├── AssignmentsPage.tsx  # Assignments + streamed submission check
+        │   ├── RegulationsPage.tsx  # "My Regulations" per-user rule assignments
+        │   └── ProfilePage / TranscriptPage / CoursesPage / CatalogPage / NotificationsPage / SettingsPage
         ├── services/api.ts          # HTTP + streaming calls to backend
         ├── locales/                  # i18n translation files (en.json, tr.json)
         └── index.css                # Global styles (CSS custom properties theming)
@@ -90,9 +105,9 @@ orbis/
 
 ### Python (Backend)
 - SQLAlchemy 2.0 style: use `select()` statements, not `session.query()` — exception: vector distance queries still use legacy `.query()` because pgvector's SQLAlchemy 2.0 integration for ordering by distance is limited
-- Repository pattern for all DB access — routes call services, services call repositories
+- Repository pattern for all DB access — routes call services/repositories, repositories own the queries
 - Repositories take `Session` as a parameter (dependency injected via FastAPI `Depends`)
-- Pydantic models live in `schemas/`, SQLAlchemy models live in `database/models.py`
+- Pydantic models live in `schemas/`, SQLAlchemy models live in the `database/models/` **package** (split by domain: `identity`, `academic`, `knowledge`, `events`, `enums`). Import from `database.models` (the package re-exports everything via `__init__.py`). Do **not** edit `database/models.py` — see Known Bugs #0
 - Environment config via `python-dotenv`, always loaded in `main.py` before other imports
 
 ### Naming
@@ -113,13 +128,15 @@ orbis/
 
 These are real issues in the current codebase. Do not silently work around them — flag them.
 
+0. **Duplicate models definition — `database/models.py` (file) AND `database/models/` (package) both exist.** Python imports the *package* (`database/models/__init__.py`), so the standalone `database/models.py` file is dead, shadowed code. It still contains an older, smaller set of models and will silently go out of sync. Always edit the package files under `database/models/`; never edit `database/models.py`. The file should eventually be deleted, but do not delete it as a side effect of unrelated work.
+
 1. **Frontend cookie sentinel** — `LoginPage.tsx` stores the string `'cookie'` in the `AuthUser` object (persisted to localStorage as `orbis_user`) as a workaround to indicate an authenticated session when using httpOnly cookies. This is intentional for now but is a known hack.
 
 2. **`docker-compose.yml` embedding model mismatch** — The compose file now uses `intfloat/multilingual-e5-small` with 3 load-balanced TEI replicas, but the production system uses `paraphrase-multilingual-MiniLM-L12-v2` or `all-MiniLM-L6-v2` (384-dim). If someone deploys via compose, the embeddings will be incompatible with the existing database.
 
-3. **`api/scripts/experiments/` and `api/scripts/ingest/` are entirely legacy** — these folders were moved from `api/experiments/` and `api/ingest/` into `api/scripts/` but still belong to an earlier RAG prototype. They may not function correctly against the current codebase. Do not reference or modify them. The active data pipeline is in `api/scripts/` (top-level scripts only).
+3. **`api/scripts/ingest/` is legacy; `api/scripts/experiments/` is mixed.** The experiments folder contains current report-facing evaluation scripts (`eval_event_extraction.py`, `eval_assignment_matching.py`, `eval_submission_agent.py`) plus older RAG experiments (`experiment_chunk_quality.py`, `experiment_embedding_quality.py`). Do not treat every experiment script as production runtime code. The active ingestion/embedding pipeline is still the top-level scripts in `api/scripts/`.
 
-4. **`EmbeddingModel` / `KnowledgeBaseEmbedding` models are scaffolded but unused** — defined in `models.py` with no migration, no repository, and no code that references them. They are placeholders for future versioned embedding support.
+4. **`EmbeddingModel` / `KnowledgeBaseEmbedding` models are scaffolded but unused** — defined in `database/models/knowledge.py` with no migration, no repository, and no code that references them. They are placeholders for future versioned embedding support.
 
 5. **Some RAG config knobs are defined but not yet wired** — `RAG_SCORE_THRESHOLD`, `RAG_RERANK_ENABLED`, and `RAG_RERANK_TOP_N` exist in `rag/config.py` but are not consumed by any code path yet.
 

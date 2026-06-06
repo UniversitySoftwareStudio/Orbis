@@ -9,6 +9,7 @@ Embedding domain split by provider and lifecycle.
 - `provider_base.py`: provider interface.
 - `tei_provider.py`: TEI implementation.
 - `ollama_provider.py`: Ollama implementation.
+- `local_provider.py`: in-process local (sentence-transformers) implementation.
 - `providers.py`: provider export surface.
 
 ## Flow
@@ -24,4 +25,5 @@ flowchart TD
 ## Relevance
 - `service.py` is the single entrypoint used by app code.
 - provider files isolate infra-specific logic.
-- `runtime.py` preserves old import paths.
+- `runtime.py` preserves old import paths for compatibility wrappers under
+  `api/services/`.

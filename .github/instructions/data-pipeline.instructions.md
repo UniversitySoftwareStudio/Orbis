@@ -1,6 +1,6 @@
 # Data Pipeline — Detailed Instructions
 
-Applies to: `api/scripts/`, `api/scripts/ingest/` (legacy), `api/data/`, `api/database/models.py` (KnowledgeBase)
+Applies to: `api/scripts/`, `api/scripts/ingest/` (legacy), `api/data/`, `api/database/models/knowledge.py` (KnowledgeBase — in the `database/models/` package; the standalone `database/models.py` file is dead, shadowed code)
 
 ---
 
@@ -157,7 +157,7 @@ Key points:
 
 ## The `metadata_` Alias
 
-In `database/models.py`, the JSONB metadata column is defined as:
+In `database/models/knowledge.py`, the JSONB metadata column is defined as:
 
 ```python
 metadata_ = Column("metadata", JSONB, default={})

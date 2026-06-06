@@ -1,25 +1,44 @@
+# Current TODO - 2026-06-03
 
----
+This replaces the older March cleanup TODO. The old items around adding a
+`category` column and embedding-model tables are historical; the report now
+depends on the categorized regulation subset and evaluation artifacts already
+present in the repo.
 
-## 10) TODO — Data Cleanup & Classification (2026-03-10)
+## Report / Documentation
 
-### Archive noise rows
-- [ ] Move `/kadro/` and `/staff/` URLs (~6,071 rows) to `knowledge_base_archived`, delete from `knowledge_base` — these are faculty profile pages, pure noise
-- [ ] Identify other noise branches to archive (investigation in progress)
+- [ ] Keep `report/report.tex` aligned with the current implementation boundary:
+  `/api/events/*` writes `regulatory_events`, while the reported assignment
+  metrics use `regulation_rules` and `user_rule_assignments`.
+- [ ] Add a short limitations paragraph anywhere the report mentions silver
+  ground truth: the event labels are LLM-produced and inter-judge agreement is
+  0.529 on 51 candidates.
+- [ ] Keep the baseline-paper notes in `report/baseline_papers/README.md`
+  synchronized with `report/references.bib`.
 
-### Investigate remaining URL branches
-- [ ] `akademik` level-4 sub-pages — what's useful vs noise beyond faculty profiles?
-- [ ] `media/uploads/` filenames — map keyword patterns (`yonetmelik`, `staj`, `burs`, `tez`, etc.)
-- [ ] `upload/` branch — what's in here?
-- [ ] `universite/` branch — what's useful?
-- [ ] `haber/` and `etkinlik/` — confirm all noise, archive?
+## Runtime / Demo
 
-### Classification
-- [ ] Add `category` column to `knowledge_base`
-- [ ] Write URL-rule classifier for regulatory subset (no embeddings — pure string matching)
-- [ ] Target categories: `regulation`, `internship`, `scholarship`, `erasmus`, `exchange`, `thesis`, `financial`, `tenders`
+- [ ] Reconnect the live event extraction route to the per-user regulation
+  assignment flow, or explicitly keep the current split as demo data.
+- [ ] Decide whether to expose a new `/api/events/assign/me` route or keep
+  `/api/regulations/me` as the only student-facing regulation endpoint.
+- [ ] Add a reviewer/admin queue page for submissions flagged by students.
+- [ ] Add a third submission-agent output class (`flagged`) so partial or
+  suspicious work routes to human review instead of binary approve/reject.
 
-### Embedding versioning
-- [ ] Run migration to create `embedding_models` and `knowledge_base_embeddings` tables in DB
-- [ ] Backfill existing `knowledge_base.embedding` vectors into `knowledge_base_embeddings` with legacy model registered
-- [ ] Add HNSW index on `knowledge_base.embedding` (currently no ANN index — full seq scan on every query)
+## Evaluation
+
+- [ ] Convert the 323 event-candidate silver labels into human-validated gold.
+- [ ] Expand the submission-review set beyond 32 deterministic cases.
+- [ ] Add more prompt-injection variants; current 4/4 result is directional,
+  not a general security guarantee.
+- [ ] Re-run assignment matching after matcher calibration and report confidence
+  intervals or sensitivity over `maybe` labels.
+
+## Cleanup
+
+- [ ] Keep generated/local files out of commits: `web/node_modules/`,
+  `report/build/`, `api/uploads/`, `api/tests/reports/`.
+- [ ] Preserve archived experiment outputs under `archive/old_experiment_runs/`.
+- [ ] Review whether legacy `api/database/models.py` can be archived after
+  imports/tests are stable.

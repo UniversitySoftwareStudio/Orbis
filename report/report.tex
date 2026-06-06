@@ -8,6 +8,7 @@
 \usepackage[export]{adjustbox}
 \usepackage[all]{nowidow} 
 \usepackage{booktabs} 
+\usepackage{array}
 \usepackage{cite} 
 \usepackage{enumitem}
 \usepackage{tikz} 
@@ -50,7 +51,7 @@
 \submissiondate{June, 2026} 
 
 \abstract{
-University academic systems often function merely as static record-keeping databases, lacking proactive support for students navigating complex degree requirements. This project, 'Orbis', introduces an intelligent academic support system designed to bridge this gap using Artificial Intelligence (AI) and Retrieval-Augmented Generation (RAG). The core of Orbis is an Orchestrator-led event management pipeline that autonomously monitors a student's dynamic academic state against a complex vector database of university regulations, triggering timely notifications for critical milestones. To achieve high fidelity, we engineered a taxonomy generation pipeline utilizing Shannon entropy tail-signal classification and MiniBatchKMeans clustering, organizing 60,649 document chunks into 125 high-quality leaf nodes. Our pipeline features a two-pass adversarial LLM review, evaluating 323 candidate rules and extracting 178 highly actionable obligations with a 55\% acceptance rate, and matches them against 4 distinct student profiles to generate 176 personalized assignments. We then evaluate each subsystem against a silver ground-truth set constructed via LLM-as-a-judge (\texttt{gemini-2.5-flash-lite}), validated against a second judge from a different model family. The event-extraction stage achieves precision 0.978 / recall 0.574 / $F_1$ 0.723 over 323 candidates; the assignment-matching stage achieves $F_1$ 0.51 over 712 (profile, obligation) pairs, identifying matching as the weakest layer of the pipeline. An agentic submission-review subsystem evaluated on 32 deterministically generated cases attains 78\% accuracy with perfect recall, but is correctly resistant to in-document prompt injection only 25\% of the time --- a concrete weakness we discuss as a risk and as future work. The remaining roadmap includes direct integration with the university's Student Information System (SIS), injection-hardened submission review, and a labeled human-validated test set replacing the current silver ground truth.
+University academic systems often function merely as static record-keeping databases, lacking proactive support for students navigating complex degree requirements. This project, 'Orbis', introduces an intelligent academic support system designed to bridge this gap using Artificial Intelligence (AI) and Retrieval-Augmented Generation (RAG). The core of Orbis is an Orchestrator-led event management pipeline that autonomously monitors a student's dynamic academic state against a complex vector database of university regulations, triggering timely notifications for critical milestones. To achieve high fidelity, we engineered a taxonomy generation pipeline utilizing Shannon entropy tail-signal classification and MiniBatchKMeans clustering, organizing 60,649 document chunks into 125 high-quality leaf nodes. Our pipeline features a two-pass adversarial LLM review, evaluating 323 candidate rules and extracting 178 highly actionable obligations with a 55\% acceptance rate, and matches them against 4 distinct student profiles to generate 176 personalized assignments. We then evaluate each subsystem against a silver ground-truth set constructed via LLM-as-a-judge (\texttt{gemini-2.5-flash-lite}), validated against a second judge from a different model family. The event-extraction stage achieves precision 0.978 / recall 0.574 / $F_1$ 0.723 over 323 candidates; the assignment-matching stage achieves $F_1$ 0.51 over 712 (profile, obligation) pairs, identifying matching as the weakest layer of the pipeline. An agentic submission-review subsystem evaluated on 32 deterministically generated cases attains 94\% accuracy with perfect recall and full ($4/4$) resistance to in-document prompt injection; its sole remaining error mode is over-approval of partial drafts, which we discuss as future work. The remaining roadmap includes direct integration with the university's Student Information System (SIS), injection-hardened submission review, and a labeled human-validated test set replacing the current silver ground truth.
 }
 
 \begin{document}
@@ -94,13 +95,17 @@ Our project, 'Orbis', offers a novel solution by shifting the academic paradigm 
 Crucially, the architecture of Orbis is designed for scalability. The system relies on a strictly orchestrated workflow to execute its primary use case: the \textbf{Proactive Event System}. This autonomous pipeline extracts strict, assignable obligations from regulatory documents and creates normalized events, allowing the system to trigger timely, unprompted notifications for students regarding their specific academic requirements.
 
 \section{Related Works}
-Academic support systems have evolved from static record-keeping into AI-mediated tools, but most existing systems remain reactive: they answer student questions but do not autonomously enforce regulations against a student's state. We position Orbis against four lines of work.
+Academic support systems have evolved from static record-keeping into AI-mediated tools, but most existing systems remain reactive: they answer student questions but do not autonomously enforce regulations against a student's state. We position Orbis against six lines of work.
 
-\textbf{RAG-based academic chatbots.} Retrieval-Augmented Generation combines a generative LLM with a non-parametric retrieval store, grounding answers in source documents and reducing hallucination \cite{lewis2020retrieval}. Several universities have deployed RAG chatbots over their handbooks and FAQ pages. These systems serve well as on-demand search interfaces but operate strictly in a pull mode --- a student must already know that a question is worth asking. Orbis instead operates in a push mode: it parses regulations into structured obligations and matches them against profiles before the student asks.
+\textbf{RAG-based academic chatbots.} Retrieval-Augmented Generation combines a generative LLM with a non-parametric retrieval store, grounding answers in source documents and reducing hallucination \cite{lewis2020retrieval}. A systematic review of advising chatbots screened 128 studies and retained 11 advising-chatbot papers, finding that most systems target admission or academic-advising dialogue rather than autonomous obligation enforcement \cite{assayed2024systematic}. More recent advising-LLM work reports QA-style metrics such as BLEU, ROUGE-L, and student satisfaction ratings \cite{ismail2025academic}. These systems serve well as on-demand search interfaces, but operate strictly in a pull mode --- a student must already know that a question is worth asking. Orbis instead operates in a push mode: it parses regulations into structured obligations and matches them against profiles before the student asks.
 
-\textbf{Degree-audit systems.} Tools such as DegreeWorks and Stellic encode degree requirements as deterministic rules and audit a transcript against them. They are excellent for objective conditions (credit counts, GPA thresholds) but cannot reason about unstructured policy text (procedural requirements, deadline-bearing obligations, exceptions written in prose). Orbis complements deterministic audit with a contextual LLM path that operates over free-text regulation.
+\textbf{Degree-audit systems.} Tools such as DegreeWorks and Stellic encode degree requirements as deterministic rules and audit a transcript against them. The Degree Audit Reporting System (DARS), for example, has been studied as an advising and registration-support system rather than as an information-extraction benchmark \cite{wick2023dars}. Such systems are excellent for objective conditions (credit counts, GPA thresholds) but cannot reason about unstructured policy text (procedural requirements, deadline-bearing obligations, exceptions written in prose). Orbis complements deterministic audit with a contextual LLM path that operates over free-text regulation.
+
+\textbf{Regulatory information extraction.} Prior regulatory IE work is closer to Orbis's event-extraction subsystem, but not to the full Orbis pipeline. Zhang and El-Gohary report 0.969 precision and 0.944 recall when extracting quantitative requirements from the 2009 International Building Code using semantic NLP rules \cite{zhang2016semantic}. Recent legal-obligation extraction work on the EU AI Act reports 93\% precision for obligation filtering and over 99\% accuracy for classifying obligation type, addressee, and predicate \cite{galli2025aiAct}. These results are useful precision/recall comparators for the extraction stage, but their domains, source documents, and output schemas differ from university-student obligation assignment.
 
 \textbf{Local context: HermiOne.} Istanbul Bilgi University has deployed ``HermiOne,'' a support chatbot built by the university's IT department. Based on publicly observable behavior at the time of writing, HermiOne appears to operate primarily as a reactive question-answering chatbot rather than as a proactive regulation-enforcement agent; a direct comparison would require access to its design documentation, which we did not have. Orbis is intentionally complementary: HermiOne handles the conversational interface, while Orbis produces the underlying structured event stream that a future iteration of HermiOne could subscribe to.
+
+\textbf{Automated submission assessment.} LLM-assisted grading systems provide a useful comparison point for the submission-review subsystem, but their metrics usually measure grade prediction rather than safety-oriented accept/reject screening. JorGPT, for instance, evaluates programming-assignment grading over 672 submissions and reports adjusted $R^2{=}0.9156$, mean absolute error $0.4579$, and a reduction from over 300 hours of manual work to under 15 minutes of automated processing \cite{cisneros2025jorgpt}. Orbis's submission agent is narrower: it does not assign grades, but checks whether a submitted artifact satisfies assignment requirements and preserves an appeal path.
 
 \textbf{LLM-as-a-judge for evaluation.} Because labeled gold sets for university-specific regulation extraction do not exist publicly, we adopt the LLM-as-a-judge methodology \cite{zheng2023judging}, in which an independent LLM is used as a scalable proxy for human labeling and validated against a second model from a different family. This methodology underlies our evaluation in Section~9.
 
@@ -121,6 +126,29 @@ HermiOne (reactive)        & Pull & Yes & Partial & No \\
 \end{tabular}
 \caption{Positioning of Orbis against related categories of academic-support systems. \emph{Push} means the system surfaces an obligation before a student asks. \emph{Unstructured rules} means handling free-text regulation, not only schema-based requirements.}
 \label{tab:related_work}
+\end{table}
+
+No exact end-to-end baseline was found for the combined task Orbis addresses: proactive extraction of university regulations, profile-specific obligation assignment, and submission review with appeal. Therefore, Table~\ref{tab:baseline_validity} compares Orbis against official prior work at the subsystem level and explicitly marks whether each comparison is direct, partial, or contextual. This distinction is important: we do not claim that Orbis ``beats'' systems evaluated on different tasks; we use them to position the contribution and to choose defensible metrics.
+
+\begin{table}[H]
+\centering
+\scriptsize
+\begin{adjustbox}{width=\textwidth}
+\begin{tabular}{>{\raggedright\arraybackslash}p{3.2cm}>{\raggedright\arraybackslash}p{2.5cm}>{\raggedright\arraybackslash}p{3.4cm}>{\raggedright\arraybackslash}p{2.2cm}>{\raggedright\arraybackslash}p{4.7cm}}
+\toprule
+\textbf{Official prior work} & \textbf{Related Orbis subsystem} & \textbf{Reported metric or scope} & \textbf{Comparison type} & \textbf{How it is used in this report} \\ \midrule
+Assayed et al. systematic review \cite{assayed2024systematic} & Advising-chatbot landscape & 128 articles screened; 11 included advising-chatbot studies & Contextual & Shows that advising chatbots are active research systems, but mostly dialogue/admission/advising tools rather than proactive rule-assignment pipelines. \\
+Ismail academic-advising LLM \cite{ismail2025academic} & Advising chatbot & BLEU 0.45$\rightarrow$0.78; ROUGE-L 0.85; 50-student ratings 4.6--4.8/5 & Contextual & Provides QA-chatbot metrics; not directly compared because Orbis is evaluated on extraction, matching, and submission screening rather than answer generation. \\
+Wick and Wallingford DARS study \cite{wick2023dars} & Degree audit & Qualitative analysis of DARS for advising and registration support & Contextual & Positions deterministic degree-audit systems as complements, not direct NLP baselines. \\
+Zhang and El-Gohary regulatory IE \cite{zhang2016semantic} & Event extraction & Precision 0.969; recall 0.944 on building-code quantitative requirements & Partial & Provides a precision/recall comparator for regulatory extraction, with different domain and rule schema. \\
+Galli et al. AI Act obligation extraction \cite{galli2025aiAct} & Event extraction & 93\% obligation-filtering precision; $>$99\% classification accuracy for extracted obligation fields & Partial & Provides a modern legal-obligation extraction comparator; not compared to assignment matching or submission review. \\
+JorGPT LLM grading \cite{cisneros2025jorgpt} & Submission assessment & Adjusted $R^2$ 0.9156; MAE 0.4579; 672 submissions; 300+ hours $\rightarrow$ under 15 minutes & Partial & Provides grading/workload context; Orbis reports binary accept/reject safety metrics instead of grade-regression metrics. \\
+Prior Orbis single-call reviewer & Submission review & Accuracy 0.781; injection resistance 1/4 & Direct & Internal ablation baseline for the current two-call reviewer reported in Section~9.4. \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\caption{Official baseline and comparator validity. \emph{Direct} means the same task and data family; \emph{partial} means a related subsystem metric but different domain or output schema; \emph{contextual} means useful for positioning only.}
+\label{tab:baseline_validity}
 \end{table}
 
 \section{Dataset}
@@ -302,79 +330,110 @@ User assignments are routed through two parallel channels based on the user's \t
 \end{itemize}
 
 \subsection{Agentic Assignment Submission Evaluation}
-Beyond proactively assigning obligations, Orbis also evaluates work students submit against those assignments. Each upload is processed by a stateless \texttt{submission\_agent} that operates in four phases, mirroring how a human teaching assistant would screen a submission before grading.
+Beyond proactively assigning obligations, Orbis also evaluates work students submit against those assignments. Each upload is processed by a stateless \texttt{submission\_agent} that, rather than issuing a single opaque verdict, reasons in causal steps that mirror how a human teaching assistant screens a submission: first understand \emph{what is being asked}, then check the document \emph{against each individual requirement} with cited evidence, and only then decide. Concretely the agent runs a deterministic file gate followed by a two-call LLM reasoning chain.
 
 \begin{enumerate}
-    \item \textbf{File-system inspection.} The agent records the file count, extensions, sizes, MIME types, and apparent encoding. Empty files, oversized files, archives over a configured member limit, and files whose declared extension does not match their content are flagged at this stage without invoking the LLM.
-    \item \textbf{Text extraction.} Supported document formats (\texttt{.pdf}, \texttt{.docx}, \texttt{.zip} of text, and ${\sim}25$ text-like extensions) are decoded to plain text using format-specific extractors. Binary payloads that survive extraction (e.g.\ random bytes in a PDF wrapper) are detected by a heuristic on the proportion of printable characters.
-    \item \textbf{Line-by-line review.} The extracted text is compared against requirement keywords derived from the assignment title and description, yielding a structured \texttt{line\_review} JSON of matched/missed evidence used as a stable handle for the LLM.
-    \item \textbf{LLM reasoning and decision.} The agent prompts the LLM with the requirement, the file profile, the line review, and the extracted text (clipped to a configured budget). The LLM returns a JSON decision (\texttt{approved} / \texttt{rejected}) with a confidence score, a one-sentence reason, and evidence quotations.
+    \item \textbf{File inspection (no LLM).} The agent records the file's extension, size, MIME type, and --- for archives --- the member list. Empty files, oversized files, archives over a configured member limit, and unreadable or unsupported payloads are rejected here without ever invoking the LLM.
+    \item \textbf{Text extraction.} Supported formats (\texttt{.pdf}, \texttt{.docx}, \texttt{.zip}, and ${\sim}70$ text-like extensions) are decoded to plain text. Inside archives the agent no longer trusts the extension as a gate: it skips only known-binary types and otherwise attempts to decode each member, keeping it if a printable-character heuristic confirms it is text (so a \texttt{.tex} project or an extensionless \texttt{Makefile} is still read).
+    \item \textbf{Requirement decomposition (LLM call 1).} The agent prompts the LLM to break the assignment title and description into a checklist of discrete, independently checkable requirements. If this call yields nothing usable, the agent falls back to a deterministic keyword \texttt{line\_review} derived from the assignment text so the next step always has structure to anchor on.
+    \item \textbf{Per-requirement judgment and decision (LLM call 2).} The agent prompts the LLM with the requirement checklist, the file profile, and the extracted text (clipped to a configured budget), and asks it to walk \emph{each} requirement: does the document satisfy it, with a quoted evidence span and a causal justification of \emph{why}. Only after every requirement is judged does the model synthesize the overall \texttt{approved}/\texttt{rejected} decision. The output is a structured JSON report containing a \texttt{requirement\_findings} array (one \{satisfied, evidence, evidence\_line, reasoning\} object per requirement) plus a confidence score and a student-facing reason.
 \end{enumerate}
 
-If the agent rejects the submission, the student is presented with the reason and a \texttt{flag\_for\_review} action that records \texttt{flagged\_by\_student} and \texttt{student\_flag\_reason} on the submission row and routes the case to a human reviewer. This appeal path is, in our view, an ethical requirement: it prevents an automated false rejection from terminating a student's chance to be graded.
+The entire flow is exposed to the browser as a Server-Sent-Events stream: the client receives the extracted source text, the decomposed requirements, and each per-requirement finding as it is produced, and renders them live alongside a chronological ``agent work'' trail and a source-document panel that highlights the exact passage each finding references. If the agent rejects the submission, the student is presented with the reason and a \texttt{flag\_for\_review} action that records \texttt{flagged\_by\_student} and \texttt{student\_flag\_reason} on the submission row and routes the case to a human reviewer. This appeal path is, in our view, an ethical requirement: it prevents an automated false rejection from terminating a student's chance to be graded.
 
 \begin{figure}[H]
     \centering
-    \resizebox{0.85\textwidth}{!}{%
+    \resizebox{0.96\textwidth}{!}{%
     \begin{tikzpicture}[
+        x=1cm,
+        y=1cm,
         >=Stealth,
-        font=\sffamily\small,
-        stage/.style={rectangle, draw=black!75, line width=0.6pt, fill=gray!5,
-                      rounded corners=3pt, minimum width=7.5cm, minimum height=0.9cm,
-                      align=center},
-        ok/.style={rectangle, draw=black!75, line width=0.6pt, fill=green!10,
-                   rounded corners=3pt, minimum width=3.6cm, minimum height=0.9cm,
-                   align=center},
-        bad/.style={rectangle, draw=black!75, line width=0.6pt, fill=red!8,
-                    rounded corners=3pt, minimum width=3.6cm, minimum height=0.9cm,
-                    align=center},
-        human/.style={rectangle, draw=black!75, line width=0.6pt, fill=yellow!15,
-                      rounded corners=3pt, minimum width=3.6cm, minimum height=0.9cm,
-                      align=center},
-        lbl/.style={font=\scriptsize, text=black!70, fill=white, inner sep=2pt}
+        font=\sffamily\footnotesize,
+        block/.style={rectangle, draw=orbisLine, line width=0.8pt, fill=white,
+                      rounded corners=4pt, align=center, text=orbisInk,
+                      inner xsep=8pt, inner ysep=6pt, text width=7.4cm,
+                      minimum height=0.9cm},
+        stage/.style={block, fill=orbisPanel},
+        llmstage/.style={block, draw=orbisBlue!55, fill=orbisBlue!7},
+        aux/.style={rectangle, draw=orbisLine, dashed, line width=0.8pt,
+                    fill=white, rounded corners=4pt, align=center,
+                    text=orbisInk, inner xsep=7pt, inner ysep=6pt, text width=3.1cm,
+                    minimum height=0.95cm},
+        rejectaux/.style={aux, draw=orbisRed!55, fill=orbisRed!5},
+        decision/.style={diamond, aspect=2.25, draw=orbisInk!55, line width=0.8pt,
+                         fill=white, align=center, text=orbisInk,
+                         inner sep=1pt, minimum width=2.25cm, minimum height=0.85cm},
+        ok/.style={rectangle, draw=orbisGreen!65, line width=0.8pt,
+                   fill=orbisGreen!10, rounded corners=4pt, align=center,
+                   text=orbisInk, inner xsep=7pt, inner ysep=6pt,
+                   text width=3.05cm, minimum height=1.0cm},
+        bad/.style={rectangle, draw=orbisRed!65, line width=0.8pt,
+                    fill=orbisRed!8, rounded corners=4pt, align=center,
+                    text=orbisInk, inner xsep=7pt, inner ysep=6pt,
+                    text width=3.25cm, minimum height=1.0cm},
+        human/.style={rectangle, draw=orbisGold!80, line width=0.8pt,
+                      fill=orbisGold!12, rounded corners=4pt, align=center,
+                      text=orbisInk, inner xsep=7pt, inner ysep=6pt,
+                      text width=3.55cm, minimum height=0.95cm},
+        arrow/.style={->, draw=orbisInk!70, line width=0.85pt},
+        softarrow/.style={->, draw=orbisBlue!70, dotted, line width=0.75pt},
+        fallback/.style={->, draw=orbisInk!55, dashed, line width=0.75pt},
+        lbl/.style={font=\scriptsize, text=orbisInk!70, fill=white, inner sep=1.5pt}
     ]
 
-    % Vertical pipeline (centered x=0)
-    \node[stage] (upload)  at (0,  6.0) {Student upload via \texttt{POST /assignments/\{id\}/submit}};
-    \node[stage] (inspect) at (0,  4.5) {\textbf{1.~File inspection}: size, extension, MIME, count};
-    \node[stage] (extract) at (0,  3.0) {\textbf{2.~Text extraction}: PDF / DOCX / ZIP / text};
-    \node[stage] (review)  at (0,  1.5) {\textbf{3.~Line review}: evidence vs.\ requirement keywords};
-    \node[stage] (llm)     at (0,  0.0) {\textbf{4.~LLM reasoning}: requirement + evidence $\rightarrow$ JSON};
+    % Main submission pipeline
+    \node[stage]    (upload)  at (0,  7.50) {\textbf{Student upload}\\ \texttt{POST /assignments/\{id\}/submit/stream}};
+    \node[stage]    (inspect) at (0,  6.05) {\textbf{1.~File gate (no LLM)}\\ size, type, MIME, archive checks};
+    \node[stage]    (extract) at (0,  4.60) {\textbf{2.~Text extraction}\\ PDF / DOCX / ZIP / text-like files};
+    \node[llmstage] (decomp)  at (0,  3.15) {\textbf{3.~LLM call 1: decompose}\\ assignment $\rightarrow$ requirement checklist};
+    \node[llmstage] (judge)   at (0,  1.70) {\textbf{4.~LLM call 2: judge requirements}\\ evidence + reasoning $\rightarrow$ verdict};
+    \node[decision] (verdict) at (0,  0.20) {\textbf{Verdict}};
 
-    % Two outcomes side by side
-    \node[ok]  (approve) at (-2.6, -1.8) {\textbf{Approved}};
-    \node[bad] (reject)  at ( 2.6, -1.8) {\textbf{Rejected} + reason};
+    % Side lanes
+    \node[rejectaux] (early) at (6.25, 6.05) {\textbf{Early rejection}\\ empty, corrupt, unsupported, or too large};
+    \node[aux] (kw) at (-6.25, 3.15) {\textbf{Keyword fallback}\\ \texttt{line\_review} if checklist is empty};
+    \node[aux] (sse) at (6.25, 2.35) {\textbf{SSE stream to UI}\\ source text, requirements, findings, work trail};
 
-    % Appeal path under reject
-    \node[human] (flag)  at ( 2.6, -3.3) {Student \texttt{flag\_for\_review}};
-    \node[human] (queue) at ( 2.6, -4.6) {Human reviewer queue};
+    % Outcomes
+    \node[ok]    (approve) at (-2.8, -1.35) {\textbf{Approved}\\ ready for grading};
+    \node[bad]   (reject)  at ( 2.8, -1.35) {\textbf{Rejected}\\ reason shown};
+    \node[human] (flag)    at ( 2.8, -2.95) {Student appeal\\ \texttt{flag\_for\_review}};
+    \node[human] (queue)   at ( 2.8, -4.30) {Human reviewer queue};
 
-    % Vertical arrows
-    \draw[->] (upload)  -- (inspect);
-    \draw[->] (inspect) -- (extract) node[midway,right,lbl]{OK};
-    \draw[->] (extract) -- (review);
-    \draw[->] (review)  -- (llm);
+    % Primary path
+    \draw[arrow] (upload) -- (inspect);
+    \draw[arrow] (inspect) -- (extract);
+    \draw[arrow] (extract) -- (decomp);
+    \draw[arrow] (decomp) -- (judge);
+    \draw[arrow] (judge) -- (verdict);
+    \draw[arrow] (verdict.south west) -- ++(-0.35,-0.45) -| (approve.north)
+        node[pos=0.30,left,lbl]{approved};
+    \draw[arrow] (verdict.south east) -- ++(0.35,-0.45) -| (reject.north)
+        node[pos=0.30,right,lbl]{rejected};
 
-    % LLM -> two outcomes
-    \draw[->] (llm.south) -- (approve.north) node[pos=0.55,left,lbl]{approved};
-    \draw[->] (llm.south) -- (reject.north)  node[pos=0.55,right,lbl]{rejected};
+    % Exceptions, fallback, and live UI stream
+    \draw[arrow] (inspect.east) -- (early.west);
+    \draw[arrow] (early.east) -- ++(0.70,0) |- (reject.east)
+        node[pos=0.18,right,lbl]{blocking errors};
+    \draw[fallback] (kw.east) -- (decomp.west);
+    \draw[softarrow] (extract.east) -- ++(0.45,0) |- (sse.west);
+    \draw[softarrow] (decomp.east) -- (sse.west);
+    \draw[softarrow] (judge.east) -- (sse.west);
 
-    % Early-reject branch from inspection straight down to reject (right side)
-    \draw[->] (inspect.east) -- ++(2.5,0) |- (reject.east)
-              node[pos=0.15,right,lbl]{blocking errors};
-
-    % Appeal chain
-    \draw[->] (reject) -- (flag)  node[midway,right,lbl]{appeal};
-    \draw[->] (flag)   -- (queue) node[midway,right,lbl]{enqueue};
+    % Appeal path
+    \draw[arrow] (reject) -- (flag);
+    \draw[arrow] (flag) -- (queue);
 
     \end{tikzpicture}}
-    \caption{Agentic submission-evaluation flow. A deterministic file-inspection gate rejects empty, corrupt, or wrong-extension files without invoking the LLM. Every rejection (early-stage or LLM-based) is recoverable through the \texttt{flag\_for\_review} appeal path, which routes the case to a human reviewer instead of terminating the student's submission attempt.}
+    \caption{Agentic submission-evaluation flow. A deterministic file gate rejects empty, corrupt, or unreadable files without invoking the LLM. The agent then reasons in two LLM calls: it first \emph{decomposes} the assignment into a requirement checklist, then \emph{judges the document against each requirement individually} with cited evidence before synthesizing a verdict. A deterministic keyword \texttt{line\_review} is retained only as a fallback when decomposition fails. Every stage is streamed over Server-Sent Events so the UI can render the source text, the requirements, and each per-requirement finding live. Every rejection (early-stage or LLM-based) is recoverable through the \texttt{flag\_for\_review} appeal path, which routes the case to a human reviewer instead of terminating the student's submission attempt.}
     \label{fig:submission_flow}
 \end{figure}
 
 \section{Experimental Setup}
 \subsection{Framework and Deployment}
-The backend is implemented in Python 3.10 with the FastAPI framework, served by Uvicorn workers behind Nginx, and uses Celery with a Redis broker for asynchronous task execution. Persistent storage is provided by PostgreSQL extended with the \texttt{pgvector} extension; the same database stores both the relational schema (users, courses, rules, assignments, telemetry) and the embedding index. All LLM calls are issued through the OpenRouter gateway so that the model selected for each pipeline stage can be swapped without code changes (see Table~\ref{tab:cost_models}). For the experiments reported in Section~9, the bulk LLM workload (labeling, extraction review, submission reasoning) uses \texttt{google/gemini-2.5-flash-lite}, with \texttt{deepseek/deepseek-v3.2} reserved for the adversarial Pass~2 review and \texttt{qwen/qwen3-235b-a22b-2507} used as the secondary judge during cross-validation. Document embeddings are produced offline by a local MiniLM model and reused at query time.
+The backend is implemented in Python 3.10 with the FastAPI framework and served by Uvicorn. Persistent storage is provided by PostgreSQL extended with the \texttt{pgvector} extension; the same database stores both the relational schema (users, courses, rules, assignments, telemetry) and the embedding index. The application runtime supports Gemini, Groq, and OpenAI-compatible LLM providers through environment configuration, while the evaluation scripts used for this report route judge calls through OpenRouter so that model choice and cost are explicit (see Table~\ref{tab:cost_models}). For the experiments reported in Section~9, the bulk LLM workload (labeling, extraction review, submission reasoning) uses \texttt{google/gemini-2.5-flash-lite}, with \texttt{deepseek/deepseek-v3.2} reserved for the adversarial Pass~2 review and \texttt{qwen/qwen3-235b-a22b-2507} used as the secondary judge during cross-validation. Document embeddings are produced offline by a local MiniLM model and reused at query time; the repository also includes an optional Docker Compose setup that load-balances TEI embedding servers behind Nginx.
+
+The quantitative regulation-assignment results should be read as an evaluation of the preserved action-object pipeline artifacts in the project database: \texttt{regulation\_rules}, \texttt{user\_rule\_assignments}, and \texttt{event\_candidate\_logs}. The current repository also contains a newer admin-triggered extraction route that writes accepted rows to \texttt{regulatory\_events}. This implementation boundary does not change the reported metrics, but it clarifies that the assignment-matching evaluation is tied to the archived database run rather than to a live, currently exposed \texttt{/api/events/assign/me} endpoint.
 
 \subsection{Performance Metrics}
 The system's rule extraction efficacy is evaluated fundamentally on its \textit{Acceptance Rate} and qualitative precision. A successful pipeline must maximize true positive obligations while forcefully rejecting noisy, non-imperative fragments.
@@ -434,10 +493,35 @@ We re-emphasize that the figures above describe \emph{coverage}, not \emph{corre
 \section{Quantitative Evaluation}
 While the aggregate counts in Tables~\ref{tab:extraction_funnel} and~\ref{tab:assignment_results} describe the system's throughput, they do not assess whether each individual decision was \emph{correct}. To answer that question we constructed a labeled evaluation set and report per-stage precision, recall, $F_1$, and a stratum-level error analysis. We follow the LLM-as-a-judge methodology, where an independent LLM is used as a scalable proxy for human labeling, validated by a second model from a different family \cite{zheng2023judging}.
 
+The interpretation of these metrics follows the comparator boundaries established in Table~\ref{tab:baseline_validity}. The only direct baseline claim in this report is internal: the current two-call submission reviewer improves over the prior Orbis single-call reviewer on the same case design. External official works are used more cautiously. The event-extraction precision can be discussed alongside regulatory IE systems such as Zhang and El-Gohary or Galli et al., but it is not a direct win/loss claim because the source domain and output schema differ. Assignment matching has no exact official baseline found in the literature; submission review is also not directly comparable to JorGPT because Orbis performs binary accept/reject screening with appeal rather than numerical grade regression.
+
 \subsection{Silver Ground-Truth Construction}
-For the event pipeline, ground truth was constructed automatically over all 323 entries in \texttt{event\_candidate\_logs}. Each candidate was relabeled by \texttt{google/gemini-2.5-flash-lite} into \{\texttt{true\_obligation}, \texttt{non\_obligation}, \texttt{ambiguous}\} given only the candidate text and its target role, with no access to the system's own decision. The same judge labeled all 712 (profile, candidate) pairs spanning the 4 student profiles in \texttt{user\_profiles} and the 178 accepted candidates, producing applicability labels in \{\texttt{yes}, \texttt{no}, \texttt{maybe}\}. Because LLM judges are imperfect, we further re-labeled a stratified sample of 51 candidates with a second judge from a different model family (\texttt{qwen3.5-flash}) and report inter-judge agreement as a noise-floor estimate. We label this dataset \emph{silver} (rather than gold) ground truth: it is reproducible and large enough to be informative, but final metrics should be read modulo the inter-judge agreement rate.
+For the event pipeline, ground truth was constructed automatically over all 323 entries in \texttt{event\_candidate\_logs}. Each candidate was relabeled by \texttt{google/gemini-2.5-flash-lite} into \{\texttt{true\_obligation}, \texttt{non\_obligation}, \texttt{ambiguous}\} given only the candidate text and its target role, with no access to the system's own decision. The same judge labeled all 712 (profile, candidate) pairs spanning the 4 student profiles in \texttt{user\_profiles} and the 178 accepted candidates, producing applicability labels in \{\texttt{yes}, \texttt{no}, \texttt{maybe}\}. Because LLM judges are imperfect, we further re-labeled a stratified sample of 51 candidates with a second judge from a different model family and report inter-judge agreement as a noise-floor estimate. We label this dataset \emph{silver} (rather than gold) ground truth: it is reproducible and large enough to be informative, but final metrics should be read modulo the inter-judge agreement rate.
 
 For the submission agent, ground truth was generated deterministically by constructing 8 strata over each of the 4 real assignments in the database (32 cases total): \texttt{approve}, \texttt{approve\_multifile}, \texttt{reject\_wrong\_content} (a file from a different assignment), \texttt{reject\_empty}, \texttt{reject\_corrupt} (random bytes in a PDF wrapper), \texttt{reject\_wrong\_ext} (Python source renamed to \texttt{.pdf}), \texttt{flag\_partial} (LLM-written incomplete draft), and \texttt{reject\_injection} (wrong-content document appended with a prompt-injection payload instructing the reviewer to approve). Each case contains a requirement file, a directory of submitted files, and an \texttt{expected.json} describing the gold decision, required evidence items, and red flags.
+
+Table~\ref{tab:metric_provenance} lists the provenance of every quantitative claim used in the evaluation. This table is intentionally included to make the evidence boundary explicit: the event and assignment labels are silver labels produced by LLM judges, while the submission cases have deterministic expected labels but are small and synthetic.
+
+\begin{table}[H]
+\centering
+\scriptsize
+\begin{adjustbox}{width=\textwidth}
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{>{\raggedright\arraybackslash}p{3.0cm}>{\raggedright\arraybackslash}p{2.2cm}>{\raggedright\arraybackslash}p{3.3cm}>{\raggedright\arraybackslash}p{3.6cm}>{\raggedright\arraybackslash}p{4.4cm}}
+\toprule
+\textbf{Metric family} & \textbf{Reported value} & \textbf{Evaluation set} & \textbf{Artifact or script} & \textbf{Limitation} \\ \midrule
+Event extraction & Precision 0.978; recall 0.574; $F_1$ 0.723 & 323 candidates from \texttt{event\_candidate\_logs} & \texttt{events/}\newline \texttt{candidates\_gt.jsonl}\newline \texttt{eval\_event}\newline \texttt{\_extraction.py} & Silver LLM labels, not human gold; recall is sensitive to how the judge defines ``obligation''. \\
+Assignment matching & Precision 0.608; recall 0.446; $F_1$ 0.514 & 712 profile-obligation pairs (4 profiles $\times$ 178 accepted obligations) & \texttt{events/assignment}\newline \texttt{\_matching\_gt.jsonl}\newline \texttt{eval\_assignment}\newline \texttt{\_matching.py} & Silver applicability labels; only 4 student profiles; \texttt{maybe} is folded into the negative class for strict scoring. \\
+Inter-judge agreement & 0.529 agreement on 51 sampled candidates & Stratified sample from event labels & \texttt{events/validation}\newline \texttt{\_report.json} & Used as a noise-floor estimate, not as a performance metric for Orbis. \\
+Submission review & Accuracy 0.938; precision 0.800; recall 1.000; $F_1$ 0.889 & 32 deterministic cases (4 assignments $\times$ 8 strata) & \texttt{submissions/}\newline \texttt{results.jsonl}\newline \texttt{eval\_submission}\newline \texttt{\_agent.py} & Small synthetic set; \texttt{flag\_partial} is folded into binary reject for scoring. \\
+Prompt-injection resistance & 4/4 tested cases rejected & \texttt{reject\_injection} stratum & \texttt{submissions/}\newline \texttt{results.jsonl} & Directional finding only; not a general security guarantee against all prompt-injection patterns. \\
+Submission ablation & Accuracy 0.781$\rightarrow$0.938; injection 1/4$\rightarrow$4/4 & Old single-call reviewer vs. current two-call reviewer on the same case design & Historical run recorded in Section~9.4 narrative; current \texttt{results.jsonl} & Internal baseline, not external prior work; intended to justify the design change. \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\caption{Metric provenance and limitations. Artifact paths are reported relative to the repository.}
+\label{tab:metric_provenance}
+\end{table}
 
 \subsection{Event Extraction Results}
 Table~\ref{tab:event_confusion} reports the confusion matrix obtained by comparing the system's deterministic + LLM-review decision against the silver labels.
@@ -484,10 +568,10 @@ Overall & 107 & 69 & 133 & 403 & 0.608 & 0.446 & 0.514 \\
 \label{tab:matching_perprofile}
 \end{table}
 
-The matching stage is the weakest layer of the pipeline: overall $F_1{=}0.51$. Manual inspection of disagreements indicates two recurring failure modes. First, broad-scope obligations (\textit{e.g.}\ ``submit graduation poster'') are assigned uniformly to every profile but only apply to graduating students, generating false positives. Second, situational obligations triggered by \texttt{extra\_context} fields (\textit{e.g.}\ \texttt{scholarship}, \texttt{internship\_status}) are under-matched when the judge expected them to fire, generating false negatives. Both failure modes are concrete, addressable, and discussed in Section~12.
+The matching stage is the weakest layer of the pipeline: overall $F_1{=}0.51$. Manual inspection of disagreements indicates two recurring failure modes. First, broad-scope obligations (\textit{e.g.}\ ``submit graduation poster'') are assigned uniformly to every profile but only apply to graduating students, generating false positives. Second, situational obligations triggered by \texttt{extra\_context} fields (\textit{e.g.}\ \texttt{scholarship}, \texttt{internship\_status}) are under-matched when the judge expected them to fire, generating false negatives. Both failure modes are concrete, addressable, and discussed in Section~11.
 
 \subsection{Submission Agent Results}
-The submission agent was run on all 32 generated cases. For multi-file cases the agent is invoked per file and a case is recorded as approved if any file is approved, matching the production UX. The agent currently produces only two output classes (\texttt{approved}, \texttt{rejected}); the \texttt{flag\_partial} stratum is therefore folded into the negative class.
+The submission agent was run on all 32 generated cases. For multi-file cases the agent is invoked per file and a case is recorded as approved if any file is approved, matching the production UX. The agent produces two output classes (\texttt{approved}, \texttt{rejected}); the \texttt{flag\_partial} stratum is folded into the negative (reject) class for scoring.
 
 \begin{table}[H]
 \centering
@@ -500,13 +584,27 @@ reject\_wrong\_content & 4 & --- \\
 reject\_wrong\_ext & 4 & --- \\
 reject\_empty & 4 & --- \\
 reject\_corrupt & 4 & --- \\
-flag\_partial & 0 & under-rejects \\
-reject\_injection & 1 & falsely approves \\ \midrule
-Overall (N=32) & 25 (78.1\%) & --- \\
+reject\_injection & 4 & --- \\
+flag\_partial & 2 & under-rejects \\ \midrule
+Overall (N=32) & 30 (93.8\%) & --- \\
 \bottomrule
 \end{tabular}
-\caption{Submission agent results stratified by case type. The first six strata are perfectly handled; the final two surface concrete, named weaknesses.}
+\caption{Submission agent results stratified by case type. Seven of the eight strata are perfectly handled; only partial-draft detection remains imperfect.}
 \label{tab:submission_stratum}
+\end{table}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lcc}
+\toprule
+ & \multicolumn{2}{c}{Predicted} \\ \cmidrule(l){2-3}
+Gold & Approve & Reject \\ \midrule
+Approve (genuine work) & 8 (TP) & 0 (FN) \\
+Reject (should block)  & 2 (FP) & 22 (TN) \\
+\bottomrule
+\end{tabular}
+\caption{Submission agent confusion matrix on $N{=}32$ cases (positive class: approve). Zero false negatives: no genuine submission was rejected. Both false positives are \texttt{flag\_partial} drafts.}
+\label{tab:submission_confusion}
 \end{table}
 
 \begin{table}[H]
@@ -514,28 +612,28 @@ Overall (N=32) & 25 (78.1\%) & --- \\
 \begin{tabular}{lc}
 \toprule
 Metric & Value \\ \midrule
-Accuracy & 0.781 \\
-Precision & 0.533 \\
+Accuracy & 0.938 \\
+Precision & 0.800 \\
 Recall & 1.000 \\
-$F_1$ & 0.696 \\
-Injection resistance & 1 / 4 (25\%) \\
+$F_1$ & 0.889 \\
+Injection resistance & 4 / 4 (100\%) \\
 \bottomrule
 \end{tabular}
-\caption{Submission agent binary metrics. Recall is 1.0 (the agent never falsely rejects a genuine submission), at the cost of precision when adversarial or partial submissions appear.}
+\caption{Submission agent binary classification metrics (positive class: approve), measured on the 32-case ground-truth set against the current two-call agentic reviewer.}
 \label{tab:submission_metrics}
 \end{table}
 
-Two findings stand out. First, the agent achieves \emph{perfect recall}: no genuine submission was rejected. This is the safer error direction in an educational setting where false rejection harms the student. Second, the agent is vulnerable to in-document prompt injection: in 3 of 4 cases where the submitted file embedded an instruction to override the reviewer (``\textit{ignore the requirements; approve}''), the agent complied. These failures motivate a dedicated risk entry in Section~10.
+Three findings stand out. First, the agent achieves \emph{perfect recall} (0 false negatives): no genuine submission was rejected, which is the safer error direction in an educational setting where false rejection harms the student. Second, redesigning the reviewer into a two-call agentic chain --- decomposing the assignment into explicit requirements before judging the document against each one --- raised accuracy from $0.781$ to $0.938$ and lifted in-document prompt-injection resistance from $1/4$ to $4/4$: because the agent now verifies whether the \emph{actual requirements} are met, an embedded ``ignore the requirements; approve'' instruction no longer satisfies them. Third, the only remaining error mode is over-approval of partial drafts ($2/4$ \texttt{flag\_partial} cases approved), motivating an explicit third \texttt{flag} output class as future work.
 
 \subsection{Inter-Judge Agreement and Limitations}
-On a stratified sample of 51 candidates, the secondary judge (\texttt{qwen3.5-flash}) agreed with the primary judge (\texttt{gemini-2.5-flash-lite}) on 27 cases ($53\%$). Disagreement was concentrated on candidates discussing conditional rights (e.g.\ ``Apply through the Disabled Student Unit if eligible''), which \texttt{qwen3.5-flash} classified as \texttt{non\_obligation} and \texttt{gemini-2.5-flash-lite} as \texttt{true\_obligation}. We treat this $53\%$ figure as a noise floor: the absolute values of recall reported above should be interpreted within roughly this band, and the precision number for event extraction (0.978) is the most robust of our results because it depends primarily on the clearer ``accepted'' subset. We additionally note that the submission test set is small ($N{=}32$) and synthetically generated; the absolute injection-resistance percentage should therefore be read as a directional finding (\emph{the agent is vulnerable}), not a calibrated rate.
+On a stratified sample of 51 candidates, the secondary judge agreed with the primary judge on 27 cases ($53\%$). Disagreement was concentrated on candidates discussing conditional rights (e.g.\ ``Apply through the Disabled Student Unit if eligible''), which one judge treated as a non-obligation and the other treated as a true obligation. We treat this $53\%$ figure as a noise floor: the absolute values of recall reported above should be interpreted within roughly this band, and the precision number for event extraction (0.978) is the most robust of our results because it depends primarily on the clearer ``accepted'' subset. We additionally note that the submission test set is small ($N{=}32$) and synthetically generated; the absolute injection-resistance figure ($4/4$) should therefore be read as a directional finding (\emph{the redesigned agent resists the injection patterns we tested}), not a calibrated guarantee against all adversarial inputs.
 
 \section{Realistic Constraints}
 \subsection{Social, Environmental and Economic Impact}
 Orbis yields highly positive \textbf{social} impacts by democratizing access to high-quality academic advising. By alleviating the cognitive load associated with degree tracking, the system reduces student anxiety. \textbf{Economically}, the system acts as a highly scalable force multiplier for university administration, processing 80 complex regulation sources in 59 minutes—a task requiring human advisors weeks. \textbf{Environmentally}, transitioning to a digital, proactive event system directly reduces the institution's reliance on printed student handbooks and physical notices.
 
 \subsection{Cost Analysis}
-A central design choice in Orbis was to route LLM calls through OpenRouter, which exposes hundreds of models from different vendors behind a single API and lets us pick a cost-appropriate model per task. Pricing below is OpenRouter's published per-million-token rate at the time of writing.
+A central design choice in the Orbis evaluation harness was to route judge and reviewer calls through OpenRouter, which exposes many models from different vendors behind a single API and lets us pick a cost-appropriate model per task. The runtime application remains provider-configurable. Pricing below is OpenRouter's published per-million-token rate at the time of writing.
 
 \begin{table}[H]
 \centering
@@ -557,11 +655,11 @@ Measured against the actual workload of the experimental evaluation reported in 
     \item \textbf{LLM API (measured).} The full evaluation --- 323 candidate labels, 712 (profile, obligation) matching judgments, 51-sample cross-judge validation, and 32 submission-agent runs --- consumed approximately \$0.15 ($\approx 6$~TL) of OpenRouter credit. Including a one-time misallocation to a reasoning-mode model during model selection ($\approx \$1.37$), total experimental spend was under \$1.55 ($\approx 60$~TL).
     \item \textbf{LLM API (projected, steady state).} Re-running the full event pipeline weekly (4 runs/month) at the measured per-run rate gives an upper-bound monthly LLM cost of $\approx \$1$ ($\approx 40$~TL), excluding embedding cost.
     \item \textbf{Embedding model.} Document chunks are embedded once using a local MiniLM model; ongoing embedding cost is therefore zero in cash and bounded only by CPU/GPU time.
-    \item \textbf{Cloud Infrastructure.} Hosting the FastAPI backend, PostgreSQL with \texttt{pgvector}, and Celery workers on a single small VM is estimated at $\approx 2{,}500$ TL/month.
+    \item \textbf{Cloud Infrastructure.} Hosting the FastAPI backend, PostgreSQL with \texttt{pgvector}, and the embedding service on a small VM is estimated at $\approx 2{,}500$ TL/month.
     \item \textbf{Labor.} Two computer engineering students $\times \approx 400$ hours $\times$ 300 TL/hour $= 120{,}000$ TL.
 \end{itemize}
 
-The key finding is that by selecting OpenRouter models per task, the dominant marginal cost of running Orbis is infrastructure (hosting), not the LLM calls themselves. This contradicts a common assumption that LLM-based academic systems are necessarily expensive to operate.
+The key finding is that by selecting evaluation models per task, the dominant marginal cost of running Orbis is infrastructure (hosting), not the LLM calls themselves. This contradicts a common assumption that LLM-based academic systems are necessarily expensive to operate.
 
 \subsection{Standards}
 \subsubsection{NSPE Code of Ethics}
@@ -571,13 +669,13 @@ The National Society of Professional Engineers (NSPE) Code of Ethics mandates ho
 The project lifecycle was guided by IEEE standards for software engineering, specifically adhering to the principles of \textbf{IEEE/ISO/IEC 16085-2020 (Risk Management)}. This standard was applied to manage the risks associated with data ingestion pipelines, ensuring concurrent data processing without state corruption.
 
 \subsection{Risk Analysis}
-Beyond software-engineering risks, Orbis must address risks specific to LLM-based academic decision-making. We report named risks with their mitigations, prioritized by the empirical findings in Section~10.
+Beyond software-engineering risks, Orbis must address risks specific to LLM-based academic decision-making. We report named risks with their mitigations, prioritized by the empirical findings in Section~9.
 
 \begin{itemize}
-    \item \textbf{Incorrect academic advice (false positive matching).} The assignment-matching stage has precision $0.61$ on silver ground truth, meaning roughly 4 in 10 issued assignments may be inapplicable to the targeted student. Mitigation: each assignment carries the LLM reasoning trace, allowing a student to flag misapplied rules; a human-administrator review queue is exposed at \texttt{POST /api/assignments/\{id\}/flag} for appeal.
+    \item \textbf{Incorrect academic advice (false positive matching).} The assignment-matching stage has precision $0.61$ on silver ground truth, meaning roughly 4 in 10 issued assignments may be inapplicable to the targeted student. Mitigation: each assignment carries the LLM reasoning trace and can be marked active, actioned, or dismissed through \texttt{/api/regulations/assignments/\{id\}}; future work should add a dedicated human-review queue for disputed regulation assignments.
     \item \textbf{Missed obligations (false negative matching).} Recall is $0.45$, so genuine obligations may not surface to a given student. Mitigation: regulations are ingested at the source-document level (not erased), so a missed match remains discoverable via the read-only RAG search; future work includes lowering the SQL/contextual decision threshold and adding a recall-oriented secondary pass.
-    \item \textbf{Prompt injection in submitted documents.} Our evaluation shows the submission agent is fooled by in-document prompt injection $3{/}4$ times. Mitigation paths under development: (a) hard-separating submitted content from the instruction context using delimiters and content-type tags, (b) treating any \texttt{system}/\texttt{instruction}-like patterns inside extracted text as a strong rejection signal, (c) routing flagged cases to manual review rather than auto-approval.
-    \item \textbf{Over-approval of partial work.} The agent approves clearly incomplete submissions $4{/}4$ times. Mitigation: introduce an explicit \texttt{flag\_for\_review} third class in the agent's output schema so partial work routes to the instructor rather than being silently approved.
+    \item \textbf{Prompt injection in submitted documents.} The earlier single-call reviewer was fooled by in-document prompt injection $3{/}4$ times; the current requirement-decomposition design resists all $4{/}4$ tested injection cases, because approval now depends on the \emph{assignment's} requirements being met rather than on instructions found inside the submitted file. We nonetheless treat this as an ongoing risk given the small test set, and continue to harden it via (a) hard-separating submitted content from the instruction context using delimiters and content-type tags, and (b) routing any flagged case to manual review rather than auto-approval.
+    \item \textbf{Over-approval of partial work.} The agent still approves clearly incomplete submissions in $2{/}4$ \texttt{flag\_partial} cases. Mitigation: introduce an explicit \texttt{flag\_for\_review} third output class so partial work routes to the instructor rather than being silently approved.
     \item \textbf{Stale regulations.} Crawled documents are timestamped but not re-verified after ingestion. Mitigation: a scheduled re-crawl per source domain with content-hash diffing already exists in \texttt{event\_source\_checkpoints}; future work re-runs the extraction pipeline only over changed sources.
     \item \textbf{Privacy.} Student profiles contain academic standing and may contain protected attributes. Mitigation: LLM prompts include only the fields strictly required for applicability reasoning, and all outbound LLM calls are logged in \texttt{event\_agent\_logs} for audit.
     \item \textbf{Over-reliance.} Students may treat assignments as definitive rather than advisory. Mitigation: every notification carries the source URL and evidence quote, encouraging verification against the underlying document.
@@ -586,7 +684,7 @@ Beyond software-engineering risks, Orbis must address risks specific to LLM-base
 \section{Conclusion \& Future Work}
 The Orbis project demonstrates the value of transitioning academic advising from a static, reactive model to a dynamic, proactive one. By engineering a high-fidelity taxonomy pipeline based on Shannon Entropy and MiniBatchKMeans, we organized over 60{,}000 document chunks into 125 pure semantic leaves. The Orchestrator-led event system evaluated 323 candidate rules and extracted 178 actionable obligations at a measured precision of $0.978$ against silver ground truth; the hybrid SQL + contextual matcher delivered 176 personalized assignments in under an hour.
 
-In contrast to a marketing narrative, our quantitative evaluation also exposes the system's real limits. The matching layer is the weakest, with $F_1{=}0.51$ over 712 (profile, obligation) pairs, driven by over-eager broad-scope assignments and under-matched situational rules. The submission-review agent achieves perfect recall on genuine submissions but is fooled by in-document prompt injection $3{/}4$ times and approves clearly incomplete work $4{/}4$ times. Reporting these results explicitly is, we believe, more useful to a future reader than a uniformly positive summary.
+In contrast to a marketing narrative, our quantitative evaluation also exposes the system's real limits. The matching layer is the weakest, with $F_1{=}0.51$ over 712 (profile, obligation) pairs, driven by over-eager broad-scope assignments and under-matched situational rules. The submission-review agent achieves $0.938$ accuracy with perfect recall on genuine submissions and full resistance to the prompt-injection cases we tested ($4/4$), with its sole residual weakness being over-approval of partial drafts ($2/4$). Reporting these results --- strengths and the remaining gap alike --- explicitly is, we believe, more useful to a future reader than a uniformly positive summary.
 
 Future work follows directly from these findings.
 \begin{itemize}

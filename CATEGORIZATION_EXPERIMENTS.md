@@ -3,6 +3,11 @@
 Istanbul Bilgi University · Orbis RAG Platform  
 Student project by two undergraduate students.
 
+Updated context: the final report uses the April 4-5 taxonomy-clean run and the
+regulation overlay that identifies 935 regulation chunks. Older runs are
+historical design evidence and should stay archived rather than be treated as
+runtime code.
+
 ---
 
 ## The Starting Point

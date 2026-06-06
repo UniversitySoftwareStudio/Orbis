@@ -1,5 +1,5 @@
 """
-Database repositories for UniChatBot
+Database repositories for Orbis
 Provides data access layer for all entities
 """
 
