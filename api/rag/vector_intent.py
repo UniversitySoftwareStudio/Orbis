@@ -8,6 +8,7 @@ from rag.config import RAG_FINAL_K, RAG_TOP_K
 from rag.console import RAG_DEBUG, console
 from rag.helpers import build_rerank_text
 from rag.rerank import rerank, rerank_docs
+from rag.eval_logger import get_eval_state, append_search_log, register_chunks
 
 
 def _expand_top_sources(
@@ -19,6 +20,7 @@ def _expand_top_sources(
     expanded: dict[Any, Any] = {doc.id: doc for doc in docs[:10]}
     seen_urls: set[str] = set()
     expansion_rows: list[tuple[str, int]] = []
+    new_chunk_ids: list[str] = []
 
     for doc in docs[:top_n]:
         url = getattr(doc, "url", None)
@@ -31,9 +33,17 @@ def _expand_top_sources(
         for chunk in repository.get_by_url(session, url):
             if chunk.id not in expanded:
                 expanded[chunk.id] = chunk
+                new_chunk_ids.append(str(chunk.id))
         expansion_rows.append((url, len(expanded) - before))
 
+    if expansion_rows:
+        state = get_eval_state()
+        state["retrieval_and_reranking_phase"]["smart_expansion"]["triggered"] = True
+        state["retrieval_and_reranking_phase"]["smart_expansion"]["expanded_pdf_ids"].extend([url for url, _ in expansion_rows])
+        state["retrieval_and_reranking_phase"]["smart_expansion"]["newly_added_chunk_ids"].extend(new_chunk_ids)
+
     result = list(expanded.values())
+    register_chunks(result) # Register the combined dataset
 
     if RAG_DEBUG and expansion_rows:
         table = Table(box=box.SIMPLE, show_header=True)
@@ -71,11 +81,16 @@ def execute_vector_intent(
         limit=fetch_limit,
     )
 
+    # Register immediately after retrieval to capture dropped context
+    register_chunks(initial_docs)
+
     if RAG_DEBUG:
         console.print(f"  [bold]Vector search[/bold]  limit=[cyan]{fetch_limit}[/cyan]  →  [green]{len(initial_docs)} doc(s)[/green] retrieved")
 
     if not initial_docs:
         return []
+    
+    raw_ids = [str(doc.id) for doc in initial_docs]
 
     # Stage 1 — pre-expansion rerank
     pre_rank = rerank(query, [build_rerank_text(doc) for doc in initial_docs], len(initial_docs))
@@ -86,6 +101,10 @@ def execute_vector_intent(
     ]
     if not ranked_initial:
         ranked_initial = initial_docs
+
+    first_rank_ids = [str(doc.id) for doc in ranked_initial]
+    search_id_num = len(get_eval_state().get("retrieval_and_reranking_phase", {}).get("parallel_searches", [])) + 1
+    append_search_log(f"search_{search_id_num}", raw_ids, first_rank_ids)
 
     if RAG_DEBUG:
         table = Table(box=box.SIMPLE, show_header=True)
