@@ -7,6 +7,7 @@ from rich.table import Table
 from rag.config import RAG_COMPACT_DOC_THRESHOLD, RAG_COMPACT_SQL_THRESHOLD, RAG_MAX_CONTEXT_CHARS
 from rag.console import RAG_DEBUG, console
 from rag.helpers import doc_meta
+from rag.eval_logger import get_eval_state
 
 
 def deduplicate_docs(docs: list[Any]) -> list[Any]:
@@ -55,6 +56,10 @@ def build_context(intents: list[dict[str, Any]], docs: list[Any]) -> str:
     compact_mode = (has_sql and len(docs) > RAG_COMPACT_SQL_THRESHOLD) or len(docs) > RAG_COMPACT_DOC_THRESHOLD
 
     if compact_mode:
+        state = get_eval_state()
+        state["formatting_phase"]["csv_compacting"]["triggered"] = True
+        state["formatting_phase"]["csv_compacting"]["items_compacted"] = len(docs)
+
         course_docs = [doc for doc in docs if getattr(doc, "type", None) == "course"]
         if len(course_docs) > len(docs) / 2:
             lines = ["The user asked for a list of courses. CSV Format:\n", "ID, Code, Title, ECTS, Info"]
