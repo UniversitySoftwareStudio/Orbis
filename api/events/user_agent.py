@@ -33,6 +33,7 @@ from database.models import (
     UserProfile,
     UserRuleAssignment,
 )
+from llm.service import LLMService, get_llm_service
 from events.utils import normalize_text
 
 logger = get_logger(__name__)
@@ -121,6 +122,30 @@ Return a JSON array — include ONLY rules that apply:
 If no rules apply, return [].
 Return ONLY the JSON array."""
 
+CONTEXTUAL_TRACE_PROMPT = """{system}
+
+You are checking which university regulations apply to a specific person.
+
+PERSON PROFILE:
+{user_context}
+
+CANDIDATE RULES:
+{rules}
+
+For EVERY rule, decide if it applies to THIS person right now.
+Use only the profile facts and the rule fields. Do not invent missing facts.
+Return strict JSON only:
+{{
+  "decisions": [
+    {{
+      "rule_index": 0,
+      "applies": true,
+      "reason": "one concise sentence grounded in the profile and the rule"
+    }}
+  ]
+}}
+"""
+
 
 # ---------------------------------------------------------------------------
 # Context builder — works for any user role
@@ -182,9 +207,34 @@ def build_user_context(db: Session, user: User) -> str:
     # For students — pull live enrollment and GPA from DB
     if role == "student" and user.student:
         student = user.student
+        lines.append(f"Student ID: {student.student_id}")
         gpa = float(student.gpa) if student.gpa is not None else None
         if gpa is not None:
             lines.append(f"GPA: {gpa}")
+
+        progress = db.execute(text("""
+            SELECT
+                COUNT(*) FILTER (WHERE e.status = 'COMPLETED') AS completed_courses,
+                COUNT(DISTINCT cs.term_id) FILTER (WHERE e.status = 'COMPLETED') AS completed_terms,
+                COUNT(*) FILTER (WHERE e.status = 'ENROLLED') AS enrolled_courses
+            FROM enrollments e
+            LEFT JOIN course_sections cs ON cs.id = e.section_id
+            WHERE e.student_id = :sid
+        """), {"sid": student.id}).mappings().first()
+        if progress:
+            completed_courses = int(progress["completed_courses"] or 0)
+            completed_terms = int(progress["completed_terms"] or 0)
+            enrolled_courses = int(progress["enrolled_courses"] or 0)
+            if completed_courses:
+                lines.append(f"Completed courses: {completed_courses}")
+                if not (profile and profile.total_credits_completed is not None):
+                    lines.append(f"Estimated credits completed: {completed_courses * 3}")
+            if completed_terms:
+                lines.append(f"Completed academic terms: {completed_terms}")
+                if not (profile and profile.semester_number):
+                    lines.append(f"Estimated semesters completed: {completed_terms}")
+            if enrolled_courses and not (profile and profile.total_credits_enrolled is not None):
+                lines.append(f"Estimated credits enrolled this term: {enrolled_courses * 3}")
 
         enrollments = db.execute(text("""
             SELECT c.code, c.name, e.status
@@ -321,6 +371,256 @@ def _match_contextual_rules(
                 normalize_text(item.get("reason", ""))))
 
     return matched
+
+
+def _parse_llm_decisions(raw: str) -> list[dict[str, Any]]:
+    cleaned = (raw or "").strip()
+    for opener in ("{", "["):
+        index = cleaned.find(opener)
+        if index < 0:
+            continue
+        try:
+            payload, _ = json.JSONDecoder().raw_decode(cleaned[index:])
+        except Exception:
+            continue
+        if isinstance(payload, list):
+            return payload
+        if isinstance(payload, dict) and isinstance(payload.get("decisions"), list):
+            return payload["decisions"]
+    return []
+
+
+def _rule_payload(rule: RegulationRule, index: int) -> dict[str, Any]:
+    return {
+        "index": index,
+        "rule_id": str(rule.id),
+        "rule_text": rule.rule_text,
+        "applies_to": rule.applies_to,
+        "trigger": rule.trigger,
+        "deadline": rule.deadline,
+        "blocking": bool(rule.blocking),
+        "consequence": rule.consequence,
+        "exceptions": rule.exceptions,
+        "target_role": rule.target_role.value,
+        "match_type": rule.match_type.value,
+    }
+
+
+def _decision_payload(rule: RegulationRule, match_type: str, applies: bool, reason: str) -> dict[str, Any]:
+    return {
+        "rule_id": str(rule.id),
+        "rule_text": rule.rule_text,
+        "applies_to": rule.applies_to,
+        "trigger": rule.trigger,
+        "deadline": rule.deadline,
+        "blocking": bool(rule.blocking),
+        "consequence": rule.consequence,
+        "authority": rule.authority,
+        "match_type": match_type,
+        "applies": applies,
+        "reason": normalize_text(reason),
+        "_rule_obj": rule,
+    }
+
+
+def _sql_rule_decisions(db: Session, user: User) -> list[dict[str, Any]]:
+    rules = (
+        db.query(RegulationRule)
+        .filter(RegulationRule.match_type == RuleMatchType.SQL, RegulationRule.status == RuleStatus.ACTIVE)
+        .all()
+    )
+    if user.user_type.value != "student" or not user.student:
+        return [
+            _decision_payload(rule, "sql", False, "SQL rules are student-profile checks; this user has no student record.")
+            for rule in rules
+        ]
+
+    student = user.student
+    gpa = float(student.gpa) if student.gpa is not None else None
+    enrolled_credits = db.execute(text("""
+        SELECT COUNT(*) FROM enrollments WHERE student_id = :sid AND status = 'ENROLLED'
+    """), {"sid": student.id}).scalar() or 0
+    context = {"gpa": gpa, "enrolled_credits": int(enrolled_credits), "is_active": student.is_active}
+
+    decisions: list[dict[str, Any]] = []
+    for rule in rules:
+        if not rule.sql_condition:
+            decisions.append(_decision_payload(rule, "sql", False, "No SQL condition is defined for this rule."))
+            continue
+        try:
+            applies = bool(eval(rule.sql_condition, {"__builtins__": {}}, context))  # noqa: S307
+            reason = (
+                f"Profile values {context} satisfy {rule.sql_condition}."
+                if applies else
+                f"Profile values {context} do not satisfy {rule.sql_condition}."
+            )
+        except Exception as exc:
+            applies = False
+            reason = f"Could not evaluate condition {rule.sql_condition}: {exc}"
+        decisions.append(_decision_payload(rule, "sql", applies, reason))
+    return decisions
+
+
+def _contextual_rule_decisions(
+    db: Session,
+    user_context: str,
+    llm_service: LLMService | None = None,
+) -> list[dict[str, Any]]:
+    rules = (
+        db.query(RegulationRule)
+        .filter(RegulationRule.match_type == RuleMatchType.CONTEXTUAL, RegulationRule.status == RuleStatus.ACTIVE)
+        .all()
+    )
+    if not rules:
+        return []
+
+    llm = llm_service or get_llm_service()
+    decisions: list[dict[str, Any]] = []
+    for batch_start in range(0, len(rules), _CONTEXTUAL_BATCH_SIZE):
+        batch = rules[batch_start: batch_start + _CONTEXTUAL_BATCH_SIZE]
+        prompt = CONTEXTUAL_TRACE_PROMPT.format(
+            system=SYSTEM,
+            user_context=user_context,
+            rules=json.dumps([_rule_payload(rule, i) for i, rule in enumerate(batch)], ensure_ascii=False, indent=2),
+        )
+        raw = llm.complete(prompt)
+        parsed = _parse_llm_decisions(raw)
+        by_index = {
+            item.get("rule_index"): item
+            for item in parsed
+            if isinstance(item, dict) and isinstance(item.get("rule_index"), int)
+        }
+        for i, rule in enumerate(batch):
+            item = by_index.get(i)
+            if item is None:
+                decisions.append(_decision_payload(rule, "contextual", False, "The agent returned no decision for this rule."))
+                continue
+            decisions.append(
+                _decision_payload(
+                    rule,
+                    "contextual",
+                    bool(item.get("applies")),
+                    str(item.get("reason") or "No reason supplied."),
+                )
+            )
+    return decisions
+
+
+def _persist_assignments_detailed(db: Session, user: User, decisions: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    effects: list[dict[str, Any]] = []
+    for decision in decisions:
+        rule: RegulationRule = decision["_rule_obj"]
+        urgency = _compute_urgency(rule)
+        match_type = RuleMatchType.SQL if decision["match_type"] == "sql" else RuleMatchType.CONTEXTUAL
+        reason = normalize_text(decision.get("reason", ""))
+
+        existing = (
+            db.query(UserRuleAssignment)
+            .filter(UserRuleAssignment.user_id == user.id, UserRuleAssignment.rule_id == rule.id)
+            .first()
+        )
+        before_status = existing.status.value if existing else None
+        before_reason = existing.reason if existing else None
+        before_urgency = existing.urgency.value if existing else None
+
+        if not decision.get("applies"):
+            if existing and existing.status == AssignmentStatus.ACTIVE:
+                existing.status = AssignmentStatus.DISMISSED
+                existing.reason = f"No longer matched by the self-check: {reason}"
+                db.flush()
+                effects.append(
+                    {
+                        "assignment_id": str(existing.id),
+                        "rule_id": str(rule.id),
+                        "rule_text": rule.rule_text,
+                        "urgency": existing.urgency.value,
+                        "status": existing.status.value,
+                        "before_status": before_status,
+                        "action": "retired",
+                        "reason": existing.reason,
+                    }
+                )
+            continue
+
+        if existing:
+            action = "unchanged"
+            existing.reason = reason
+            existing.urgency = urgency
+            existing.match_type = match_type
+            if existing.status == AssignmentStatus.DISMISSED:
+                existing.status = AssignmentStatus.ACTIVE
+                action = "reactivated"
+            elif before_reason != reason or before_urgency != urgency.value:
+                action = "updated"
+            db.flush()
+            assignment = existing
+        else:
+            assignment = UserRuleAssignment(
+                user_id=user.id,
+                rule_id=rule.id,
+                match_type=match_type,
+                urgency=urgency,
+                status=AssignmentStatus.ACTIVE,
+                reason=reason,
+            )
+            db.add(assignment)
+            db.flush()
+            action = "created"
+
+        effects.append(
+            {
+                "assignment_id": str(assignment.id),
+                "rule_id": str(rule.id),
+                "rule_text": rule.rule_text,
+                "urgency": assignment.urgency.value,
+                "status": assignment.status.value,
+                "before_status": before_status,
+                "action": action,
+                "reason": assignment.reason,
+            }
+        )
+
+    db.commit()
+    return effects
+
+
+def run_for_user_trace(db: Session, user: User):
+    """Yield a transparent audit trail for a user-requested regulation check."""
+    yield {"type": "step", "message": "Building your regulation context", "detail": f"{user.first_name} {user.last_name}"}
+    user_context = build_user_context(db, user)
+    yield {"type": "profile", "context": user_context}
+
+    yield {"type": "step", "message": "Checking deterministic profile rules", "detail": "SQL conditions"}
+    sql_decisions = _sql_rule_decisions(db, user)
+    for decision in sql_decisions:
+        payload = {k: v for k, v in decision.items() if k != "_rule_obj"}
+        payload["type"] = "rule_decision"
+        yield payload
+
+    yield {"type": "step", "message": "Reasoning over contextual rules", "detail": "agent judgment against your profile"}
+    contextual_decisions = _contextual_rule_decisions(db, user_context)
+    for decision in contextual_decisions:
+        payload = {k: v for k, v in decision.items() if k != "_rule_obj"}
+        payload["type"] = "rule_decision"
+        yield payload
+
+    all_decisions = sql_decisions + contextual_decisions
+    applicable = [decision for decision in all_decisions if decision.get("applies")]
+    yield {"type": "step", "message": "Updating matched regulation assignments", "detail": f"{len(applicable)} applicable"}
+    effects = _persist_assignments_detailed(db, user, all_decisions)
+    for effect in effects:
+        yield {"type": "assignment", **effect}
+
+    counts = {
+        "rules_checked": len(all_decisions),
+        "applicable": len(applicable),
+        "created": sum(1 for item in effects if item["action"] == "created"),
+        "updated": sum(1 for item in effects if item["action"] == "updated"),
+        "reactivated": sum(1 for item in effects if item["action"] == "reactivated"),
+        "retired": sum(1 for item in effects if item["action"] == "retired"),
+        "unchanged": sum(1 for item in effects if item["action"] == "unchanged"),
+    }
+    yield {"type": "summary", **counts}
 
 
 # ---------------------------------------------------------------------------

@@ -273,12 +273,23 @@ def stream_submission_evaluation(
     config = config or SubmissionAgentConfig()
 
     yield AgentEvent("inspecting", {"message": "Opening and reading the document"})
+    yield AgentEvent("step", {"phase": "inspect", "message": f"Received file '{filename or 'upload'}' ({len(content) / 1024:.1f} KB)"})
+    yield AgentEvent("step", {"phase": "inspect", "message": "Detecting file type and choosing an extraction strategy…"})
     file_report, extracted_text = _inspect_and_extract(
         content=content,
         filename=filename,
         content_type=content_type,
         config=config,
     )
+    _method = str(file_report.get("extraction_method") or "read").replace("_", " ")
+    yield AgentEvent("step", {"phase": "inspect", "message": f"Strategy: {_method} (.{(file_report.get('extension') or '').lstrip('.')})"})
+    # Stream each archive member decision one-by-one so the dir walk is visible.
+    for _entry in file_report.get("archive_entries", []) or []:
+        if _entry.get("read"):
+            yield AgentEvent("step", {"phase": "inspect", "kind": "read", "message": f"Read  {_entry['path']}"})
+        else:
+            yield AgentEvent("step", {"phase": "inspect", "kind": "skip", "message": f"Skipped  {_entry['path']}", "detail": _entry.get("reason") or "non-text file"})
+    yield AgentEvent("step", {"phase": "inspect", "message": f"Extracted {file_report.get('extracted_chars', 0):,} characters across {file_report.get('line_count', 0)} lines"})
     yield AgentEvent(
         "inspected",
         {
@@ -344,16 +355,20 @@ def stream_submission_evaluation(
 
     # --- Step 1: decompose the assignment into atomic requirements --------------
     yield AgentEvent("understanding", {"message": "Understanding what the assignment asks for"})
+    yield AgentEvent("step", {"phase": "requirements", "message": f"Reading the brief: \"{assignment_title}\""})
     requirements: list[str] = []
     req_prompt = _build_requirement_prompt(
         assignment_title=assignment_title,
         assignment_description=assignment_description or "",
     )
+    yield AgentEvent("step", {"phase": "requirements", "message": "Asking the model to decompose it into atomic, checkable requirements…", "detail": f"prompt {len(req_prompt):,} chars"})
     req_raw = ""
     try:
         req_raw = llm_complete(req_prompt)
     except Exception as exc:  # pragma: no cover - exercised through integration config
         first_error = str(exc)
+    if req_raw:
+        yield AgentEvent("step", {"phase": "requirements", "message": f"Model returned {len(req_raw):,} chars — parsing the checklist…"})
     req_parsed = _parse_llm_response(req_raw) if req_raw else None
     if isinstance(req_parsed, dict):
         requirements = _normalize_requirements(req_parsed.get("requirements"))
@@ -387,6 +402,9 @@ def stream_submission_evaluation(
         "judging",
         {"message": "Checking the document against each requirement", "requirement_count": len(requirements)},
     )
+    # Narrate the checklist the agent is about to verify, one line each.
+    for _i, _req in enumerate(requirements, 1):
+        yield AgentEvent("step", {"phase": "judge", "message": f"Requirement {_i}/{len(requirements)}: {_req}"})
     verdict_prompt = _build_verdict_prompt(
         assignment_title=assignment_title,
         assignment_description=assignment_description or "",
@@ -396,6 +414,8 @@ def stream_submission_evaluation(
         extracted_text=extracted_text,
         config=config,
     )
+    yield AgentEvent("step", {"phase": "judge", "message": "Sending the document + checklist to the model for evidence-based judgement…", "detail": f"prompt {len(verdict_prompt):,} chars"})
+    yield AgentEvent("step", {"phase": "judge", "message": "Streaming the model's reasoning…"})
     verdict_raw = ""
     try:
         if llm_stream is not None:

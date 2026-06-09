@@ -38,6 +38,24 @@
       "transcript": "Transcript",
       "assignments": "Assignments",
       "regulations": "Regulations"
+    },
+    "askAnything": "Ask anything about Bilgi",
+    "dueToday": "Due today",
+    "dueTomorrow": "Tomorrow",
+    "inDays": "in {{n}}d",
+    "paths": {
+      "pullTag": "Pull · RAG",
+      "pullTitle": "Ask official sources",
+      "pullDesc": "Natural-language answers grounded in Bilgi regulations, catalog & calendar.",
+      "pullMetric": "Open chat",
+      "pushTag": "Push · Obligations",
+      "pushTitle": "My obligations",
+      "pushDesc": "Rules that apply to you, surfaced proactively with deadlines & urgency.",
+      "pushMetric": "{{n}} active",
+      "reviewTag": "Review · Agent",
+      "reviewTitle": "Submission review",
+      "reviewDesc": "Upload work; an agent checks each requirement with cited evidence.",
+      "reviewMetric": "{{n}} pending"
     }
   },
   "profile": {
@@ -133,13 +151,31 @@
     "email": "Email",
     "password": "Password",
     "submit": "Sign In",
-    "error": "Login failed"
+    "error": "Login failed",
+    "subtitle": "Sign in to your Orbis account",
+    "submitting": "Signing in…",
+    "footer": "Istanbul Bilgi University · Orbis"
   },
   "chat": {
     "placeholder": "Ask me about courses, regulations, or campus life...",
     "send": "Send",
-    "empty": "Ask me about courses, regulations, or campus life!",
-    "greeting": "Hello! I'm **Orbis**, the academic assistant of Istanbul Bilgi University.\nI can help you with:\n- 📚 Courses, curricula, and prerequisites\n- 📋 Regulations, internship, and Erasmus procedures\n- 🗓️ Academic calendar and important dates\n- 🏫 Faculties, departments, and contact information\n\nHow can I help you today?"
+    "empty": {
+      "title": "Ask anything about Bilgi",
+      "body": "Grounded answers from official regulations, the course catalog, and the academic calendar — every reply is backed by real sources.",
+      "tryLabel": "Try asking"
+    },
+    "greeting": "Hello! I'm **Orbis**, the academic assistant of Istanbul Bilgi University.\nI can help you with:\n- 📚 Courses, curricula, and prerequisites\n- 📋 Regulations, internship, and Erasmus procedures\n- 🗓️ Academic calendar and important dates\n- 🏫 Faculties, departments, and contact information\n\nHow can I help you today?",
+    "eyebrow": "Pull · RAG",
+    "heading": "Ask official sources",
+    "thinking": "Searching official sources…",
+    "examples": {
+      "addDrop": "When is the add/drop deadline this semester?",
+      "internship": "What are the mandatory internship requirements?",
+      "prereq": "What are the prerequisites for COMP 201?",
+      "erasmus": "How do I apply for the Erasmus exchange program?"
+    },
+    "sources": "Sources",
+    "newChat": "New chat"
   },
   "calendar": {
     "title": "Academic Calendar 2025-2026",
@@ -150,7 +186,20 @@
     "spring": "Spring Semester 2026",
     "loading": "Loading...",
     "empty": "No calendar data found.",
-    "months": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    "months": [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec"
+    ],
     "entryTypes": {
       "holiday": "Holiday",
       "exam_period": "Exam Period",

@@ -47,11 +47,20 @@ export const api = {
     return response.json();
   },
 
-  // 2. Streaming Chat (The RAG Magic)
+  // 2. Streaming Chat — agentic RAG over SSE. Emits step/source/chunk/done events.
   chatStream: async (
     message: string,
     token: string,
-    onChunk: (text: string) => void
+    onEvent: (type: string, data: any) => void,
+    focusedSource?: {
+      title: string;
+      url: string;
+      type?: string;
+      category?: string;
+      language?: string;
+      snippet?: string;
+      content?: string;
+    } | null,
   ) => {
     const headers: HeadersInit = { 'Content-Type': 'application/json' };
     if (token) headers['Authorization'] = `Bearer ${token}`;
@@ -59,26 +68,35 @@ export const api = {
     const response = await fetch(`${API_BASE_URL}/chat`, {
       method: 'POST',
       headers,
-      body: JSON.stringify({ message }),
-      credentials: 'include', // send cookie for server-side auth
+      body: JSON.stringify({ message, focused_source: focusedSource || null }),
+      credentials: 'include',
     });
 
-    if (response.status === 401) {
-      handleUnauthorized(response);
-      return;
-    }
+    if (response.status === 401) { handleUnauthorized(response); return; }
     if (!response.ok) throw new Error(response.statusText);
     if (!response.body) throw new Error('No response body');
 
-    // Read the stream
     const reader = response.body.getReader();
     const decoder = new TextDecoder();
+    let buffer = '';
 
     while (true) {
       const { done, value } = await reader.read();
       if (done) break;
-      const chunk = decoder.decode(value, { stream: true });
-      onChunk(chunk);
+      buffer += decoder.decode(value, { stream: true });
+      let sep: number;
+      while ((sep = buffer.indexOf('\n\n')) !== -1) {
+        const frame = buffer.slice(0, sep);
+        buffer = buffer.slice(sep + 2);
+        let eventType = 'message';
+        const dataLines: string[] = [];
+        for (const line of frame.split('\n')) {
+          if (line.startsWith('event:')) eventType = line.slice(6).trim();
+          else if (line.startsWith('data:')) dataLines.push(line.slice(5).trim());
+        }
+        if (dataLines.length === 0) continue;
+        try { onEvent(eventType, JSON.parse(dataLines.join('\n'))); } catch { /* ignore */ }
+      }
     }
   },
 
@@ -242,5 +260,44 @@ export const api = {
       throw new Error(error.detail || 'API Error');
     }
     return response.json();
+  },
+
+  // 13. Run regulation self-check — streams the assignment agent audit trail.
+  runRegulationCheckStream: async (
+    onEvent: (type: string, data: any) => void,
+  ) => {
+    const response = await fetch(`${API_BASE_URL}/regulations/check/stream`, {
+      method: 'POST',
+      credentials: 'include',
+    });
+    if (response.status === 401) { handleUnauthorized(response); return; }
+    if (!response.ok) {
+      const error = await response.json().catch(() => ({ detail: response.statusText }));
+      throw new Error(error.detail || 'API Error');
+    }
+    if (!response.body) throw new Error('No response body');
+
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder();
+    let buffer = '';
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      buffer += decoder.decode(value, { stream: true });
+      let sep: number;
+      while ((sep = buffer.indexOf('\n\n')) !== -1) {
+        const frame = buffer.slice(0, sep);
+        buffer = buffer.slice(sep + 2);
+        let eventType = 'message';
+        const dataLines: string[] = [];
+        for (const line of frame.split('\n')) {
+          if (line.startsWith('event:')) eventType = line.slice(6).trim();
+          else if (line.startsWith('data:')) dataLines.push(line.slice(5).trim());
+        }
+        if (dataLines.length === 0) continue;
+        try { onEvent(eventType, JSON.parse(dataLines.join('\n'))); } catch { /* ignore malformed frames */ }
+      }
+    }
   },
 };

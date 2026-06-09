@@ -1,19 +1,23 @@
 import { useState, useEffect, useRef } from 'react';
 import { ClipboardList, Upload, CheckCircle, XCircle, Clock, Flag, ChevronLeft, ChevronRight, Activity, FileText } from 'lucide-react';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { useAuth } from '../contexts/AuthContext';
 import { api } from '../services/api';
+import { PageHeader } from '../components/PageHeader';
 
 const REVIEW_CSS = `
 @keyframes sa-fade { from { opacity: 0; } to { opacity: 1; } }
 @keyframes sa-slide { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 @keyframes sa-spin { to { transform: rotate(360deg); } }
+@keyframes sa-panel-in { from { opacity: 0; transform: translateX(-16px); } to { opacity: 1; transform: none; } }
 .sa-spinner { width: 26px; height: 26px; border-radius: 50%; border: 3px solid var(--border-color); border-top-color: var(--accent); animation: sa-spin 0.7s linear infinite; }
 .sa-spinner-sm { width: 16px; height: 16px; border-width: 2px; }
 `;
 
 const REVIEW_STORAGE_KEY = 'orbis_assignment_reviews';
 
-type TimelineStep = { label: string; detail?: string; t: number };
+type TimelineStep = { label: string; detail?: string; t: number; kind?: string; phase?: string };
 
 type StoredReview = {
   status: 'approved' | 'rejected' | 'flagged';
@@ -172,15 +176,14 @@ function RequirementList({ requirements, findings, live, activeIndex, onSelect, 
           <div
             key={i}
             onClick={clickable ? () => onSelect?.(i, f as Finding) : undefined}
+            className={clickable && !isActive ? 'req-row' : undefined}
             style={{
               display: 'flex', gap: 12, padding: '14px 12px', margin: '0 -12px', borderRadius: 10,
               borderTop: i === 0 ? 'none' : '1px solid var(--border-color)',
-              opacity: checked || !live ? 1 : 0.45, transition: 'all 0.15s ease',
+              opacity: checked || !live ? 1 : 0.45, transition: 'background 0.15s ease, opacity 0.15s ease',
               cursor: clickable ? 'pointer' : 'default',
               background: isActive ? 'color-mix(in srgb, var(--accent) 10%, transparent)' : 'transparent',
             }}
-            onMouseEnter={e => { if (clickable && !isActive) (e.currentTarget as HTMLElement).style.background = 'var(--bg-tertiary)'; }}
-            onMouseLeave={e => { if (!isActive) (e.currentTarget as HTMLElement).style.background = 'transparent'; }}
           >
             <div style={{ flexShrink: 0, marginTop: 1, color: checked ? (ok ? '#22c55e' : '#ef4444') : 'var(--text-muted)' }}>
               {checked ? (ok ? <CheckCircle size={18} /> : <XCircle size={18} />) : (live ? <span className="sa-spinner sa-spinner-sm" /> : <Clock size={16} />)}
@@ -206,56 +209,151 @@ function RequirementList({ requirements, findings, live, activeIndex, onSelect, 
   );
 }
 
+// Turn the raw streamed verdict JSON into readable reasoning prose: pull out the
+// human sentences (reasoning/evidence/feedback fields) and drop JSON scaffolding.
+function humanizeReasoning(raw: string): string {
+  if (!raw) return '';
+  // Collect quoted natural-language strings that look like sentences.
+  const out: string[] = [];
+  const re = /"(?:reasoning|evidence|feedback|why_it_matters|summary|assignment_understanding|submission_summary)"\s*:\s*"((?:[^"\\]|\\.)*)"/g;
+  let m: RegExpExecArray | null;
+  while ((m = re.exec(raw)) !== null) {
+    const s = m[1].replace(/\\"/g, '"').replace(/\\n/g, ' ').trim();
+    if (s.length > 3) out.push(s);
+  }
+  if (out.length) return out.join('\n\n');
+  // Before any field closes, show the live tail as plain text (strip JSON noise).
+  const tail = raw.replace(/[{}[\]"]/g, ' ').replace(/\b\w+\s*:/g, '').replace(/\s+/g, ' ').trim();
+  return tail.slice(-600);
+}
+
+// Per-step node color/icon by kind — makes the agent's actions scannable.
+function stepTone(kind?: string): { color: string; mono?: boolean } {
+  switch (kind) {
+    case 'read': return { color: '#22c55e', mono: true };
+    case 'skip': return { color: 'var(--text-muted)', mono: true };
+    case 'met': return { color: '#22c55e' };
+    case 'unmet': return { color: '#ef4444' };
+    case 'reason': return { color: 'var(--accent)' };
+    default: return { color: 'var(--accent)' };
+  }
+}
+
+// The "big steps" the granular substeps roll up under.
+const PHASE_GROUPS: Array<{ id: string; label: string; icon: typeof Activity }> = [
+  { id: 'inspect', label: 'Extract document', icon: FileText },
+  { id: 'requirements', label: 'Understand assignment', icon: ClipboardList },
+  { id: 'judge', label: 'Judge against requirements', icon: Activity },
+  { id: 'verdict', label: 'Final verdict', icon: CheckCircle },
+];
+
+function PhaseGroup({ group, steps, isActive, isDone, defaultOpen }: {
+  group: { id: string; label: string; icon: typeof Activity };
+  steps: TimelineStep[]; isActive: boolean; isDone: boolean; defaultOpen: boolean;
+}) {
+  const [open, setOpen] = useState(defaultOpen);
+  // Keep the active group open; let the user toggle finished ones.
+  useEffect(() => { if (isActive) setOpen(true); }, [isActive]);
+
+  const Icon = group.icon;
+  const headColor = isActive ? 'var(--accent)' : isDone ? '#22c55e' : 'var(--text-muted)';
+
+  return (
+    <div style={{ borderBottom: '1px solid var(--border-color)' }}>
+      <button onClick={() => setOpen(o => !o)} className="hoverable" style={{
+        width: '100%', display: 'flex', alignItems: 'center', gap: 11, padding: '13px 8px',
+        background: 'transparent', border: 'none', cursor: 'pointer', textAlign: 'left',
+      }}>
+        <span style={{
+          width: 26, height: 26, borderRadius: 8, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center',
+          background: isActive ? 'var(--accent)' : isDone ? 'color-mix(in srgb, #22c55e 18%, transparent)' : 'var(--bg-tertiary)',
+          color: isActive ? '#fff' : headColor,
+        }}>
+          {isActive ? <span className="sa-spinner sa-spinner-sm" style={{ width: 13, height: 13 }} /> : <Icon size={14} strokeWidth={2.1} />}
+        </span>
+        <span style={{ flex: 1, fontSize: 13, fontWeight: 600, color: isActive ? 'var(--text-primary)' : 'var(--text-secondary)' }}>{group.label}</span>
+        <span style={{ fontSize: 11, color: 'var(--text-muted)', fontVariantNumeric: 'tabular-nums' }}>{steps.length}</span>
+        <ChevronRight size={15} style={{ color: 'var(--text-muted)', transform: open ? 'rotate(90deg)' : 'none', transition: 'transform 0.15s var(--ease)', flexShrink: 0 }} />
+      </button>
+
+      {open && steps.length > 0 && (
+        <div style={{ position: 'relative', padding: '0 8px 14px 16px' }}>
+          {steps.map((s, i) => {
+            const tone = stepTone(s.kind); const c = tone.color;
+            const isLast = i === steps.length - 1;
+            const live = isActive && isLast;
+            return (
+              <div key={i} style={{ position: 'relative', paddingLeft: 22, paddingBottom: isLast ? 0 : 11, animation: 'sa-slide 0.18s ease' }}>
+                {!isLast && <span style={{ position: 'absolute', left: 5.5, top: 13, bottom: 0, width: 1.5, background: 'var(--border-color)' }} />}
+                <span style={{
+                  position: 'absolute', left: 0, top: 2, width: 12, height: 12, borderRadius: '50%',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  background: live ? c : `color-mix(in srgb, ${c} 22%, transparent)`,
+                  boxShadow: live ? `0 0 0 3px color-mix(in srgb, ${c} 20%, transparent)` : 'none',
+                }}>
+                  <span style={{ width: 4, height: 4, borderRadius: '50%', background: live ? '#fff' : c }} />
+                </span>
+                <div style={{
+                  fontSize: 12, fontWeight: s.kind === 'read' || s.kind === 'skip' ? 500 : 600,
+                  color: s.kind === 'skip' ? 'var(--text-muted)' : 'var(--text-primary)', lineHeight: 1.4,
+                  fontFamily: tone.mono ? 'ui-monospace, Menlo, monospace' : undefined, wordBreak: 'break-word',
+                }}>{s.label}</div>
+                {s.detail && (
+                  s.kind === 'reason'
+                    ? <div style={{ fontSize: 12, color: 'var(--text-secondary)', marginTop: 4, lineHeight: 1.6, whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}>{s.detail}{live && <span className="cw-caret" />}</div>
+                    : <div style={{ fontSize: 11, color: 'var(--text-muted)', marginTop: 1, lineHeight: 1.45, wordBreak: 'break-word' }}>{s.detail}</div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function WorkTrail({ steps, running }: { steps: TimelineStep[]; running: boolean }) {
+  // Group steps under their phase. Find which phase is currently active.
+  const byPhase: Record<string, TimelineStep[]> = {};
+  for (const s of steps) (byPhase[s.phase || 'inspect'] ??= []).push(s);
+  const activePhase = steps.length ? (steps[steps.length - 1].phase || 'inspect') : '';
+  const activeIdx = PHASE_GROUPS.findIndex(g => g.id === activePhase);
+
+  // Newest (active) phase first so the live work flows to the top of the eye.
+  const ordered = PHASE_GROUPS
+    .map((g, idx) => ({ g, idx, steps: byPhase[g.id] || [] }))
+    .filter(x => x.steps.length > 0)
+    .reverse();
+
   return (
     <aside style={{
-      width: 340, flexShrink: 0, alignSelf: 'stretch',
+      width: 380, flexShrink: 0, alignSelf: 'stretch',
       borderRight: '1px solid var(--border-color)', background: 'var(--bg-secondary)',
-      padding: '28px 24px', overflowY: 'auto',
+      padding: '22px 16px', overflowY: 'auto',
     }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4, padding: '0 8px' }}>
         <Activity size={15} style={{ color: 'var(--accent)' }} />
-        <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: 0.7, textTransform: 'uppercase', color: 'var(--text-muted)' }}>
-          Agent work
-        </span>
+        <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: 0.7, textTransform: 'uppercase', color: 'var(--text-muted)' }}>Agent work</span>
       </div>
-      <div style={{ fontSize: 12, color: 'var(--text-muted)', marginBottom: 22 }}>
-        {running ? 'Working through your submission' : `${steps.length} steps`}
+      <div style={{ fontSize: 12, color: 'var(--text-muted)', marginBottom: 14, padding: '0 8px' }}>
+        {running ? 'Working through your submission…' : `${steps.length} steps`}
       </div>
 
       {steps.length === 0 && !running && (
-        <div style={{ fontSize: 13, color: 'var(--text-muted)' }}>No activity recorded.</div>
+        <div style={{ fontSize: 13, color: 'var(--text-muted)', padding: '0 8px' }}>No activity recorded.</div>
       )}
 
-      <div style={{ position: 'relative' }}>
-        {steps.map((s, i) => {
-          const isLast = i === steps.length - 1;
-          const live = running && isLast;
-          return (
-            <div key={i} style={{ position: 'relative', paddingLeft: 26, paddingBottom: isLast ? 0 : 20, animation: 'sa-slide 0.25s ease' }}>
-              {/* connector line */}
-              {!isLast && (
-                <span style={{ position: 'absolute', left: 7, top: 16, bottom: 0, width: 2, background: 'var(--border-color)' }} />
-              )}
-              {/* node */}
-              <span style={{
-                position: 'absolute', left: 0, top: 2, width: 16, height: 16, borderRadius: '50%',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                background: live ? 'var(--accent)' : 'color-mix(in srgb, var(--accent) 18%, transparent)',
-                boxShadow: live ? '0 0 0 4px color-mix(in srgb, var(--accent) 18%, transparent)' : 'none',
-              }}>
-                <span style={{ width: 6, height: 6, borderRadius: '50%', background: live ? '#fff' : 'var(--accent)' }} />
-              </span>
-              <div style={{ fontSize: 13.5, fontWeight: 600, color: 'var(--text-primary)', lineHeight: 1.4 }}>{s.label}</div>
-              {s.detail && <div style={{ fontSize: 12.5, color: 'var(--text-secondary)', marginTop: 2, lineHeight: 1.45 }}>{s.detail}</div>}
-            </div>
-          );
-        })}
-        {running && (
-          <div style={{ paddingLeft: 26, marginTop: 4, display: 'flex', alignItems: 'center', gap: 8, color: 'var(--text-muted)', fontSize: 12.5 }}>
-            <span className="sa-spinner sa-spinner-sm" style={{ width: 13, height: 13 }} /> working…
-          </div>
-        )}
+      <div>
+        {ordered.map(({ g, idx, steps: gs }) => (
+          <PhaseGroup
+            key={g.id}
+            group={g}
+            steps={gs}
+            isActive={running && g.id === activePhase}
+            isDone={!running || idx < activeIdx}
+            defaultOpen={g.id === activePhase}
+          />
+        ))}
       </div>
     </aside>
   );
@@ -311,55 +409,111 @@ function mapNormToOriginal(source: string, normStart: number, normLen: number): 
   return [origStart, origEnd];
 }
 
+const LANG_BY_EXT: Record<string, { label: string; color: string }> = {
+  py: { label: 'Python', color: '#3776ab' }, js: { label: 'JavaScript', color: '#f7df1e' },
+  ts: { label: 'TypeScript', color: '#3178c6' }, tsx: { label: 'TSX', color: '#3178c6' },
+  jsx: { label: 'JSX', color: '#f7df1e' }, java: { label: 'Java', color: '#e76f00' },
+  c: { label: 'C', color: '#a8b9cc' }, cpp: { label: 'C++', color: '#00599c' }, cs: { label: 'C#', color: '#9b4f96' },
+  go: { label: 'Go', color: '#00add8' }, rb: { label: 'Ruby', color: '#cc342d' }, rs: { label: 'Rust', color: '#dea584' },
+  html: { label: 'HTML', color: '#e34c26' }, css: { label: 'CSS', color: '#563d7c' },
+  md: { label: 'Markdown', color: '#888' }, json: { label: 'JSON', color: '#cbcb41' },
+  txt: { label: 'Text', color: '#888' }, pdf: { label: 'PDF', color: '#ef4444' },
+  docx: { label: 'Word', color: '#2b579a' }, zip: { label: 'Archive', color: '#f59e0b' },
+  tex: { label: 'LaTeX', color: '#008080' }, ipynb: { label: 'Notebook', color: '#f37726' },
+};
+
+const SYNTAX_LANG: Record<string, string> = {
+  py: 'python', js: 'javascript', jsx: 'jsx', ts: 'typescript', tsx: 'tsx',
+  java: 'java', c: 'c', cpp: 'cpp', cs: 'csharp', go: 'go', rb: 'ruby', rs: 'rust',
+  html: 'markup', css: 'css', md: 'markdown', json: 'json', sh: 'bash',
+  tex: 'latex', ipynb: 'json', txt: 'text',
+};
+
 function SourceViewer({ source, truncated, filename, active }: {
   source: string; truncated?: boolean; filename?: string; active: Finding | null;
 }) {
-  const markRef = useRef<HTMLSpanElement>(null);
   const span = locateEvidence(source, active);
 
-  useEffect(() => {
-    if (markRef.current) markRef.current.scrollIntoView({ block: 'center', behavior: 'smooth' });
-  }, [active]);
+  const ext = (filename?.split('.').pop() || '').toLowerCase();
+  const lang = LANG_BY_EXT[ext] ?? { label: ext ? ext.toUpperCase() : 'File', color: 'var(--accent)' };
+  const syntaxLang = SYNTAX_LANG[ext] ?? 'text';
+  const lines = source.split('\n');
 
-  let body: React.ReactNode;
+  // Map the cited char range → [firstLine, lastLine] (1-based) for highlighting.
+  let hitStart = -1, hitEnd = -1;
   if (span) {
-    const [s, e] = span;
-    body = (
-      <>
-        {source.slice(0, s)}
-        <span ref={markRef} style={{ background: 'color-mix(in srgb, var(--accent) 32%, transparent)', borderRadius: 3, boxShadow: '0 0 0 2px color-mix(in srgb, var(--accent) 40%, transparent)' }}>
-          {source.slice(s, e)}
-        </span>
-        {source.slice(e)}
-      </>
-    );
-  } else {
-    body = source;
+    let pos = 0;
+    for (let i = 0; i < lines.length; i++) {
+      const lineEnd = pos + lines[i].length;
+      if (span[0] < lineEnd && span[1] > pos) { if (hitStart === -1) hitStart = i + 1; hitEnd = i + 1; }
+      pos = lineEnd + 1;
+    }
   }
+
+  const codeRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (hitStart > 0 && codeRef.current) {
+      const el = codeRef.current.querySelector(`[data-line="${hitStart}"]`) as HTMLElement | null;
+      el?.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    }
+  }, [active, hitStart]);
 
   return (
     <aside style={{
-      width: 420, flexShrink: 0, alignSelf: 'stretch', borderLeft: '1px solid var(--border-color)',
-      background: 'var(--bg-secondary)', display: 'flex', flexDirection: 'column',
+      width: 480, flexShrink: 0, alignSelf: 'stretch', borderLeft: '1px solid var(--border-color)',
+      background: '#0d1117', display: 'flex', flexDirection: 'column',
     }}>
-      <div style={{ padding: '18px 20px 12px', borderBottom: '1px solid var(--border-color)' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-          <FileText size={15} style={{ color: 'var(--accent)' }} />
-          <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: 0.7, textTransform: 'uppercase', color: 'var(--text-muted)' }}>Source</span>
+      {/* File tab header */}
+      <div style={{ borderBottom: '1px solid var(--border-color)', background: 'var(--bg-secondary)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '12px 16px 0' }}>
+          <div style={{
+            display: 'inline-flex', alignItems: 'center', gap: 8, padding: '7px 13px 9px',
+            background: '#0d1117', borderRadius: '8px 8px 0 0',
+            border: '1px solid var(--border-color)', borderBottom: 'none', marginBottom: -1,
+          }}>
+            <span style={{ width: 8, height: 8, borderRadius: 2, background: lang.color, flexShrink: 0 }} />
+            <span style={{ fontSize: 12.5, fontWeight: 600, color: 'var(--text-primary)', fontFamily: 'ui-monospace, Menlo, monospace', maxWidth: 280, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{filename || 'submission'}</span>
+          </div>
         </div>
-        <div style={{ fontSize: 13, color: 'var(--text-primary)', fontWeight: 600, marginTop: 6, wordBreak: 'break-all' }}>{filename}</div>
-        <div style={{ fontSize: 12, color: 'var(--text-muted)', marginTop: 4 }}>
-          {active ? (span ? 'Highlighting the referenced passage' : 'No exact match — showing full text') : 'Click a requirement to jump to its reference'}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8, padding: '8px 16px' }}>
+          <span style={{ fontSize: 11, fontWeight: 600, color: lang.color, textTransform: 'uppercase', letterSpacing: '0.04em' }}>{lang.label}</span>
+          <span style={{ fontSize: 11.5, color: 'var(--text-muted)', fontVariantNumeric: 'tabular-nums' }}>
+            {lines.length} lines · {source.length.toLocaleString()} chars
+          </span>
         </div>
+        {active && (
+          <div style={{ padding: '0 16px 9px', fontSize: 11.5, color: hitStart > 0 ? 'var(--accent)' : 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: 5 }}>
+            <FileText size={11} /> {hitStart > 0 ? `Cited evidence · line ${hitStart}${hitEnd > hitStart ? `–${hitEnd}` : ''}` : 'No exact match — full file shown'}
+          </div>
+        )}
       </div>
-      <pre style={{
-        flex: 1, overflowY: 'auto', margin: 0, padding: '16px 20px',
-        fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', fontSize: 12, lineHeight: 1.6,
-        color: 'var(--text-secondary)', whiteSpace: 'pre-wrap', wordBreak: 'break-word',
-      }}>
-        {body}
-        {truncated && <div style={{ marginTop: 16, color: 'var(--text-muted)', fontStyle: 'italic' }}>… (truncated)</div>}
-      </pre>
+
+      {/* Syntax-highlighted code with cited-line highlight */}
+      <div ref={codeRef} style={{ flex: 1, overflow: 'auto' }}>
+        <SyntaxHighlighter
+          language={syntaxLang}
+          style={oneDark}
+          showLineNumbers
+          wrapLines
+          lineProps={(n: number) => {
+            const hit = hitStart > 0 && n >= hitStart && n <= hitEnd;
+            return {
+              'data-line': n,
+              style: {
+                display: 'block',
+                background: hit ? 'color-mix(in srgb, var(--accent) 18%, transparent)' : 'transparent',
+                boxShadow: hit ? 'inset 2px 0 0 var(--accent)' : undefined,
+              },
+            } as React.HTMLProps<HTMLElement>;
+          }}
+          customStyle={{ margin: 0, background: 'transparent', padding: '14px 4px 14px 0', fontSize: 12.5, lineHeight: 1.7 }}
+          codeTagProps={{ style: { fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace' } }}
+          lineNumberStyle={{ minWidth: '3em', paddingRight: '1.1em', color: '#5f5f6b', userSelect: 'none' }}
+        >
+          {source}
+        </SyntaxHighlighter>
+        {truncated && <div style={{ padding: '12px 16px', color: 'var(--text-muted)', fontStyle: 'italic', fontSize: 11.5 }}>… file truncated for display</div>}
+      </div>
     </aside>
   );
 }
@@ -404,47 +558,55 @@ function ReviewExperience({ assignment, initialReview, onBack, onSaved }: {
     let src = '';
     let srcTrunc = false;
     const trail: TimelineStep[] = [];
-    const log = (label: string, detail?: string) => {
-      trail.push({ label, detail, t: Date.now() });
+    const log = (label: string, detail?: string, kind?: string, phase = 'inspect') => {
+      trail.push({ label, detail, t: Date.now(), kind, phase });
       setTimeline([...trail]);
     };
     try {
       let finalResult: SubmitResult | null = null;
       let liveReqs: string[] = [];
       let liveFindings: Finding[] = [];
-      let checkedLogged = 0;
+      let reasoningBuf = '';
+      let reasoningStarted = false;
       await api.submitAssignmentStream(assignment.id, file, (type, data) => {
-        if (type === 'inspecting') {
-          log('Reading the document', file.name);
+        if (type === 'step') {
+          // Granular agent narration — every real sub-step, streamed live.
+          log(String(data.message ?? ''), data.detail ? String(data.detail) : undefined, data.kind, String(data.phase ?? 'inspect'));
+        } else if (type === 'inspecting') {
+          log('Opening the file', file.name, undefined, 'inspect');
         } else if (type === 'inspected') {
-          log('Document read', `${(data.line_count ?? 0)} lines · ${(data.extracted_chars ?? 0).toLocaleString()} characters`);
+          // Granular steps already narrated via 'step'; just capture the source text + warnings here.
+          for (const w of (data.warnings || [])) log('Warning', String(w), 'skip', 'inspect');
           src = data.extracted_text || '';
           srcTrunc = !!data.extracted_truncated;
           setSourceText(src);
           setSourceTruncated(srcTrunc);
         } else if (type === 'understanding') {
-          log('Studying the assignment brief');
+          // narrated via 'step'
         } else if (type === 'requirements') {
           liveReqs = data.requirements || [];
           setRequirements(liveReqs);
-          log('Identified requirements', `${liveReqs.length} to check`);
         } else if (type === 'judging') {
-          log('Checking work against each requirement');
+          // narrated via 'step'
+        } else if (type === 'token') {
+          // The LLM's live chain-of-thought — streamed as a growing "Reasoning"
+          // step inside the Agent Work block (left), readable prose.
+          reasoningBuf += (data.text ?? '');
+          const prose = humanizeReasoning(reasoningBuf);
+          if (!reasoningStarted) { reasoningStarted = true; log('Reasoning', prose, 'reason', 'judge'); }
+          else {
+            const last = trail[trail.length - 1];
+            if (last && last.label === 'Reasoning') { last.detail = prose; last.t = Date.now(); setTimeline([...trail]); }
+          }
         } else if (type === 'finding') {
           liveFindings = [...liveFindings, data.finding];
           setFindings(liveFindings);
-          checkedLogged = liveFindings.length;
-          // collapse per-finding noise into a single updating step
-          const last = trail[trail.length - 1];
-          if (last && last.label === 'Reviewing requirements') {
-            last.detail = `${checkedLogged}/${liveReqs.length || '?'} checked`;
-            last.t = Date.now();
-            setTimeline([...trail]);
-          } else {
-            log('Reviewing requirements', `${checkedLogged}/${liveReqs.length || '?'} checked`);
-          }
+          const f = data.finding as Finding;
+          const reqShort = (f.requirement || '').replace(/^The submission must |^Submission must address: /i, '').slice(0, 70);
+          log(`${f.satisfied ? 'Met' : 'Not met'} — ${reqShort}`, f.reasoning?.slice(0, 160), f.satisfied ? 'met' : 'unmet', 'judge');
         } else if (type === 'verdict') {
-          log('Reached a verdict', data.decision ? String(data.decision) : undefined);
+          const conf = data.confidence != null ? ` · ${Math.round(Number(data.confidence) * 100)}% confidence` : '';
+          log('Reached a verdict', `${data.decision ?? ''}${conf}`, undefined, 'verdict');
         } else if (type === 'result') {
           finalResult = data as SubmitResult;
         } else if (type === 'error') {
@@ -573,9 +735,10 @@ function ReviewExperience({ assignment, initialReview, onBack, onSaved }: {
         </div>
       )}
 
-      {/* RUNNING: single status line (the left trail carries the detail) */}
+      {/* RUNNING: single status line — the detailed reasoning streams in the
+          Agent Work block on the left. */}
       {running && (
-        <div style={{ marginTop: 24, display: 'flex', alignItems: 'center', gap: 10, fontSize: 15, fontWeight: 600, color: 'var(--text-primary)' }}>
+        <div style={{ marginTop: 26, display: 'flex', alignItems: 'center', gap: 10, fontSize: 15, fontWeight: 600, color: 'var(--text-primary)' }}>
           <span className="sa-spinner sa-spinner-sm" />
           {caption || 'Reviewing…'}
         </div>
@@ -613,13 +776,6 @@ function ReviewExperience({ assignment, initialReview, onBack, onSaved }: {
             activeIndex={activeReq ?? undefined}
             onSelect={selectReq}
           />
-        </div>
-      )}
-
-      {/* Pre-stream spinner */}
-      {running && totalReqs === 0 && (
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginTop: 22, color: 'var(--text-muted)', fontSize: 13 }}>
-          <span className="sa-spinner sa-spinner-sm" /> Reading your submission…
         </div>
       )}
 
@@ -730,11 +886,13 @@ export function AssignmentsPage() {
   }
 
   return (
-    <div style={{ padding: 32 }}>
-      <h2 style={{ marginBottom: 24, color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: 8 }}>
-        <ClipboardList size={20} strokeWidth={1.8} />
-        Assignments
-      </h2>
+    <div style={{ padding: '44px 40px 64px', maxWidth: 960, margin: '0 auto' }}>
+      <PageHeader
+        icon={ClipboardList}
+        eyebrow="Review · Agent"
+        title="Submission review"
+        subtitle="Upload your work — an agent checks each requirement against the brief with cited evidence."
+      />
 
       {assignments.length === 0 ? (
         <div style={{ color: 'var(--text-secondary)', textAlign: 'center', marginTop: 40 }}>

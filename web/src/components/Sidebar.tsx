@@ -3,7 +3,6 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import type { LucideIcon } from 'lucide-react';
 import {
-  MessageSquare,
   CalendarDays,
   CalendarRange,
   ClipboardList,
@@ -26,7 +25,6 @@ import { useTheme, ACCENT_PRESETS, BG_PRESETS_DARK, BG_PRESETS_LIGHT } from '../
 
 const NAV_ITEMS: Array<{ path: string; icon: LucideIcon; labelKey: string }> = [
   { path: '/dashboard', icon: LayoutDashboard, labelKey: 'sidebar.dashboard' },
-  { path: '/chat',      icon: MessageSquare,   labelKey: 'sidebar.chat'      },
   { path: '/calendar',  icon: CalendarDays,    labelKey: 'sidebar.calendar'  },
 ];
 
@@ -106,6 +104,7 @@ export function Sidebar() {
         minWidth: 60,
         height: '100vh',
         backgroundColor: 'var(--sidebar-bg)',
+        borderRight: '1px solid var(--border-color)',
         display: 'flex',
         flexDirection: 'column',
         padding: '20px 0',
@@ -154,20 +153,7 @@ export function Sidebar() {
               <button
                 key={item.path}
                 onClick={() => navigate(item.path)}
-                onMouseEnter={e => {
-                  if (!isActive) {
-                    e.currentTarget.style.background = 'var(--accent-subtle)';
-                    e.currentTarget.style.color = 'var(--accent)';
-                    e.currentTarget.style.transform = 'translateX(3px)';
-                  }
-                }}
-                onMouseLeave={e => {
-                  if (!isActive) {
-                    e.currentTarget.style.background = 'transparent';
-                    e.currentTarget.style.color = '#b0b0c0';
-                    e.currentTarget.style.transform = 'translateX(0)';
-                  }
-                }}
+                className={`nav-row${isActive ? ' is-active' : ''}`}
                 style={{
                   display: 'flex',
                   alignItems: 'center',
@@ -177,16 +163,16 @@ export function Sidebar() {
                   padding: collapsed ? '12px 0' : '12px 16px',
                   border: 'none',
                   background: isActive ? 'var(--accent-subtle)' : 'transparent',
-                  color: isActive ? 'var(--accent)' : '#b0b0c0',
+                  color: isActive ? 'var(--accent)' : 'var(--text-secondary)',
                   fontSize: 14,
+                  fontWeight: isActive ? 600 : 500,
                   cursor: 'pointer',
                   textAlign: 'left',
                   borderLeft: isActive ? '3px solid var(--accent)' : '3px solid transparent',
-                  transition: 'all 0.15s ease',
                   whiteSpace: 'nowrap',
                 }}
               >
-                <Icon size={18} strokeWidth={1.8} />
+                <Icon className="nav-icon" size={18} strokeWidth={1.8} />
                 {!collapsed && <span>{t(item.labelKey)}</span>}
               </button>
             );
@@ -365,6 +351,7 @@ export function Sidebar() {
                 <div key={preset.id} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
                   <button
                     onClick={() => setBgPreset(preset.id)}
+                    className="swatch"
                     title={preset.label}
                     style={{
                       width: 32,
@@ -378,8 +365,6 @@ export function Sidebar() {
                       transition: 'transform 0.15s ease',
                       padding: 0,
                     }}
-                    onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.15)'; }}
-                    onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; }}
                   />
                   <span style={{ fontSize: 10, color: 'var(--text-muted)' }}>{preset.label}</span>
                 </div>
@@ -406,6 +391,7 @@ export function Sidebar() {
                 <div key={preset.id} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
                   <button
                     onClick={() => setAccent(preset.id)}
+                    className="swatch"
                     title={preset.label}
                     style={{
                       width: 28,
@@ -419,8 +405,6 @@ export function Sidebar() {
                       transition: 'transform 0.15s ease',
                       padding: 0,
                     }}
-                    onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.15)'; }}
-                    onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; }}
                   />
                   <span style={{ fontSize: 10, color: 'var(--text-muted)' }}>{preset.label}</span>
                 </div>

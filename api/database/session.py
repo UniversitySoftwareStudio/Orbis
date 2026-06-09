@@ -4,6 +4,7 @@ from collections.abc import Generator
 from core.logging import get_logger
 from sqlalchemy import create_engine, text
 from sqlalchemy.exc import SQLAlchemyError
+from sqlalchemy.engine import make_url
 from sqlalchemy.orm import Session, sessionmaker
 
 from .models import Base
@@ -28,13 +29,22 @@ SessionLocal = sessionmaker(bind=engine, autoflush=False, autocommit=False)
 logger = get_logger(__name__)
 
 
+def _database_label() -> str:
+    url = make_url(DATABASE_URL)
+    host = url.host or "unknown-host"
+    port = f":{url.port}" if url.port else ""
+    database = url.database or "unknown-db"
+    username = url.username or "unknown-user"
+    return f"{username}@{host}{port}/{database}"
+
+
 def init_db() -> None:
     try:
         with engine.connect() as conn:
             conn.execute(text("CREATE EXTENSION IF NOT EXISTS vector"))
             conn.commit()
         Base.metadata.create_all(bind=engine)
-        logger.info("Database initialized successfully")
+        logger.info("Database initialized successfully (%s)", _database_label())
     except SQLAlchemyError as exc:
         raise RuntimeError(f"Database initialization failed: {exc}") from exc
 

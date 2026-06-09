@@ -1,0 +1,97 @@
+\relax 
+\providecommand \oddpage@label [2]{}
+\@writefile{toc}{\contentsline {section}{Abstract}{1}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{Contents}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{List of Figures}{4}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{List of Tables}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{List of Abbreviations}{6}{}\protected@file@percent }
+\citation{lewis2020retrieval}
+\citation{assayed2024systematic}
+\citation{ismail2025academic}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Works}{1}{}\protected@file@percent }
+\citation{wick2023dars}
+\citation{zhang2016semantic}
+\citation{galli2025aiAct}
+\citation{cisneros2025jorgpt}
+\citation{zheng2023judging}
+\citation{assayed2024systematic}
+\citation{ismail2025academic}
+\citation{wick2023dars}
+\citation{zhang2016semantic}
+\citation{galli2025aiAct}
+\citation{cisneros2025jorgpt}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Positioning of Orbis against related categories of academic-support systems. \emph  {Push} means the system surfaces an obligation before a student asks. \emph  {Unstructured rules} means handling free-text regulation, not only schema-based requirements.\relax }}{3}{}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:related_work}{{1}{3}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Official baseline and comparator validity. \emph  {Direct} means the same task and data family; \emph  {partial} means a related subsystem metric but different domain or output schema; \emph  {contextual} means useful for positioning only.\relax }}{4}{}\protected@file@percent }
+\newlabel{tab:baseline_validity}{{2}{4}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Dataset}{4}{}\protected@file@percent }
+\citation{shannon1948mathematical}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Dataset and post-processing statistics. The Proactive Event System operates only on the 935 regulatory chunks; all other categories are routed to the RAG search index.\relax }}{5}{}\protected@file@percent }
+\newlabel{tab:dataset_stats}{{3}{5}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Theoretical Background}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Shannon Entropy for URL Classification}{5}{}\protected@file@percent }
+\citation{sculley2010web}
+\citation{ward1963hierarchical}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Vector Embeddings and Cosine Similarity}{6}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}MiniBatchKMeans and Ward HAC}{6}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Proposed Methodology}{6}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Data Categorization \& Taxonomy Strategy}{6}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Data Categorization and Taxonomy Pipeline Architecture\relax }}{7}{}\protected@file@percent }
+\newlabel{fig:taxonomy_pipeline}{{1}{7}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}The Orchestrator-Led Event Pipeline}{7}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Sequential flow and architecture of the Orbis Proactive Event Pipeline. The orchestrator owns all run state; workers are stateless and communicate only via the orchestrator. The reviewer is invoked only for ambiguous candidates.\relax }}{8}{}\protected@file@percent }
+\newlabel{fig:event_system_architecture}{{2}{8}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Contextual vs. SQL Assignment Matching}{8}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Agentic Assignment Submission Evaluation}{9}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Agentic submission-evaluation flow. A deterministic file gate rejects empty, corrupt, or unreadable files without invoking the LLM. The agent then reasons in two LLM calls: it first \emph  {decomposes} the assignment into a requirement checklist, then \emph  {judges the document against each requirement individually} with cited evidence before synthesizing a verdict. A deterministic keyword \texttt  {line\_review} is retained only as a fallback when decomposition fails. Every stage is streamed over Server-Sent Events so the UI can render the source text, the requirements, and each per-requirement finding live. Every rejection (early-stage or LLM-based) is recoverable through the \texttt  {flag\_for\_review} appeal path, which routes the case to a human reviewer instead of terminating the student's submission attempt.\relax }}{10}{}\protected@file@percent }
+\newlabel{fig:submission_flow}{{3}{10}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Experimental Setup}{11}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Framework and Deployment}{11}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Performance Metrics}{11}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Experiments \& Discussion}{12}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Extraction Throughput \& Quality Funnel}{12}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Event Extraction Pipeline Funnel\relax }}{12}{}\protected@file@percent }
+\newlabel{tab:extraction_funnel}{{4}{12}}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Results}{12}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Assignments generated per real student profile, broken down by urgency and matching path. ``SQL'' counts deterministic conditional matches; ``CTX'' counts contextual LLM matches.\relax }}{13}{}\protected@file@percent }
+\newlabel{tab:assignment_results}{{5}{13}}
+\@writefile{toc}{\contentsline {section}{\numberline {9}Quantitative Evaluation}{13}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.1}Gold Ground-Truth Construction}{14}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Metric provenance and limitations. Artifact paths are reported relative to the repository.\relax }}{15}{}\protected@file@percent }
+\newlabel{tab:metric_provenance}{{6}{15}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.2}Event Extraction Results}{15}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Confusion matrix of the event extraction pipeline against gold ground truth ($N{=}323$).\relax }}{15}{}\protected@file@percent }
+\newlabel{tab:event_confusion}{{7}{15}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Binary classification metrics for the event extraction stage. Positive class = true obligation accepted by the system.\relax }}{15}{}\protected@file@percent }
+\newlabel{tab:event_metrics}{{8}{15}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.3}Assignment Matching Results}{16}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Per-profile assignment matching scores against gold ground truth ($N{=}712$ pairs: 4 profiles $\times $ 178 accepted obligations).\relax }}{16}{}\protected@file@percent }
+\newlabel{tab:matching_perprofile}{{9}{16}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.4}Submission Agent Results}{16}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Submission agent results stratified by case type. Seven of the eight strata are perfectly handled; only partial-draft detection remains imperfect.\relax }}{17}{}\protected@file@percent }
+\newlabel{tab:submission_stratum}{{10}{17}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Submission agent confusion matrix on $N{=}32$ cases (positive class: approve). Zero false negatives: no genuine submission was rejected. Both false positives are \texttt  {flag\_partial} drafts.\relax }}{17}{}\protected@file@percent }
+\newlabel{tab:submission_confusion}{{11}{17}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Submission agent binary classification metrics (positive class: approve), measured on the 32-case ground-truth set against the current two-call agentic reviewer.\relax }}{17}{}\protected@file@percent }
+\newlabel{tab:submission_metrics}{{12}{17}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Submission Agent Ablation Study: Redesigning the reviewer significantly lifted in-document prompt-injection resistance because the agent now explicitly verifies whether requirements are met, bypassing embedded adversarial instructions.\relax }}{18}{}\protected@file@percent }
+\newlabel{tab:ablation_study}{{13}{18}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.5}Limitations}{18}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {10}Conclusion \& Future Work}{18}{}\protected@file@percent }
+\bibstyle{ieeetr}
+\bibdata{references}
+\bibcite{lewis2020retrieval}{1}
+\bibcite{assayed2024systematic}{2}
+\bibcite{ismail2025academic}{3}
+\bibcite{wick2023dars}{4}
+\bibcite{zhang2016semantic}{5}
+\bibcite{galli2025aiAct}{6}
+\bibcite{cisneros2025jorgpt}{7}
+\bibcite{zheng2023judging}{8}
+\bibcite{shannon1948mathematical}{9}
+\bibcite{sculley2010web}{10}
+\bibcite{ward1963hierarchical}{11}
+\@writefile{toc}{\contentsline {section}{References}{20}{}\protected@file@percent }
+\gdef \@abspage@last{27}
