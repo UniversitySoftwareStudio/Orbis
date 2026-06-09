@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { CalendarDays } from 'lucide-react';
 import { api } from '../services/api';
+import { PageHeader } from '../components/PageHeader';
 
 interface CalendarEntry {
   id: number;
@@ -22,15 +23,17 @@ function formatRange(start: string, end: string | null, months: string[]): strin
   return `${formatDate(start, months)} – ${formatDate(end, months)}`;
 }
 
+// Tinted (not solid) badges so they read on the dark canvas and share one palette.
 function getTypeBadgeStyle(entryType: string): { background: string; color: string } {
+  const tint = (c: string) => ({ background: `color-mix(in srgb, ${c} 16%, transparent)`, color: c });
   switch (entryType) {
-    case 'holiday': return { background: '#ef5350', color: '#fff' };
-    case 'exam_period': return { background: '#ff9800', color: '#fff' };
+    case 'holiday': return tint('var(--danger)');
+    case 'exam_period': return tint('var(--warning)');
     case 'registration':
-    case 'add_drop': return { background: '#42a5f5', color: '#fff' };
+    case 'add_drop': return tint('var(--info)');
     case 'semester_start':
-    case 'semester_end': return { background: '#66bb6a', color: '#fff' };
-    default: return { background: '#9e9e9e', color: '#fff' };
+    case 'semester_end': return tint('var(--success)');
+    default: return tint('var(--text-muted)');
   }
 }
 
@@ -76,7 +79,7 @@ export function CalendarPage() {
   const renderTable = (items: CalendarEntry[]) => (
     <table style={{ width: '100%', borderCollapse: 'collapse', marginBottom: 32, background: 'var(--bg-card)', borderRadius: 8, overflow: 'hidden' }}>
       <thead>
-        <tr style={{ borderBottom: '2px solid #2d3561', textAlign: 'left', backgroundColor: 'var(--bg-table-header)' }}>
+        <tr style={{ borderBottom: '1px solid var(--border-color)', textAlign: 'left', backgroundColor: 'var(--bg-table-header)' }}>
           <th style={{ padding: '8px 12px', color: 'var(--sidebar-text)' }}>{t('calendar.date')}</th>
           <th style={{ padding: '8px 12px', color: 'var(--sidebar-text)' }}>{t('calendar.event')}</th>
           <th style={{ padding: '8px 12px', color: 'var(--sidebar-text)' }}>{t('calendar.type')}</th>
@@ -88,9 +91,8 @@ export function CalendarPage() {
           return (
             <tr
               key={entry.id}
+              className="hoverable"
               style={{ borderBottom: '1px solid var(--border-color)' }}
-              onMouseEnter={e => { (e.currentTarget as HTMLTableRowElement).style.backgroundColor = 'var(--accent-subtle)'; }}
-              onMouseLeave={e => { (e.currentTarget as HTMLTableRowElement).style.backgroundColor = 'transparent'; }}
             >
               <td style={{ padding: '10px 12px', whiteSpace: 'nowrap', fontSize: 14, color: 'var(--text-primary)' }}>
                 {formatRange(entry.start_date, entry.end_date, months)}
@@ -117,11 +119,8 @@ export function CalendarPage() {
   );
 
   return (
-    <div style={{ padding: 32, maxWidth: 900, margin: '0 auto' }}>
-      <h2 style={{ marginBottom: 24, color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: 8 }}>
-        <CalendarDays size={20} strokeWidth={1.8} />
-        {t('calendar.title')}
-      </h2>
+    <div style={{ padding: '32px 48px 64px', maxWidth: 1280, margin: '0 auto' }}>
+      <PageHeader icon={CalendarDays} eyebrow={t('sidebar.calendar')} title={t('calendar.title')} />
 
       {entries.length === 0 ? (
         <p style={{ color: 'var(--text-secondary)' }}>{t('calendar.empty')}</p>

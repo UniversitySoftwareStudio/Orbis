@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { User } from 'lucide-react';
 import { api } from '../services/api';
+import { PageHeader } from '../components/PageHeader';
 
 interface Profile {
   first_name: string;
@@ -67,11 +68,8 @@ export function ProfilePage() {
   const activeFlags = flags.filter(f => profile[f.key]);
 
   return (
-    <div style={{ padding: 32, maxWidth: 720, margin: '0 auto' }}>
-      <h2 style={{ marginBottom: 24, color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: 8 }}>
-        <User size={20} strokeWidth={1.8} />
-        {t('profile.title')}
-      </h2>
+    <div style={{ padding: '32px 48px 64px', maxWidth: 1100, margin: '0 auto' }}>
+      <PageHeader icon={User} eyebrow={t('sidebar.profile')} title={t('profile.title')} />
 
       <div className="card" style={{ padding: 20, marginBottom: 24 }}>
         <h3 style={{ marginTop: 0, marginBottom: 8, color: 'var(--text-primary)' }}>
@@ -101,8 +99,9 @@ export function ProfilePage() {
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
           {activeFlags.map(f => (
             <span key={f.key} style={{
-              display: 'inline-block', padding: '4px 12px', borderRadius: 12, fontSize: 13, fontWeight: 500,
-              background: f.tone === 'warn' ? '#ef5350' : '#42a5f5', color: '#fff',
+              display: 'inline-flex', alignItems: 'center', gap: 6, padding: '4px 12px', borderRadius: 99, fontSize: 13, fontWeight: 600,
+              background: `color-mix(in srgb, ${f.tone === 'warn' ? 'var(--warning)' : 'var(--info)'} 16%, transparent)`,
+              color: f.tone === 'warn' ? 'var(--warning)' : 'var(--info)',
             }}>
               {f.label}
             </span>

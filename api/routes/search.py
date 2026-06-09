@@ -27,6 +27,7 @@ def _get_rag() -> RAGService:
 
 class ChatRequest(BaseModel):
     message: str
+    focused_source: dict | None = None
 
 
 @router.post("/chat")
@@ -35,9 +36,22 @@ async def chat(
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_active_user),
 ) -> StreamingResponse:
+    def event_stream():
+        def sse(event_type: str, data: dict) -> str:
+            return f"event: {event_type}\ndata: {json.dumps(data, ensure_ascii=False)}\n\n"
+
+        try:
+            for ev in _get_rag().process_query_events(request.message, db, current_user, request.focused_source):
+                etype = ev.pop("type", "message")
+                yield sse(etype, ev)
+        except Exception as exc:  # pragma: no cover - defensive
+            logger.exception("Chat stream failed")
+            yield sse("error", {"detail": str(exc)})
+
     return StreamingResponse(
-        _get_rag().process_query(request.message, db, current_user),
+        event_stream(),
         media_type="text/event-stream",
+        headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"},
     )
 
 

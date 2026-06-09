@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { GraduationCap } from 'lucide-react';
 import { api } from '../services/api';
+import { PageHeader, PageWrap } from '../components/PageHeader';
 
 interface TranscriptEntry {
   course_code: string;
@@ -38,13 +39,10 @@ export function TranscriptPage() {
   }
   if (!data || data.entries.length === 0) {
     return (
-      <div style={{ padding: 32, maxWidth: 900, margin: '0 auto' }}>
-        <h2 style={{ marginBottom: 24, color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: 8 }}>
-          <GraduationCap size={20} strokeWidth={1.8} />
-          {t('transcript.title')}
-        </h2>
+      <PageWrap maxWidth={1200}>
+        <PageHeader icon={GraduationCap} eyebrow={t('sidebar.transcript')} title={t('transcript.title')} />
         <p style={{ color: 'var(--text-secondary)' }}>{t('transcript.empty')}</p>
-      </div>
+      </PageWrap>
     );
   }
 
@@ -65,15 +63,24 @@ export function TranscriptPage() {
   };
 
   return (
-    <div style={{ padding: 32, maxWidth: 900, margin: '0 auto' }}>
-      <h2 style={{ marginBottom: 8, color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: 8 }}>
-        <GraduationCap size={20} strokeWidth={1.8} />
-        {t('transcript.title')}
-      </h2>
-      <div style={{ display: 'flex', gap: 24, marginBottom: 24, color: 'var(--text-secondary)' }}>
-        <span>{t('transcript.cumulativeGpa')}: <strong style={{ color: 'var(--accent)' }}>{data.cumulative_gpa ?? '—'}</strong></span>
-        <span>{t('transcript.totalCredits')}: <strong style={{ color: 'var(--accent)' }}>{data.total_credits}</strong></span>
-      </div>
+    <PageWrap maxWidth={1200}>
+      <PageHeader
+        icon={GraduationCap}
+        eyebrow={t('sidebar.transcript')}
+        title={t('transcript.title')}
+        right={
+          <div style={{ display: 'flex', gap: 12 }}>
+            <div className="card" style={{ padding: '12px 20px', textAlign: 'center' }}>
+              <div style={{ fontSize: 26, fontWeight: 800, color: 'var(--accent)', letterSpacing: '-0.02em', fontVariantNumeric: 'tabular-nums' }}>{data.cumulative_gpa ?? '—'}</div>
+              <div style={{ fontSize: 11.5, color: 'var(--text-muted)', marginTop: 2 }}>{t('transcript.cumulativeGpa')}</div>
+            </div>
+            <div className="card" style={{ padding: '12px 20px', textAlign: 'center' }}>
+              <div style={{ fontSize: 26, fontWeight: 800, color: 'var(--text-primary)', letterSpacing: '-0.02em', fontVariantNumeric: 'tabular-nums' }}>{data.total_credits}</div>
+              <div style={{ fontSize: 11.5, color: 'var(--text-muted)', marginTop: 2 }}>{t('transcript.totalCredits')}</div>
+            </div>
+          </div>
+        }
+      />
 
       {termOrder.map(term => (
         <div key={term}>
@@ -82,11 +89,11 @@ export function TranscriptPage() {
           </h3>
           <table style={{ width: '100%', borderCollapse: 'collapse', marginBottom: 28, background: 'var(--bg-card)', borderRadius: 8, overflow: 'hidden' }}>
             <thead>
-              <tr style={{ borderBottom: '2px solid #2d3561', textAlign: 'left', backgroundColor: 'var(--bg-table-header)' }}>
-                <th style={{ padding: '8px 12px', color: 'var(--sidebar-text)' }}>{t('transcript.code')}</th>
-                <th style={{ padding: '8px 12px', color: 'var(--sidebar-text)' }}>{t('transcript.course')}</th>
-                <th style={{ padding: '8px 12px', color: 'var(--sidebar-text)' }}>{t('transcript.credits')}</th>
-                <th style={{ padding: '8px 12px', color: 'var(--sidebar-text)' }}>{t('transcript.grade')}</th>
+              <tr style={{ borderBottom: '1px solid var(--border-color)', textAlign: 'left', backgroundColor: 'var(--bg-table-header)' }}>
+                <th style={{ padding: '10px 14px', fontSize: 11.5, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-muted)' }}>{t('transcript.code')}</th>
+                <th style={{ padding: '10px 14px', fontSize: 11.5, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-muted)' }}>{t('transcript.course')}</th>
+                <th style={{ padding: '10px 14px', fontSize: 11.5, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-muted)' }}>{t('transcript.credits')}</th>
+                <th style={{ padding: '10px 14px', fontSize: 11.5, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-muted)' }}>{t('transcript.grade')}</th>
               </tr>
             </thead>
             <tbody>
@@ -104,6 +111,6 @@ export function TranscriptPage() {
           </table>
         </div>
       ))}
-    </div>
+    </PageWrap>
   );
 }

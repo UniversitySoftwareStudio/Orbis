@@ -38,6 +38,24 @@
       "transcript": "Transkript",
       "assignments": "Ödevler",
       "regulations": "Yönetmelikler"
+    },
+    "askAnything": "Bilgi hakkında her şeyi sor",
+    "dueToday": "Bugün",
+    "dueTomorrow": "Yarın",
+    "inDays": "{{n}}g kaldı",
+    "paths": {
+      "pullTag": "Çek · RAG",
+      "pullTitle": "Resmi kaynaklara sor",
+      "pullDesc": "Bilgi yönetmelik, katalog ve takvimine dayalı doğal dil yanıtları.",
+      "pullMetric": "Sohbeti aç",
+      "pushTag": "İt · Yükümlülük",
+      "pushTitle": "Yükümlülüklerim",
+      "pushDesc": "Sana uygulanan kurallar; son tarih ve aciliyetle proaktif sunulur.",
+      "pushMetric": "{{n}} aktif",
+      "reviewTag": "İncele · Ajan",
+      "reviewTitle": "Teslim incelemesi",
+      "reviewDesc": "Çalışmanı yükle; ajan her gereksinimi kanıtla denetler.",
+      "reviewMetric": "{{n}} bekliyor"
     }
   },
   "profile": {
@@ -133,13 +151,31 @@
     "email": "E-posta",
     "password": "Şifre",
     "submit": "Giriş Yap",
-    "error": "Giriş başarısız"
+    "error": "Giriş başarısız",
+    "subtitle": "Orbis hesabınıza giriş yapın",
+    "submitting": "Giriş yapılıyor…",
+    "footer": "İstanbul Bilgi Üniversitesi · Orbis"
   },
   "chat": {
     "placeholder": "Kurslar, yönetmelikler veya kampüs hayatı hakkında sorun...",
     "send": "Gönder",
-    "empty": "Kurslar, yönetmelikler veya kampüs hayatı hakkında bana sorun!",
-    "greeting": "Merhaba! Ben **Orbis**, İstanbul Bilgi Üniversitesi'nin akademik asistanıyım.\nSize şu konularda yardımcı olabilirim:\n- 📚 Dersler, müfredatlar ve ön koşullar\n- 📋 Yönetmelikler, staj ve Erasmus prosedürleri\n- 🗓️ Akademik takvim ve önemli tarihler\n- 🏫 Fakülteler, bölümler ve iletişim bilgileri\n\nNasıl yardımcı olmamı istersiniz?"
+    "empty": {
+      "title": "Bilgi hakkında her şeyi sor",
+      "body": "Resmi yönetmelikler, ders kataloğu ve akademik takvimden dayanaklı yanıtlar — her cevap gerçek kaynaklara dayanır.",
+      "tryLabel": "Şunu sorabilirsin"
+    },
+    "greeting": "Merhaba! Ben **Orbis**, İstanbul Bilgi Üniversitesi'nin akademik asistanıyım.\nSize şu konularda yardımcı olabilirim:\n- 📚 Dersler, müfredatlar ve ön koşullar\n- 📋 Yönetmelikler, staj ve Erasmus prosedürleri\n- 🗓️ Akademik takvim ve önemli tarihler\n- 🏫 Fakülteler, bölümler ve iletişim bilgileri\n\nNasıl yardımcı olmamı istersiniz?",
+    "eyebrow": "Çek · RAG",
+    "heading": "Resmi kaynaklara sor",
+    "thinking": "Resmi kaynaklar aranıyor…",
+    "examples": {
+      "addDrop": "Bu dönem ekle/bırak son tarihi ne zaman?",
+      "internship": "Zorunlu staj koşulları nelerdir?",
+      "prereq": "COMP 201 dersinin ön koşulları nelerdir?",
+      "erasmus": "Erasmus değişim programına nasıl başvururum?"
+    },
+    "sources": "Kaynaklar",
+    "newChat": "Yeni sohbet"
   },
   "calendar": {
     "title": "Akademik Takvim 2025-2026",
@@ -150,7 +186,20 @@
     "spring": "Bahar Yarıyılı 2026",
     "loading": "Yükleniyor...",
     "empty": "Takvim verisi bulunamadı.",
-    "months": ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"],
+    "months": [
+      "Oca",
+      "Şub",
+      "Mar",
+      "Nis",
+      "May",
+      "Haz",
+      "Tem",
+      "Ağu",
+      "Eyl",
+      "Eki",
+      "Kas",
+      "Ara"
+    ],
     "entryTypes": {
       "holiday": "Tatil",
       "exam_period": "Sınav Dönemi",

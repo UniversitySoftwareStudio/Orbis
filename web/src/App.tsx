@@ -3,7 +3,6 @@ import type { ReactNode } from 'react';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import { LoginPage } from './pages/LoginPage';
-import { ChatPage } from './pages/ChatPage';
 import { CalendarPage } from './pages/CalendarPage';
 import { SchedulePage } from './pages/SchedulePage';
 import { AssignmentsPage } from './pages/AssignmentsPage';
@@ -16,6 +15,7 @@ import { CatalogPage } from './pages/CatalogPage';
 import { NotificationsPage } from './pages/NotificationsPage';
 import { SettingsPage } from './pages/SettingsPage';
 import { Sidebar } from './components/Sidebar';
+import { ChatWidget } from './components/ChatWidget';
 import './index.css';
 
 function ProtectedLayout() {
@@ -27,7 +27,6 @@ function ProtectedLayout() {
       <main style={{ flex: 1, overflow: 'auto' }}>
         <Routes>
           <Route path="/dashboard" element={<DashboardPage />} />
-          <Route path="/chat" element={<ChatPage />} />
           <Route path="/calendar" element={<CalendarPage />} />
           <Route path="/schedule" element={<SchedulePage />} />
           <Route path="/assignments" element={<AssignmentsPage />} />
@@ -41,13 +40,16 @@ function ProtectedLayout() {
           <Route path="*" element={<Navigate to="/dashboard" replace />} />
         </Routes>
       </main>
+      <ChatWidget />
     </div>
   );
 }
 
 function PublicRoute({ children }: { children: ReactNode }) {
   const { user } = useAuth();
-  return user ? <Navigate to="/dashboard" replace /> : <>{children}</>;
+  // Allow the /login?demo=1 auto-login to run even if a stale session exists.
+  const forceLogin = new URLSearchParams(window.location.search).get('demo') === '1';
+  return user && !forceLogin ? <Navigate to="/dashboard" replace /> : <>{children}</>;
 }
 
 function App() {

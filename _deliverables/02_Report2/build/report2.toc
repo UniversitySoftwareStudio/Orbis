@@ -1,0 +1,39 @@
+\contentsline {section}{Abstract}{1}{}%
+\contentsline {section}{Contents}{2}{}%
+\contentsline {section}{List of Figures}{4}{}%
+\contentsline {section}{List of Tables}{5}{}%
+\contentsline {section}{List of Abbreviations}{7}{}%
+\contentsline {section}{\numberline {1}Introduction}{1}{}%
+\contentsline {section}{\numberline {2}Related Works}{1}{}%
+\contentsline {section}{\numberline {3}Dataset}{4}{}%
+\contentsline {section}{\numberline {4}Theoretical Background}{5}{}%
+\contentsline {subsection}{\numberline {4.1}Shannon Entropy for URL Classification}{5}{}%
+\contentsline {subsection}{\numberline {4.2}Vector Embeddings and Cosine Similarity}{6}{}%
+\contentsline {subsection}{\numberline {4.3}MiniBatchKMeans and Ward HAC}{6}{}%
+\contentsline {section}{\numberline {5}Proposed Methodology}{6}{}%
+\contentsline {subsection}{\numberline {5.1}Data Categorization \& Taxonomy Strategy}{6}{}%
+\contentsline {subsection}{\numberline {5.2}The Orchestrator-Led Event Pipeline}{7}{}%
+\contentsline {subsection}{\numberline {5.3}Contextual vs. SQL Assignment Matching}{8}{}%
+\contentsline {subsection}{\numberline {5.4}Agentic Assignment Submission Evaluation}{9}{}%
+\contentsline {section}{\numberline {6}Experimental Setup}{11}{}%
+\contentsline {subsection}{\numberline {6.1}Framework and Deployment}{11}{}%
+\contentsline {subsection}{\numberline {6.2}Performance Metrics}{11}{}%
+\contentsline {section}{\numberline {7}Experiments \& Discussion}{12}{}%
+\contentsline {subsection}{\numberline {7.1}Extraction Throughput \& Quality Funnel}{12}{}%
+\contentsline {section}{\numberline {8}Results}{12}{}%
+\contentsline {section}{\numberline {9}Quantitative Evaluation}{13}{}%
+\contentsline {subsection}{\numberline {9.1}Gold Ground-Truth Construction}{14}{}%
+\contentsline {subsection}{\numberline {9.2}Event Extraction Results}{15}{}%
+\contentsline {subsection}{\numberline {9.3}Assignment Matching Results}{16}{}%
+\contentsline {subsection}{\numberline {9.4}Submission Agent Results}{16}{}%
+\contentsline {subsection}{\numberline {9.5}Limitations}{18}{}%
+\contentsline {section}{\numberline {10}Realistic Constraints}{18}{}%
+\contentsline {subsection}{\numberline {10.1}Social, Environmental and Economic Impact}{18}{}%
+\contentsline {subsection}{\numberline {10.2}Cost Analysis}{18}{}%
+\contentsline {subsection}{\numberline {10.3}Standards}{20}{}%
+\contentsline {subsubsection}{\numberline {10.3.1}NSPE Code of Ethics}{20}{}%
+\contentsline {subsubsection}{\numberline {10.3.2}IEEE Standards}{20}{}%
+\contentsline {subsection}{\numberline {10.4}Risk Analysis}{20}{}%
+\contentsline {section}{\numberline {11}Conclusion \& Future Work}{21}{}%
+\contentsline {section}{\numberline {12}Contributions}{22}{}%
+\contentsline {section}{References}{23}{}%

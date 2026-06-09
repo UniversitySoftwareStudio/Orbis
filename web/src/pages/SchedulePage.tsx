@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { CalendarRange, Globe } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { api } from '../services/api';
+import { PageHeader } from '../components/PageHeader';
 
 interface ScheduleSlot {
   course_code: string;
@@ -165,11 +166,8 @@ export function SchedulePage() {
   });
 
   return (
-    <div style={{ padding: 32 }}>
-      <h2 style={{ marginBottom: 24, color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: 8 }}>
-        <CalendarRange size={20} strokeWidth={1.8} />
-        {t('schedule.title')}
-      </h2>
+    <div style={{ padding: '32px 48px 48px' }}>
+      <PageHeader icon={CalendarRange} eyebrow={t('sidebar.schedule')} title={t('schedule.title')} />
 
       <div style={{
         display: 'flex',
@@ -191,7 +189,7 @@ export function SchedulePage() {
             fontWeight: 'bold',
             textAlign: 'center',
             padding: '10px 4px',
-            border: '1px solid #2d3561',
+            border: '1px solid var(--border-color)',
             borderBottom: '3px solid transparent',
             fontSize: 14,
             borderRadius: '8px 0 0 0',
@@ -209,7 +207,7 @@ export function SchedulePage() {
                 fontWeight: 'bold',
                 textAlign: 'center',
                 padding: '10px 4px',
-                border: '1px solid #2d3561',
+                border: '1px solid var(--border-color)',
                 borderBottom: day === todayKey ? '3px solid var(--accent)' : '3px solid transparent',
                 fontSize: 14,
                 borderRadius: idx === DAYS.length - 1 ? '0 8px 0 0' : undefined,
@@ -231,7 +229,7 @@ export function SchedulePage() {
               left: 60,
               right: 0,
               height: 2,
-              backgroundColor: '#f44336',
+              backgroundColor: 'var(--danger)',
               zIndex: 10,
               pointerEvents: 'none',
             }}>
@@ -242,7 +240,7 @@ export function SchedulePage() {
                 width: 10,
                 height: 10,
                 borderRadius: '50%',
-                backgroundColor: '#f44336',
+                backgroundColor: 'var(--danger)',
               }} />
             </div>
           )}
@@ -307,16 +305,7 @@ export function SchedulePage() {
                 return (
                   <div
                     key={`${slot.course_code}-${slot.section_number}-${slot.start_time}`}
-                    onMouseEnter={e => {
-                      e.currentTarget.style.transform = 'scale(1.03)';
-                      e.currentTarget.style.zIndex = '20';
-                      e.currentTarget.style.boxShadow = '0 8px 24px rgba(0,0,0,0.3)';
-                    }}
-                    onMouseLeave={e => {
-                      e.currentTarget.style.transform = 'scale(1)';
-                      e.currentTarget.style.zIndex = '5';
-                      e.currentTarget.style.boxShadow = 'var(--shadow)';
-                    }}
+                    className="sched-block"
                     style={{
                       position: 'absolute',
                       top: cardTop,
@@ -325,7 +314,7 @@ export function SchedulePage() {
                       height: cardHeight,
                       backgroundColor: cardColor,
                       borderRadius: 4,
-                      borderLeft: isConflict ? '4px solid #f44336' : '4px solid transparent',
+                      borderLeft: isConflict ? '4px solid var(--danger)' : '4px solid transparent',
                       opacity: isConflict ? 0.92 : 1,
                       overflow: 'hidden',
                       boxSizing: 'border-box',
@@ -345,7 +334,7 @@ export function SchedulePage() {
                       right: 8,
                       bottom: 14,
                       overflow: 'hidden',
-                      color: isConflict ? '#f44336' : '#fff',
+                      color: isConflict ? 'var(--danger)' : '#fff',
                       fontSize: 13,
                       lineHeight: 1.4,
                     }}>
