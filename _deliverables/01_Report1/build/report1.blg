@@ -5,59 +5,44 @@ Reallocating 'name_of_file' (item size: 1) to 7 items.
 The style file: ieeetr.bst
 Reallocating 'name_of_file' (item size: 1) to 11 items.
 Database file #1: references.bib
-Warning--I didn't find a database entry for "lewis2020retrieval"
-Warning--I didn't find a database entry for "assayed2024systematic"
-Warning--I didn't find a database entry for "ismail2025academic"
-Warning--I didn't find a database entry for "wick2023dars"
-Warning--I didn't find a database entry for "zhang2016semantic"
-Warning--I didn't find a database entry for "galli2025aiAct"
-Warning--I didn't find a database entry for "kiela2024hybrid"
-Warning--I didn't find a database entry for "gunther2023jina"
-Warning--I didn't find a database entry for "cisneros2025jorgpt"
-Warning--I didn't find a database entry for "zheng2023judging"
-Warning--I didn't find a database entry for "shannon1948mathematical"
-Warning--I didn't find a database entry for "sculley2010web"
-Warning--I didn't find a database entry for "ward1963hierarchical"
-Warning--I didn't find a database entry for "malkov2018hnsw"
-You've used 0 entries,
+You've used 14 entries,
             1876 wiz_defined-function locations,
-            492 strings with 3723 characters,
-and the built_in function-call counts, 20 in all, are:
-= -- 0
-> -- 0
+            562 strings with 6230 characters,
+and the built_in function-call counts, 3887 in all, are:
+= -- 368
+> -- 162
 < -- 0
-+ -- 0
-- -- 0
-* -- 2
-:= -- 9
-add.period$ -- 0
-call.type$ -- 0
-change.case$ -- 0
++ -- 60
+- -- 46
+* -- 270
+:= -- 552
+add.period$ -- 14
+call.type$ -- 14
+change.case$ -- 14
 chr.to.int$ -- 0
-cite$ -- 0
-duplicate$ -- 0
-empty$ -- 1
-format.name$ -- 0
-if$ -- 1
+cite$ -- 14
+duplicate$ -- 218
+empty$ -- 374
+format.name$ -- 46
+if$ -- 944
 int.to.chr$ -- 0
-int.to.str$ -- 0
-missing$ -- 0
-newline$ -- 3
-num.names$ -- 0
-pop$ -- 0
+int.to.str$ -- 14
+missing$ -- 14
+newline$ -- 45
+num.names$ -- 14
+pop$ -- 54
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 1
+skip$ -- 143
 stack$ -- 0
-substring$ -- 0
-swap$ -- 0
+substring$ -- 230
+swap$ -- 89
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 0
-width$ -- 0
-write$ -- 2
-(There were 14 warnings)
+while$ -- 34
+width$ -- 16
+write$ -- 137

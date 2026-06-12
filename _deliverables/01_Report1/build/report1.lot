@@ -1,16 +1,16 @@
-\contentsline {table}{\numberline {1}{\ignorespaces Positioning of Orbis against related categories of academic-support systems. \emph {Push} means the system surfaces an obligation before a student asks. \emph {Unstructured rules} means handling free-text regulation, not only schema-based requirements.}}{3}{}%
-\contentsline {table}{\numberline {2}{\ignorespaces Official baseline and comparator validity. \emph {Direct} means the same task and data family; \emph {partial} means a related subsystem metric but different domain or output schema; \emph {contextual} means useful for positioning only.}}{4}{}%
-\contentsline {table}{\numberline {3}{\ignorespaces Dataset and post-processing statistics. The Proactive Event System operates only on the 935 regulatory chunks; all other categories are routed to the RAG search index.}}{5}{}%
-\contentsline {table}{\numberline {4}{\ignorespaces Web Page Corpus Distribution by Category}}{6}{}%
-\contentsline {table}{\numberline {5}{\ignorespaces RAG evaluation benchmark: 100 bilingual queries across seven routing categories}}{19}{}%
-\contentsline {table}{\numberline {6}{\ignorespaces Event Extraction Pipeline Funnel}}{20}{}%
-\contentsline {table}{\numberline {7}{\ignorespaces RAG chatbot evaluation results on the 100-query bilingual benchmark}}{20}{}%
-\contentsline {table}{\numberline {8}{\ignorespaces Assignments generated per real student profile, broken down by urgency and matching path. ``SQL'' counts deterministic conditional matches; ``CTX'' counts contextual LLM matches.}}{21}{}%
-\contentsline {table}{\numberline {9}{\ignorespaces Metric provenance and limitations. Artifact paths are reported relative to the repository.}}{23}{}%
-\contentsline {table}{\numberline {10}{\ignorespaces Confusion matrix of the event extraction pipeline against gold ground truth ($N{=}323$).}}{23}{}%
-\contentsline {table}{\numberline {11}{\ignorespaces Binary classification metrics for the event extraction stage. Positive class = true obligation accepted by the system.}}{23}{}%
-\contentsline {table}{\numberline {12}{\ignorespaces Per-profile assignment matching scores against gold ground truth ($N{=}712$ pairs: 4 profiles $\times $ 178 accepted obligations).}}{24}{}%
-\contentsline {table}{\numberline {13}{\ignorespaces Submission agent results stratified by case type. Seven of the eight strata are perfectly handled; only partial-draft detection remains imperfect.}}{25}{}%
-\contentsline {table}{\numberline {14}{\ignorespaces Submission agent confusion matrix on $N{=}32$ cases (positive class: approve). Zero false negatives: no genuine submission was rejected. Both false positives are \texttt {flag\_partial} drafts.}}{25}{}%
-\contentsline {table}{\numberline {15}{\ignorespaces Submission agent binary classification metrics (positive class: approve), measured on the 32-case ground-truth set against the current two-call agentic reviewer.}}{25}{}%
-\contentsline {table}{\numberline {16}{\ignorespaces Submission Agent Ablation Study: Redesigning the reviewer significantly lifted in-document prompt-injection resistance because the agent now explicitly verifies whether requirements are met, bypassing embedded adversarial instructions.}}{26}{}%
+\contentsline {table}{\numberline {1}{\ignorespaces Positioning of Orbis Against Related Systems}}{4}{table.caption.6}%
+\contentsline {table}{\numberline {2}{\ignorespaces Baseline and Comparator Validity}}{5}{table.caption.7}%
+\contentsline {table}{\numberline {3}{\ignorespaces Dataset and Post-Processing Statistics}}{6}{table.caption.8}%
+\contentsline {table}{\numberline {4}{\ignorespaces Web Page Corpus Distribution}}{7}{table.caption.9}%
+\contentsline {table}{\numberline {5}{\ignorespaces RAG Evaluation Benchmark Categories}}{24}{table.caption.16}%
+\contentsline {table}{\numberline {6}{\ignorespaces Event Extraction Pipeline Funnel}}{25}{table.caption.17}%
+\contentsline {table}{\numberline {7}{\ignorespaces Assignments per Student Profile}}{26}{table.caption.18}%
+\contentsline {table}{\numberline {8}{\ignorespaces Metric Provenance and Limitations}}{28}{table.caption.19}%
+\contentsline {table}{\numberline {9}{\ignorespaces Event Extraction Confusion Matrix}}{28}{table.caption.20}%
+\contentsline {table}{\numberline {10}{\ignorespaces Event Extraction Metrics}}{28}{table.caption.21}%
+\contentsline {table}{\numberline {11}{\ignorespaces Per-Profile Assignment Matching Scores}}{29}{table.caption.22}%
+\contentsline {table}{\numberline {12}{\ignorespaces Submission Agent Results by Stratum}}{30}{table.caption.23}%
+\contentsline {table}{\numberline {13}{\ignorespaces Submission Agent Confusion Matrix}}{30}{table.caption.24}%
+\contentsline {table}{\numberline {14}{\ignorespaces Submission Agent Metrics}}{30}{table.caption.25}%
+\contentsline {table}{\numberline {15}{\ignorespaces Submission Agent Ablation Study}}{31}{table.caption.26}%
+\contentsline {table}{\numberline {16}{\ignorespaces RAG Chatbot Evaluation Results}}{31}{table.caption.27}%

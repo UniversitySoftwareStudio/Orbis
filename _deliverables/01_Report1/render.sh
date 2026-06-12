@@ -8,6 +8,9 @@ SOURCE="report1.tex"
 OUTPUT="$SCRIPT_DIR/Report1.pdf"
 RENDER_LOG="$BUILD_DIR/render.log"
 
+# Ensure BibTeX resolves the report-local bibliography instead of any MiKTeX system copy.
+export BIBINPUTS="$REPORT_DIR${BIBINPUTS:+;$BIBINPUTS}"
+
 if ! command -v latexmk >/dev/null 2>&1; then
   echo "latexmk is required to render Report1." >&2
   exit 127
