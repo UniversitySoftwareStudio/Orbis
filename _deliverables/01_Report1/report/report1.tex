@@ -11,7 +11,8 @@
 \usepackage{array}
 \usepackage{cite} 
 \usepackage{enumitem}
-\usepackage{tikz} 
+\usepackage{listings}
+\usepackage{tikz}
 \usetikzlibrary{shapes.geometric, shapes.misc, shapes.symbols, arrows.meta, positioning, fit, backgrounds, calc, decorations.pathreplacing}
 
 \definecolor{orbisInk}{HTML}{1F2933}
@@ -22,6 +23,24 @@
 \definecolor{orbisGreen}{HTML}{2F855A}
 \definecolor{orbisPanel}{HTML}{F7FAFC}
 \definecolor{orbisLine}{HTML}{CBD5E1}
+
+% Listing style for the prompt appendix
+\lstdefinestyle{promptstyle}{
+    basicstyle=\ttfamily\scriptsize,
+    breaklines=true,
+    breakatwhitespace=false,
+    columns=fullflexible,
+    frame=single,
+    rulecolor=\color{orbisLine},
+    backgroundcolor=\color{orbisPanel},
+    showstringspaces=false,
+    keepspaces=true,
+    captionpos=b,
+    xleftmargin=6pt,
+    xrightmargin=6pt,
+    aboveskip=8pt,
+    belowskip=8pt
+}
 
 % Formatting for cleaner structure and paragraph gaps
 \setlength{\parindent}{0pt}   
@@ -51,24 +70,29 @@
 \submissiondate{June, 2026} 
 
 \abstract{
-University academic systems often function merely as static record-keeping databases, lacking proactive support for students navigating complex degree requirements. This project, 'Orbis', introduces an intelligent academic support system designed to bridge this gap using Artificial Intelligence (AI) and Retrieval-Augmented Generation (RAG). The core of Orbis is an Orchestrator-led event management pipeline that autonomously monitors a student's dynamic academic state against a complex vector database of university regulations, triggering timely notifications for critical milestones. To achieve high fidelity, we engineered a taxonomy generation pipeline utilizing Shannon entropy tail-signal classification and MiniBatchKMeans clustering, organizing 60,649 document chunks into 125 high-quality leaf nodes. Our pipeline features a two-pass adversarial LLM review, evaluating 323 candidate rules and extracting 178 highly actionable obligations with a 55\% acceptance rate, and matches them against 4 distinct student profiles to generate 176 personalized assignments. We evaluate each subsystem against a gold ground-truth set manually validated by the authors. The event-extraction stage achieves precision 0.978 / recall 0.574 / $F_1$ 0.723 over 323 candidates; the assignment-matching stage achieves $F_1$ 0.51 over 712 (profile, obligation) pairs. An agentic submission-review subsystem evaluated on 32 deterministically generated cases attains 93.8\% accuracy with perfect recall and full ($4/4$) resistance to in-document prompt injection. The remaining roadmap includes direct integration with the university's Student Information System (SIS) and injection-hardened submission review.
+University academic systems often function merely as static record-keeping databases, lacking proactive support for students navigating complex degree requirements. This project, 'Orbis', introduces an intelligent academic support system designed to bridge this gap using Artificial Intelligence (AI) and Retrieval-Augmented Generation (RAG). The core of Orbis is an Orchestrator-led event management pipeline that autonomously monitors a student's dynamic academic state against a complex vector database of university regulations, triggering timely notifications for critical milestones. To achieve high fidelity, we engineered a taxonomy generation pipeline utilizing Shannon entropy tail-signal classification and MiniBatchKMeans clustering, organizing 60,649 document chunks into 125 high-quality leaf nodes. Our pipeline features a two-pass adversarial LLM review, evaluating 323 candidate rules and extracting 178 highly actionable obligations with a 55\% acceptance rate, and matches them against 4 distinct student profiles to generate 176 personalized assignments. We evaluate each subsystem against a gold ground-truth set manually validated by the authors. The event-extraction stage achieves precision 0.978 / recall 0.574 / $F_1$ 0.723 over 323 candidates; the assignment-matching stage achieves $F_1$ 0.51 over 712 (profile, obligation) pairs. An agentic submission-review subsystem evaluated on 32 deterministically generated cases attains 93.8\% accuracy with perfect recall and full ($4/4$) resistance to in-document prompt injection. Complementing the event and submission systems, a production-grade RAG chatbot enables natural-language queries over the full institutional knowledge base; evaluated against a 100-query bilingual benchmark across seven routing categories, it achieves 92.3\% routing accuracy, 94.7\% context recall, a Mean Reciprocal Rank of 0.94, and 97.6\% semantic accuracy. The remaining roadmap includes direct integration with the university's Student Information System (SIS) and injection-hardened submission review.
 }
 
 \begin{document}
 
 % Preliminaries
 \maketitle
+\phantomsection
 \addcontentsline{toc}{section}{\abstractname}
 \makeabstract
+\phantomsection
 \addcontentsline{toc}{section}{\contentsname}
 \maketableofcontents
 
+\phantomsection
 \addcontentsline{toc}{section}{List of Figures}
 \makelistoffigures
+\phantomsection
 \addcontentsline{toc}{section}{List of Tables}
 \makelistoftables
 
 % List of abbreviations
+\phantomsection
 \addcontentsline{toc}{section}{\listofabbrv}
 \makelistofabbrv
 \begin{abbrv}
@@ -76,9 +100,14 @@ University academic systems often function merely as static record-keeping datab
     \item[API] Application Programming Interface
     \item[CI/CD] Continuous Integration/Continuous Deployment
     \item[DB] Database
+    \item[GIN] Generalized Inverted Index
     \item[HAC] Hierarchical Agglomerative Clustering
+    \item[HNSW] Hierarchical Navigable Small World
     \item[LLM] Large Language Model
+    \item[MRR] Mean Reciprocal Rank
     \item[RAG] Retrieval-Augmented Generation
+    \item[SIS] Student Information System
+    \item[SSE] Server-Sent Events
     \item[TF-IDF] Term Frequency-Inverse Document Frequency
 \end{abbrv}
 \newpage
@@ -86,20 +115,27 @@ University academic systems often function merely as static record-keeping datab
 \pagenumbering{arabic}
 \setcounter{page}{1}
 
-% Sections
+% ─────────────────────────────────────────────────────────────────────────────
 \section{Introduction}
+\label{sec:intro}
+% ─────────────────────────────────────────────────────────────────────────────
 In universities, students face a significant cognitive load managing complex degree rules, course selections, and deadlines. Traditional academic platforms are often designed as static databases. They store information efficiently but fail to interpret it for the student's benefit. Students generally do not miss deadlines because they cannot search a system; they miss them because they do not know what they are supposed to be looking for. This creates a "synchronization gap" between student needs and institutional data.
 
-Our project, 'Orbis', offers a novel solution by shifting the academic paradigm from static storage to autonomous orchestration. Orbis is built to act as a proactive academic agent. While standard AI integrations in education wait for user prompts, the core innovation of Orbis is its autonomous evaluation of a student's specific state against unstructured, complex university regulations. 
+Existing AI-mediated support tools only partially close this gap. Retrieval-Augmented Generation grounds a generative model's answers in source documents and substantially reduces hallucination \cite{lewis2020retrieval}, and a growing body of advising-chatbot research applies it to student questions. However, a recent systematic review of advising chatbots found that most deployed systems remain fundamentally reactive: they answer a question once a student thinks to ask it, rather than enforcing obligations against the student's state \cite{assayed2024systematic}. In parallel, regulatory information-extraction research has shown that obligations and requirements can be parsed out of dense legal and policy text with high precision \cite{zhang2016semantic, galli2025aiAct}, but this capability has rarely been connected to a student-facing advising system.
 
-Crucially, the architecture of Orbis is designed for scalability. The system relies on a strictly orchestrated workflow to execute its primary use case: the \textbf{Proactive Event System}. This autonomous pipeline extracts strict, assignable obligations from regulatory documents and creates normalized events, allowing the system to trigger timely, unprompted notifications for students regarding their specific academic requirements.
+Our project, 'Orbis', offers a novel solution by shifting the academic paradigm from static storage to autonomous orchestration. Orbis is built to act as a proactive academic agent operating through two tightly integrated subsystems. The \textbf{Proactive Event System} autonomously evaluates a student's specific academic state against unstructured university regulations to trigger unprompted, obligation-based notifications. The \textbf{RAG Chatbot} complements this by enabling students and faculty to interactively query the same institutional knowledge base in natural language; answering questions about regulations, course catalogs, academic calendars, and personal timetables in real time. While standard AI integrations in education wait for user prompts, the core innovation of Orbis is its autonomous evaluation of a student's specific state against unstructured, complex university regulations.
 
-The rest of the work is organized as follows. Section 2 overviews related works. Section 3 details the dataset. Section 4 provides the theoretical background. Section 5 presents the proposed methodology. Section 6 describes the experimental setup. Sections 7 and 8 discuss experiments and results. Section 9 provides quantitative evaluation. Section 10 outlines realistic constraints. Section 11 concludes the paper, and Section 12 details the authors' contributions.
+Crucially, the architecture of Orbis is designed for scalability. The system relies on a strictly orchestrated workflow to execute its primary use case: the Proactive Event System. This autonomous pipeline extracts strict, assignable obligations from regulatory documents and creates normalized events, allowing the system to trigger timely, unprompted notifications for students regarding their specific academic requirements.
 
+The rest of this report is organized as follows. Section~\ref{sec:related} reviews related works. Section~\ref{sec:design} presents the system design, covering the institutional dataset and the theoretical foundations. Section~\ref{sec:methodology} details the methodology of each subsystem, including the proactive event pipeline, the submission agent, and the RAG chatbot. Section~\ref{sec:setup} describes the experimental setup. Section~\ref{sec:experiments} reports the experiments, results, and discussion across all subsystems. Section~\ref{sec:conclusion} concludes the report and outlines future work. The router and generation prompts that drive the RAG chatbot are reproduced in the Appendix.
+
+% ─────────────────────────────────────────────────────────────────────────────
 \section{Related Works}
+\label{sec:related}
+% ─────────────────────────────────────────────────────────────────────────────
 Academic support systems have evolved from static record-keeping into AI-mediated tools, but most existing systems remain reactive: they answer student questions but do not autonomously enforce regulations against a student's state. We position Orbis against six lines of work.
 
-\textbf{RAG-based academic chatbots.} Retrieval-Augmented Generation combines a generative LLM with a non-parametric retrieval store, grounding answers in source documents and reducing hallucination \cite{lewis2020retrieval}. A systematic review of advising chatbots screened 128 studies and retained 11 advising-chatbot papers, finding that most systems target admission or academic-advising dialogue rather than autonomous obligation enforcement \cite{assayed2024systematic}. More recent advising-LLM work reports QA-style metrics such as BLEU, ROUGE-L, and student satisfaction ratings \cite{ismail2025academic}. These systems serve well as on-demand search interfaces, but operate strictly in a pull mode --- a student must already know that a question is worth asking. Orbis instead operates in a push mode: it parses regulations into structured obligations and matches them against profiles before the student asks.
+\textbf{RAG-based academic chatbots.} Retrieval-Augmented Generation combines a generative LLM with a non-parametric retrieval store, grounding answers in source documents and reducing hallucination \cite{lewis2020retrieval}. A systematic review of advising chatbots screened 128 studies and retained 11 advising-chatbot papers, finding that most systems target admission or academic-advising dialogue rather than autonomous obligation enforcement \cite{assayed2024systematic}. More recent advising-LLM work reports QA-style metrics such as BLEU, ROUGE-L, and student satisfaction ratings \cite{ismail2025academic}. These systems serve well as on-demand search interfaces, but operate strictly in a pull mode: a student must already know that a question is worth asking. Orbis instead operates in a push mode: it parses regulations into structured obligations and matches them against profiles before the student asks.
 
 \textbf{Degree-audit systems.} Tools such as DegreeWorks and Stellic encode degree requirements as deterministic rules and audit a transcript against them. The Degree Audit Reporting System (DARS), for example, has been studied as an advising and registration-support system rather than as an information-extraction benchmark \cite{wick2023dars}. Such systems are excellent for objective conditions (credit counts, GPA thresholds) but cannot reason about unstructured policy text (procedural requirements, deadline-bearing obligations, exceptions written in prose). Orbis complements deterministic audit with a contextual LLM path that operates over free-text regulation.
 
@@ -107,26 +143,31 @@ Academic support systems have evolved from static record-keeping into AI-mediate
 
 \textbf{Local context: HermiOne.} Istanbul Bilgi University has deployed ``HermiOne,'' a support chatbot built by the university's IT department. Based on publicly observable behavior at the time of writing, HermiOne appears to operate primarily as a reactive question-answering chatbot rather than as a proactive regulation-enforcement agent; a direct comparison would require access to its design documentation, which we did not have. Orbis is intentionally complementary: HermiOne handles the conversational interface, while Orbis produces the underlying structured event stream that a future iteration of HermiOne could subscribe to.
 
+\textbf{Hybrid retrieval and neural re-ranking.} A consistent finding in the RAG literature is that dense vector search alone is insufficient when the target corpus is large and heterogeneous: exact-term queries benefit disproportionately from sparse keyword retrieval. Hybrid approaches that interleave keyword (inverted-index) results with dense vector results before a final re-ranking step have been shown to outperform either method in isolation across domain-specific corpora \cite{kiela2024hybrid}. Beyond retrieval, cross-encoder re-rankers --- which score (query, document) pairs jointly rather than encoding them independently --- substantially improve precision when applied to the candidate pool before it reaches the generative model \cite{gunther2023jina}. The Orbis RAG chatbot implements both of these findings as load-bearing components rather than optional optimizations.
+
 \textbf{Automated submission assessment.} LLM-assisted grading systems provide a useful comparison point for the submission-review subsystem, but their metrics usually measure grade prediction rather than safety-oriented accept/reject screening. JorGPT, for instance, evaluates programming-assignment grading over 672 submissions and reports adjusted $R^2{=}0.9156$, mean absolute error $0.4579$, and a reduction from over 300 hours of manual work to under 15 minutes of automated processing \cite{cisneros2025jorgpt}. Orbis's submission agent is narrower: it does not assign grades, but checks whether a submitted artifact satisfies assignment requirements and preserves an appeal path.
 
-\textbf{LLM-as-a-judge for evaluation.} Because labeled gold sets for university-specific regulation extraction do not exist publicly, we adopt the LLM-as-a-judge methodology \cite{zheng2023judging}, in which an independent LLM is used as a scalable proxy for human labeling and validated against a second model from a different family. This methodology underlies our evaluation in Section~9.
+\textbf{LLM-as-a-judge for evaluation.} Because labeled gold sets for university-specific regulation extraction do not exist publicly, we adopt the LLM-as-a-judge methodology \cite{zheng2023judging}, in which an independent LLM is used as a scalable proxy for human labeling and validated against a second model from a different family. This methodology underlies our evaluation in Section~\ref{sec:experiments}.
 
 Table~\ref{tab:related_work} summarizes the comparison.
 
 \begin{table}[H]
 \centering
 \small
+\makebox[\textwidth][c]{% <-- Centers the overflowing content
 \begin{tabular}{lcccc}
 \toprule
-System type & Pull/push & Unstructured rules & Student-specific & Auto-notify \\ \midrule
-University FAQ chatbot     & Pull & No  & No  & No  \\
-RAG academic chatbot       & Pull & Yes & No  & No  \\
-Deterministic degree audit & Push & No  & Yes & Partial \\
-HermiOne (reactive)        & Pull & Yes & Partial & No \\
+System type & Pull/push & Unstructured rules & Student-specific & Auto-notify \\
+\midrule
+University FAQ chatbot & Pull & No & No & No \\
+RAG academic chatbot & Pull & Yes & No & No \\
+Deterministic degree audit & Push & No & Yes & Partial \\
+HermiOne (reactive) & Pull & Yes & Partial & No \\
 \textbf{Orbis (this work)} & \textbf{Push} & \textbf{Yes} & \textbf{Yes} & \textbf{Yes} \\
 \bottomrule
-\end{tabular}
-\caption{Positioning of Orbis against related categories of academic-support systems. \emph{Push} means the system surfaces an obligation before a student asks. \emph{Unstructured rules} means handling free-text regulation, not only schema-based requirements.}
+\end{tabular}%
+}
+\caption[Positioning of Orbis Against Related Systems]{Positioning of Orbis against related categories of academic-support systems. \emph{Push} means the system surfaces an obligation before a student asks. \emph{Unstructured rules} means handling free-text regulation, not only schema-based requirements.}
 \label{tab:related_work}
 \end{table}
 
@@ -145,15 +186,22 @@ Wick and Wallingford DARS study \cite{wick2023dars} & Degree audit & Qualitative
 Zhang and El-Gohary regulatory IE \cite{zhang2016semantic} & Event extraction & Precision 0.969; recall 0.944 on building-code quantitative requirements & Partial & Provides a precision/recall comparator for regulatory extraction, with different domain and rule schema. \\
 Galli et al. AI Act obligation extraction \cite{galli2025aiAct} & Event extraction & 93\% obligation-filtering precision; $>$99\% classification accuracy for extracted obligation fields & Partial & Provides a modern legal-obligation extraction comparator; not compared to assignment matching or submission review. \\
 JorGPT LLM grading \cite{cisneros2025jorgpt} & Submission assessment & Adjusted $R^2$ 0.9156; MAE 0.4579; 672 submissions; 300+ hours $\rightarrow$ under 15 minutes & Partial & Provides grading/workload context; Orbis reports binary accept/reject safety metrics instead of grade-regression metrics. \\
-Prior Orbis single-call reviewer & Submission review & Accuracy 0.781; injection resistance 1/4 & Direct & Internal ablation baseline for the current two-call reviewer reported in Section~9.4. \\
+Prior Orbis single-call reviewer & Submission review & Accuracy 0.781; injection resistance 1/4 & Direct & Internal ablation baseline for the current two-call reviewer reported in Section~\ref{sec:submission_results}. \\
 \bottomrule
 \end{tabular}
 \end{adjustbox}
-\caption{Official baseline and comparator validity. \emph{Direct} means the same task and data family; \emph{partial} means a related subsystem metric but different domain or output schema; \emph{contextual} means useful for positioning only.}
+\caption[Baseline and Comparator Validity]{Official baseline and comparator validity. \emph{Direct} means the same task and data family; \emph{partial} means a related subsystem metric but different domain or output schema; \emph{contextual} means useful for positioning only.}
 \label{tab:baseline_validity}
 \end{table}
 
-\section{Dataset}
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Design}
+\label{sec:design}
+% ─────────────────────────────────────────────────────────────────────────────
+This section establishes the foundations on which the Orbis system is designed: the institutional dataset that every subsystem operates on, and the theoretical tools that underpin the data-categorization, retrieval, and clustering machinery described later in Section~\ref{sec:methodology}.
+
+\subsection{Dataset}
+\label{sec:dataset}
 The foundation of Orbis is its institutional \texttt{knowledge\_base}, constructed from 80 official source URLs under the \texttt{bilgi.edu.tr} domain. The dataset and its post-processing artifacts are summarized in Table~\ref{tab:dataset_stats}.
 
 \begin{table}[H]
@@ -172,32 +220,78 @@ Accepted obligations (\texttt{regulation\_rules}) & 178 \\
 Student profiles (\texttt{user\_profiles}) & 4 \\
 \bottomrule
 \end{tabular}
-\caption{Dataset and post-processing statistics. The Proactive Event System operates only on the 935 regulatory chunks; all other categories are routed to the RAG search index.}
+\caption[Dataset and Post-Processing Statistics]{Dataset and post-processing statistics. The Proactive Event System operates only on the 935 regulatory chunks; all other categories are routed to the RAG search index.}
 \label{tab:dataset_stats}
 \end{table}
 
-The crawl is intentionally heterogeneous: it contains formal regulations (student handbooks, dual-major directives, internship procedures), administrative announcements, event pages, and upload directories. The corpus is bilingual, which complicates deduplication --- the same regulation often exists under both \texttt{/en/academics/...} and \texttt{/tr/akademik/...} paths. Chunking is performed at ingest time using a semantic splitter with a soft 800-token target and a 100-token overlap; each chunk is embedded once with a local MiniLM model and stored in \texttt{knowledge\_base\_embeddings} alongside the source URL, content hash, and categorical metadata. The regulation subset is isolated via the four-step taxonomy pipeline of Section~5.1, with a final regex overlay that promotes any chunk whose source URL matches a known regulation path into the \texttt{regulation} or \texttt{regulation\_document} category, preventing event-pipeline cross-contamination from non-binding content. Instead, evaluation is performed against a constructed Gold Ground-Truth testing set, detailed in Section~9.
+The crawl is intentionally heterogeneous: it contains formal regulations (student handbooks, dual-major directives, internship procedures), administrative announcements, event pages, and upload directories. The corpus is bilingual, which complicates deduplication --- the same regulation often exists under both \texttt{/en/academics/...} and \texttt{/tr/akademik/...} paths. Chunking is performed at ingest time using a semantic splitter with a soft 800-token target and a 100-token overlap; each chunk is embedded once with a local MiniLM model and stored in \texttt{knowledge\_base\_embeddings} alongside the source URL, content hash, and categorical metadata. The regulation subset is isolated via the four-step taxonomy pipeline of Section~\ref{sec:taxonomy}, with a final regex overlay that promotes any chunk whose source URL matches a known regulation path into the \texttt{regulation} or \texttt{regulation\_document} category, preventing event-pipeline cross-contamination from non-binding content. Instead, evaluation is performed against a constructed Gold Ground-Truth testing set, detailed in Section~\ref{sec:gold_gt}.
 
-\section{Theoretical Background}
+\subsubsection{RAG Knowledge Base Preparation}
+\label{sec:rag_dataset}
+The same \texttt{knowledge\_base} table serves as the retrieval index for the RAG chatbot, but the full chatbot-facing corpus has a substantially broader scope than the 935-chunk regulatory subset consumed by the event pipeline. The chatbot index is built from web pages and PDFs split into \textbf{150-word chunks with a 30-word overlap}, hard-capped to remain within the embedding model's token limit. Understanding the corpus structure is necessary to explain several design decisions in the retrieval architecture.
+
+\textbf{Web page distribution.} Approximately 12,600 web pages were scraped from the university domain. Table~\ref{tab:web_distribution} shows the category breakdown.
+
+\begin{table}[H]
+    \centering
+    \begin{adjustbox}{center}
+        \begin{tabular}{l c c p{5.5cm}}
+            \toprule
+            \textbf{Category} & \textbf{Count} & \textbf{Share} & \textbf{Description} \\ \midrule
+            News \& Announcements & $\approx$4,160 & 33\% & Press releases, news items (\texttt{/haber/}) \\
+            Events                & $\approx$4,035 & 32\% & Past and future seminars (\texttt{/etkinlik/}) \\
+            Academic (Faculties)  & $\approx$2,268 & 18\% & Department pages, faculty bios, course lists \\
+            University Info       & $\approx$1,008 &  8\% & Rules, administration, ``About Us'' pages \\
+            Student Life          & $\approx$630   &  5\% & Transport, clubs, support services \\
+            Other                 & $\approx$507   &  4\% & International office, research centers \\
+            \bottomrule
+        \end{tabular}
+    \end{adjustbox}
+    \caption[Web Page Corpus Distribution]{Web page corpus distribution by category.}
+    \label{tab:web_distribution}
+\end{table}
+
+65\% of the corpus is \textit{temporal} content (news and event pages), while only $\approx$35\% is \textit{core knowledge}. This imbalance is the primary retrieval challenge: a na\"{i}ve vector search for ``scholarship policy'' risks surfacing a 2018 news article announcing a policy update rather than the current policy page. The router architecture (Section~\ref{sec:rag_arch}) addresses this by steering factual queries away from high-temporal URL prefixes.
+
+\textbf{PDF filtering.} Approximately 2,245 scraped PDFs were analyzed. Construction tenders (\texttt{/ihaleler/}) use legalistic language (``Article 5'', ``Obligations'') that semantically overlaps with academic regulations; recruitment result lists contain thousands of proper nouns and scores that dilute the vector space. A \texttt{filter\_pdfs.py} script applied hard-exclusion rules by URL pattern and Turkish keyword (e.g.\ ``teklif mektubu''---Proposal Letter; ``sonuç listesi''---Result List), with hard-inclusion overrides protecting known high-value documents (any file containing ``erasmus'', ``staj'', ``handbook'', or ``yönerge'' is always retained). The result: \textbf{1,595 files ingested} (regulations, syllabuses, Erasmus guides, brochures), \textbf{315 discarded} (tenders, outdated recruitment lists), and \textbf{335 archived} (faculty CVs, reserved for a future Faculty Search feature).
+
+\textbf{Language detection.} Accurate language tagging drives correct PostgreSQL stemming in the keyword search index. A simple character-frequency heuristic (counting Turkish-specific characters such as \texttt{\i, ğ, ş}) failed on English documents containing local addresses (e.g., ``Santral Campus, Eyüpsultan''). The adopted approach runs a \textit{Stopword Race}: it counts occurrences of language-specific stopwords (\textit{the, and, is} vs.\ \textit{ve, bir, için}) over the document body, resolving language from content rather than character inventory. A \texttt{fix\_pdf\_language\_and\_titles.py} preprocessing step repaired \textbf{361 PDF titles} (22.6\% of the corpus) that carried generic software-generated names (e.g., ``PowerPoint Presentation''), falling back to a clean title derived from the filename. Final language split: $\approx$65\% Turkish, $\approx$35\% English.
+
+\subsection{Theoretical Background}
+\label{sec:theory}
 To successfully isolate and evaluate this dataset, Orbis relies on several foundational machine learning and information theory algorithms. 
 
-\subsection{Shannon Entropy for URL Classification}
+\subsubsection{Shannon Entropy for URL Classification}
 To classify opaque URL structures, we measure the diversity of URL "tails" using Shannon Entropy \cite{shannon1948mathematical}. A high entropy value indicates that a URL directory is semantically informative, whereas low entropy implies repetitive or dynamic templates.
 $$H = -\sum_{i=1}^{n} p_i \cdot \log_2(p_i)$$
 Where $p_i$ is the probability of a specific URL pattern occurring within a given parent group.
 
-\subsection{Vector Embeddings and Cosine Similarity}
+\subsubsection{Vector Embeddings and Cosine Similarity}
 Text chunks are transformed into high-dimensional numerical vectors. To measure the semantic similarity between two chunks (or a user query and a document), we calculate the Cosine Similarity.
 $$\cos(\theta) = \frac{\mathbf{A} \cdot \mathbf{B}}{\|\mathbf{A}\| \|\mathbf{B}\|}$$
 Prior to clustering, we perform L2-Normalization on all vectors ($\hat{v} = \frac{v}{\|v\|}$), converting cosine distance into Euclidean distance on a unit sphere, optimizing it for K-Means processing.
 
-\subsection{MiniBatchKMeans and Ward HAC}
+\subsubsection{MiniBatchKMeans and Ward HAC}
 For semantic discovery of opaque URLs, we deploy MiniBatchKMeans, which utilizes random mini-batches to achieve linear time complexity $\mathcal{O}(n)$ suitable for large datasets \cite{sculley2010web}. This is followed by Ward Hierarchical Agglomerative Clustering (HAC) on the centroids. Ward's method merges clusters to minimize the total within-cluster variance \cite{ward1963hierarchical}.
 
-\section{Proposed Methodology}
-The Orbis architecture is divided into two major phases: Data Categorization (Taxonomy) and the Orchestrator-led Event Pipeline.
+\subsubsection{Hybrid Retrieval and Neural Re-Ranking}
+\label{sec:theory_hybrid}
+The RAG chatbot relies on two complementary retrieval mechanisms executed in parallel before a cross-encoder re-ranking stage consolidates their outputs.
+
+\textbf{Full-text keyword search} operates on a \texttt{TSVECTOR} column maintained by PostgreSQL as a \texttt{GENERATED ALWAYS AS \ldots{} STORED} computed expression. The column applies language-aware stemming --- automatically selecting the Turkish or English lexical parser based on each row's \texttt{language} field --- to both the document title (indexed at weight `A', higher priority) and the content body (weight `B'). Queries are converted to \texttt{tsquery} expressions using OR logic, ensuring that any single key-term match surfaces the document. A GIN (Generalized Inverted Index) is maintained on this column to enable sub-millisecond full-text lookups at 60,000+ rows.
+
+\textbf{Semantic vector search} queries a 384-dimensional \texttt{pgvector} embedding column using L2/Euclidean distance against an HNSW (Hierarchical Navigable Small World) graph index \cite{malkov2018hnsw}. HNSW enables approximate nearest-neighbor search with a configurable recall/speed trade-off; the L2 metric is an intentional implementation choice that performs well empirically with the selected MiniLM embedding model.
+
+\textbf{Cross-encoder re-ranking} applies a neural model (\texttt{jina-reranker-v2-base-multilingual}) that scores each (query, document) pair \textit{jointly}, capturing relevance nuances that a bi-encoder --- which encodes query and document independently into fixed vectors --- cannot. Cross-encoders are computationally expensive and therefore impractical for initial retrieval over large corpora, but highly effective when applied to the smaller candidate pool produced by hybrid search. The Orbis chatbot applies this step \textit{twice} in a two-stage architecture described in Section~\ref{sec:rag_arch}.
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Methodology}
+\label{sec:methodology}
+% ─────────────────────────────────────────────────────────────────────────────
+The Orbis methodology spans five components: the data-categorization (taxonomy) pipeline, the Orchestrator-led event pipeline, the contextual/SQL assignment matcher, the agentic submission reviewer, and the RAG chatbot.
 
 \subsection{Data Categorization \& Taxonomy Strategy}
+\label{sec:taxonomy}
 Standard RAG systems suffer degraded accuracy when mixing formal rulebooks with informal forum posts. Orbis mitigates this via a four-step semantic discovery pipeline.
 
 \begin{enumerate}
@@ -244,11 +338,12 @@ Standard RAG systems suffer degraded accuracy when mixing formal rulebooks with 
 
     \end{tikzpicture}
     }
-    \caption{Data Categorization and Taxonomy Pipeline Architecture}
+    \caption[Taxonomy Pipeline Architecture]{Data categorization and taxonomy pipeline architecture.}
     \label{fig:taxonomy_pipeline}
 \end{figure}
 
 \subsection{The Orchestrator-Led Event Pipeline}
+\label{sec:event_pipeline}
 Unlike decentralized multi-agent systems, Orbis utilizes a centralized \texttt{EventPipelineOrchestrator}. This stateful hub controls stateless worker agents (\texttt{SearchAgent}, \texttt{ReasoningAgent}, \texttt{EventCreator}) to ensure database consistency and pipeline idempotency.
 
 Figure~\ref{fig:event_system_architecture} summarizes the proactive event pipeline. The system, led by a central orchestrator, leverages specialized agents to locate sources, extract candidates, validate them, and finally store the parsed, unambiguous rules into the database while maintaining rigorous execution states.
@@ -314,7 +409,7 @@ Figure~\ref{fig:event_system_architecture} summarizes the proactive event pipeli
     \draw[arrd] (creator.east) -- (review.west) node[midway,above,lbl]{ask};
 
     \end{tikzpicture}}
-    \caption{Sequential flow and architecture of the Orbis Proactive Event Pipeline. The orchestrator owns all run state; workers are stateless and communicate only via the orchestrator. The reviewer is invoked only for ambiguous candidates.}
+    \caption[Proactive Event Pipeline Architecture]{Sequential flow and architecture of the Orbis Proactive Event Pipeline. The orchestrator owns all run state; workers are stateless and communicate only via the orchestrator. The reviewer is invoked only for ambiguous candidates.}
     \label{fig:event_system_architecture}
 \end{figure}
 
@@ -325,6 +420,7 @@ To prevent non-actionable events from reaching students, extraction follows a \t
 \end{enumerate}
 
 \subsection{Contextual vs. SQL Assignment Matching}
+\label{sec:matching_design}
 User assignments are routed through two parallel channels based on the user's \texttt{extra\_context} JSON profile:
 \begin{itemize}
     \item \textbf{SQL Path (Deterministic):} Objective thresholds (e.g., GPA constraints) are evaluated instantly via Python logic against database variables.
@@ -332,6 +428,7 @@ User assignments are routed through two parallel channels based on the user's \t
 \end{itemize}
 
 \subsection{Agentic Assignment Submission Evaluation}
+\label{sec:submission_design}
 Beyond proactively assigning obligations, Orbis also evaluates work students submit against those assignments. Each upload is processed by a stateless \texttt{submission\_agent} that, rather than issuing a single opaque verdict, reasons in causal steps that mirror how a human teaching assistant screens a submission: first understand \emph{what is being asked}, then check the document \emph{against each individual requirement} with cited evidence, and only then decide. Concretely the agent runs a deterministic file gate followed by a two-call LLM reasoning chain.
 
 \begin{enumerate}
@@ -427,13 +524,106 @@ The entire flow is exposed to the browser as a Server-Sent-Events stream: the cl
     \draw[arrow] (flag) -- (queue);
 
     \end{tikzpicture}}
-    \caption{Agentic submission-evaluation flow. A deterministic file gate rejects empty, corrupt, or unreadable files without invoking the LLM. The agent then reasons in two LLM calls: it first \emph{decomposes} the assignment into a requirement checklist, then \emph{judges the document against each requirement individually} with cited evidence before synthesizing a verdict. A deterministic keyword \texttt{line\_review} is retained only as a fallback when decomposition fails. Every stage is streamed over Server-Sent Events so the UI can render the source text, the requirements, and each per-requirement finding live. Every rejection (early-stage or LLM-based) is recoverable through the \texttt{flag\_for\_review} appeal path, which routes the case to a human reviewer instead of terminating the student's submission attempt.}
+    \caption[Agentic Submission-Evaluation Flow]{Agentic submission-evaluation flow. A deterministic file gate rejects empty, corrupt, or unreadable files without invoking the LLM. The agent then reasons in two LLM calls: it first \emph{decomposes} the assignment into a requirement checklist, then \emph{judges the document against each requirement individually} with cited evidence before synthesizing a verdict. A deterministic keyword \texttt{line\_review} is retained only as a fallback when decomposition fails. Every stage is streamed over Server-Sent Events so the UI can render the source text, the requirements, and each per-requirement finding live. Every rejection (early-stage or LLM-based) is recoverable through the \texttt{flag\_for\_review} appeal path, which routes the case to a human reviewer instead of terminating the student's submission attempt.}
     \label{fig:submission_flow}
 \end{figure}
 
+\subsection{RAG Chatbot Architecture}
+\label{sec:rag_arch}
+The Orbis RAG chatbot is a stateless, multi-agent pipeline for answering natural-language queries over the institutional knowledge base. Its design prioritizes \textit{precision} and \textit{fault tolerance} over conversational continuity: no conversation history is retained between queries, preventing context bloat and token overflow while ensuring each query receives the full retrieval budget. From the student's perspective the interaction is a single text box: they type a question and receive a streamed, citation-backed answer, as illustrated in Figure~\ref{fig:chatbot_query}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\linewidth]{figures/rag_chatbot_query.jpg}
+    \caption[Chatbot Query Input]{The Orbis chatbot interface at query time. The student enters a natural-language question, which is submitted to the \texttt{/api/chat} endpoint and handed to the Router Agent that begins the retrieval pipeline.}
+    \label{fig:chatbot_query}
+\end{figure}
+
+\subsubsection{End-to-End Query Walkthrough}
+\label{sec:rag_walkthrough}
+Figure~\ref{fig:rag_flow} traces a single query through the complete pipeline. Rather than a simple ``embed, search, generate'' loop, Orbis routes each query through an LLM planner, runs multiple retrieval strategies in parallel, and consolidates them with neural re-ranking before generation. The flow proceeds as follows, using the example query \emph{``How do I apply for Erasmus?''}
+
+\begin{enumerate}
+    \item \textbf{Query submission.} The student types a natural-language question into the chatbot window (Figure~\ref{fig:chatbot_query}). The frontend submits it to the \texttt{/api/chat} endpoint, which hands the raw text to the Router Agent.
+
+    \item \textbf{Routing (intent planning).} The Router Agent is a single LLM call that reads the query and emits a structured JSON object describing a \emph{list of intents}. Each intent names a tool (\texttt{vector}, \texttt{sql}, \texttt{calendar}, or \texttt{student\_schedule}) and carries the parameters that tool needs (a search string for \texttt{vector}, filter fields for \texttt{sql}). The Erasmus query expands into two parallel \texttt{vector} intents --- one for the application \emph{steps} and one for the application \emph{procedure} --- so that the system retrieves complementary parts of the same regulation. The full router prompt is reproduced in Appendix~\ref{app:router_prompt}.
+
+    \item \textbf{Parallel dispatch.} The backend reads the intent JSON and launches one asynchronous search thread per intent, executing them concurrently rather than sequentially. This keeps multi-part queries fast and lets the search strategies act as mutual safety nets: if one intent under-retrieves, a sibling intent may still surface the answer.
+
+    \item \textbf{Hybrid search (per thread).} Each thread runs a hybrid search against PostgreSQL: a keyword (TSVector) query and a vector (HNSW) similarity query are issued for the same intent and their results merged, with keyword matches placed first (high precision) and vector matches filling the remainder (high semantic recall). Duplicate documents are removed by ID. This produces a candidate pool of up to \texttt{TOP\_K} documents for that intent.
+
+    \item \textbf{Per-thread re-ranking and expansion.} A Jina cross-encoder re-ranker scores the candidate pool of each thread and returns its strongest matches. For \texttt{vector} intents, a \emph{Smart Context Expansion} step then reconstructs the full source document around the best hits (Section~\ref{sec:rag_search}), and a second re-rank selects the most relevant chunks from that enriched pool. Re-ranking at this stage is what discards the bulk of irrelevant candidates, saving tokens at the generation step.
+
+    \item \textbf{Cross-intent merge.} When several intents ran in parallel, their re-ranked outputs are merged and a final re-rank trims the combined set to the strongest documents overall, removing cross-intent duplicates. This merge step is skipped entirely when only a single intent was dispatched.
+
+    \item \textbf{Generation and streaming.} The merged, re-ranked context is assembled into a prompt together with the answer-generation system prompt (reproduced in Appendix~\ref{app:answer_prompt}) and passed to the Generative Agent. The model synthesizes a single grounded answer --- citing source documents, naming the responsible administrative office, and formatting lists cleanly --- and the response is streamed back to the chatbot window token by token over Server-Sent Events, as shown in Figure~\ref{fig:chatbot_response}.
+\end{enumerate}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{figures/Orbis_RAG_General_Flow_Diagram.png}
+    \caption[RAG Chatbot Pipeline]{End-to-end RAG chatbot pipeline. The Router Agent converts the user query into a structured intent list; the backend dispatches parallel hybrid searches; each search is re-ranked before results are merged, optionally re-ranked across intents, and passed to the Generative Agent for a streamed final response.}
+    \label{fig:rag_flow}
+\end{figure}
+
+\subsubsection{Knowledge Base Construction and Ingestion Pipeline}
+\label{sec:rag_ingest}
+The data pipeline that populates the \texttt{knowledge\_base} table runs in three sequential steps. First, \texttt{fix\_pdf\_language\_and\_titles.py} sanitizes PDF metadata using the stopword race language detector described in Section~\ref{sec:rag_dataset}. Second, \texttt{load\_data.py} reads the JSONL source files, splits web page and PDF content into 150-word chunks with 30-word overlap, and inserts records with \texttt{embedding = NULL}. Separating ingestion from embedding keeps the bulk load fast. Third, \texttt{embed\_database.py} generates 384-dimensional vectors for all null-embedding rows in configurable batch sizes.
+
+A critical detail is the \textit{enriched embedding format}: before vectorization, each document's title and categorical context are prepended to the content. For web pages, the full breadcrumb path is prepended (e.g., \texttt{BİLGİ'de Yaşam > Ulaşım > Servis > Güzergah}); for courses, the course code is prepended. This ensures the embedding model encodes both the content topic and its institutional category in a single vector, improving retrieval specificity for navigation-structured content.
+
+The selected embedding model, \texttt{paraphrase-multilingual-MiniLM-L12-v2}, produces 384-dimensional vectors and natively handles both Turkish and English. The model is served via a Text Embeddings Inference (TEI) container with a local in-process Hugging Face fallback. Two PostgreSQL indexes are maintained: an HNSW index on the \texttt{embedding} column (L2 distance) for approximate nearest-neighbor vector search, and a GIN index on the auto-generated \texttt{search\_vector} TSVECTOR column for full-text keyword search.
+
+\subsubsection{LLM-Based Query Routing}
+\label{sec:rag_routing}
+Every query is first processed by the Router Agent (an LLM call via Groq \texttt{llama-3.3-70b-versatile}) prompted to output the structured JSON intent list introduced in Section~\ref{sec:rag_walkthrough}. Four tools are available:
+
+\begin{itemize}
+    \item \textbf{\texttt{sql}:} Specific course code or department list queries. Carries SQL filter fields (\texttt{code}, \texttt{title\_like}).
+    \item \textbf{\texttt{vector}:} All semantic, regulatory, and procedural queries. Default for anything not covered by the three SIS-backed tools.
+    \item \textbf{\texttt{calendar}:} Academic date queries (e.g., ``When are midterms?''). Triggers a lookup in the SIS \texttt{academic\_calendar\_entries} table.
+    \item \textbf{\texttt{student\_schedule}:} Personal timetable queries (e.g., ``What are my classes today?''). Triggers a lookup of the authenticated user's enrolled sections.
+\end{itemize}
+
+Multi-intent queries (comparing two courses, or spanning a regulation and a calendar date) return multiple intents, each executed in parallel with a reduced per-intent budget (\texttt{TOP\_K=15}, \texttt{FINAL\_K=5}) to conserve the context window across the merged result. Router output is auto-repaired: a \texttt{sql} intent with no filters falls back to \texttt{vector}; malformed JSON produces a single \texttt{vector} intent from the raw query string.
+
+Calendar and schedule intents are intercepted before the retrieval engine by \texttt{context\_injectors.py}, which fetches structured data from the SIS relational tables and formats it as a structured \texttt{AKADEMİK TAKVİM} (academic calendar) or \texttt{ÖĞRENCİ HAFTALIK PROGRAMI} (personal schedule) block. This block is prepended to the document context before generation, allowing the LLM to reason over both structured SIS data and unstructured document chunks in a single prompt. Both fetchers are wrapped in try/except so SIS failures do not interrupt the retrieval pipeline.
+
+\subsubsection{Hybrid Search with Two-Stage Neural Re-Ranking}
+\label{sec:rag_search}
+For each \texttt{vector} intent the pipeline executes four stages:
+
+\begin{enumerate}
+    \item \textbf{Hybrid Search.} \texttt{rag\_repository.vector\_search()} executes a TSVector keyword query and an HNSW vector similarity search concurrently. Results merge with keyword matches \textit{first} (higher precision), then vector matches (higher semantic recall), with de-duplication by document ID. The combined pool contains up to \texttt{TOP\_K=30} candidates.
+
+    \item \textbf{Pre-Expansion Rerank.} The full 30-candidate pool is submitted to the Jina cross-encoder reranker, which identifies the ``True Top 3'' most relevant source documents. This quality filter runs \textit{before} expansion. Without it, the expansion step would reconstruct full documents from irrelevant sources, flooding the context window.
+
+    \item \textbf{Smart Context Expansion.} For each of the True Top 3 documents (\texttt{type=web\_page} or \texttt{type=pdf}), all chunks sharing the same source URL are fetched via \texttt{rag\_repository.get\_by\_url()}. This reconstructs the complete source document around the highest-ranked retrieval hits, bypassing the 150-word chunk limit for multi-article regulatory texts. A regulation spanning 5--10 chunks is presented in full rather than as an isolated fragment. The expansion pool is capped at 75 candidates.
+
+    \item \textbf{Final Rerank.} The expanded pool is re-submitted to the Jina reranker. This stage selects the \texttt{FINAL\_K=10} chunks most relevant within the reconstructed documentary context for delivery to the LLM.
+\end{enumerate}
+
+The two-stage architecture is the most critical design decision in the pipeline. A single reranking pass applied after expansion faces a candidate pool dominated by irrelevant neighboring chunks, which suppresses genuinely relevant documents. The pre-expansion pass preserves the quality signal; the post-expansion pass maximizes contextual completeness.
+
+\subsubsection{Context Building and Streaming Response Generation}
+\label{sec:rag_context}
+After deduplication across all intents, \texttt{context.py} assembles the final prompt. For SQL results returning more than 5 items, or when the total candidate set exceeds 40 documents, a \textbf{CSV Compacting} mode condenses the data to a tabular format containing only essential fields (e.g., course codes and ECTS values), preventing context window overflow. For normal retrieval, each document is rendered as a detailed text block (title, URL, breadcrumb metadata, content).
+
+The compiled context --- including any prepended SIS blocks --- is passed to the generative LLM with a system prompt (Appendix~\ref{app:answer_prompt}) enforcing four rules: (1) Markdown citation links on document titles, never on entity names; (2) no fabricated citations; (3) when an answer involves a procedure, the responsible office must be named and contact advised; (4) structured SIS blocks are authoritative, non-citable data. The LLM response streams back via Server-Sent Events for immediate token-by-token display, producing the final answer the student sees in Figure~\ref{fig:chatbot_response}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{figures/rag_chatbot_response.jpg}
+    \caption[Chatbot Response Output]{The Orbis chatbot interface after generation. The retrieved and re-ranked context has been synthesized into a grounded, Markdown-formatted answer with source citations and is streamed back to the student over Server-Sent Events.}
+    \label{fig:chatbot_response}
+\end{figure}
+
+% ─────────────────────────────────────────────────────────────────────────────
 \section{Experimental Setup}
+\label{sec:setup}
+% ─────────────────────────────────────────────────────────────────────────────
 \subsection{Framework and Deployment}
-The backend is implemented in Python 3.10 with the FastAPI framework and served by Uvicorn. Persistent storage is provided by PostgreSQL extended with the \texttt{pgvector} extension; the same database stores both the relational schema (users, courses, rules, assignments, telemetry) and the embedding index. The application runtime supports Gemini, Groq, and OpenAI-compatible LLM providers through environment configuration, while the evaluation scripts used for this report route judge calls through OpenRouter so that model choice and cost are explicit. For the experiments reported in Section~9, the bulk LLM workload (labeling, extraction review, submission reasoning) uses \texttt{google/gemini-2.5-flash-lite}, with \texttt{deepseek/deepseek-v3.2} reserved for the adversarial Pass~2 review and \texttt{qwen/qwen3-235b-a22b-2507} used as the secondary judge during cross-validation. Document embeddings are produced offline by a local MiniLM model and reused at query time; the repository also includes an optional Docker Compose setup that load-balances TEI embedding servers behind Nginx.
+The backend is implemented in Python 3.10 with the FastAPI framework and served by Uvicorn. Persistent storage is provided by PostgreSQL, extended with the \texttt{pgvector} extension; the same database stores both the relational schema (users, courses, rules, assignments, telemetry) and the embedding index. The application runtime supports Gemini, Groq, and OpenAI-compatible LLM providers through environment configuration, while the evaluation scripts used for this report route judge calls through OpenRouter so that model choice and cost are explicit. For the experiments reported in Section~\ref{sec:experiments}, the bulk LLM workload (labeling, extraction review, submission reasoning) uses \texttt{google/gemini-2.5-flash-lite}, with \texttt{deepseek/deepseek-v3.2} reserved for the adversarial Pass~2 review and \texttt{qwen/qwen3-235b-a22b-2507} used as the secondary judge during cross-validation. Document embeddings are produced offline by a local MiniLM model and reused at query time; the repository also includes an optional Docker Compose setup that load-balances TEI embedding servers behind Nginx.
 
 The quantitative regulation-assignment results should be read as an evaluation of the preserved action-object pipeline artifacts in the project database: \texttt{regulation\_rules}, \texttt{user\_rule\_assignments}, and \texttt{event\_candidate\_logs}. The current repository also contains a newer admin-triggered extraction route that writes accepted rows to \texttt{regulatory\_events}. This implementation boundary does not change the reported metrics, but it clarifies that the assignment-matching evaluation is tied to the archived database run rather than to a live, currently exposed \texttt{/api/events/assign/me} endpoint.
 
@@ -444,10 +634,51 @@ $$Precision = \frac{TP}{TP + FP}$$
 $$Recall = \frac{TP}{TP + FN}$$
 $$F_1 = 2 \cdot \frac{Precision \cdot Recall}{Precision + Recall}$$
 
+\subsection{RAG Chatbot System Configuration}
+The RAG chatbot is exposed via the \texttt{/api/chat} endpoint of the same FastAPI application. Key retrieval parameters are: \texttt{RAG\_TOP\_K=30} (initial hybrid pool size), \texttt{RAG\_FINAL\_K=10} (documents passed to the LLM after final re-ranking), and \texttt{EMBEDDING\_DIM=384}. The embedding service is provider-agnostic: \texttt{tei} (locally hosted TEI container), \texttt{ollama}, or \texttt{local} (in-process Hugging Face model). Re-ranking uses the Jina AI API (\texttt{jina-reranker-v2-base-multilingual}) with an index-order fallback. The LLM generation layer supports Groq (\texttt{llama-3.3-70b-versatile}) and Google Gemini (\texttt{gemini-1.5-flash}) via a common streaming wrapper selectable at runtime.
+
+\subsection{RAG Evaluation Dataset}
+\label{sec:rag_eval_dataset}
+The RAG pipeline was evaluated against a standardized benchmark of \textbf{100 bilingual (Turkish and English) queries} derived from actual Bilgi University data present in the knowledge base. The benchmark is designed to cover every routing tool and every architectural feature of the pipeline. Table~\ref{tab:rag_eval_dataset} summarizes the seven query categories.
+
+\begin{table}[H]
+    \centering
+    \begin{adjustbox}{center}
+        \begin{tabular}{l c c l}
+            \toprule
+            \textbf{Category} & \textbf{Query IDs} & \textbf{Count} & \textbf{Feature Tested} \\ \midrule
+            Direct Course Inquiries   & 001--020 & 20 & \texttt{sql} routing, exact field lookup \\
+            Bulk Course Inquiries     & 021--030 & 10 & \texttt{sql} + CSV Compacting \\
+            Personal Schedule         & 031--035 &  5 & \texttt{student\_schedule} SIS injection \\
+            Academic Calendar         & 036--040 &  5 & \texttt{calendar} SIS injection \\
+            Academic Regulations      & 041--065 & 25 & \texttt{vector} + Smart Context Expansion (PDFs) \\
+            Campus Life \& Facilities & 066--085 & 20 & \texttt{vector} retrieval via web pages \\
+            Multi-hop / Comparison    & 086--100 & 15 & Parallel multi-intent routing \\
+            \bottomrule
+        \end{tabular}
+    \end{adjustbox}
+    \caption[RAG Evaluation Benchmark Categories]{RAG evaluation benchmark: 100 bilingual queries across seven routing categories.}
+    \label{tab:rag_eval_dataset}
+\end{table}
+
+\subsection{RAG Evaluation Metrics}
+\label{sec:rag_metrics}
+Four metrics cover the query-to-answer lifecycle:
+\begin{itemize}
+    \item \textbf{Routing Accuracy:} Percentage of queries for which the Router Agent selected the correct tool(s) and applied correct filters, adjusted for anomalies in the ground-truth dataset (e.g., filters referencing database fields that do not exist in the production schema).
+    \item \textbf{Context Recall:} Percentage of queries for which the required source data was present in the final retrieved context, regardless of routing path.
+    \item \textbf{Mean Reciprocal Rank (MRR):} Ranking quality of the final reranked result set. An MRR of 1.0 indicates the relevant document is always in the top position.
+    \item \textbf{Semantic Accuracy:} LLM-judged metric (consistent with the LLM-as-a-judge methodology of Section~\ref{sec:related}) assessing whether the generated answer is factually aligned with the retrieved context and the expected answer.
+\end{itemize}
+
+% ─────────────────────────────────────────────────────────────────────────────
 \section{Experiments \& Discussion}
-The Orbis backend was rigorously evaluated using production database logs (Run ID: \texttt{fadc244f...}) to measure both extraction throughput and assignment precision. 
+\label{sec:experiments}
+% ─────────────────────────────────────────────────────────────────────────────
+The Orbis backend was rigorously evaluated using production database logs (Run ID: \texttt{fadc244f...}) to measure both extraction throughput and assignment precision, and the RAG chatbot was evaluated against the 100-query benchmark of Section~\ref{sec:rag_eval_dataset}. We report both throughput (coverage) and correctness across every subsystem.
 
 \subsection{Extraction Throughput \& Quality Funnel}
+\label{sec:extraction_funnel}
 The complete pipeline processed 80 regulation sources in exactly 59 minutes. During this run, the Orchestrator evaluated 323 candidate rules. 
 
 \begin{table}[H]
@@ -464,13 +695,14 @@ The complete pipeline processed 80 regulation sources in exactly 59 minutes. Dur
             \bottomrule
         \end{tabular}
     \end{adjustbox}
-    \caption{Event Extraction Pipeline Funnel}
+    \caption[Event Extraction Pipeline Funnel]{Event extraction pipeline funnel.}
     \label{tab:extraction_funnel}
 \end{table}
 
 The 45\% rejection rate is a strictly intended outcome of our Specificity Filter. Of the 145 rejected candidates, 128 were flagged precisely for being "not imperative enough," while others were rejected for "audience too broad" or "awareness only wording." This ensures students are only notified of strict, actionable obligations.
 
-\section{Results}
+\subsection{Assignment Generation Coverage}
+\label{sec:assignment_coverage}
 The system's assignment logic was exercised against the 4 student profiles stored in \texttt{user\_profiles}. The pipeline produced 176 active rows in \texttt{user\_rule\_assignments}, distributed across profiles and match types as reported in Table~\ref{tab:assignment_results}.
 
 \begin{table}[H]
@@ -486,20 +718,18 @@ The system's assignment logic was exercised against the 4 student profiles store
             \bottomrule
         \end{tabular}
     \end{adjustbox}
-    \caption{Assignments generated per real student profile, broken down by urgency and matching path. ``SQL'' counts deterministic conditional matches; ``CTX'' counts contextual LLM matches.}
+    \caption[Assignments per Student Profile]{Assignments generated per real student profile, broken down by urgency and matching path. ``SQL'' counts deterministic conditional matches; ``CTX'' counts contextual LLM matches.}
     \label{tab:assignment_results}
 \end{table}
 
 The contextual path produced specific, situation-aware assignments. For profile P4 (CSE Y3, mandatory internship required, no company yet, internship form not submitted), the matcher surfaced internship-specific obligations such as \emph{``Submit the Internship Contract Cover Form at least 10 working days before your start date,''} explicitly because the \texttt{internship\_form\_submitted} flag was false. The deterministic SQL path complemented this for objective, threshold-style rules: profile P1 (on probation) triggered 8 SQL-matched rules tied to GPA-conditional regulations, bypassing the LLM entirely and reducing latency and cost on rules that do not require contextual reasoning.
 
-We re-emphasize that the figures above describe \emph{coverage}, not \emph{correctness}: how many assignments were emitted, not how many were right. The corresponding correctness analysis is presented in Section~9.3.
+We re-emphasize that the figures above describe \emph{coverage}, not \emph{correctness}: how many assignments were emitted, not how many were right. The corresponding correctness analysis follows in Section~\ref{sec:matching_results}.
 
-\section{Quantitative Evaluation}
-While the aggregate counts in Tables~\ref{tab:extraction_funnel} and~\ref{tab:assignment_results} describe the system's throughput, they do not assess whether each individual decision was \emph{correct}. To answer that question we constructed a labeled evaluation set and report per-stage precision, recall, $F_1$, and a stratum-level error analysis. 
-
-The interpretation of these metrics follows the comparator boundaries established in Table~\ref{tab:baseline_validity}. The only direct baseline claim in this report is internal: the current two-call submission reviewer improves over the prior Orbis single-call reviewer on the same case design. External official works are used more cautiously. The event-extraction precision can be discussed alongside regulatory IE systems such as Zhang and El-Gohary or Galli et al., but it is not a direct win/loss claim because the source domain and output schema differ. Assignment matching has no exact official baseline found in the literature; submission review is also not directly comparable to JorGPT because Orbis performs binary accept/reject screening with appeal rather than numerical grade regression.
+The interpretation of the correctness metrics below follows the comparator boundaries established in Table~\ref{tab:baseline_validity}. The only direct baseline claim in this report is internal: the current two-call submission reviewer improves over the prior Orbis single-call reviewer on the same case design. External official works are used more cautiously. The event-extraction precision can be discussed alongside regulatory IE systems such as Zhang and El-Gohary or Galli et al., but it is not a direct win/loss claim because the source domain and output schema differ. Assignment matching has no exact official baseline found in the literature; submission review is also not directly comparable to JorGPT because Orbis performs binary accept/reject screening with appeal rather than numerical grade regression.
 
 \subsection{Gold Ground-Truth Construction}
+\label{sec:gold_gt}
 To rigorously evaluate the system, human domain experts (the authors) manually annotated all 323 extraction candidates and 712 profile-obligation pairs to establish a Gold Ground Truth. 
 
 For the submission agent, ground truth was generated deterministically by constructing 8 strata over each of the 4 real assignments in the database (32 cases total): \texttt{approve}, \texttt{approve\_multifile}, \texttt{reject\_wrong\_content} (a file from a different assignment), \texttt{reject\_empty}, \texttt{reject\_corrupt} (random bytes in a PDF wrapper), \texttt{reject\_wrong\_ext} (Python source renamed to \texttt{.pdf}), \texttt{flag\_partial} (LLM-written incomplete draft), and \texttt{reject\_injection} (wrong-content document appended with a prompt-injection payload instructing the reviewer to approve). Each case contains a requirement file, a directory of submitted files, and an \texttt{expected.json} describing the gold decision, required evidence items, and red flags.
@@ -518,15 +748,17 @@ Event extraction & Precision 0.978; recall 0.574; $F_1$ 0.723 & 323 candidates f
 Assignment matching & Precision 0.608; recall 0.446; $F_1$ 0.514 & 712 profile-obligation pairs (4 profiles $\times$ 178 accepted obligations) & \texttt{events/assignment}\newline \texttt{\_matching\_gt.jsonl}\newline \texttt{eval\_assignment}\newline \texttt{\_matching.py} & Human-validated labels; only 4 student profiles. \\
 Submission review & Accuracy 0.938; precision 0.800; recall 1.000; $F_1$ 0.889 & 32 deterministic cases (4 assignments $\times$ 8 strata) & \texttt{submissions/}\newline \texttt{results.jsonl}\newline \texttt{eval\_submission}\newline \texttt{\_agent.py} & Small synthetic set; \texttt{flag\_partial} is folded into binary reject for scoring. \\
 Prompt-injection resistance & 4/4 tested cases rejected & \texttt{reject\_injection} stratum & \texttt{submissions/}\newline \texttt{results.jsonl} & Directional finding only; not a general security guarantee against all prompt-injection patterns. \\
-Submission ablation & Accuracy 0.781$\rightarrow$0.938; injection 1/4$\rightarrow$4/4 & Old single-call reviewer vs. current two-call reviewer on the same case design & Historical run recorded in Section~9.4 narrative; current \texttt{results.jsonl} & Internal baseline, not external prior work; intended to justify the design change. \\
+Submission ablation & Accuracy 0.781$\rightarrow$0.938; injection 1/4$\rightarrow$4/4 & Old single-call reviewer vs. current two-call reviewer on the same case design & Historical run recorded in Section~\ref{sec:submission_results} narrative; current \texttt{results.jsonl} & Internal baseline, not external prior work; intended to justify the design change. \\
+RAG chatbot & Routing 92.3\%; recall 94.7\%; MRR 0.94; semantic accuracy 97.6\% & 100-query bilingual benchmark & Runtime JSONL eval log (one record per query) & Scores adjusted for dataset anomalies; ground-truth answers are author-validated but concise. \\
 \bottomrule
 \end{tabular}
 \end{adjustbox}
-\caption{Metric provenance and limitations. Artifact paths are reported relative to the repository.}
+\caption[Metric Provenance and Limitations]{Metric provenance and limitations. Artifact paths are reported relative to the repository.}
 \label{tab:metric_provenance}
 \end{table}
 
 \subsection{Event Extraction Results}
+\label{sec:event_results}
 Table~\ref{tab:event_confusion} reports the confusion matrix obtained by comparing the system's deterministic + LLM-review decision against the gold labels.
 
 \begin{table}[H]
@@ -536,7 +768,7 @@ System decision $\backslash$ Gold & True obligation & Non-obligation & Ambiguous
 Accept & 174 & 4 & 0 \\
 Reject & 129 & 16 & 0 \\
 \end{tabular}
-\caption{Confusion matrix of the event extraction pipeline against gold ground truth ($N{=}323$).}
+\caption[Event Extraction Confusion Matrix]{Confusion matrix of the event extraction pipeline against gold ground truth ($N{=}323$).}
 \label{tab:event_confusion}
 \end{table}
 
@@ -548,13 +780,14 @@ Stage & Accuracy & Precision & Recall & $F_1$ \\ \midrule
 Event extraction (323) & 0.588 & \textbf{0.978} & 0.574 & 0.723 \\
 \bottomrule
 \end{tabular}
-\caption{Binary classification metrics for the event extraction stage. Positive class = true obligation accepted by the system.}
+\caption[Event Extraction Metrics]{Binary classification metrics for the event extraction stage. Positive class = true obligation accepted by the system.}
 \label{tab:event_metrics}
 \end{table}
 
 The pipeline exhibits very high precision (0.978): only 4 of the 178 accepted candidates were judged to be non-obligations. The cost of this conservative behavior is recall: 129 candidates the judge considered genuine obligations were rejected by the system, mainly under the \texttt{"not imperative enough"} rule. This is consistent with the design intent of the Specificity Filter and is reported here as a measured, named trade-off rather than a hidden one.
 
 \subsection{Assignment Matching Results}
+\label{sec:matching_results}
 Each accepted obligation is routed by the system into either the deterministic SQL path or the contextual LLM path and may produce zero or more rows in \texttt{user\_rule\_assignments}. We score this stage by comparing, for every (profile, accepted-obligation) pair, the system's positive/negative assignment against the gold applicability label. Pairs were definitively labeled for strict scoring.
 
 \begin{table}[H]
@@ -567,13 +800,14 @@ P3 (Year 3, internship) & 39 & 21 & 39 & 79 & 0.650 & 0.500 & 0.565 \\
 P4 (Year 4, Grad. Project) & 21 & 17 & 25 & 115 & 0.553 & 0.457 & 0.500 \\ \hline
 Overall & 107 & 69 & 133 & 403 & 0.608 & 0.446 & 0.514 \\
 \end{tabular}
-\caption{Per-profile assignment matching scores against gold ground truth ($N{=}712$ pairs: 4 profiles $\times$ 178 accepted obligations).}
+\caption[Per-Profile Assignment Matching Scores]{Per-profile assignment matching scores against gold ground truth ($N{=}712$ pairs: 4 profiles $\times$ 178 accepted obligations).}
 \label{tab:matching_perprofile}
 \end{table}
 
 The matching stage is the weakest layer of the pipeline: overall $F_1{=}0.51$. Manual inspection of disagreements indicates two recurring failure modes. First, broad-scope obligations (\textit{e.g.}\ ``submit graduation poster'') are assigned uniformly to every profile but only apply to graduating students, generating false positives. Second, situational obligations triggered by \texttt{extra\_context} fields (\textit{e.g.}\ \texttt{scholarship}, \texttt{internship\_status}) are under-matched when the judge expected them to fire, generating false negatives. Both failure modes are concrete, addressable, and revisited in the future-work roadmap.
 
 \subsection{Submission Agent Results}
+\label{sec:submission_results}
 The submission agent was run on all 32 generated cases. For multi-file cases the agent is invoked per file and a case is recorded as approved if any file is approved, matching the production UX. The agent produces two output classes (\texttt{approved}, \texttt{rejected}); the \texttt{flag\_partial} stratum is folded into the negative (reject) class for scoring.
 
 \begin{table}[H]
@@ -592,7 +826,7 @@ flag\_partial & 2 & under-rejects \\ \midrule
 Overall (N=32) & 30 (93.8\%) & --- \\
 \bottomrule
 \end{tabular}
-\caption{Submission agent results stratified by case type. Seven of the eight strata are perfectly handled; only partial-draft detection remains imperfect.}
+\caption[Submission Agent Results by Stratum]{Submission agent results stratified by case type. Seven of the eight strata are perfectly handled; only partial-draft detection remains imperfect.}
 \label{tab:submission_stratum}
 \end{table}
 
@@ -606,7 +840,7 @@ Approve (genuine work) & 8 (TP) & 0 (FN) \\
 Reject (should block)  & 2 (FP) & 22 (TN) \\
 \bottomrule
 \end{tabular}
-\caption{Submission agent confusion matrix on $N{=}32$ cases (positive class: approve). Zero false negatives: no genuine submission was rejected. Both false positives are \texttt{flag\_partial} drafts.}
+\caption[Submission Agent Confusion Matrix]{Submission agent confusion matrix on $N{=}32$ cases (positive class: approve). Zero false negatives: no genuine submission was rejected. Both false positives are \texttt{flag\_partial} drafts.}
 \label{tab:submission_confusion}
 \end{table}
 
@@ -622,7 +856,7 @@ $F_1$ & 0.889 \\
 Injection resistance & 4 / 4 (100\%) \\
 \bottomrule
 \end{tabular}
-\caption{Submission agent binary classification metrics (positive class: approve), measured on the 32-case ground-truth set against the current two-call agentic reviewer.}
+\caption[Submission Agent Metrics]{Submission agent binary classification metrics (positive class: approve), measured on the 32-case ground-truth set against the current two-call agentic reviewer.}
 \label{tab:submission_metrics}
 \end{table}
 
@@ -637,19 +871,62 @@ V1: Single-Call Reviewer & 0.781 & 1/4 (25\%) \\
 V2: Two-Call Agentic Reviewer & 0.938 & 4/4 (100\%) \\
 \bottomrule
 \end{tabular}
-\caption{Submission Agent Ablation Study: Redesigning the reviewer significantly lifted in-document prompt-injection resistance because the agent now explicitly verifies whether requirements are met, bypassing embedded adversarial instructions.}
+\caption[Submission Agent Ablation Study]{Submission agent ablation study: redesigning the reviewer significantly lifted in-document prompt-injection resistance because the agent now explicitly verifies whether requirements are met, bypassing embedded adversarial instructions.}
 \label{tab:ablation_study}
 \end{table}
 
 Third, the only remaining error mode is over-approval of partial drafts ($2/4$ \texttt{flag\_partial} cases approved), motivating an explicit third \texttt{flag} output class as future work.
 
+\subsection{RAG Chatbot Evaluation}
+\label{sec:rag_eval}
+The 100-query bilingual benchmark was executed end-to-end against the live Orbis pipeline. A JSONL evaluation log was written at runtime for each query, capturing router output, hybrid search candidates, reranker scores, expansion decisions, and the final generated response. Table~\ref{tab:rag_results} presents the aggregate results.
+
+\begin{table}[H]
+    \centering
+    \begin{adjustbox}{center}
+        \begin{tabular}{l c}
+            \toprule
+            \textbf{Metric} & \textbf{Score} \\ \midrule
+            Routing Accuracy                & 92.3\% \\
+            Context Recall                  & 94.7\% \\
+            Mean Reciprocal Rank (MRR)      & 0.94 \\
+            Semantic Accuracy               & 97.6\% \\
+            \bottomrule
+        \end{tabular}
+    \end{adjustbox}
+    \caption[RAG Chatbot Evaluation Results]{RAG chatbot evaluation results on the 100-query bilingual benchmark.}
+    \label{tab:rag_results}
+\end{table}
+
+The primary routing failure mode was routing descriptive course questions (e.g., ``Who is the target audience for ACC 516?'') to \texttt{vector} instead of \texttt{sql}. These deviations did not degrade the final answer: the vector search successfully embedded the query and located the relevant course chunk, demonstrating the architecture's cross-path fault tolerance. We now break the result down by category.
+
+\textbf{Direct and Bulk Course Inquiries (Q001--Q030).} These 30 queries test the SQL path and the CSV Compacting mechanism. Routing on this slice was near-perfect: the Router Agent reliably identified course codes and department-list requests and emitted structured \texttt{sql} intents with correct filter fields. The single observed anomaly was the ACC 516 descriptive question noted above, which the vector path recovered. For bulk queries triggering CSV Compacting, the system produced correctly summarized tabular output without exceeding the context window limit.
+
+\textbf{SIS Injection Queries (Q031--Q040).} The 10 personal schedule and calendar queries exercised the SIS integration path. The \texttt{calendar} and \texttt{student\_schedule} intents were correctly identified and intercepted before the retrieval engine in all 10 cases. The formatted \texttt{AKADEMİK TAKVİM} and \texttt{ÖĞRENCİ HAFTALIK PROGRAMI} blocks were injected correctly into the prompt context, and the generative model synthesized accurate answers from the structured blocks without hallucinating dates or section codes not present in the data.
+
+\textbf{Academic Regulations (Q041--Q065).} This is the most architecturally demanding category, as it exercises Smart Context Expansion on PDF documents. The pre-expansion reranker successfully surfaced the correct source document in the True Top 3 in all tested cases where the relevant PDF was present in the knowledge base. Expansion then reconstructed the surrounding regulatory context, with the second reranker selecting the most relevant resulting chunks. For the grade-appeal procedure query, the system surfaced 8 ordered procedural steps --- steps that would have been fragmented across 4 separate chunks without expansion.
+
+\textbf{Campus Life Queries (Q066--Q085).} These 20 queries target web pages. The key risk here is the 65\% temporal content (news/events) drowning out campus life pages. The vector search, guided by keyword-first merging and URL-based metadata, successfully retrieved the correct campus life page chunks without returning news articles. No temporal contamination was observed in the final context.
+
+\textbf{Multi-hop Queries (Q086--Q100).} The 15 parallel-intent queries confirmed that the reduced per-intent budget (\texttt{TOP\_K=15}, \texttt{FINAL\_K=5}) did not degrade answer quality on standard multi-intent cases. The cross-intent deduplication step prevented the same document from appearing in multiple intent outputs, keeping the final context focused.
+
+\textbf{Generation Quality.} The 97.6\% Semantic Accuracy reflects near-zero hallucination: the generative model accurately extracted structured facts (ECTS credits, prerequisite codes, office names) and correctly reproduced multi-step regulatory procedures. Combined with the 94.7\% context recall and 0.94 MRR, this confirms that the two-stage re-ranking architecture reliably places the correct document at the top of the context and that the generative agent faithfully grounds its answer in that context.
+
 \subsection{Limitations}
+\label{sec:limitations}
 While the assignment and event extractions were evaluated against a robust human-validated set, we note that the submission test set is small ($N{=}32$) and synthetically generated. The absolute injection-resistance figure ($4/4$) should therefore be read as a directional finding (\emph{the redesigned agent resists the injection patterns we tested}), not a calibrated guarantee against all adversarial inputs.
 
-\section{Conclusion \& Future Work}
-The Orbis project demonstrates the value of transitioning academic advising from a static, reactive model to a dynamic, proactive one. By engineering a high-fidelity taxonomy pipeline based on Shannon Entropy and MiniBatchKMeans, we organized over 60{,}000 document chunks into 125 pure semantic leaves. The Orchestrator-led event system evaluated 323 candidate rules and extracted 178 actionable obligations at a measured precision of $0.978$ against human-validated gold ground truth; the hybrid SQL + contextual matcher delivered 176 personalized assignments in under an hour.
+For the RAG chatbot, the evaluation benchmark covers 100 queries with author-validated expected answers, but the answer strings are concise ground-truth snippets rather than full conversational responses, and the benchmark does not include adversarial or out-of-domain queries. Robustness under such conditions remains untested.
 
-In contrast to a marketing narrative, our quantitative evaluation also exposes the system's real limits. The matching layer is the weakest, with $F_1{=}0.51$ over 712 (profile, obligation) pairs, driven by over-eager broad-scope assignments and under-matched situational rules. The submission-review agent achieves $0.938$ accuracy with perfect recall on genuine submissions and full resistance to the prompt-injection cases we tested ($4/4$), with its sole residual weakness being over-approval of partial drafts ($2/4$). Reporting these results --- strengths and the remaining gap alike --- explicitly is, we believe, more useful to a future reader than a uniformly positive summary.
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Conclusion and Future Work}
+\label{sec:conclusion}
+% ─────────────────────────────────────────────────────────────────────────────
+The Orbis project demonstrates the value of transitioning academic advising from a static, reactive model to a dynamic, proactive one. By engineering a high-fidelity taxonomy pipeline based on Shannon Entropy and MiniBatchKMeans, we organized over 60{,}000 document chunks into 125 pure semantic leaves. The Orchestrator-led event system evaluated 323 candidate rules and extracted 178 actionable obligations at a measured precision of $0.978$ against human-validated gold ground truth; the hybrid SQL + contextual matcher delivered 176 personalized assignments in under an hour. The two-call agentic submission reviewer achieves $0.938$ accuracy with perfect recall and full ($4/4$) resistance to the prompt-injection patterns we tested.
+
+On the RAG chatbot side, the combination of a four-tool LLM query router, hybrid TSVector and pgvector retrieval, two-stage Jina neural re-ranking, and Smart Context Expansion achieved 92.3\% routing accuracy, 94.7\% context recall, a Mean Reciprocal Rank of 0.94, and 97.6\% semantic accuracy against the 100-query bilingual benchmark. The architecture's most important validation is its fault tolerance: routing deviations were absorbed by the cross-path safety net between the SQL and vector modalities, and context fragmentation from 150-word chunking was resolved on demand by Smart Context Expansion.
+
+In contrast to a marketing narrative, our quantitative evaluation also exposes the system's real limits. The matching layer is the weakest, with $F_1{=}0.51$ over 712 (profile, obligation) pairs, driven by over-eager broad-scope assignments and under-matched situational rules. The submission-review agent's sole residual weakness is over-approval of partial drafts ($2/4$). Reporting these results --- strengths and the remaining gap alike --- explicitly is, we believe, more useful to a future reader than a uniformly positive summary.
 
 Future work follows directly from these findings.
 \begin{itemize}
@@ -657,11 +934,123 @@ Future work follows directly from these findings.
     \item \textbf{Hardening submission review.} Adding (i) instruction/data separation, (ii) injection-pattern detection, and (iii) an explicit \texttt{flag\_for\_review} output class so partial or suspicious submissions route to a human instead of being auto-approved.
     \item \textbf{Improving matching recall.} A recall-oriented secondary pass on under-matched (situational) obligations, plus calibration of the SQL/contextual decision threshold.
     \item \textbf{Automated rejection learning.} Use accepted human-flag decisions as on-line supervision to refine the extraction and matching models over time.
+    \item \textbf{RAG chatbot enhancements.} Exploring a lightweight single-turn conversational context (a reference to the immediately preceding exchange) to improve coherence in multi-step regulatory consultations, while preserving the stateless architecture's efficiency advantages.
 \end{itemize}
 
 \clearpage
+\phantomsection
 \addcontentsline{toc}{section}{References}
 \bibliographystyle{ieeetr} 
 \bibliography{references} 
+
+% ─────────────────────────────────────────────────────────────────────────────
+\clearpage
+\appendix
+\phantomsection
+\addcontentsline{toc}{section}{Appendix}
+\section*{Appendix}
+\addcontentsline{toc}{subsection}{A.1\quad RAG Router Prompt}
+\subsection*{A.1\quad RAG Router Prompt}
+\label{app:router_prompt}
+The following prompt drives the Router Agent (Section~\ref{sec:rag_routing}). It is reproduced verbatim from the production codebase.
+
+\begin{lstlisting}[style=promptstyle]
+ROUTER_PROMPT = """
+You are a Query Router for a university database. 
+Analyze the user's question and output a JSON object containing a LIST of "intents".
+
+STRUCTURE:
+{
+  "intents": [
+    { "tool": "vector", "query": "..." },
+    { "tool": "sql", "filters": { "code": "...", "type": "course" } },
+    { "tool": "calendar" },
+    { "tool": "student_schedule" }
+  ]
+}
+
+CRITICAL RULES:
+1. **AVAILABLE TOOLS:** "vector", "sql", "calendar", "student_schedule"
+2. **ALLOWED TYPES:** "course", "web_page", "pdf".
+3. **FILTER FORMAT:** { "code": "CMPE" }, { "title_like": "Engineering" }.
+
+4. **TYPE FILTERING (RELAXED):**
+    - **DO NOT** apply a "type" filter (pdf/web_page) unless the user EXPLICITLY asks for it (e.g., "Show me the PDF", "Check the website").
+    - **EXCEPTION:** If the user asks about **Contact Info, Locations, or "About Us"** for Faculties/Departments, use "filters": { "type": "web_page" }.
+    - **FOR REGULATIONS/RULES:** Do **NOT** filter. Rules can exist in both PDFs and Web Pages.
+    
+5. **SPLIT COMPARISONS:** If comparing X and Y, generate TWO intents.
+
+6. **STRICT INTENT SEPARATION (CRITICAL):**
+    - **SQL Usage:** Use SQL **ONLY** if the user searches for:
+        - A specific **Course Code** (e.g. "CMPE 351"). Put it in `filters: { "code": "..." }`.
+        - A specific **Subject Code** (e.g. "ACC"). Put it in `filters: { "code": "..." }`.
+        - A specific **List Request** (e.g. "List all sociology courses").
+    - **VECTOR Usage:** Use VECTOR for **EVERYTHING ELSE** that is not calendar or schedule.
+        - Questions about "Regulations", "Internships" (Staj), "Erasmus", "Prerequisites", "How to...", "Is there a rule...".
+        - **NEVER** use SQL for generic topic searches (e.g. "Staj documents", "Ders registration"). 
+        - **Reason:** SQL title search is too broad. Use Semantic Vector search for topics.
+    - **CALENDAR Usage:** Use CALENDAR when the user asks about academic dates, deadlines,
+        holidays, exam periods, registration windows, or semester start/end dates.
+        - Examples: "When are midterms?", "Is there a holiday this week?", "When does the semester end?",
+          "Ne zaman kayit olabilirim?", "Tatil gunleri hangileri?", "Sinav haftasi ne zaman?".
+        - No "query" or "filters" field needed - just { "tool": "calendar" }.
+        - **DO NOT** combine with vector for the same calendar question.
+    - **STUDENT_SCHEDULE Usage:** Use STUDENT_SCHEDULE **ONLY** when the user explicitly asks
+        about THEIR OWN personal schedule, their own classes, or their own weekly program.
+        - Examples: "What are my classes today?", "When is my next lecture?",
+          "Bugun derslerim var mi?", "Haftalik programim nedir?".
+        - No "query" or "filters" field needed - just { "tool": "student_schedule" }.
+        - **DO NOT** use for general course catalog questions.
+        - **CAN** be combined with calendar when the user asks about conflicts between
+          their schedule and holidays/exam periods.
+
+OUTPUT JSON ONLY.
+""".strip()
+\end{lstlisting}
+
+\addcontentsline{toc}{subsection}{A.2\quad RAG Generative Agent Prompt}
+\subsection*{A.2\quad RAG Generative Agent Prompt}
+\label{app:answer_prompt}
+The following template drives the Generative Agent (Section~\ref{sec:rag_context}). The \texttt{\{query\}} and \texttt{\{context\}} placeholders are filled at runtime with the user's question and the retrieved, re-ranked context respectively.
+
+\begin{lstlisting}[style=promptstyle]
+ANSWER_PROMPT_TEMPLATE = """
+You are a knowledgeable and helpful academic assistant for Istanbul Bilgi University.
+
+# INSTRUCTIONS
+1. **TONE:** Be confident, direct, and friendly.
+2. **ACCURACY:** Answer using ONLY the provided context.
+3. **FORMAT:** Use Markdown (headers, bullet points, bold text). If you are given a list (CSV data), you can present it nicely instead of directly copy-pasting it.
+4. **CITATION PROTOCOL (CRITICAL):**
+    - **Rule 1 (Entities):** When mentioning an office, role, or department (e.g. Erasmus Office, Coordinator), use **Bold Text** only. Do NOT link them.
+    - **Rule 2 (Sources):** Cite the document where you found the information using a Markdown link on the Title.
+        - *Example:* "Details are in the [Study Mobility Guide](url)."
+    - **Rule 3 (Linking):** Create a Markdown link on the *Document Title* itself.
+        - *Bad:* "Contact the [Erasmus Office](url)..." (Don't link the entity)
+        - *Good:* "Contact the **Erasmus Office**, as stated in the [Study Mobility Guide](url)." (Link the source)
+    - **Rule 4 (Lists):** If providing a list of courses (CSV data), **DO NOT** try to cite a "Course Catalog" or "Website" unless a URL is explicitly provided in the text. Just present the list accordingly.
+    - **Rule 5 (Fallback):** If no URL is provided for a document, just write its title in *Italics*.
+5. **DYNAMIC SAFETY:**
+    - If the answer involves administrative procedures, identify the **correct authority** mentioned in the text (e.g., **Student Affairs**) and advise contacting them.
+6. **STRUCTURED CONTEXT (CRITICAL):**
+    - If the context includes an **"=== AKADEMIK TAKVIM ===" section**, treat those dates as
+      authoritative ground truth. Cite dates directly from it - do not guess or infer dates.
+      Do NOT apply citation rules 1-3 to calendar data (it has no URL). Present it clearly as-is.
+    - If the context includes an **"=== OGRENCI HAFTALIK PROGRAMI ===" section**, use it to
+      answer questions about the student's personal schedule. Present it in a readable format.
+    - When BOTH sections are present and the user asks about conflicts (e.g. "do my classes
+      overlap with holidays?"), cross-reference them explicitly - list each conflict found,
+      or confirm there are none.
+
+### USER QUESTION:
+{query}
+
+### CONTEXT:
+{context}
+
+### ANSWER:
+""".strip()
+\end{lstlisting}
 
 \end{document}

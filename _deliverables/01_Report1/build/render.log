@@ -1,1146 +1,1614 @@
-Rc files read:
-  /etc/LatexMk
-Latexmk: This is Latexmk, John Collins, 20 November 2021, version: 4.76.
-Rule 'pdflatex': File changes, etc:
-   Changed files, or newly in use since previous run(s):
-      'report1.tex'
+Rc files read (in order):
+  NONE
+Latexmk: This is Latexmk, John Collins, 9 March 2026. Version 4.88.
+No existing .aux file, so I'll make a simple one, and require run of *latex.
+Latexmk: applying rule 'pdflatex'...
+Rule 'pdflatex':  Reasons for rerun
+Category 'other':
+  Rerun of 'pdflatex' forced or previously required:
+    Reason or flag: 'Initial setup'
+
 ------------
 Run number 1 of rule 'pdflatex'
 ------------
 ------------
-Running 'pdflatex  -interaction=nonstopmode -halt-on-error -file-line-error -recorder -output-directory="/home/zperson/Orbis/_deliverables/01_Report1/build"  "report1.tex"'
+Running 'pdflatex  -interaction=nonstopmode -halt-on-error -file-line-error -recorder -output-directory="/d/REP/Orbis/_deliverables/01_Report1/build"  "report1.tex"'
 ------------
-Latexmk: applying rule 'pdflatex'...
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex)
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex.fmt)
  restricted \write18 enabled.
 entering extended mode
-(./report1.tex
-LaTeX2e <2021-11-15> patch level 1
-L3 programming layer <2022-01-21>
-(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
-Document Class: article 2021/10/04 v1.4n Standard LaTeX document class
-(/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo))
-(./styles/ibu-thesis.sty
-(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
-(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
-(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)))
-(/usr/share/texlive/texmf-dist/tex/latex/setspace/setspace.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
-(/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
-(/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty)))
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)
-(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)))
-(/usr/share/texlive/texmf-dist/tex/latex/float/float.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/adjustbox/adjustbox.sty
-(/usr/share/texlive/texmf-dist/tex/latex/xkeyval/xkeyval.sty
-(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkeyval.tex
-(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkvutils.tex)))
-(/usr/share/texlive/texmf-dist/tex/latex/adjustbox/adjcalc.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/adjustbox/trimclip.sty
-(/usr/share/texlive/texmf-dist/tex/latex/collectbox/collectbox.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/adjustbox/tc-pdftex.def))
-(/usr/share/texlive/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/varwidth/varwidth.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/nowidow/nowidow.sty
-(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty
-(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
-(/usr/share/texlive/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.sty)))
-(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/cite/cite.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/enumitem/enumitem.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
-(/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
-(/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common-lists.t
-ex)) (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
-) (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/pgf.revision.tex)))
-(/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
-(/usr/share/texlive/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeysfiltered.code.t
-ex)) (/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.de
-f)))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.
-tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.
-tex)) (/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
-(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code
-.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonomet
-ric.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.cod
-e.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison
-.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.
-tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code
-.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.
-tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerari
-thmetics.code.tex)))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfint.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.te
-x)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.
+(report1.tex
+LaTeX2e <2026-06-01>
+L3 programming layer <2026-05-26>
+(D:\MiKTeX\tex/latex/base\article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+(D:\MiKTeX\tex/latex/base\size12.clo)) (styles/ibu-thesis.sty
+(D:\MiKTeX\tex/latex/graphics\graphicx.sty
+(D:\MiKTeX\tex/latex/graphics\keyval.sty)
+(D:\MiKTeX\tex/latex/graphics\graphics.sty
+(D:\MiKTeX\tex/latex/graphics\trig.sty)
+(D:\MiKTeX\tex/latex/graphics-cfg\graphics.cfg)
+(D:\MiKTeX\tex/latex/graphics-def\pdftex.def)))
+(D:\MiKTeX\tex/latex/nomencl\nomencl.sty
+(D:\MiKTeX\tex/latex/xkeyval\xkeyval.sty
+(D:\MiKTeX\tex/generic/xkeyval\xkeyval.tex
+(D:\MiKTeX\tex/generic/xkeyval\xkvutils.tex)))
+(D:\MiKTeX\tex/latex/base\ifthen.sty)
+(D:\MiKTeX\tex/latex/koma-script\tocbasic.sty
+(D:\MiKTeX\tex/latex/koma-script\scrbase.sty
+(D:\MiKTeX\tex/latex/koma-script\scrlfile.sty
+(D:\MiKTeX\tex/latex/koma-script\scrlfile-hook.sty
+(D:\MiKTeX\tex/latex/koma-script\scrlogo.sty))))))
+(D:\MiKTeX\tex/latex/enumitem\enumitem.sty)
+(D:\MiKTeX\tex/latex/amsmath\amsmath.sty
+For additional information on amsmath, use the `?' option.
+(D:\MiKTeX\tex/latex/amsmath\amstext.sty
+(D:\MiKTeX\tex/latex/amsmath\amsgen.sty))
+(D:\MiKTeX\tex/latex/amsmath\amsbsy.sty)
+(D:\MiKTeX\tex/latex/amsmath\amsopn.sty))
+(D:\MiKTeX\tex/latex/amsfonts\amsfonts.sty)
+(D:\MiKTeX\tex/latex/hyperref\hyperref.sty
+(D:\MiKTeX\tex/generic/iftex\iftex.sty)
+(D:\MiKTeX\tex/latex/kvsetkeys\kvsetkeys.sty)
+(D:\MiKTeX\tex/generic/kvdefinekeys\kvdefinekeys.sty)
+(D:\MiKTeX\tex/generic/pdfescape\pdfescape.sty
+(D:\MiKTeX\tex/generic/ltxcmds\ltxcmds.sty)
+(D:\MiKTeX\tex/generic/pdftexcmds\pdftexcmds.sty
+(D:\MiKTeX\tex/generic/infwarerr\infwarerr.sty)))
+(D:\MiKTeX\tex/latex/hycolor\hycolor.sty)
+(D:\MiKTeX\tex/latex/hyperref\nameref.sty
+(D:\MiKTeX\tex/latex/refcount\refcount.sty)
+(D:\MiKTeX\tex/generic/gettitlestring\gettitlestring.sty
+(D:\MiKTeX\tex/latex/kvoptions\kvoptions.sty)))
+(D:\MiKTeX\tex/latex/etoolbox\etoolbox.sty)
+(D:\MiKTeX\tex/generic/stringenc\stringenc.sty)
+(D:\MiKTeX\tex/latex/hyperref\pd1enc.def)
+(D:\MiKTeX\tex/generic/intcalc\intcalc.sty)
+(D:\MiKTeX\tex/latex/hyperref\puenc.def) (D:\MiKTeX\tex/latex/url\url.sty)
+(D:\MiKTeX\tex/generic/bitset\bitset.sty
+(D:\MiKTeX\tex/generic/bigintcalc\bigintcalc.sty)))
+(D:\MiKTeX\tex/latex/hyperref\hpdftex.def
+(D:\MiKTeX\tex/latex/rerunfilecheck\rerunfilecheck.sty
+(D:\MiKTeX\tex/generic/uniquecounter\uniquecounter.sty)))
+(D:\MiKTeX\tex/latex/algorithms\algorithm.sty
+(D:\MiKTeX\tex/latex/float\float.sty))
+(D:\MiKTeX\tex/latex/algorithmicx\algorithmicx.sty
+Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
+) (D:\MiKTeX\tex/latex/algorithmicx\algpseudocode.sty
+Document Style - pseudocode environments for use with the `algorithmicx' style
+) (D:\MiKTeX\tex/latex/listings\listings.sty
+(D:\MiKTeX\tex/latex/listings\lstpatch.sty)
+(D:\MiKTeX\tex/latex/listings\lstmisc.sty)
+(D:\MiKTeX\tex/latex/listings\listings.cfg))
+(D:\MiKTeX\tex/latex/xcolor\xcolor.sty
+(D:\MiKTeX\tex/latex/graphics-cfg\color.cfg)
+(D:\MiKTeX\tex/latex/graphics\mathcolor.ltx))
+(D:\MiKTeX\tex/latex/l3packages/xparse\xparse.sty
+(D:\MiKTeX\tex/latex/l3kernel\expl3.sty
+(D:\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def)))
+(D:\MiKTeX\tex/latex/pgf/utilities\pgffor.sty
+(D:\MiKTeX\tex/latex/pgf/utilities\pgfrcs.sty
+(D:\MiKTeX\tex/generic/pgf/utilities\pgfutil-common.tex)
+(D:\MiKTeX\tex/generic/pgf/utilities\pgfutil-latex.def)
+(D:\MiKTeX\tex/generic/pgf/utilities\pgfrcs.code.tex
+(D:\MiKTeX\tex/generic/pgf\pgf.revision.tex)))
+(D:\MiKTeX\tex/latex/pgf/utilities\pgfkeys.sty
+(D:\MiKTeX\tex/generic/pgf/utilities\pgfkeys.code.tex
+(D:\MiKTeX\tex/generic/pgf/utilities\pgfkeyslibraryfiltered.code.tex)))
+(D:\MiKTeX\tex/latex/pgf/math\pgfmath.sty
+(D:\MiKTeX\tex/generic/pgf/math\pgfmath.code.tex
+(D:\MiKTeX\tex/generic/pgf/math\pgfmathutil.code.tex)
+(D:\MiKTeX\tex/generic/pgf/math\pgfmathparser.code.tex)
+(D:\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.code.tex)
+(D:\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.basic.code.tex)
+(D:\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.trigonometric.code.tex)
+(D:\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.random.code.tex)
+(D:\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.comparison.code.tex)
+(D:\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.base.code.tex)
+(D:\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.round.code.tex)
+(D:\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.misc.code.tex)
+(D:\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.integerarithmetics.code.tex)
+(D:\MiKTeX\tex/generic/pgf/math\pgfmathcalc.code.tex)
+(D:\MiKTeX\tex/generic/pgf/math\pgfmathfloat.code.tex)))
+(D:\MiKTeX\tex/generic/pgf/utilities\pgffor.code.tex)))
+(D:\MiKTeX\tex/latex/caption\subcaption.sty
+(D:\MiKTeX\tex/latex/caption\caption.sty
+(D:\MiKTeX\tex/latex/caption\caption3.sty)))
+(D:\MiKTeX\tex/latex/adjustbox\adjustbox.sty
+(D:\MiKTeX\tex/latex/adjustbox\adjcalc.sty)
+(D:\MiKTeX\tex/latex/adjustbox\trimclip.sty
+(D:\MiKTeX\tex/latex/collectbox\collectbox.sty)
+(D:\MiKTeX\tex/latex/adjustbox\tc-pdftex.def))
+(D:\MiKTeX\tex/latex/ifoddpage\ifoddpage.sty)
+(D:\MiKTeX\tex/latex/varwidth\varwidth.sty)
+==> First Aid for varwidth.sty applied!
+) (D:\MiKTeX\tex/latex/nowidow\nowidow.sty)
+(D:\MiKTeX\tex/latex/booktabs\booktabs.sty)
+(D:\MiKTeX\tex/latex/tools\array.sty) (D:\MiKTeX\tex/latex/cite\cite.sty)
+(D:\MiKTeX\tex/latex/pgf/frontendlayer\tikz.sty
+(D:\MiKTeX\tex/latex/pgf/basiclayer\pgf.sty
+(D:\MiKTeX\tex/latex/pgf/basiclayer\pgfcore.sty
+(D:\MiKTeX\tex/latex/pgf/systemlayer\pgfsys.sty
+(D:\MiKTeX\tex/generic/pgf/systemlayer\pgfsys.code.tex
+(D:\MiKTeX\tex/generic/pgf/systemlayer\pgf.cfg)
+(D:\MiKTeX\tex/generic/pgf/systemlayer\pgfsys-pdftex.def
+(D:\MiKTeX\tex/generic/pgf/systemlayer\pgfsys-common-pdf.def)))
+(D:\MiKTeX\tex/generic/pgf/systemlayer\pgfsyssoftpath.code.tex)
+(D:\MiKTeX\tex/generic/pgf/systemlayer\pgfsysprotocol.code.tex))
+(D:\MiKTeX\tex/generic/pgf/basiclayer\pgfcore.code.tex
+(D:\MiKTeX\tex/generic/pgf/math\pgfint.code.tex)
+(D:\MiKTeX\tex/generic/pgf/basiclayer\pgfcorepoints.code.tex)
+(D:\MiKTeX\tex/generic/pgf/basiclayer\pgfcorepathconstruct.code.tex)
+(D:\MiKTeX\tex/generic/pgf/basiclayer\pgfcorepathusage.code.tex)
+(D:\MiKTeX\tex/generic/pgf/basiclayer\pgfcorescopes.code.tex)
+(D:\MiKTeX\tex/generic/pgf/basiclayer\pgfcoregraphicstate.code.tex)
+(D:\MiKTeX\tex/generic/pgf/basiclayer\pgfcoretransformations.code.tex)
+(D:\MiKTeX\tex/generic/pgf/basiclayer\pgfcorequick.code.tex)
+(D:\MiKTeX\tex/generic/pgf/basiclayer\pgfcoreobjects.code.tex)
+(D:\MiKTeX\tex/generic/pgf/basiclayer\pgfcorepathprocessing.code.tex)
+(D:\MiKTeX\tex/generic/pgf/basiclayer\pgfcorearrows.code.tex)
+(D:\MiKTeX\tex/generic/pgf/basiclayer\pgfcoreshade.code.tex)
+(D:\MiKTeX\tex/generic/pgf/basiclayer\pgfcoreimage.code.tex)
+(D:\MiKTeX\tex/generic/pgf/basiclayer\pgfcoreexternal.code.tex)
+(D:\MiKTeX\tex/generic/pgf/basiclayer\pgfcorelayers.code.tex)
+(D:\MiKTeX\tex/generic/pgf/basiclayer\pgfcoretransparency.code.tex)
+(D:\MiKTeX\tex/generic/pgf/basiclayer\pgfcorepatterns.code.tex)
+(D:\MiKTeX\tex/generic/pgf/basiclayer\pgfcorerdf.code.tex)))
+(D:\MiKTeX\tex/generic/pgf/modules\pgfmoduleshapes.code.tex)
+(D:\MiKTeX\tex/generic/pgf/modules\pgfmoduleplot.code.tex)
+(D:\MiKTeX\tex/latex/pgf/compatibility\pgfcomp-version-0-65.sty)
+(D:\MiKTeX\tex/latex/pgf/compatibility\pgfcomp-version-1-18.sty))
+(D:\MiKTeX\tex/generic/pgf/frontendlayer/tikz\tikz.code.tex
+(D:\MiKTeX\tex/generic/pgf/libraries\pgflibraryplothandlers.code.tex)
+(D:\MiKTeX\tex/generic/pgf/modules\pgfmodulematrix.code.tex)
+(D:\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarytopaths.code
+.tex)))
+(D:\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryshapes.geome
+tric.code.tex
+(D:\MiKTeX\tex/generic/pgf/libraries/shapes\pgflibraryshapes.geometric.code.tex
+))
+(D:\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryshapes.misc.
+code.tex
+(D:\MiKTeX\tex/generic/pgf/libraries/shapes\pgflibraryshapes.misc.code.tex))
+(D:\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryshapes.symbo
+ls.code.tex
+(D:\MiKTeX\tex/generic/pgf/libraries/shapes\pgflibraryshapes.symbols.code.tex))
+ (D:\MiKTeX\tex/generic/pgf/libraries\pgflibraryarrows.meta.code.tex)
+(D:\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarypositioning.
 code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code
-.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.te
-x)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.c
-ode.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformation
-s.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
+(D:\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryfit.code.tex
 )
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.t
-ex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathprocessing
-.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.te
-x)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
-)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
-
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.
-tex))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.te
-x)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.c
-ode.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.code.
-tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.code.tex))
-)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
-) (/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
-)
-(/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65
-.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18
-.sty)) (/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
-(/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex))
-(/usr/share/texlive/texmf-dist/tex/latex/pgf/math/pgfmath.sty
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
-
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers
-.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
-)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibrarytopaths.code.tex)))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibraryshapes.geometric.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshape
-s.geometric.code.tex))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibraryshapes.misc.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshape
-s.misc.code.tex))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibraryshapes.symbols.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshape
-s.symbols.code.tex))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.meta.
+(D:\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarybackgrounds.
 code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibrarypositioning.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibraryfit.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibrarybackgrounds.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibrarycalc.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibrarydecorations.pathreplacing.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibrarydecorations.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduledecorations.cod
-e.tex))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrary
-decorations.pathreplacing.code.tex))
-(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
-(/home/zperson/Orbis/_deliverables/01_Report1/build/report1.aux)
-*geometry* driver: auto-detecting
-*geometry* detected driver: pdftex
-(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+(D:\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarycalc.code.te
+x)
+(D:\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarydecorations.
+pathreplacing.code.tex
+(D:\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarydecorations.
+code.tex (D:\MiKTeX\tex/generic/pgf/modules\pgfmoduledecorations.code.tex))
+(D:\MiKTeX\tex/generic/pgf/libraries/decorations\pgflibrarydecorations.pathrepl
+acing.code.tex)) (D:/REP\Orbis\_deliverables\01_Report1\build\report1.aux)
+(D:\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
-(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
-[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [1]
-No file report1.toc.
+) (D:\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
+(D:\MiKTeX\tex/latex/00miktex\epstopdf-sys.cfg)) [1{C:/Users/Acer/AppData/Local
+/MiKTeX/fonts/map/pdftex/pdftex.map} <./figures/LOGO.png>]
+(D:\MiKTeX\tex/latex/amsfonts\umsa.fd) (D:\MiKTeX\tex/latex/amsfonts\umsb.fd)
+Overfull \hbox (6.38155pt too wide) in paragraph at lines 83--83
+\OT1/cmr/m/it/12 Retrieval-Augmented Gen-er-a-tion (RAG). The core of Or-bis is
+ an Orchestrator-
 [2]
-No file report1.lof.
+No file report1.toc.
 [3]
+No file report1.lof.
+[4]
 No file report1.lot.
-[4] [5]
+[5]
+Overfull \hbox (6.14433pt too wide) in paragraph at lines 101--102
+[]\OT1/cmr/m/n/12 Continuous In-te-gra-tion/Continuous De-ploy-ment 
+[6]
 
 LaTeX Warning: Citation `lewis2020retrieval' on page 1 undefined on input line 
-102.
+124.
 
 
 LaTeX Warning: Citation `assayed2024systematic' on page 1 undefined on input li
-ne 102.
+ne 124.
 
 
-LaTeX Warning: Citation `ismail2025academic' on page 1 undefined on input line 
-102.
+LaTeX Warning: Citation `zhang2016semantic' on page 1 undefined on input line 1
+24.
+
+
+LaTeX Warning: Citation `galli2025aiAct' on page 1 undefined on input line 124.
+
+
+
+LaTeX Warning: Reference `sec:related' on page 1 undefined on input line 130.
+
+
+LaTeX Warning: Reference `sec:design' on page 1 undefined on input line 130.
+
+
+LaTeX Warning: Reference `sec:methodology' on page 1 undefined on input line 13
+0.
+
+
+LaTeX Warning: Reference `sec:setup' on page 1 undefined on input line 130.
+
+
+LaTeX Warning: Reference `sec:experiments' on page 1 undefined on input line 13
+0.
+
+
+LaTeX Warning: Reference `sec:conclusion' on page 1 undefined on input line 130
+.
 
 [1]
 
-LaTeX Warning: Citation `wick2023dars' on page 2 undefined on input line 104.
+LaTeX Warning: Citation `lewis2020retrieval' on page 2 undefined on input line 
+138.
+
+
+LaTeX Warning: Citation `assayed2024systematic' on page 2 undefined on input li
+ne 138.
+
+
+LaTeX Warning: Citation `ismail2025academic' on page 2 undefined on input line 
+138.
+
+
+LaTeX Warning: Citation `wick2023dars' on page 2 undefined on input line 140.
 
 
 LaTeX Warning: Citation `zhang2016semantic' on page 2 undefined on input line 1
-06.
+42.
 
 
-LaTeX Warning: Citation `galli2025aiAct' on page 2 undefined on input line 106.
+LaTeX Warning: Citation `galli2025aiAct' on page 2 undefined on input line 142.
 
-
-
-LaTeX Warning: Citation `cisneros2025jorgpt' on page 2 undefined on input line 
-110.
-
-
-LaTeX Warning: Citation `zheng2023judging' on page 2 undefined on input line 11
-2.
 
 [2]
+Overfull \hbox (27.57317pt too wide) in paragraph at lines 144--145
+[]\OT1/cmr/bx/n/12 Local con-text: HermiOne. \OT1/cmr/m/n/12 Is-tan-bul Bilgi U
+ni-ver-sity has de-ployed ``HermiOne,''
 
-LaTeX Warning: Reference `tab:related_work' on page 3 undefined on input line 1
-14.
-
-
-LaTeX Warning: Reference `tab:baseline_validity' on page 3 undefined on input l
-ine 133.
-
-
-LaTeX Warning: Citation `assayed2024systematic' on page 3 undefined on input li
-ne 142.
+LaTeX Warning: Citation `kiela2024hybrid' on page 3 undefined on input line 146
+.
 
 
-LaTeX Warning: Citation `ismail2025academic' on page 3 undefined on input line 
-143.
-
-
-LaTeX Warning: Citation `wick2023dars' on page 3 undefined on input line 144.
-
-
-LaTeX Warning: Citation `zhang2016semantic' on page 3 undefined on input line 1
-45.
-
-
-LaTeX Warning: Citation `galli2025aiAct' on page 3 undefined on input line 146.
-
+LaTeX Warning: Citation `gunther2023jina' on page 3 undefined on input line 146
+.
 
 
 LaTeX Warning: Citation `cisneros2025jorgpt' on page 3 undefined on input line 
-147.
+148.
 
-[3] (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd)
 
-LaTeX Warning: Reference `tab:dataset_stats' on page 4 undefined on input line 
-157.
+Overfull \hbox (14.62036pt too wide) in paragraph at lines 148--149
+\OT1/cmr/m/n/12 cept/reject screen-ing. JorGPT, for in-stance, eval-u-ates prog
+ramming-assignment
+[3]
+
+LaTeX Warning: Citation `zheng2023judging' on page 4 undefined on input line 15
+0.
+
+
+LaTeX Warning: Reference `sec:experiments' on page 4 undefined on input line 15
+0.
+
+
+LaTeX Warning: Reference `tab:related_work' on page 4 undefined on input line 1
+52.
+
+
+LaTeX Warning: Reference `tab:baseline_validity' on page 4 undefined on input l
+ine 174.
+
+
+LaTeX Warning: Citation `assayed2024systematic' on page 4 undefined on input li
+ne 183.
+
+
+LaTeX Warning: Citation `ismail2025academic' on page 4 undefined on input line 
+184.
+
+
+LaTeX Warning: Citation `wick2023dars' on page 4 undefined on input line 185.
+
+
+LaTeX Warning: Citation `zhang2016semantic' on page 4 undefined on input line 1
+86.
+
+
+LaTeX Warning: Citation `galli2025aiAct' on page 4 undefined on input line 187.
+
+
+
+LaTeX Warning: Citation `cisneros2025jorgpt' on page 4 undefined on input line 
+188.
+
+
+LaTeX Warning: Reference `sec:submission_results' on page 4 undefined on input 
+line 189.
 
 [4]
-Overfull \hbox (2.37175pt too wide) in paragraph at lines 179--180
-\T1/cmr/m/n/12 books, dual-major di-rec-tives, in-tern-ship pro-ce-dures), ad-m
-in-is-tra-tive an-nounce-ments, event
 
-LaTeX Warning: Citation `shannon1948mathematical' on page 5 undefined on input 
-line 185.
+LaTeX Warning: Reference `sec:methodology' on page 5 undefined on input line 20
+1.
+
+
+LaTeX Warning: Reference `tab:dataset_stats' on page 5 undefined on input line 
+205.
 
 [5]
 
-LaTeX Warning: Citation `sculley2010web' on page 6 undefined on input line 195.
+LaTeX Warning: Reference `sec:taxonomy' on page 6 undefined on input line 227.
 
 
+LaTeX Warning: Reference `sec:gold_gt' on page 6 undefined on input line 227.
 
-LaTeX Warning: Citation `ward1963hierarchical' on page 6 undefined on input lin
-e 195.
+[6]
 
-[6] (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmss.fd)
-Overfull \hbox (50.13232pt too wide) in paragraph at lines 252--253
-\T1/cmr/m/n/12 Unlike de-cen-tral-ized multi-agent sys-tems, Or-bis uti-lizes a
- cen-tral-ized \T1/cmtt/m/n/12 EventPipelineOrchestrator\T1/cmr/m/n/12 .
+LaTeX Warning: Reference `tab:web_distribution' on page 7 undefined on input li
+ne 233.
 
-Overfull \hbox (42.7065pt too wide) in paragraph at lines 252--253
-\T1/cmr/m/n/12 This state-ful hub con-trols state-less worker agents (\T1/cmtt/
-m/n/12 SearchAgent\T1/cmr/m/n/12 , \T1/cmtt/m/n/12 ReasoningAgent\T1/cmr/m/n/12
- , \T1/cmtt/m/n/12 EventCreator\T1/cmr/m/n/12 )
 
-LaTeX Warning: Reference `fig:event_system_architecture' on page 7 undefined on
- input line 254.
+Underfull \hbox (badness 4981) in paragraph at lines 241--242
+[]|\OT1/cmr/m/n/12 Press re-leases, news items
 
+Underfull \hbox (badness 10000) in paragraph at lines 242--243
+[]|\OT1/cmr/m/n/12 Past and fu-ture sem-i-nars
+
+Underfull \hbox (badness 10000) in paragraph at lines 243--244
+[]|\OT1/cmr/m/n/12 Department pages, fac-ulty
+
+Underfull \hbox (badness 1635) in paragraph at lines 246--247
+[]|\OT1/cmr/m/n/12 International of-fice, re-search
+
+LaTeX Warning: Reference `sec:rag_arch' on page 7 undefined on input line 254.
+
+
+Overfull \hbox (0.48975pt too wide) in paragraph at lines 258--259
+[]\OT1/cmr/bx/n/12 Language de-tec-tion. \OT1/cmr/m/n/12 Ac-cu-rate lan-guage t
+ag-ging drives cor-rect Post-greSQL
+
+Overfull \hbox (10.63753pt too wide) in paragraph at lines 258--259
+\OT1/cmr/m/n/12 The adopted ap-proach runs a \OT1/cmr/m/it/12 Stop-word Race\OT
+1/cmr/m/n/12 : it counts oc-cur-rences of language-
+
+Overfull \hbox (117.60806pt too wide) in paragraph at lines 258--259
+\OT1/cmr/m/n/12 solv-ing lan-guage from con-tent rather than char-ac-ter in-ven
+-tory. A \OT1/cmtt/m/n/12 fix[]pdf[]language[]and[]titles.py
 [7]
-Overfull \hbox (16.12143pt too wide) in paragraph at lines 328--330
-\T1/cmr/m/n/12 User as-sign-ments are routed through two par-al-lel chan-nels b
-ased on the user's \T1/cmtt/m/n/12 extra_context
-[8] [9] [10]
-Overfull \hbox (32.66185pt too wide) in paragraph at lines 438--439
-\T1/cmr/m/n/12 tains a newer admin-triggered ex-trac-tion route that writes ac-
-cepted rows to \T1/cmtt/m/n/12 regulatory_events\T1/cmr/m/n/12 .
-[11]
 
-LaTeX Warning: Reference `tab:assignment_results' on page 12 undefined on input
- line 474.
+LaTeX Warning: Citation `shannon1948mathematical' on page 8 undefined on input 
+line 265.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 481--481
-[]|\T1/cmr/bx/n/12 Profile (real \T1/cmtt/m/n/12 user_profiles
-
-Underfull \hbox (badness 2828) in paragraph at lines 483--483
-[]|\T1/cmr/m/n/12 P2: Busi-ness Ad-min, Year 3
-[12]
-
-LaTeX Warning: Reference `tab:extraction_funnel' on page 13 undefined on input 
-line 498.
+LaTeX Warning: Citation `sculley2010web' on page 8 undefined on input line 275.
 
 
-LaTeX Warning: Reference `tab:assignment_results' on page 13 undefined on input
- line 498.
+
+LaTeX Warning: Citation `ward1963hierarchical' on page 8 undefined on input lin
+e 275.
+
+[8]
+
+LaTeX Warning: Citation `malkov2018hnsw' on page 9 undefined on input line 283.
 
 
-LaTeX Warning: Reference `tab:baseline_validity' on page 13 undefined on input 
-line 500.
 
+LaTeX Warning: Reference `sec:rag_arch' on page 9 undefined on input line 285.
+
+
+Overfull \hbox (93.51134pt too wide) in paragraph at lines 285--286
+[]\OT1/cmr/bx/n/12 Cross-encoder re-ranking \OT1/cmr/m/n/12 ap-plies a neu-ral 
+model (\OT1/cmtt/m/n/12 jina-reranker-v2-base-multilingual\OT1/cmr/m/n/12 )
+[9] [10]
+Overfull \hbox (115.49643pt too wide) in paragraph at lines 347--348
+\OT1/cmr/m/n/12 Unlike de-cen-tral-ized multi-agent sys-tems, Or-bis uti-lizes 
+a cen-tral-ized \OT1/cmtt/m/n/12 EventPipelineOrchestrator\OT1/cmr/m/n/12 .
+
+Overfull \hbox (26.52791pt too wide) in paragraph at lines 347--348
+\OT1/cmr/m/n/12 This state-ful hub con-trols state-less worker agents (\OT1/cmt
+t/m/n/12 SearchAgent\OT1/cmr/m/n/12 , \OT1/cmtt/m/n/12 ReasoningAgent\OT1/cmr/m
+/n/12 ,
+
+LaTeX Warning: Reference `fig:event_system_architecture' on page 11 undefined o
+n input line 349.
+
+[11] [12] (D:\MiKTeX\tex/latex/base\omscmr.fd)
+Overfull \hbox (7.05112pt too wide) in paragraph at lines 438--439
+\OT1/cmr/m/n/12 ment is judged does the model syn-the-size the over-all \OT1/cm
+tt/m/n/12 approved\OT1/cmr/m/n/12 /\OT1/cmtt/m/n/12 rejected
+
+Overfull \hbox (76.02406pt too wide) in paragraph at lines 438--439
+\OT1/cmr/m/n/12 de-ci-sion. The out-put is a struc-tured JSON re-port con-tain-
+ing a \OT1/cmtt/m/n/12 requirement[]findings
 [13]
-Overfull \hbox (37.16904pt too wide) in paragraph at lines 505--506
-\T1/cmtt/m/n/12 approve_multifile\T1/cmr/m/n/12 , \T1/cmtt/m/n/12 reject_wrong_
-content \T1/cmr/m/n/12 (a file from a dif-fer-ent as-sign-ment), \T1/cmtt/m/n/1
-2 reject_empty\T1/cmr/m/n/12 ,
 
-Overfull \hbox (4.19519pt too wide) in paragraph at lines 505--506
-\T1/cmr/m/n/12 re-named to \T1/cmtt/m/n/12 .pdf\T1/cmr/m/n/12 ), \T1/cmtt/m/n/1
-2 flag_partial \T1/cmr/m/n/12 (LLM-written in-com-plete draft), and \T1/cmtt/m/
-n/12 reject_injection
+LaTeX Font Warning: Font shape `OMS/cmtt/m/n' undefined
+(Font)              using `OMS/cmsy/m/n' instead
+(Font)              for symbol `textbraceleft' on input line 526.
 
-LaTeX Warning: Reference `tab:metric_provenance' on page 14 undefined on input 
-line 507.
+
+LaTeX Warning: Reference `fig:chatbot_query' on page 14 undefined on input line
+ 533.
 
 [14]
 
-LaTeX Warning: Reference `tab:event_confusion' on page 15 undefined on input li
-ne 530.
+LaTeX Warning: Reference `fig:rag_flow' on page 15 undefined on input line 544.
 
-[15] [16] [17] [18] [19]
+
+
+LaTeX Warning: Reference `fig:chatbot_query' on page 15 undefined on input line
+ 547.
+
+
+LaTeX Warning: Reference `app:router_prompt' on page 15 undefined on input line
+ 549.
+
+[15 <./figures/rag_chatbot_query.jpg>]
+Overfull \hbox (0.14041pt too wide) in paragraph at lines 553--554
+\OT1/cmr/m/n/12 against Post-greSQL: a key-word (TSVec-tor) query and a vec-tor
+ (HNSW)
+
+LaTeX Warning: Reference `sec:rag_search' on page 16 undefined on input line 55
+5.
+
+
+LaTeX Warning: Reference `app:answer_prompt' on page 16 undefined on input line
+ 559.
+
+
+LaTeX Warning: Reference `fig:chatbot_response' on page 16 undefined on input l
+ine 559.
+
+[16] [17]
+
+LaTeX Warning: Reference `sec:rag_dataset' on page 18 undefined on input line 5
+71.
+
+[18 <./figures/Orbis_RAG_General_Flow_Diagram.png>]
+Overfull \hbox (2.32063pt too wide) in paragraph at lines 575--576
+[]\OT1/cmr/m/n/12 The se-lected em-bed-ding model, \OT1/cmtt/m/n/12 paraphrase-
+multilingual-MiniLM-L12-v2\OT1/cmr/m/n/12 ,
+
+LaTeX Warning: Reference `sec:rag_walkthrough' on page 19 undefined on input li
+ne 579.
+
+[19]
+Overfull \hbox (7.2431pt too wide) in paragraph at lines 597--598
+[]\OT1/cmr/bx/n/12 Hybrid Search. \OT1/cmtt/m/n/12 rag[]repository.vector[]sear
+ch() \OT1/cmr/m/n/12 ex-e-cutes a TSVec-
+[20]
+Overfull \hbox (3.24214pt too wide) in paragraph at lines 603--604
+[]\OT1/cmr/bx/n/12 Final Rerank. \OT1/cmr/m/n/12 The ex-panded pool is re-submi
+tted to the Jina reranker.
+
+Overfull \hbox (1.7216pt too wide) in paragraph at lines 610--611
+\OT1/cmr/m/n/12 After dedu-pli-ca-tion across all in-tents, \OT1/cmtt/m/n/12 co
+ntext.py \OT1/cmr/m/n/12 as-sem-bles the fi-nal prompt.
+
+LaTeX Warning: Reference `app:answer_prompt' on page 21 undefined on input line
+ 612.
+
+
+LaTeX Warning: Reference `fig:chatbot_response' on page 21 undefined on input l
+ine 612.
+
+[21]
+
+LaTeX Warning: Reference `sec:experiments' on page 22 undefined on input line 6
+26.
+
+
+Overfull \hbox (29.52539pt too wide) in paragraph at lines 626--627
+\OT1/cmr/m/n/12 rea-son-ing) uses \OT1/cmtt/m/n/12 google/gemini-2.5-flash-lite
+\OT1/cmr/m/n/12 , with \OT1/cmtt/m/n/12 deepseek/deepseek-v3.2
+[22 <./figures/rag_chatbot_response.jpg>]
+Overfull \hbox (1.91055pt too wide) in paragraph at lines 638--639
+\OT1/cmr/m/n/12 The RAG chat-bot is ex-posed via the \OT1/cmtt/m/n/12 /api/chat
+ \OT1/cmr/m/n/12 end-point of the same FastAPI
+
+Overfull \hbox (38.13509pt too wide) in paragraph at lines 638--639
+\OT1/cmr/m/n/12 model). Re-ranking uses the Jina AI API (\OT1/cmtt/m/n/12 jina-
+reranker-v2-base-multilingual\OT1/cmr/m/n/12 )
+
+LaTeX Warning: Reference `tab:rag_eval_dataset' on page 23 undefined on input l
+ine 642.
+
+[23]
+Overfull \hbox (8.81174pt too wide) in paragraph at lines 670--671
+[]\OT1/cmr/bx/n/12 Mean Re-cip-ro-cal Rank (MRR): \OT1/cmr/m/n/12 Rank-ing qual
+-ity of the fi-nal reranked
+
+LaTeX Warning: Reference `sec:related' on page 24 undefined on input line 671.
+
+
+LaTeX Warning: Reference `sec:rag_eval_dataset' on page 24 undefined on input l
+ine 678.
+
+[24]
+
+LaTeX Warning: Reference `tab:assignment_results' on page 25 undefined on input
+ line 706.
+
+
+Overfull \hbox (79.1571pt too wide) in paragraph at lines 706--707
+\OT1/cmr/m/n/12 stored in \OT1/cmtt/m/n/12 user[]profiles\OT1/cmr/m/n/12 . The 
+pipeline pro-duced 176 ac-tive rows in \OT1/cmtt/m/n/12 user[]rule[]assignments
+\OT1/cmr/m/n/12 ,
+
+Underfull \hbox (badness 10000) in paragraph at lines 713--713
+[]|\OT1/cmr/bx/n/12 Profile (real \OT1/cmtt/m/n/12 user[]profiles
+
+Underfull \hbox (badness 2735) in paragraph at lines 715--715
+[]|\OT1/cmr/m/n/12 P2: Busi-ness Ad-min, Year 3
+[25]
+
+LaTeX Warning: Reference `sec:matching_results' on page 26 undefined on input l
+ine 727.
+
+
+LaTeX Warning: Reference `tab:baseline_validity' on page 26 undefined on input 
+line 729.
+
+[26]
+Overfull \hbox (13.71327pt too wide) in paragraph at lines 735--736
+\OT1/cmtt/m/n/12 flag[]partial \OT1/cmr/m/n/12 (LLM-written in-com-plete draft)
+, and \OT1/cmtt/m/n/12 reject[]injection \OT1/cmr/m/n/12 (wrong-
+
+LaTeX Warning: Reference `tab:metric_provenance' on page 27 undefined on input 
+line 737.
+
+
+LaTeX Warning: Reference `sec:submission_results' on page 27 undefined on input
+ line 751.
+
+[27]
+
+LaTeX Warning: Reference `tab:event_confusion' on page 28 undefined on input li
+ne 762.
+
+[28]
+Overfull \hbox (44.85359pt too wide) in paragraph at lines 795--803
+ [][] 
+[29]
+Overfull \hbox (33.73174pt too wide) in paragraph at lines 867--874
+ [][] 
+[30]
+
+LaTeX Warning: Reference `tab:rag_results' on page 31 undefined on input line 8
+82.
+
+[31] [32]
+Overfull \hbox (0.68344pt too wide) in paragraph at lines 919--920
+\OT1/cmr/m/n/12 author-validated ex-pected an-swers, but the an-swer strings ar
+e con-cise ground-
+[33]
+Overfull \hbox (13.01933pt too wide) in paragraph at lines 934--935
+\OT1/cmr/m/n/12 tion, (ii) injection-pattern de-tec-tion, and (iii) an ex-plici
+t \OT1/cmtt/m/n/12 flag[]for[]review
+
+Overfull \hbox (40.79414pt too wide) in paragraph at lines 935--936
+\OT1/cmr/m/n/12 under-matched (sit-u-a-tional) obli-ga-tions, plus cal-i-bra-ti
+on of the SQL/contextual
+[34]
 No file report1.bbl.
-(/home/zperson/Orbis/_deliverables/01_Report1/build/report1.aux)
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \hskip 11.74988pt
+(hyperref)                replaced by space on input line 952.
+
+
+LaTeX Warning: Reference `sec:rag_routing' on page 35 undefined on input line 9
+55.
+
+[35]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \hskip 11.74988pt
+(hyperref)                replaced by space on input line 1012.
+
+
+LaTeX Warning: Reference `sec:rag_context' on page 36 undefined on input line 1
+015.
+
+
+Overfull \hbox (7.38354pt too wide) in paragraph at lines 1015--1016
+\OT1/cmr/m/n/12 The fol-low-ing tem-plate drives the Gen-er-a-tive Agent (Sec-t
+ion []). The \OMS/cmtt/m/n/12 f\OT1/cmtt/m/n/12 query\OMS/cmtt/m/n/12 g
+[36] [37] (D:/REP\Orbis\_deliverables\01_Report1\build\report1.aux)
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
 
 LaTeX Warning: There were undefined references.
 
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
+
+Package rerunfilecheck Warning: File `report1.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
  )
-(see the transcript file for additional information) </home/zperson/.texlive202
-1/texmf-var/fonts/pk/ljfour/jknappen/ec/ecss1000.600pk> </home/zperson/.texlive
-2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600pk> </home/zperson/.texl
-ive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsx1000.600pk> </home/zperson/.t
-exlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1200.600pk> </home/zperson
-/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsi0800.600pk> </home/zper
-son/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecss1095.600pk> </home/z
-person/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsx1095.600pk> </hom
-e/zperson/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt0800.600pk> </
-home/zperson/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecss0600.600pk>
- </home/zperson/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecss0800.600
-pk> </home/zperson/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt0800.
-450pk> </home/zperson/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx14
-40.600pk> </home/zperson/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ect
-t1200.600pk> </home/zperson/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/
-ecrm0800.600pk> </home/zperson/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/
-ec/ecbx0800.600pk> </home/zperson/.texlive2021/texmf-var/fonts/pk/ljfour/jknapp
-en/ec/ecti1200.600pk> </home/zperson/.texlive2021/texmf-var/fonts/pk/ljfour/jkn
-appen/ec/ecbx1095.600pk> </home/zperson/.texlive2021/texmf-var/fonts/pk/ljfour/
-jknappen/ec/ecrm1095.600pk> </home/zperson/.texlive2021/texmf-var/fonts/pk/ljfo
-ur/jknappen/ec/ecbx1200.600pk> </home/zperson/.texlive2021/texmf-var/fonts/pk/l
-jfour/jknappen/ec/ecrm1200.600pk> </home/zperson/.texlive2021/texmf-var/fonts/p
-k/ljfour/jknappen/ec/ecrm1440.600pk> </home/zperson/.texlive2021/texmf-var/font
-s/pk/ljfour/jknappen/ec/ecbx1728.600pk></usr/share/texlive/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
-12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><
-/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/tex
-live/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on /home/zperson/Orbis/_deliverables/01_Report1/build/report1.pd
-f (25 pages, 378202 bytes).
-Transcript written on /home/zperson/Orbis/_deliverables/01_Report1/build/report
-1.log.
-Latexmk: Missing input file 'report1.toc' (or dependence on it) from following:
-  'No file report1.toc.'
-Latexmk: Missing input file 'report1.lof' (or dependence on it) from following:
-  'No file report1.lof.'
-Latexmk: Missing input file 'report1.lot' (or dependence on it) from following:
-  'No file report1.lot.'
-Latexmk: Missing bbl file '/home/zperson/Orbis/_deliverables/01_Report1/build/report1.bbl' in following:
+(see the transcript file for additional information) <C:\Users\Acer\AppData\Loc
+al\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1200.pk><D:/MiKTeX/fonts/type1
+/public/amsfonts/cm/cmbx10.pfb><D:/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12
+.pfb><D:/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx8.pfb><D:/MiKTeX/fonts/type1
+/public/amsfonts/cm/cmbxti10.pfb><D:/MiKTeX/fonts/type1/public/amsfonts/cm/cmcs
+c10.pfb><D:/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><D:/MiKTeX/fonts/t
+ype1/public/amsfonts/cm/cmmi12.pfb><D:/MiKTeX/fonts/type1/public/amsfonts/cm/cm
+mi8.pfb><D:/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><D:/MiKTeX/fonts/ty
+pe1/public/amsfonts/cm/cmr12.pfb><D:/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6
+.pfb><D:/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><D:/MiKTeX/fonts/type1/
+public/amsfonts/cm/cmss10.pfb><D:/MiKTeX/fonts/type1/public/amsfonts/cm/cmss8.p
+fb><D:/MiKTeX/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><D:/MiKTeX/fonts/type
+1/public/amsfonts/cm/cmssi8.pfb><D:/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy1
+0.pfb><D:/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><D:/MiKTeX/fonts/type
+1/public/amsfonts/cm/cmti10.pfb><D:/MiKTeX/fonts/type1/public/amsfonts/cm/cmti1
+2.pfb><D:/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><D:/MiKTeX/fonts/typ
+e1/public/amsfonts/cm/cmtt12.pfb><D:/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt
+8.pfb>
+Output written on D:/REP\Orbis\_deliverables\01_Report1\build\report1.pdf (43 p
+ages, 1606440 bytes).
+Transcript written on D:/REP\Orbis\_deliverables\01_Report1\build\report1.log.
+Latexmk: Getting log file '/d/REP/Orbis/_deliverables/01_Report1/build/report1.log'
+Latexmk: Examining '/d/REP/Orbis/_deliverables/01_Report1/build/report1.fls'
+Latexmk: Examining '/d/REP/Orbis/_deliverables/01_Report1/build/report1.log'
+Latexmk: Missing input file 'report1.toc' message in .log file:
+  No file report1.toc.
+Latexmk: Missing input file 'report1.lof' message in .log file:
+  No file report1.lof.
+Latexmk: Missing input file 'report1.lot' message in .log file:
+  No file report1.lot.
+Latexmk: Missing bbl file '/d/REP/Orbis/_deliverables/01_Report1/build/report1.bbl' in following:
  No file report1.bbl.
 Latexmk: References changed.
-Latexmk: Log file says output to '/home/zperson/Orbis/_deliverables/01_Report1/build/report1.pdf'
-Latexmk: List of undefined refs and citations:
-  Citation `assayed2024systematic' on page 1 undefined on input line 102
-  Citation `assayed2024systematic' on page 3 undefined on input line 142
-  Citation `cisneros2025jorgpt' on page 2 undefined on input line 110
-  Citation `cisneros2025jorgpt' on page 3 undefined on input line 147
-  Citation `galli2025aiAct' on page 2 undefined on input line 106
-  Citation `galli2025aiAct' on page 3 undefined on input line 146
-  Citation `ismail2025academic' on page 1 undefined on input line 102
-  Citation `ismail2025academic' on page 3 undefined on input line 143
-  Citation `lewis2020retrieval' on page 1 undefined on input line 102
-  Citation `sculley2010web' on page 6 undefined on input line 195
-  Citation `shannon1948mathematical' on page 5 undefined on input line 185
-  Citation `ward1963hierarchical' on page 6 undefined on input line 195
-  Citation `wick2023dars' on page 2 undefined on input line 104
-  Citation `wick2023dars' on page 3 undefined on input line 144
-  Citation `zhang2016semantic' on page 2 undefined on input line 106
-  Citation `zhang2016semantic' on page 3 undefined on input line 145
-  Citation `zheng2023judging' on page 2 undefined on input line 112
-  Reference `fig:event_system_architecture' on page 7 undefined on input line 254
-  Reference `tab:assignment_results' on page 12 undefined on input line 474
-  Reference `tab:assignment_results' on page 13 undefined on input line 498
-  Reference `tab:baseline_validity' on page 13 undefined on input line 500
-  Reference `tab:baseline_validity' on page 3 undefined on input line 133
-  Reference `tab:dataset_stats' on page 4 undefined on input line 157
-  Reference `tab:event_confusion' on page 15 undefined on input line 530
-  Reference `tab:extraction_funnel' on page 13 undefined on input line 498
-  Reference `tab:metric_provenance' on page 14 undefined on input line 507
-  Reference `tab:related_work' on page 3 undefined on input line 114
-Latexmk: Examining '/home/zperson/Orbis/_deliverables/01_Report1/build/report1.log'
-=== TeX engine is 'pdfTeX'
-Latexmk: Found bibliography file(s) [references.bib]
-Rule 'bibtex /home/zperson/Orbis/_deliverables/01_Report1/build/report1': File changes, etc:
-   Changed files, or newly in use since previous run(s):
-      '/home/zperson/Orbis/_deliverables/01_Report1/build/report1.aux'
+Latexmk: References changed.
+Latexmk: Log file says output to 'D:/REP/Orbis/_deliverables/01_Report1/build/report1.pdf'
+Latexmk: Using bibtex to make bibliography file(s).
+  ===Source file '/d/REP/Orbis/_deliverables/01_Report1/build/report1.bbl' for 'pdflatex'
+Create bibtex /d/REP/Orbis/_deliverables/01_Report1/build/report1
+Latexmk: Found bibliography file(s):
+  D:/REP/Orbis/_deliverables/01_Report1/report/references.bib
+Latexmk: applying rule 'bibtex /d/REP/Orbis/_deliverables/01_Report1/build/report1'...
+Rule 'bibtex /d/REP/Orbis/_deliverables/01_Report1/build/report1':  Reasons for rerun
+Category 'other':
+  Rerun of 'bibtex /d/REP/Orbis/_deliverables/01_Report1/build/report1' forced or previously required:
+    Reason or flag: 'Initial set up of rule'
+
 ------------
-Run number 1 of rule 'bibtex /home/zperson/Orbis/_deliverables/01_Report1/build/report1'
+Run number 1 of rule 'bibtex /d/REP/Orbis/_deliverables/01_Report1/build/report1'
 ------------
-Latexmk: applying rule 'bibtex /home/zperson/Orbis/_deliverables/01_Report1/build/report1'...
+Latexmk: Change directory to '/d/REP/Orbis/_deliverables/01_Report1/build/'.
+To assist finding of files in document directory, I set
+  BIBINPUTS='/d/REP/Orbis/_deliverables/01_Report1/report;/d/REP/Orbis/_deliverables/01_Report1/build;D:/REP/Orbis/_deliverables/01_Report1/report'
+  BSTINPUTS='/d/REP/Orbis/_deliverables/01_Report1/report;'.
 ------------
 Running 'bibtex  "report1.aux"'
 ------------
-Latexmk: Change directory to '/home/zperson/Orbis/_deliverables/01_Report1/build/'.
-To assist finding of files in document
-directory, I set
-  BIBINPUTS='/home/zperson/Orbis/_deliverables/01_Report1/report:/home/zperson/Orbis/_deliverables/01_Report1/build:'
-  BSTINPUTS='/home/zperson/Orbis/_deliverables/01_Report1/report:'.
-This is BibTeX, Version 0.99d (TeX Live 2022/dev/Debian)
+This is BibTeX, Version 0.99e (MiKTeX 26.5)
 The top-level auxiliary file: report1.aux
 The style file: ieeetr.bst
 Database file #1: references.bib
-Rule 'pdflatex': File changes, etc:
-   Changed files, or newly in use since previous run(s):
-      '/home/zperson/Orbis/_deliverables/01_Report1/build/report1.aux'
-      '/home/zperson/Orbis/_deliverables/01_Report1/build/report1.bbl'
-      '/home/zperson/Orbis/_deliverables/01_Report1/build/report1.lof'
-      '/home/zperson/Orbis/_deliverables/01_Report1/build/report1.lot'
-      '/home/zperson/Orbis/_deliverables/01_Report1/build/report1.toc'
+Latexmk: Change directory back to '/d/REP/Orbis/_deliverables/01_Report1/report'
+Latexmk: applying rule 'pdflatex'...
+Rule 'pdflatex':  Reasons for rerun
+Changed files or newly in use/created:
+  /d/REP/Orbis/_deliverables/01_Report1/build/report1.aux
+  /d/REP/Orbis/_deliverables/01_Report1/build/report1.bbl
+  /d/REP/Orbis/_deliverables/01_Report1/build/report1.lof
+  /d/REP/Orbis/_deliverables/01_Report1/build/report1.lot
+  /d/REP/Orbis/_deliverables/01_Report1/build/report1.toc
+  D:/REP/Orbis/_deliverables/01_Report1/build/report1.aux
+  D:/REP/Orbis/_deliverables/01_Report1/build/report1.out
+
 ------------
 Run number 2 of rule 'pdflatex'
 ------------
 ------------
-Running 'pdflatex  -interaction=nonstopmode -halt-on-error -file-line-error -recorder -output-directory="/home/zperson/Orbis/_deliverables/01_Report1/build"  "report1.tex"'
+Running 'pdflatex  -interaction=nonstopmode -halt-on-error -file-line-error -recorder -output-directory="/d/REP/Orbis/_deliverables/01_Report1/build"  "report1.tex"'
 ------------
-Latexmk: Change directory back to '/home/zperson/Orbis/_deliverables/01_Report1/report'
-Latexmk: applying rule 'pdflatex'...
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex)
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex.fmt)
  restricted \write18 enabled.
 entering extended mode
-(./report1.tex
-LaTeX2e <2021-11-15> patch level 1
-L3 programming layer <2022-01-21>
-(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
-Document Class: article 2021/10/04 v1.4n Standard LaTeX document class
-(/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo))
-(./styles/ibu-thesis.sty
-(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
-(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
-(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)))
-(/usr/share/texlive/texmf-dist/tex/latex/setspace/setspace.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
-(/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
-(/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty)))
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)
-(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)))
-(/usr/share/texlive/texmf-dist/tex/latex/float/float.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/adjustbox/adjustbox.sty
-(/usr/share/texlive/texmf-dist/tex/latex/xkeyval/xkeyval.sty
-(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkeyval.tex
-(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkvutils.tex)))
-(/usr/share/texlive/texmf-dist/tex/latex/adjustbox/adjcalc.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/adjustbox/trimclip.sty
-(/usr/share/texlive/texmf-dist/tex/latex/collectbox/collectbox.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/adjustbox/tc-pdftex.def))
-(/usr/share/texlive/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/varwidth/varwidth.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/nowidow/nowidow.sty
-(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty
-(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
-(/usr/share/texlive/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.sty)))
-(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/cite/cite.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/enumitem/enumitem.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
-(/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
-(/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common-lists.t
-ex)) (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
-) (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/pgf.revision.tex)))
-(/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
-(/usr/share/texlive/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeysfiltered.code.t
-ex)) (/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.de
-f)))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.
-tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.
-tex)) (/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
-(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code
-.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonomet
-ric.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.cod
-e.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison
-.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.
-tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code
-.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.
-tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerari
-thmetics.code.tex)))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfint.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.te
-x)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.
+(report1.tex
+LaTeX2e <2026-06-01>
+L3 programming layer <2026-05-26>
+(D:\MiKTeX\tex/latex/base\article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+(D:\MiKTeX\tex/latex/base\size12.clo)) (styles/ibu-thesis.sty
+(D:\MiKTeX\tex/latex/graphics\graphicx.sty
+(D:\MiKTeX\tex/latex/graphics\keyval.sty)
+(D:\MiKTeX\tex/latex/graphics\graphics.sty
+(D:\MiKTeX\tex/latex/graphics\trig.sty)
+(D:\MiKTeX\tex/latex/graphics-cfg\graphics.cfg)
+(D:\MiKTeX\tex/latex/graphics-def\pdftex.def)))
+(D:\MiKTeX\tex/latex/nomencl\nomencl.sty
+(D:\MiKTeX\tex/latex/xkeyval\xkeyval.sty
+(D:\MiKTeX\tex/generic/xkeyval\xkeyval.tex
+(D:\MiKTeX\tex/generic/xkeyval\xkvutils.tex)))
+(D:\MiKTeX\tex/latex/base\ifthen.sty)
+(D:\MiKTeX\tex/latex/koma-script\tocbasic.sty
+(D:\MiKTeX\tex/latex/koma-script\scrbase.sty
+(D:\MiKTeX\tex/latex/koma-script\scrlfile.sty
+(D:\MiKTeX\tex/latex/koma-script\scrlfile-hook.sty
+(D:\MiKTeX\tex/latex/koma-script\scrlogo.sty))))))
+(D:\MiKTeX\tex/latex/enumitem\enumitem.sty)
+(D:\MiKTeX\tex/latex/amsmath\amsmath.sty
+For additional information on amsmath, use the `?' option.
+(D:\MiKTeX\tex/latex/amsmath\amstext.sty
+(D:\MiKTeX\tex/latex/amsmath\amsgen.sty))
+(D:\MiKTeX\tex/latex/amsmath\amsbsy.sty)
+(D:\MiKTeX\tex/latex/amsmath\amsopn.sty))
+(D:\MiKTeX\tex/latex/amsfonts\amsfonts.sty)
+(D:\MiKTeX\tex/latex/hyperref\hyperref.sty
+(D:\MiKTeX\tex/generic/iftex\iftex.sty)
+(D:\MiKTeX\tex/latex/kvsetkeys\kvsetkeys.sty)
+(D:\MiKTeX\tex/generic/kvdefinekeys\kvdefinekeys.sty)
+(D:\MiKTeX\tex/generic/pdfescape\pdfescape.sty
+(D:\MiKTeX\tex/generic/ltxcmds\ltxcmds.sty)
+(D:\MiKTeX\tex/generic/pdftexcmds\pdftexcmds.sty
+(D:\MiKTeX\tex/generic/infwarerr\infwarerr.sty)))
+(D:\MiKTeX\tex/latex/hycolor\hycolor.sty)
+(D:\MiKTeX\tex/latex/hyperref\nameref.sty
+(D:\MiKTeX\tex/latex/refcount\refcount.sty)
+(D:\MiKTeX\tex/generic/gettitlestring\gettitlestring.sty
+(D:\MiKTeX\tex/latex/kvoptions\kvoptions.sty)))
+(D:\MiKTeX\tex/latex/etoolbox\etoolbox.sty)
+(D:\MiKTeX\tex/generic/stringenc\stringenc.sty)
+(D:\MiKTeX\tex/latex/hyperref\pd1enc.def)
+(D:\MiKTeX\tex/generic/intcalc\intcalc.sty)
+(D:\MiKTeX\tex/latex/hyperref\puenc.def) (D:\MiKTeX\tex/latex/url\url.sty)
+(D:\MiKTeX\tex/generic/bitset\bitset.sty
+(D:\MiKTeX\tex/generic/bigintcalc\bigintcalc.sty)))
+(D:\MiKTeX\tex/latex/hyperref\hpdftex.def
+(D:\MiKTeX\tex/latex/rerunfilecheck\rerunfilecheck.sty
+(D:\MiKTeX\tex/generic/uniquecounter\uniquecounter.sty)))
+(D:\MiKTeX\tex/latex/algorithms\algorithm.sty
+(D:\MiKTeX\tex/latex/float\float.sty))
+(D:\MiKTeX\tex/latex/algorithmicx\algorithmicx.sty
+Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
+) (D:\MiKTeX\tex/latex/algorithmicx\algpseudocode.sty
+Document Style - pseudocode environments for use with the `algorithmicx' style
+) (D:\MiKTeX\tex/latex/listings\listings.sty
+(D:\MiKTeX\tex/latex/listings\lstpatch.sty)
+(D:\MiKTeX\tex/latex/listings\lstmisc.sty)
+(D:\MiKTeX\tex/latex/listings\listings.cfg))
+(D:\MiKTeX\tex/latex/xcolor\xcolor.sty
+(D:\MiKTeX\tex/latex/graphics-cfg\color.cfg)
+(D:\MiKTeX\tex/latex/graphics\mathcolor.ltx))
+(D:\MiKTeX\tex/latex/l3packages/xparse\xparse.sty
+(D:\MiKTeX\tex/latex/l3kernel\expl3.sty
+(D:\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def)))
+(D:\MiKTeX\tex/latex/pgf/utilities\pgffor.sty
+(D:\MiKTeX\tex/latex/pgf/utilities\pgfrcs.sty
+(D:\MiKTeX\tex/generic/pgf/utilities\pgfutil-common.tex)
+(D:\MiKTeX\tex/generic/pgf/utilities\pgfutil-latex.def)
+(D:\MiKTeX\tex/generic/pgf/utilities\pgfrcs.code.tex
+(D:\MiKTeX\tex/generic/pgf\pgf.revision.tex)))
+(D:\MiKTeX\tex/latex/pgf/utilities\pgfkeys.sty
+(D:\MiKTeX\tex/generic/pgf/utilities\pgfkeys.code.tex
+(D:\MiKTeX\tex/generic/pgf/utilities\pgfkeyslibraryfiltered.code.tex)))
+(D:\MiKTeX\tex/latex/pgf/math\pgfmath.sty
+(D:\MiKTeX\tex/generic/pgf/math\pgfmath.code.tex
+(D:\MiKTeX\tex/generic/pgf/math\pgfmathutil.code.tex)
+(D:\MiKTeX\tex/generic/pgf/math\pgfmathparser.code.tex)
+(D:\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.code.tex)
+(D:\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.basic.code.tex)
+(D:\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.trigonometric.code.tex)
+(D:\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.random.code.tex)
+(D:\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.comparison.code.tex)
+(D:\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.base.code.tex)
+(D:\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.round.code.tex)
+(D:\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.misc.code.tex)
+(D:\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.integerarithmetics.code.tex)
+(D:\MiKTeX\tex/generic/pgf/math\pgfmathcalc.code.tex)
+(D:\MiKTeX\tex/generic/pgf/math\pgfmathfloat.code.tex)))
+(D:\MiKTeX\tex/generic/pgf/utilities\pgffor.code.tex)))
+(D:\MiKTeX\tex/latex/caption\subcaption.sty
+(D:\MiKTeX\tex/latex/caption\caption.sty
+(D:\MiKTeX\tex/latex/caption\caption3.sty)))
+(D:\MiKTeX\tex/latex/adjustbox\adjustbox.sty
+(D:\MiKTeX\tex/latex/adjustbox\adjcalc.sty)
+(D:\MiKTeX\tex/latex/adjustbox\trimclip.sty
+(D:\MiKTeX\tex/latex/collectbox\collectbox.sty)
+(D:\MiKTeX\tex/latex/adjustbox\tc-pdftex.def))
+(D:\MiKTeX\tex/latex/ifoddpage\ifoddpage.sty)
+(D:\MiKTeX\tex/latex/varwidth\varwidth.sty)
+==> First Aid for varwidth.sty applied!
+) (D:\MiKTeX\tex/latex/nowidow\nowidow.sty)
+(D:\MiKTeX\tex/latex/booktabs\booktabs.sty)
+(D:\MiKTeX\tex/latex/tools\array.sty) (D:\MiKTeX\tex/latex/cite\cite.sty)
+(D:\MiKTeX\tex/latex/pgf/frontendlayer\tikz.sty
+(D:\MiKTeX\tex/latex/pgf/basiclayer\pgf.sty
+(D:\MiKTeX\tex/latex/pgf/basiclayer\pgfcore.sty
+(D:\MiKTeX\tex/latex/pgf/systemlayer\pgfsys.sty
+(D:\MiKTeX\tex/generic/pgf/systemlayer\pgfsys.code.tex
+(D:\MiKTeX\tex/generic/pgf/systemlayer\pgf.cfg)
+(D:\MiKTeX\tex/generic/pgf/systemlayer\pgfsys-pdftex.def
+(D:\MiKTeX\tex/generic/pgf/systemlayer\pgfsys-common-pdf.def)))
+(D:\MiKTeX\tex/generic/pgf/systemlayer\pgfsyssoftpath.code.tex)
+(D:\MiKTeX\tex/generic/pgf/systemlayer\pgfsysprotocol.code.tex))
+(D:\MiKTeX\tex/generic/pgf/basiclayer\pgfcore.code.tex
+(D:\MiKTeX\tex/generic/pgf/math\pgfint.code.tex)
+(D:\MiKTeX\tex/generic/pgf/basiclayer\pgfcorepoints.code.tex)
+(D:\MiKTeX\tex/generic/pgf/basiclayer\pgfcorepathconstruct.code.tex)
+(D:\MiKTeX\tex/generic/pgf/basiclayer\pgfcorepathusage.code.tex)
+(D:\MiKTeX\tex/generic/pgf/basiclayer\pgfcorescopes.code.tex)
+(D:\MiKTeX\tex/generic/pgf/basiclayer\pgfcoregraphicstate.code.tex)
+(D:\MiKTeX\tex/generic/pgf/basiclayer\pgfcoretransformations.code.tex)
+(D:\MiKTeX\tex/generic/pgf/basiclayer\pgfcorequick.code.tex)
+(D:\MiKTeX\tex/generic/pgf/basiclayer\pgfcoreobjects.code.tex)
+(D:\MiKTeX\tex/generic/pgf/basiclayer\pgfcorepathprocessing.code.tex)
+(D:\MiKTeX\tex/generic/pgf/basiclayer\pgfcorearrows.code.tex)
+(D:\MiKTeX\tex/generic/pgf/basiclayer\pgfcoreshade.code.tex)
+(D:\MiKTeX\tex/generic/pgf/basiclayer\pgfcoreimage.code.tex)
+(D:\MiKTeX\tex/generic/pgf/basiclayer\pgfcoreexternal.code.tex)
+(D:\MiKTeX\tex/generic/pgf/basiclayer\pgfcorelayers.code.tex)
+(D:\MiKTeX\tex/generic/pgf/basiclayer\pgfcoretransparency.code.tex)
+(D:\MiKTeX\tex/generic/pgf/basiclayer\pgfcorepatterns.code.tex)
+(D:\MiKTeX\tex/generic/pgf/basiclayer\pgfcorerdf.code.tex)))
+(D:\MiKTeX\tex/generic/pgf/modules\pgfmoduleshapes.code.tex)
+(D:\MiKTeX\tex/generic/pgf/modules\pgfmoduleplot.code.tex)
+(D:\MiKTeX\tex/latex/pgf/compatibility\pgfcomp-version-0-65.sty)
+(D:\MiKTeX\tex/latex/pgf/compatibility\pgfcomp-version-1-18.sty))
+(D:\MiKTeX\tex/generic/pgf/frontendlayer/tikz\tikz.code.tex
+(D:\MiKTeX\tex/generic/pgf/libraries\pgflibraryplothandlers.code.tex)
+(D:\MiKTeX\tex/generic/pgf/modules\pgfmodulematrix.code.tex)
+(D:\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarytopaths.code
+.tex)))
+(D:\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryshapes.geome
+tric.code.tex
+(D:\MiKTeX\tex/generic/pgf/libraries/shapes\pgflibraryshapes.geometric.code.tex
+))
+(D:\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryshapes.misc.
+code.tex
+(D:\MiKTeX\tex/generic/pgf/libraries/shapes\pgflibraryshapes.misc.code.tex))
+(D:\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryshapes.symbo
+ls.code.tex
+(D:\MiKTeX\tex/generic/pgf/libraries/shapes\pgflibraryshapes.symbols.code.tex))
+ (D:\MiKTeX\tex/generic/pgf/libraries\pgflibraryarrows.meta.code.tex)
+(D:\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarypositioning.
 code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code
-.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.te
-x)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.c
-ode.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformation
-s.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
+(D:\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryfit.code.tex
 )
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.t
-ex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathprocessing
-.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.te
-x)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
-)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
-
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.
-tex))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.te
-x)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.c
-ode.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.code.
-tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.code.tex))
-)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
-) (/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
-)
-(/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65
-.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18
-.sty)) (/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
-(/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex))
-(/usr/share/texlive/texmf-dist/tex/latex/pgf/math/pgfmath.sty
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
-
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers
-.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
-)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibrarytopaths.code.tex)))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibraryshapes.geometric.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshape
-s.geometric.code.tex))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibraryshapes.misc.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshape
-s.misc.code.tex))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibraryshapes.symbols.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshape
-s.symbols.code.tex))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.meta.
+(D:\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarybackgrounds.
 code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibrarypositioning.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibraryfit.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibrarybackgrounds.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibrarycalc.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibrarydecorations.pathreplacing.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibrarydecorations.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduledecorations.cod
-e.tex))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrary
-decorations.pathreplacing.code.tex))
-(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
-(/home/zperson/Orbis/_deliverables/01_Report1/build/report1.aux)
-*geometry* driver: auto-detecting
-*geometry* detected driver: pdftex
-(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+(D:\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarycalc.code.te
+x)
+(D:\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarydecorations.
+pathreplacing.code.tex
+(D:\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarydecorations.
+code.tex (D:\MiKTeX\tex/generic/pgf/modules\pgfmoduledecorations.code.tex))
+(D:\MiKTeX\tex/generic/pgf/libraries/decorations\pgflibrarydecorations.pathrepl
+acing.code.tex)) (D:/REP\Orbis\_deliverables\01_Report1\build\report1.aux)
+(D:\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
-(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
-[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [1]
-(/home/zperson/Orbis/_deliverables/01_Report1/build/report1.toc [2]) [3]
-(/home/zperson/Orbis/_deliverables/01_Report1/build/report1.lof
-(/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd)) [4]
-(/home/zperson/Orbis/_deliverables/01_Report1/build/report1.lot
-Overfull \hbox (3.44112pt too wide) in paragraph at lines 5--5
- \T1/cmr/m/n/12 and match-ing path. ``SQL'' counts de-ter-min-is-tic con-di-tio
-nal matches; ``CTX'' 
-) [5] [6]
+) (D:\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
+(D:\MiKTeX\tex/latex/00miktex\epstopdf-sys.cfg))
+(D:/REP\Orbis\_deliverables\01_Report1\build\report1.out)
+(D:/REP\Orbis\_deliverables\01_Report1\build\report1.out) [1{C:/Users/Acer/AppD
+ata/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <./figures/LOGO.png>]
+(D:\MiKTeX\tex/latex/amsfonts\umsa.fd) (D:\MiKTeX\tex/latex/amsfonts\umsb.fd)
+Overfull \hbox (6.38155pt too wide) in paragraph at lines 83--83
+\OT1/cmr/m/it/12 Retrieval-Augmented Gen-er-a-tion (RAG). The core of Or-bis is
+ an Orchestrator-
+[2] (D:/REP\Orbis\_deliverables\01_Report1\build\report1.toc
+
+LaTeX Font Warning: Font shape `OT1/cmr/bx/sc' undefined
+(Font)              using `OT1/cmr/bx/n' instead on input line 1.
+
+[3]) [4] (D:/REP\Orbis\_deliverables\01_Report1\build\report1.lof) [5]
+(D:/REP\Orbis\_deliverables\01_Report1\build\report1.lot) [6]
+Overfull \hbox (6.14433pt too wide) in paragraph at lines 101--102
+[]\OT1/cmr/m/n/12 Continuous In-te-gra-tion/Continuous De-ploy-ment 
+[7]
 
 LaTeX Warning: Citation `lewis2020retrieval' on page 1 undefined on input line 
-102.
+124.
 
 
 LaTeX Warning: Citation `assayed2024systematic' on page 1 undefined on input li
-ne 102.
+ne 124.
 
 
-LaTeX Warning: Citation `ismail2025academic' on page 1 undefined on input line 
-102.
+LaTeX Warning: Citation `zhang2016semantic' on page 1 undefined on input line 1
+24.
+
+
+LaTeX Warning: Citation `galli2025aiAct' on page 1 undefined on input line 124.
+
 
 [1]
 
-LaTeX Warning: Citation `wick2023dars' on page 2 undefined on input line 104.
+LaTeX Warning: Citation `lewis2020retrieval' on page 2 undefined on input line 
+138.
+
+
+LaTeX Warning: Citation `assayed2024systematic' on page 2 undefined on input li
+ne 138.
+
+
+LaTeX Warning: Citation `ismail2025academic' on page 2 undefined on input line 
+138.
+
+
+LaTeX Warning: Citation `wick2023dars' on page 2 undefined on input line 140.
 
 
 LaTeX Warning: Citation `zhang2016semantic' on page 2 undefined on input line 1
-06.
+42.
 
 
-LaTeX Warning: Citation `galli2025aiAct' on page 2 undefined on input line 106.
+LaTeX Warning: Citation `galli2025aiAct' on page 2 undefined on input line 142.
 
-
-
-LaTeX Warning: Citation `cisneros2025jorgpt' on page 2 undefined on input line 
-110.
-
-
-LaTeX Warning: Citation `zheng2023judging' on page 2 undefined on input line 11
-2.
 
 [2]
+Overfull \hbox (27.57317pt too wide) in paragraph at lines 144--145
+[]\OT1/cmr/bx/sc/12 Local con-text: HermiOne. \OT1/cmr/m/n/12 Is-tan-bul Bilgi 
+Uni-ver-sity has de-ployed ``HermiOne,''
 
-LaTeX Warning: Citation `assayed2024systematic' on page 3 undefined on input li
-ne 142.
-
-
-LaTeX Warning: Citation `ismail2025academic' on page 3 undefined on input line 
-143.
-
-
-LaTeX Warning: Citation `wick2023dars' on page 3 undefined on input line 144.
+LaTeX Warning: Citation `kiela2024hybrid' on page 3 undefined on input line 146
+.
 
 
-LaTeX Warning: Citation `zhang2016semantic' on page 3 undefined on input line 1
-45.
-
-
-LaTeX Warning: Citation `galli2025aiAct' on page 3 undefined on input line 146.
-
+LaTeX Warning: Citation `gunther2023jina' on page 3 undefined on input line 146
+.
 
 
 LaTeX Warning: Citation `cisneros2025jorgpt' on page 3 undefined on input line 
-147.
-
-[3] [4]
-Overfull \hbox (2.37175pt too wide) in paragraph at lines 179--180
-\T1/cmr/m/n/12 books, dual-major di-rec-tives, in-tern-ship pro-ce-dures), ad-m
-in-is-tra-tive an-nounce-ments, event
-
-LaTeX Warning: Citation `shannon1948mathematical' on page 5 undefined on input 
-line 185.
-
-[5]
-
-LaTeX Warning: Citation `sculley2010web' on page 6 undefined on input line 195.
+148.
 
 
+Overfull \hbox (14.62036pt too wide) in paragraph at lines 148--149
+\OT1/cmr/m/n/12 cept/reject screen-ing. JorGPT, for in-stance, eval-u-ates prog
+ramming-assignment
 
-LaTeX Warning: Citation `ward1963hierarchical' on page 6 undefined on input lin
-e 195.
+LaTeX Warning: Citation `zheng2023judging' on page 3 undefined on input line 15
+0.
 
-[6] (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmss.fd)
-Overfull \hbox (50.13232pt too wide) in paragraph at lines 252--253
-\T1/cmr/m/n/12 Unlike de-cen-tral-ized multi-agent sys-tems, Or-bis uti-lizes a
- cen-tral-ized \T1/cmtt/m/n/12 EventPipelineOrchestrator\T1/cmr/m/n/12 .
+[3]
 
-Overfull \hbox (42.7065pt too wide) in paragraph at lines 252--253
-\T1/cmr/m/n/12 This state-ful hub con-trols state-less worker agents (\T1/cmtt/
-m/n/12 SearchAgent\T1/cmr/m/n/12 , \T1/cmtt/m/n/12 ReasoningAgent\T1/cmr/m/n/12
- , \T1/cmtt/m/n/12 EventCreator\T1/cmr/m/n/12 )
+LaTeX Warning: Citation `assayed2024systematic' on page 4 undefined on input li
+ne 183.
+
+
+LaTeX Warning: Citation `ismail2025academic' on page 4 undefined on input line 
+184.
+
+
+LaTeX Warning: Citation `wick2023dars' on page 4 undefined on input line 185.
+
+
+LaTeX Warning: Citation `zhang2016semantic' on page 4 undefined on input line 1
+86.
+
+
+LaTeX Warning: Citation `galli2025aiAct' on page 4 undefined on input line 187.
+
+
+
+LaTeX Warning: Citation `cisneros2025jorgpt' on page 4 undefined on input line 
+188.
+
+[4] [5] [6]
+Underfull \hbox (badness 4981) in paragraph at lines 241--242
+[]|\OT1/cmr/m/n/12 Press re-leases, news items
+
+Underfull \hbox (badness 10000) in paragraph at lines 242--243
+[]|\OT1/cmr/m/n/12 Past and fu-ture sem-i-nars
+
+Underfull \hbox (badness 10000) in paragraph at lines 243--244
+[]|\OT1/cmr/m/n/12 Department pages, fac-ulty
+
+Underfull \hbox (badness 1635) in paragraph at lines 246--247
+[]|\OT1/cmr/m/n/12 International of-fice, re-search
+
+Overfull \hbox (0.48975pt too wide) in paragraph at lines 258--259
+[]\OT1/cmr/bx/sc/12 Language de-tec-tion. \OT1/cmr/m/n/12 Ac-cu-rate lan-guage 
+tag-ging drives cor-rect Post-greSQL
+
+Overfull \hbox (10.63753pt too wide) in paragraph at lines 258--259
+\OT1/cmr/m/n/12 The adopted ap-proach runs a \OT1/cmr/m/it/12 Stop-word Race\OT
+1/cmr/m/n/12 : it counts oc-cur-rences of language-
+
+Overfull \hbox (117.60806pt too wide) in paragraph at lines 258--259
+\OT1/cmr/m/n/12 solv-ing lan-guage from con-tent rather than char-ac-ter in-ven
+-tory. A \OT1/cmtt/m/n/12 fix[]pdf[]language[]and[]titles.py
 [7]
-Overfull \hbox (16.12143pt too wide) in paragraph at lines 328--330
-\T1/cmr/m/n/12 User as-sign-ments are routed through two par-al-lel chan-nels b
-ased on the user's \T1/cmtt/m/n/12 extra_context
-[8] [9] [10]
-Overfull \hbox (32.66185pt too wide) in paragraph at lines 438--439
-\T1/cmr/m/n/12 tains a newer admin-triggered ex-trac-tion route that writes ac-
-cepted rows to \T1/cmtt/m/n/12 regulatory_events\T1/cmr/m/n/12 .
-[11]
-Underfull \hbox (badness 10000) in paragraph at lines 481--481
-[]|\T1/cmr/bx/n/12 Profile (real \T1/cmtt/m/n/12 user_profiles
 
-Underfull \hbox (badness 2828) in paragraph at lines 483--483
-[]|\T1/cmr/m/n/12 P2: Busi-ness Ad-min, Year 3
-[12] [13]
-Overfull \hbox (37.16904pt too wide) in paragraph at lines 505--506
-\T1/cmtt/m/n/12 approve_multifile\T1/cmr/m/n/12 , \T1/cmtt/m/n/12 reject_wrong_
-content \T1/cmr/m/n/12 (a file from a dif-fer-ent as-sign-ment), \T1/cmtt/m/n/1
-2 reject_empty\T1/cmr/m/n/12 ,
+LaTeX Warning: Citation `shannon1948mathematical' on page 8 undefined on input 
+line 265.
 
-Overfull \hbox (4.19519pt too wide) in paragraph at lines 505--506
-\T1/cmr/m/n/12 re-named to \T1/cmtt/m/n/12 .pdf\T1/cmr/m/n/12 ), \T1/cmtt/m/n/1
-2 flag_partial \T1/cmr/m/n/12 (LLM-written in-com-plete draft), and \T1/cmtt/m/
-n/12 reject_injection
-[14] [15] [16] [17] [18] [19]
-(/home/zperson/Orbis/_deliverables/01_Report1/build/report1.bbl) [20]
-(/home/zperson/Orbis/_deliverables/01_Report1/build/report1.aux)
+
+LaTeX Warning: Citation `sculley2010web' on page 8 undefined on input line 275.
+
+
+
+LaTeX Warning: Citation `ward1963hierarchical' on page 8 undefined on input lin
+e 275.
+
+[8]
+
+LaTeX Warning: Citation `malkov2018hnsw' on page 9 undefined on input line 283.
+
+
+
+Overfull \hbox (93.51134pt too wide) in paragraph at lines 285--286
+[]\OT1/cmr/bx/sc/12 Cross-encoder re-ranking \OT1/cmr/m/n/12 ap-plies a neu-ral
+ model (\OT1/cmtt/m/n/12 jina-reranker-v2-base-multilingual\OT1/cmr/m/n/12 )
+[9] [10]
+Overfull \hbox (115.49643pt too wide) in paragraph at lines 347--348
+\OT1/cmr/m/n/12 Unlike de-cen-tral-ized multi-agent sys-tems, Or-bis uti-lizes 
+a cen-tral-ized \OT1/cmtt/m/n/12 EventPipelineOrchestrator\OT1/cmr/m/n/12 .
+
+Overfull \hbox (26.52791pt too wide) in paragraph at lines 347--348
+\OT1/cmr/m/n/12 This state-ful hub con-trols state-less worker agents (\OT1/cmt
+t/m/n/12 SearchAgent\OT1/cmr/m/n/12 , \OT1/cmtt/m/n/12 ReasoningAgent\OT1/cmr/m
+/n/12 ,
+[11] [12] (D:\MiKTeX\tex/latex/base\omscmr.fd)
+Overfull \hbox (7.05112pt too wide) in paragraph at lines 438--439
+\OT1/cmr/m/n/12 ment is judged does the model syn-the-size the over-all \OT1/cm
+tt/m/n/12 approved\OT1/cmr/m/n/12 /\OT1/cmtt/m/n/12 rejected
+
+Overfull \hbox (76.02406pt too wide) in paragraph at lines 438--439
+\OT1/cmr/m/n/12 de-ci-sion. The out-put is a struc-tured JSON re-port con-tain-
+ing a \OT1/cmtt/m/n/12 requirement[]findings
+[13]
+
+LaTeX Font Warning: Font shape `OMS/cmtt/m/n' undefined
+(Font)              using `OMS/cmsy/m/n' instead
+(Font)              for symbol `textbraceleft' on input line 526.
+
+[14] [15 <./figures/rag_chatbot_query.jpg>]
+Overfull \hbox (0.14041pt too wide) in paragraph at lines 553--554
+\OT1/cmr/m/n/12 against Post-greSQL: a key-word (TSVec-tor) query and a vec-tor
+ (HNSW)
+[16] [17]
+Overfull \hbox (4.14313pt too wide) in paragraph at lines 571--572
+\OT1/cmr/m/n/12 meta-data us-ing the stop-word race lan-guage de-tec-tor de-scr
+ibed in Sec-tion []3.1.1[].
+[18 <./figures/Orbis_RAG_General_Flow_Diagram.png>]
+Overfull \hbox (2.32063pt too wide) in paragraph at lines 575--576
+[]\OT1/cmr/m/n/12 The se-lected em-bed-ding model, \OT1/cmtt/m/n/12 paraphrase-
+multilingual-MiniLM-L12-v2\OT1/cmr/m/n/12 ,
+[19]
+Overfull \hbox (7.2431pt too wide) in paragraph at lines 597--598
+[]\OT1/cmr/bx/sc/12 Hybrid Search. \OT1/cmtt/m/n/12 rag[]repository.vector[]sea
+rch() \OT1/cmr/m/n/12 ex-e-cutes a TSVec-
+[20]
+Overfull \hbox (3.24214pt too wide) in paragraph at lines 603--604
+[]\OT1/cmr/bx/sc/12 Final Rerank. \OT1/cmr/m/n/12 The ex-panded pool is re-subm
+itted to the Jina reranker.
+
+Overfull \hbox (1.7216pt too wide) in paragraph at lines 610--611
+\OT1/cmr/m/n/12 After dedu-pli-ca-tion across all in-tents, \OT1/cmtt/m/n/12 co
+ntext.py \OT1/cmr/m/n/12 as-sem-bles the fi-nal prompt.
+[21]
+Overfull \hbox (29.52539pt too wide) in paragraph at lines 626--627
+\OT1/cmr/m/n/12 rea-son-ing) uses \OT1/cmtt/m/n/12 google/gemini-2.5-flash-lite
+\OT1/cmr/m/n/12 , with \OT1/cmtt/m/n/12 deepseek/deepseek-v3.2
+[22 <./figures/rag_chatbot_response.jpg>]
+Overfull \hbox (1.91055pt too wide) in paragraph at lines 638--639
+\OT1/cmr/m/n/12 The RAG chat-bot is ex-posed via the \OT1/cmtt/m/n/12 /api/chat
+ \OT1/cmr/m/n/12 end-point of the same FastAPI
+
+Overfull \hbox (38.13509pt too wide) in paragraph at lines 638--639
+\OT1/cmr/m/n/12 model). Re-ranking uses the Jina AI API (\OT1/cmtt/m/n/12 jina-
+reranker-v2-base-multilingual\OT1/cmr/m/n/12 )
+[23]
+Overfull \hbox (8.81174pt too wide) in paragraph at lines 670--671
+[]\OT1/cmr/bx/sc/12 Mean Re-cip-ro-cal Rank (MRR): \OT1/cmr/m/n/12 Rank-ing qua
+l-ity of the fi-nal reranked
+[24]
+Overfull \hbox (79.1571pt too wide) in paragraph at lines 706--707
+\OT1/cmr/m/n/12 stored in \OT1/cmtt/m/n/12 user[]profiles\OT1/cmr/m/n/12 . The 
+pipeline pro-duced 176 ac-tive rows in \OT1/cmtt/m/n/12 user[]rule[]assignments
+\OT1/cmr/m/n/12 ,
+
+Underfull \hbox (badness 10000) in paragraph at lines 713--713
+[]|\OT1/cmr/bx/sc/12 Profile (real \OT1/cmtt/m/n/12 user[]profiles
+
+Underfull \hbox (badness 2735) in paragraph at lines 715--715
+[]|\OT1/cmr/m/n/12 P2: Busi-ness Ad-min, Year 3
+[25] [26]
+Overfull \hbox (13.71327pt too wide) in paragraph at lines 735--736
+\OT1/cmtt/m/n/12 flag[]partial \OT1/cmr/m/n/12 (LLM-written in-com-plete draft)
+, and \OT1/cmtt/m/n/12 reject[]injection \OT1/cmr/m/n/12 (wrong-
+[27] [28]
+Overfull \hbox (44.85359pt too wide) in paragraph at lines 795--803
+ [][] 
+[29]
+Overfull \hbox (33.73174pt too wide) in paragraph at lines 867--874
+ [][] 
+[30] [31] [32]
+Overfull \hbox (0.68344pt too wide) in paragraph at lines 919--920
+\OT1/cmr/m/n/12 author-validated ex-pected an-swers, but the an-swer strings ar
+e con-cise ground-
+[33]
+Overfull \hbox (13.01933pt too wide) in paragraph at lines 934--935
+\OT1/cmr/m/n/12 tion, (ii) injection-pattern de-tec-tion, and (iii) an ex-plici
+t \OT1/cmtt/m/n/12 flag[]for[]review
+
+Overfull \hbox (40.79414pt too wide) in paragraph at lines 935--936
+\OT1/cmr/m/n/12 under-matched (sit-u-a-tional) obli-ga-tions, plus cal-i-bra-ti
+on of the SQL/contextual
+[34] (D:/REP\Orbis\_deliverables\01_Report1\build\report1.bbl [35]) [36]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \hskip 11.74988pt
+(hyperref)                replaced by space on input line 952.
+
+[37]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \hskip 11.74988pt
+(hyperref)                replaced by space on input line 1012.
+
+[38] [39] (D:/REP\Orbis\_deliverables\01_Report1\build\report1.aux)
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
 
 LaTeX Warning: There were undefined references.
 
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
+
+Package rerunfilecheck Warning: File `report1.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
  )
-(see the transcript file for additional information) </home/zperson/.texlive202
-1/texmf-var/fonts/pk/ljfour/jknappen/ec/ecss1000.600pk> </home/zperson/.texlive
-2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600pk> </home/zperson/.texl
-ive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsx1000.600pk> </home/zperson/.t
-exlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1200.600pk> </home/zperson
-/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsi0800.600pk> </home/zper
-son/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecss1095.600pk> </home/z
-person/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsx1095.600pk> </hom
-e/zperson/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt0800.600pk> </
-home/zperson/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecss0600.600pk>
- </home/zperson/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecss0800.600
-pk> </home/zperson/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt0800.
-450pk> </home/zperson/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx14
-40.600pk> </home/zperson/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecr
-m0800.600pk> </home/zperson/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/
-ecbx0800.600pk> </home/zperson/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/
-ec/ecbx1095.600pk> </home/zperson/.texlive2021/texmf-var/fonts/pk/ljfour/jknapp
-en/ec/ecrm1095.600pk> </home/zperson/.texlive2021/texmf-var/fonts/pk/ljfour/jkn
-appen/ec/ectt1200.600pk> </home/zperson/.texlive2021/texmf-var/fonts/pk/ljfour/
-jknappen/ec/ecti1200.600pk> </home/zperson/.texlive2021/texmf-var/fonts/pk/ljfo
-ur/jknappen/ec/ecbx1200.600pk> </home/zperson/.texlive2021/texmf-var/fonts/pk/l
-jfour/jknappen/ec/ecrm1200.600pk> </home/zperson/.texlive2021/texmf-var/fonts/p
-k/ljfour/jknappen/ec/ecrm1440.600pk> </home/zperson/.texlive2021/texmf-var/font
-s/pk/ljfour/jknappen/ec/ecbx1728.600pk></usr/share/texlive/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
-12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><
-/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/tex
-live/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on /home/zperson/Orbis/_deliverables/01_Report1/build/report1.pd
-f (27 pages, 393840 bytes).
-Transcript written on /home/zperson/Orbis/_deliverables/01_Report1/build/report
-1.log.
-Latexmk: Found input bbl file '/home/zperson/Orbis/_deliverables/01_Report1/build/report1.bbl'
+(see the transcript file for additional information) <C:\Users\Acer\AppData\Loc
+al\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1200.pk><D:/MiKTeX/fonts/type1
+/public/amsfonts/cm/cmbx10.pfb><D:/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12
+.pfb><D:/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx8.pfb><D:/MiKTeX/fonts/type1
+/public/amsfonts/cm/cmbxti10.pfb><D:/MiKTeX/fonts/type1/public/amsfonts/cm/cmcs
+c10.pfb><D:/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><D:/MiKTeX/fonts/t
+ype1/public/amsfonts/cm/cmmi12.pfb><D:/MiKTeX/fonts/type1/public/amsfonts/cm/cm
+mi8.pfb><D:/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><D:/MiKTeX/fonts/ty
+pe1/public/amsfonts/cm/cmr12.pfb><D:/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6
+.pfb><D:/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><D:/MiKTeX/fonts/type1/
+public/amsfonts/cm/cmss10.pfb><D:/MiKTeX/fonts/type1/public/amsfonts/cm/cmss8.p
+fb><D:/MiKTeX/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><D:/MiKTeX/fonts/type
+1/public/amsfonts/cm/cmssi8.pfb><D:/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy1
+0.pfb><D:/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><D:/MiKTeX/fonts/type
+1/public/amsfonts/cm/cmti10.pfb><D:/MiKTeX/fonts/type1/public/amsfonts/cm/cmti1
+2.pfb><D:/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><D:/MiKTeX/fonts/typ
+e1/public/amsfonts/cm/cmtt12.pfb><D:/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt
+8.pfb>
+Output written on D:/REP\Orbis\_deliverables\01_Report1\build\report1.pdf (46 p
+ages, 1654508 bytes).
+Transcript written on D:/REP\Orbis\_deliverables\01_Report1\build\report1.log.
+Latexmk: Getting log file '/d/REP/Orbis/_deliverables/01_Report1/build/report1.log'
+Latexmk: Examining '/d/REP/Orbis/_deliverables/01_Report1/build/report1.fls'
+Latexmk: Examining '/d/REP/Orbis/_deliverables/01_Report1/build/report1.log'
+Latexmk: Found input bbl file 'D:/REP/Orbis/_deliverables/01_Report1/build/report1.bbl'
 Latexmk: References changed.
-Latexmk: Log file says output to '/home/zperson/Orbis/_deliverables/01_Report1/build/report1.pdf'
-Latexmk: List of undefined refs and citations:
-  Citation `assayed2024systematic' on page 1 undefined on input line 102
-  Citation `assayed2024systematic' on page 3 undefined on input line 142
-  Citation `cisneros2025jorgpt' on page 2 undefined on input line 110
-  Citation `cisneros2025jorgpt' on page 3 undefined on input line 147
-  Citation `galli2025aiAct' on page 2 undefined on input line 106
-  Citation `galli2025aiAct' on page 3 undefined on input line 146
-  Citation `ismail2025academic' on page 1 undefined on input line 102
-  Citation `ismail2025academic' on page 3 undefined on input line 143
-  Citation `lewis2020retrieval' on page 1 undefined on input line 102
-  Citation `sculley2010web' on page 6 undefined on input line 195
-  Citation `shannon1948mathematical' on page 5 undefined on input line 185
-  Citation `ward1963hierarchical' on page 6 undefined on input line 195
-  Citation `wick2023dars' on page 2 undefined on input line 104
-  Citation `wick2023dars' on page 3 undefined on input line 144
-  Citation `zhang2016semantic' on page 2 undefined on input line 106
-  Citation `zhang2016semantic' on page 3 undefined on input line 145
-  Citation `zheng2023judging' on page 2 undefined on input line 112
-Latexmk: Examining '/home/zperson/Orbis/_deliverables/01_Report1/build/report1.log'
-=== TeX engine is 'pdfTeX'
-Latexmk: Found bibliography file(s) [references.bib]
-Rule 'bibtex /home/zperson/Orbis/_deliverables/01_Report1/build/report1': File changes, etc:
-   Changed files, or newly in use since previous run(s):
-      '/home/zperson/Orbis/_deliverables/01_Report1/build/report1.aux'
+Latexmk: References changed.
+Latexmk: Log file says output to 'D:/REP/Orbis/_deliverables/01_Report1/build/report1.pdf'
+Latexmk: Using bibtex to make bibliography file(s).
+  ===Source file 'D:/REP/Orbis/_deliverables/01_Report1/build/report1.bbl' for 'pdflatex'
+Create bibtex D:/REP/Orbis/_deliverables/01_Report1/build/report1
+Latexmk: Found bibliography file(s):
+  D:/REP/Orbis/_deliverables/01_Report1/report/references.bib
+Latexmk: applying rule 'bibtex D:/REP/Orbis/_deliverables/01_Report1/build/report1'...
+Rule 'bibtex D:/REP/Orbis/_deliverables/01_Report1/build/report1':  Reasons for rerun
+Category 'other':
+  Rerun of 'bibtex D:/REP/Orbis/_deliverables/01_Report1/build/report1' forced or previously required:
+    Reason or flag: 'Initial set up of rule'
+
 ------------
-Run number 2 of rule 'bibtex /home/zperson/Orbis/_deliverables/01_Report1/build/report1'
+Run number 1 of rule 'bibtex D:/REP/Orbis/_deliverables/01_Report1/build/report1'
 ------------
-Latexmk: applying rule 'bibtex /home/zperson/Orbis/_deliverables/01_Report1/build/report1'...
+Latexmk: Change directory to 'D:/REP/Orbis/_deliverables/01_Report1/build/'.
+To assist finding of files in document directory, I set
+  BIBINPUTS='/d/REP/Orbis/_deliverables/01_Report1/report;/d/REP/Orbis/_deliverables/01_Report1/build;D:/REP/Orbis/_deliverables/01_Report1/report'
+  BSTINPUTS='/d/REP/Orbis/_deliverables/01_Report1/report;'.
 ------------
 Running 'bibtex  "report1.aux"'
 ------------
-Latexmk: Change directory to '/home/zperson/Orbis/_deliverables/01_Report1/build/'.
-To assist finding of files in document
-directory, I set
-  BIBINPUTS='/home/zperson/Orbis/_deliverables/01_Report1/report:/home/zperson/Orbis/_deliverables/01_Report1/build:'
-  BSTINPUTS='/home/zperson/Orbis/_deliverables/01_Report1/report:'.
-This is BibTeX, Version 0.99d (TeX Live 2022/dev/Debian)
+This is BibTeX, Version 0.99e (MiKTeX 26.5)
 The top-level auxiliary file: report1.aux
 The style file: ieeetr.bst
 Database file #1: references.bib
-Rule 'pdflatex': File changes, etc:
-   Changed files, or newly in use since previous run(s):
-      '/home/zperson/Orbis/_deliverables/01_Report1/build/report1.aux'
-      '/home/zperson/Orbis/_deliverables/01_Report1/build/report1.toc'
+Latexmk: Change directory back to '/d/REP/Orbis/_deliverables/01_Report1/report'
+Latexmk: applying rule 'pdflatex'...
+Rule 'pdflatex':  Reasons for rerun
+Changed files or newly in use/created:
+  /d/REP/Orbis/_deliverables/01_Report1/build/report1.aux
+  D:/REP/Orbis/_deliverables/01_Report1/build/report1.aux
+  D:/REP/Orbis/_deliverables/01_Report1/build/report1.lof
+  D:/REP/Orbis/_deliverables/01_Report1/build/report1.lot
+  D:/REP/Orbis/_deliverables/01_Report1/build/report1.out
+  D:/REP/Orbis/_deliverables/01_Report1/build/report1.toc
+
 ------------
 Run number 3 of rule 'pdflatex'
 ------------
 ------------
-Running 'pdflatex  -interaction=nonstopmode -halt-on-error -file-line-error -recorder -output-directory="/home/zperson/Orbis/_deliverables/01_Report1/build"  "report1.tex"'
+Running 'pdflatex  -interaction=nonstopmode -halt-on-error -file-line-error -recorder -output-directory="/d/REP/Orbis/_deliverables/01_Report1/build"  "report1.tex"'
 ------------
-Latexmk: Change directory back to '/home/zperson/Orbis/_deliverables/01_Report1/report'
-Latexmk: applying rule 'pdflatex'...
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex)
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex.fmt)
  restricted \write18 enabled.
 entering extended mode
-(./report1.tex
-LaTeX2e <2021-11-15> patch level 1
-L3 programming layer <2022-01-21>
-(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
-Document Class: article 2021/10/04 v1.4n Standard LaTeX document class
-(/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo))
-(./styles/ibu-thesis.sty
-(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
-(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
-(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)))
-(/usr/share/texlive/texmf-dist/tex/latex/setspace/setspace.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
-(/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
-(/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty)))
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)
-(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)))
-(/usr/share/texlive/texmf-dist/tex/latex/float/float.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/adjustbox/adjustbox.sty
-(/usr/share/texlive/texmf-dist/tex/latex/xkeyval/xkeyval.sty
-(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkeyval.tex
-(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkvutils.tex)))
-(/usr/share/texlive/texmf-dist/tex/latex/adjustbox/adjcalc.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/adjustbox/trimclip.sty
-(/usr/share/texlive/texmf-dist/tex/latex/collectbox/collectbox.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/adjustbox/tc-pdftex.def))
-(/usr/share/texlive/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/varwidth/varwidth.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/nowidow/nowidow.sty
-(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty
-(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
-(/usr/share/texlive/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.sty)))
-(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/cite/cite.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/enumitem/enumitem.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
-(/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
-(/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common-lists.t
-ex)) (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
-) (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/pgf.revision.tex)))
-(/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
-(/usr/share/texlive/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeysfiltered.code.t
-ex)) (/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.de
-f)))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.
-tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.
-tex)) (/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
-(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code
-.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonomet
-ric.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.cod
-e.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison
-.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.
-tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code
-.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.
-tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerari
-thmetics.code.tex)))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfint.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.te
-x)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.
+(report1.tex
+LaTeX2e <2026-06-01>
+L3 programming layer <2026-05-26>
+(D:\MiKTeX\tex/latex/base\article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+(D:\MiKTeX\tex/latex/base\size12.clo)) (styles/ibu-thesis.sty
+(D:\MiKTeX\tex/latex/graphics\graphicx.sty
+(D:\MiKTeX\tex/latex/graphics\keyval.sty)
+(D:\MiKTeX\tex/latex/graphics\graphics.sty
+(D:\MiKTeX\tex/latex/graphics\trig.sty)
+(D:\MiKTeX\tex/latex/graphics-cfg\graphics.cfg)
+(D:\MiKTeX\tex/latex/graphics-def\pdftex.def)))
+(D:\MiKTeX\tex/latex/nomencl\nomencl.sty
+(D:\MiKTeX\tex/latex/xkeyval\xkeyval.sty
+(D:\MiKTeX\tex/generic/xkeyval\xkeyval.tex
+(D:\MiKTeX\tex/generic/xkeyval\xkvutils.tex)))
+(D:\MiKTeX\tex/latex/base\ifthen.sty)
+(D:\MiKTeX\tex/latex/koma-script\tocbasic.sty
+(D:\MiKTeX\tex/latex/koma-script\scrbase.sty
+(D:\MiKTeX\tex/latex/koma-script\scrlfile.sty
+(D:\MiKTeX\tex/latex/koma-script\scrlfile-hook.sty
+(D:\MiKTeX\tex/latex/koma-script\scrlogo.sty))))))
+(D:\MiKTeX\tex/latex/enumitem\enumitem.sty)
+(D:\MiKTeX\tex/latex/amsmath\amsmath.sty
+For additional information on amsmath, use the `?' option.
+(D:\MiKTeX\tex/latex/amsmath\amstext.sty
+(D:\MiKTeX\tex/latex/amsmath\amsgen.sty))
+(D:\MiKTeX\tex/latex/amsmath\amsbsy.sty)
+(D:\MiKTeX\tex/latex/amsmath\amsopn.sty))
+(D:\MiKTeX\tex/latex/amsfonts\amsfonts.sty)
+(D:\MiKTeX\tex/latex/hyperref\hyperref.sty
+(D:\MiKTeX\tex/generic/iftex\iftex.sty)
+(D:\MiKTeX\tex/latex/kvsetkeys\kvsetkeys.sty)
+(D:\MiKTeX\tex/generic/kvdefinekeys\kvdefinekeys.sty)
+(D:\MiKTeX\tex/generic/pdfescape\pdfescape.sty
+(D:\MiKTeX\tex/generic/ltxcmds\ltxcmds.sty)
+(D:\MiKTeX\tex/generic/pdftexcmds\pdftexcmds.sty
+(D:\MiKTeX\tex/generic/infwarerr\infwarerr.sty)))
+(D:\MiKTeX\tex/latex/hycolor\hycolor.sty)
+(D:\MiKTeX\tex/latex/hyperref\nameref.sty
+(D:\MiKTeX\tex/latex/refcount\refcount.sty)
+(D:\MiKTeX\tex/generic/gettitlestring\gettitlestring.sty
+(D:\MiKTeX\tex/latex/kvoptions\kvoptions.sty)))
+(D:\MiKTeX\tex/latex/etoolbox\etoolbox.sty)
+(D:\MiKTeX\tex/generic/stringenc\stringenc.sty)
+(D:\MiKTeX\tex/latex/hyperref\pd1enc.def)
+(D:\MiKTeX\tex/generic/intcalc\intcalc.sty)
+(D:\MiKTeX\tex/latex/hyperref\puenc.def) (D:\MiKTeX\tex/latex/url\url.sty)
+(D:\MiKTeX\tex/generic/bitset\bitset.sty
+(D:\MiKTeX\tex/generic/bigintcalc\bigintcalc.sty)))
+(D:\MiKTeX\tex/latex/hyperref\hpdftex.def
+(D:\MiKTeX\tex/latex/rerunfilecheck\rerunfilecheck.sty
+(D:\MiKTeX\tex/generic/uniquecounter\uniquecounter.sty)))
+(D:\MiKTeX\tex/latex/algorithms\algorithm.sty
+(D:\MiKTeX\tex/latex/float\float.sty))
+(D:\MiKTeX\tex/latex/algorithmicx\algorithmicx.sty
+Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
+) (D:\MiKTeX\tex/latex/algorithmicx\algpseudocode.sty
+Document Style - pseudocode environments for use with the `algorithmicx' style
+) (D:\MiKTeX\tex/latex/listings\listings.sty
+(D:\MiKTeX\tex/latex/listings\lstpatch.sty)
+(D:\MiKTeX\tex/latex/listings\lstmisc.sty)
+(D:\MiKTeX\tex/latex/listings\listings.cfg))
+(D:\MiKTeX\tex/latex/xcolor\xcolor.sty
+(D:\MiKTeX\tex/latex/graphics-cfg\color.cfg)
+(D:\MiKTeX\tex/latex/graphics\mathcolor.ltx))
+(D:\MiKTeX\tex/latex/l3packages/xparse\xparse.sty
+(D:\MiKTeX\tex/latex/l3kernel\expl3.sty
+(D:\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def)))
+(D:\MiKTeX\tex/latex/pgf/utilities\pgffor.sty
+(D:\MiKTeX\tex/latex/pgf/utilities\pgfrcs.sty
+(D:\MiKTeX\tex/generic/pgf/utilities\pgfutil-common.tex)
+(D:\MiKTeX\tex/generic/pgf/utilities\pgfutil-latex.def)
+(D:\MiKTeX\tex/generic/pgf/utilities\pgfrcs.code.tex
+(D:\MiKTeX\tex/generic/pgf\pgf.revision.tex)))
+(D:\MiKTeX\tex/latex/pgf/utilities\pgfkeys.sty
+(D:\MiKTeX\tex/generic/pgf/utilities\pgfkeys.code.tex
+(D:\MiKTeX\tex/generic/pgf/utilities\pgfkeyslibraryfiltered.code.tex)))
+(D:\MiKTeX\tex/latex/pgf/math\pgfmath.sty
+(D:\MiKTeX\tex/generic/pgf/math\pgfmath.code.tex
+(D:\MiKTeX\tex/generic/pgf/math\pgfmathutil.code.tex)
+(D:\MiKTeX\tex/generic/pgf/math\pgfmathparser.code.tex)
+(D:\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.code.tex)
+(D:\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.basic.code.tex)
+(D:\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.trigonometric.code.tex)
+(D:\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.random.code.tex)
+(D:\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.comparison.code.tex)
+(D:\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.base.code.tex)
+(D:\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.round.code.tex)
+(D:\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.misc.code.tex)
+(D:\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.integerarithmetics.code.tex)
+(D:\MiKTeX\tex/generic/pgf/math\pgfmathcalc.code.tex)
+(D:\MiKTeX\tex/generic/pgf/math\pgfmathfloat.code.tex)))
+(D:\MiKTeX\tex/generic/pgf/utilities\pgffor.code.tex)))
+(D:\MiKTeX\tex/latex/caption\subcaption.sty
+(D:\MiKTeX\tex/latex/caption\caption.sty
+(D:\MiKTeX\tex/latex/caption\caption3.sty)))
+(D:\MiKTeX\tex/latex/adjustbox\adjustbox.sty
+(D:\MiKTeX\tex/latex/adjustbox\adjcalc.sty)
+(D:\MiKTeX\tex/latex/adjustbox\trimclip.sty
+(D:\MiKTeX\tex/latex/collectbox\collectbox.sty)
+(D:\MiKTeX\tex/latex/adjustbox\tc-pdftex.def))
+(D:\MiKTeX\tex/latex/ifoddpage\ifoddpage.sty)
+(D:\MiKTeX\tex/latex/varwidth\varwidth.sty)
+==> First Aid for varwidth.sty applied!
+) (D:\MiKTeX\tex/latex/nowidow\nowidow.sty)
+(D:\MiKTeX\tex/latex/booktabs\booktabs.sty)
+(D:\MiKTeX\tex/latex/tools\array.sty) (D:\MiKTeX\tex/latex/cite\cite.sty)
+(D:\MiKTeX\tex/latex/pgf/frontendlayer\tikz.sty
+(D:\MiKTeX\tex/latex/pgf/basiclayer\pgf.sty
+(D:\MiKTeX\tex/latex/pgf/basiclayer\pgfcore.sty
+(D:\MiKTeX\tex/latex/pgf/systemlayer\pgfsys.sty
+(D:\MiKTeX\tex/generic/pgf/systemlayer\pgfsys.code.tex
+(D:\MiKTeX\tex/generic/pgf/systemlayer\pgf.cfg)
+(D:\MiKTeX\tex/generic/pgf/systemlayer\pgfsys-pdftex.def
+(D:\MiKTeX\tex/generic/pgf/systemlayer\pgfsys-common-pdf.def)))
+(D:\MiKTeX\tex/generic/pgf/systemlayer\pgfsyssoftpath.code.tex)
+(D:\MiKTeX\tex/generic/pgf/systemlayer\pgfsysprotocol.code.tex))
+(D:\MiKTeX\tex/generic/pgf/basiclayer\pgfcore.code.tex
+(D:\MiKTeX\tex/generic/pgf/math\pgfint.code.tex)
+(D:\MiKTeX\tex/generic/pgf/basiclayer\pgfcorepoints.code.tex)
+(D:\MiKTeX\tex/generic/pgf/basiclayer\pgfcorepathconstruct.code.tex)
+(D:\MiKTeX\tex/generic/pgf/basiclayer\pgfcorepathusage.code.tex)
+(D:\MiKTeX\tex/generic/pgf/basiclayer\pgfcorescopes.code.tex)
+(D:\MiKTeX\tex/generic/pgf/basiclayer\pgfcoregraphicstate.code.tex)
+(D:\MiKTeX\tex/generic/pgf/basiclayer\pgfcoretransformations.code.tex)
+(D:\MiKTeX\tex/generic/pgf/basiclayer\pgfcorequick.code.tex)
+(D:\MiKTeX\tex/generic/pgf/basiclayer\pgfcoreobjects.code.tex)
+(D:\MiKTeX\tex/generic/pgf/basiclayer\pgfcorepathprocessing.code.tex)
+(D:\MiKTeX\tex/generic/pgf/basiclayer\pgfcorearrows.code.tex)
+(D:\MiKTeX\tex/generic/pgf/basiclayer\pgfcoreshade.code.tex)
+(D:\MiKTeX\tex/generic/pgf/basiclayer\pgfcoreimage.code.tex)
+(D:\MiKTeX\tex/generic/pgf/basiclayer\pgfcoreexternal.code.tex)
+(D:\MiKTeX\tex/generic/pgf/basiclayer\pgfcorelayers.code.tex)
+(D:\MiKTeX\tex/generic/pgf/basiclayer\pgfcoretransparency.code.tex)
+(D:\MiKTeX\tex/generic/pgf/basiclayer\pgfcorepatterns.code.tex)
+(D:\MiKTeX\tex/generic/pgf/basiclayer\pgfcorerdf.code.tex)))
+(D:\MiKTeX\tex/generic/pgf/modules\pgfmoduleshapes.code.tex)
+(D:\MiKTeX\tex/generic/pgf/modules\pgfmoduleplot.code.tex)
+(D:\MiKTeX\tex/latex/pgf/compatibility\pgfcomp-version-0-65.sty)
+(D:\MiKTeX\tex/latex/pgf/compatibility\pgfcomp-version-1-18.sty))
+(D:\MiKTeX\tex/generic/pgf/frontendlayer/tikz\tikz.code.tex
+(D:\MiKTeX\tex/generic/pgf/libraries\pgflibraryplothandlers.code.tex)
+(D:\MiKTeX\tex/generic/pgf/modules\pgfmodulematrix.code.tex)
+(D:\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarytopaths.code
+.tex)))
+(D:\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryshapes.geome
+tric.code.tex
+(D:\MiKTeX\tex/generic/pgf/libraries/shapes\pgflibraryshapes.geometric.code.tex
+))
+(D:\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryshapes.misc.
+code.tex
+(D:\MiKTeX\tex/generic/pgf/libraries/shapes\pgflibraryshapes.misc.code.tex))
+(D:\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryshapes.symbo
+ls.code.tex
+(D:\MiKTeX\tex/generic/pgf/libraries/shapes\pgflibraryshapes.symbols.code.tex))
+ (D:\MiKTeX\tex/generic/pgf/libraries\pgflibraryarrows.meta.code.tex)
+(D:\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarypositioning.
 code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code
-.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.te
-x)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.c
-ode.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformation
-s.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
+(D:\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryfit.code.tex
 )
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.t
-ex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathprocessing
-.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.te
-x)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
-)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
-
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.
-tex))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.te
-x)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.c
-ode.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.code.
-tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.code.tex))
-)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
-) (/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
-)
-(/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65
-.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18
-.sty)) (/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
-(/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex))
-(/usr/share/texlive/texmf-dist/tex/latex/pgf/math/pgfmath.sty
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
-
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers
-.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
-)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibrarytopaths.code.tex)))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibraryshapes.geometric.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshape
-s.geometric.code.tex))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibraryshapes.misc.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshape
-s.misc.code.tex))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibraryshapes.symbols.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshape
-s.symbols.code.tex))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.meta.
+(D:\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarybackgrounds.
 code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibrarypositioning.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibraryfit.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibrarybackgrounds.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibrarycalc.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibrarydecorations.pathreplacing.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibrarydecorations.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduledecorations.cod
-e.tex))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrary
-decorations.pathreplacing.code.tex))
-(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
-(/home/zperson/Orbis/_deliverables/01_Report1/build/report1.aux)
-*geometry* driver: auto-detecting
-*geometry* detected driver: pdftex
-(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+(D:\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarycalc.code.te
+x)
+(D:\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarydecorations.
+pathreplacing.code.tex
+(D:\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarydecorations.
+code.tex (D:\MiKTeX\tex/generic/pgf/modules\pgfmoduledecorations.code.tex))
+(D:\MiKTeX\tex/generic/pgf/libraries/decorations\pgflibrarydecorations.pathrepl
+acing.code.tex)) (D:/REP\Orbis\_deliverables\01_Report1\build\report1.aux)
+(D:\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
-(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
-[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [1]
-(/home/zperson/Orbis/_deliverables/01_Report1/build/report1.toc [2]) [3]
-(/home/zperson/Orbis/_deliverables/01_Report1/build/report1.lof
-(/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd)) [4]
-(/home/zperson/Orbis/_deliverables/01_Report1/build/report1.lot
-Overfull \hbox (3.44112pt too wide) in paragraph at lines 5--5
- \T1/cmr/m/n/12 and match-ing path. ``SQL'' counts de-ter-min-is-tic con-di-tio
-nal matches; ``CTX'' 
-) [5] [6] [1] [2] [3] [4]
-Overfull \hbox (2.37175pt too wide) in paragraph at lines 179--180
-\T1/cmr/m/n/12 books, dual-major di-rec-tives, in-tern-ship pro-ce-dures), ad-m
-in-is-tra-tive an-nounce-ments, event
-[5] [6] (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmss.fd)
-Overfull \hbox (50.13232pt too wide) in paragraph at lines 252--253
-\T1/cmr/m/n/12 Unlike de-cen-tral-ized multi-agent sys-tems, Or-bis uti-lizes a
- cen-tral-ized \T1/cmtt/m/n/12 EventPipelineOrchestrator\T1/cmr/m/n/12 .
+) (D:\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
+(D:\MiKTeX\tex/latex/00miktex\epstopdf-sys.cfg))
+(D:/REP\Orbis\_deliverables\01_Report1\build\report1.out)
+(D:/REP\Orbis\_deliverables\01_Report1\build\report1.out) [1{C:/Users/Acer/AppD
+ata/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <./figures/LOGO.png>]
+(D:\MiKTeX\tex/latex/amsfonts\umsa.fd) (D:\MiKTeX\tex/latex/amsfonts\umsb.fd)
+Overfull \hbox (6.38155pt too wide) in paragraph at lines 83--83
+\OT1/cmr/m/it/12 Retrieval-Augmented Gen-er-a-tion (RAG). The core of Or-bis is
+ an Orchestrator-
+[2] (D:/REP\Orbis\_deliverables\01_Report1\build\report1.toc
 
-Overfull \hbox (42.7065pt too wide) in paragraph at lines 252--253
-\T1/cmr/m/n/12 This state-ful hub con-trols state-less worker agents (\T1/cmtt/
-m/n/12 SearchAgent\T1/cmr/m/n/12 , \T1/cmtt/m/n/12 ReasoningAgent\T1/cmr/m/n/12
- , \T1/cmtt/m/n/12 EventCreator\T1/cmr/m/n/12 )
-[7]
-Overfull \hbox (16.12143pt too wide) in paragraph at lines 328--330
-\T1/cmr/m/n/12 User as-sign-ments are routed through two par-al-lel chan-nels b
-ased on the user's \T1/cmtt/m/n/12 extra_context
-[8] [9] [10]
-Overfull \hbox (32.66185pt too wide) in paragraph at lines 438--439
-\T1/cmr/m/n/12 tains a newer admin-triggered ex-trac-tion route that writes ac-
-cepted rows to \T1/cmtt/m/n/12 regulatory_events\T1/cmr/m/n/12 .
-[11]
-Underfull \hbox (badness 10000) in paragraph at lines 481--481
-[]|\T1/cmr/bx/n/12 Profile (real \T1/cmtt/m/n/12 user_profiles
+LaTeX Font Warning: Font shape `OT1/cmr/bx/sc' undefined
+(Font)              using `OT1/cmr/bx/n' instead on input line 1.
 
-Underfull \hbox (badness 2828) in paragraph at lines 483--483
-[]|\T1/cmr/m/n/12 P2: Busi-ness Ad-min, Year 3
-[12] [13]
-Overfull \hbox (37.16904pt too wide) in paragraph at lines 505--506
-\T1/cmtt/m/n/12 approve_multifile\T1/cmr/m/n/12 , \T1/cmtt/m/n/12 reject_wrong_
-content \T1/cmr/m/n/12 (a file from a dif-fer-ent as-sign-ment), \T1/cmtt/m/n/1
-2 reject_empty\T1/cmr/m/n/12 ,
+[3]) [4] (D:/REP\Orbis\_deliverables\01_Report1\build\report1.lof) [5]
+(D:/REP\Orbis\_deliverables\01_Report1\build\report1.lot) [6]
+Overfull \hbox (6.14433pt too wide) in paragraph at lines 101--102
+[]\OT1/cmr/m/n/12 Continuous In-te-gra-tion/Continuous De-ploy-ment 
+[7] [1] [2]
+Overfull \hbox (27.57317pt too wide) in paragraph at lines 144--145
+[]\OT1/cmr/bx/sc/12 Local con-text: HermiOne. \OT1/cmr/m/n/12 Is-tan-bul Bilgi 
+Uni-ver-sity has de-ployed ``HermiOne,''
 
-Overfull \hbox (4.19519pt too wide) in paragraph at lines 505--506
-\T1/cmr/m/n/12 re-named to \T1/cmtt/m/n/12 .pdf\T1/cmr/m/n/12 ), \T1/cmtt/m/n/1
-2 flag_partial \T1/cmr/m/n/12 (LLM-written in-com-plete draft), and \T1/cmtt/m/
-n/12 reject_injection
-[14] [15] [16] [17] [18] [19]
-(/home/zperson/Orbis/_deliverables/01_Report1/build/report1.bbl) [20]
-(/home/zperson/Orbis/_deliverables/01_Report1/build/report1.aux) )
-(see the transcript file for additional information) </home/zperson/.texlive202
-1/texmf-var/fonts/pk/ljfour/jknappen/ec/ecss1000.600pk> </home/zperson/.texlive
-2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600pk> </home/zperson/.texl
-ive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsx1000.600pk> </home/zperson/.t
-exlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1200.600pk> </home/zperson
-/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsi0800.600pk> </home/zper
-son/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecss1095.600pk> </home/z
-person/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsx1095.600pk> </hom
-e/zperson/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt0800.600pk> </
-home/zperson/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecss0600.600pk>
- </home/zperson/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecss0800.600
-pk> </home/zperson/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt0800.
-450pk> </home/zperson/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx14
-40.600pk> </home/zperson/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecr
-m0800.600pk> </home/zperson/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/
-ecbx0800.600pk> </home/zperson/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/
-ec/ecbx1095.600pk> </home/zperson/.texlive2021/texmf-var/fonts/pk/ljfour/jknapp
-en/ec/ecrm1095.600pk> </home/zperson/.texlive2021/texmf-var/fonts/pk/ljfour/jkn
-appen/ec/ectt1200.600pk> </home/zperson/.texlive2021/texmf-var/fonts/pk/ljfour/
-jknappen/ec/ecti1200.600pk> </home/zperson/.texlive2021/texmf-var/fonts/pk/ljfo
-ur/jknappen/ec/ecbx1200.600pk> </home/zperson/.texlive2021/texmf-var/fonts/pk/l
-jfour/jknappen/ec/ecrm1200.600pk> </home/zperson/.texlive2021/texmf-var/fonts/p
-k/ljfour/jknappen/ec/ecrm1440.600pk> </home/zperson/.texlive2021/texmf-var/font
-s/pk/ljfour/jknappen/ec/ecbx1728.600pk></usr/share/texlive/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
-12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><
-/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/tex
-live/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on /home/zperson/Orbis/_deliverables/01_Report1/build/report1.pd
-f (27 pages, 392992 bytes).
-Transcript written on /home/zperson/Orbis/_deliverables/01_Report1/build/report
-1.log.
-Latexmk: Found input bbl file '/home/zperson/Orbis/_deliverables/01_Report1/build/report1.bbl'
-Latexmk: Log file says output to '/home/zperson/Orbis/_deliverables/01_Report1/build/report1.pdf'
-Latexmk: Examining '/home/zperson/Orbis/_deliverables/01_Report1/build/report1.log'
-=== TeX engine is 'pdfTeX'
-Latexmk: Found bibliography file(s) [references.bib]
-Latexmk: All targets (/home/zperson/Orbis/_deliverables/01_Report1/build/report1.pdf) are up-to-date
+Overfull \hbox (14.62036pt too wide) in paragraph at lines 148--149
+\OT1/cmr/m/n/12 cept/reject screen-ing. JorGPT, for in-stance, eval-u-ates prog
+ramming-assignment
+[3] [4] [5] [6]
+Underfull \hbox (badness 4981) in paragraph at lines 241--242
+[]|\OT1/cmr/m/n/12 Press re-leases, news items
+
+Underfull \hbox (badness 10000) in paragraph at lines 242--243
+[]|\OT1/cmr/m/n/12 Past and fu-ture sem-i-nars
+
+Underfull \hbox (badness 10000) in paragraph at lines 243--244
+[]|\OT1/cmr/m/n/12 Department pages, fac-ulty
+
+Underfull \hbox (badness 1635) in paragraph at lines 246--247
+[]|\OT1/cmr/m/n/12 International of-fice, re-search
+
+Overfull \hbox (0.48975pt too wide) in paragraph at lines 258--259
+[]\OT1/cmr/bx/sc/12 Language de-tec-tion. \OT1/cmr/m/n/12 Ac-cu-rate lan-guage 
+tag-ging drives cor-rect Post-greSQL
+
+Overfull \hbox (10.63753pt too wide) in paragraph at lines 258--259
+\OT1/cmr/m/n/12 The adopted ap-proach runs a \OT1/cmr/m/it/12 Stop-word Race\OT
+1/cmr/m/n/12 : it counts oc-cur-rences of language-
+
+Overfull \hbox (117.60806pt too wide) in paragraph at lines 258--259
+\OT1/cmr/m/n/12 solv-ing lan-guage from con-tent rather than char-ac-ter in-ven
+-tory. A \OT1/cmtt/m/n/12 fix[]pdf[]language[]and[]titles.py
+[7] [8]
+Overfull \hbox (93.51134pt too wide) in paragraph at lines 285--286
+[]\OT1/cmr/bx/sc/12 Cross-encoder re-ranking \OT1/cmr/m/n/12 ap-plies a neu-ral
+ model (\OT1/cmtt/m/n/12 jina-reranker-v2-base-multilingual\OT1/cmr/m/n/12 )
+[9] [10]
+Overfull \hbox (115.49643pt too wide) in paragraph at lines 347--348
+\OT1/cmr/m/n/12 Unlike de-cen-tral-ized multi-agent sys-tems, Or-bis uti-lizes 
+a cen-tral-ized \OT1/cmtt/m/n/12 EventPipelineOrchestrator\OT1/cmr/m/n/12 .
+
+Overfull \hbox (26.52791pt too wide) in paragraph at lines 347--348
+\OT1/cmr/m/n/12 This state-ful hub con-trols state-less worker agents (\OT1/cmt
+t/m/n/12 SearchAgent\OT1/cmr/m/n/12 , \OT1/cmtt/m/n/12 ReasoningAgent\OT1/cmr/m
+/n/12 ,
+[11] [12] (D:\MiKTeX\tex/latex/base\omscmr.fd)
+Overfull \hbox (7.05112pt too wide) in paragraph at lines 438--439
+\OT1/cmr/m/n/12 ment is judged does the model syn-the-size the over-all \OT1/cm
+tt/m/n/12 approved\OT1/cmr/m/n/12 /\OT1/cmtt/m/n/12 rejected
+
+Overfull \hbox (76.02406pt too wide) in paragraph at lines 438--439
+\OT1/cmr/m/n/12 de-ci-sion. The out-put is a struc-tured JSON re-port con-tain-
+ing a \OT1/cmtt/m/n/12 requirement[]findings
+[13]
+
+LaTeX Font Warning: Font shape `OMS/cmtt/m/n' undefined
+(Font)              using `OMS/cmsy/m/n' instead
+(Font)              for symbol `textbraceleft' on input line 526.
+
+[14] [15 <./figures/rag_chatbot_query.jpg>]
+Overfull \hbox (0.14041pt too wide) in paragraph at lines 553--554
+\OT1/cmr/m/n/12 against Post-greSQL: a key-word (TSVec-tor) query and a vec-tor
+ (HNSW)
+[16] [17]
+Overfull \hbox (4.14313pt too wide) in paragraph at lines 571--572
+\OT1/cmr/m/n/12 meta-data us-ing the stop-word race lan-guage de-tec-tor de-scr
+ibed in Sec-tion []3.1.1[].
+[18 <./figures/Orbis_RAG_General_Flow_Diagram.png>]
+Overfull \hbox (2.32063pt too wide) in paragraph at lines 575--576
+[]\OT1/cmr/m/n/12 The se-lected em-bed-ding model, \OT1/cmtt/m/n/12 paraphrase-
+multilingual-MiniLM-L12-v2\OT1/cmr/m/n/12 ,
+[19]
+Overfull \hbox (7.2431pt too wide) in paragraph at lines 597--598
+[]\OT1/cmr/bx/sc/12 Hybrid Search. \OT1/cmtt/m/n/12 rag[]repository.vector[]sea
+rch() \OT1/cmr/m/n/12 ex-e-cutes a TSVec-
+[20]
+Overfull \hbox (3.24214pt too wide) in paragraph at lines 603--604
+[]\OT1/cmr/bx/sc/12 Final Rerank. \OT1/cmr/m/n/12 The ex-panded pool is re-subm
+itted to the Jina reranker.
+
+Overfull \hbox (1.7216pt too wide) in paragraph at lines 610--611
+\OT1/cmr/m/n/12 After dedu-pli-ca-tion across all in-tents, \OT1/cmtt/m/n/12 co
+ntext.py \OT1/cmr/m/n/12 as-sem-bles the fi-nal prompt.
+[21]
+Overfull \hbox (29.52539pt too wide) in paragraph at lines 626--627
+\OT1/cmr/m/n/12 rea-son-ing) uses \OT1/cmtt/m/n/12 google/gemini-2.5-flash-lite
+\OT1/cmr/m/n/12 , with \OT1/cmtt/m/n/12 deepseek/deepseek-v3.2
+[22 <./figures/rag_chatbot_response.jpg>]
+Overfull \hbox (1.91055pt too wide) in paragraph at lines 638--639
+\OT1/cmr/m/n/12 The RAG chat-bot is ex-posed via the \OT1/cmtt/m/n/12 /api/chat
+ \OT1/cmr/m/n/12 end-point of the same FastAPI
+
+Overfull \hbox (38.13509pt too wide) in paragraph at lines 638--639
+\OT1/cmr/m/n/12 model). Re-ranking uses the Jina AI API (\OT1/cmtt/m/n/12 jina-
+reranker-v2-base-multilingual\OT1/cmr/m/n/12 )
+[23]
+Overfull \hbox (8.81174pt too wide) in paragraph at lines 670--671
+[]\OT1/cmr/bx/sc/12 Mean Re-cip-ro-cal Rank (MRR): \OT1/cmr/m/n/12 Rank-ing qua
+l-ity of the fi-nal reranked
+[24]
+Overfull \hbox (79.1571pt too wide) in paragraph at lines 706--707
+\OT1/cmr/m/n/12 stored in \OT1/cmtt/m/n/12 user[]profiles\OT1/cmr/m/n/12 . The 
+pipeline pro-duced 176 ac-tive rows in \OT1/cmtt/m/n/12 user[]rule[]assignments
+\OT1/cmr/m/n/12 ,
+
+Underfull \hbox (badness 10000) in paragraph at lines 713--713
+[]|\OT1/cmr/bx/sc/12 Profile (real \OT1/cmtt/m/n/12 user[]profiles
+
+Underfull \hbox (badness 2735) in paragraph at lines 715--715
+[]|\OT1/cmr/m/n/12 P2: Busi-ness Ad-min, Year 3
+[25] [26]
+Overfull \hbox (13.71327pt too wide) in paragraph at lines 735--736
+\OT1/cmtt/m/n/12 flag[]partial \OT1/cmr/m/n/12 (LLM-written in-com-plete draft)
+, and \OT1/cmtt/m/n/12 reject[]injection \OT1/cmr/m/n/12 (wrong-
+[27] [28]
+Overfull \hbox (44.85359pt too wide) in paragraph at lines 795--803
+ [][] 
+[29]
+Overfull \hbox (33.73174pt too wide) in paragraph at lines 867--874
+ [][] 
+[30] [31] [32]
+Overfull \hbox (0.68344pt too wide) in paragraph at lines 919--920
+\OT1/cmr/m/n/12 author-validated ex-pected an-swers, but the an-swer strings ar
+e con-cise ground-
+[33]
+Overfull \hbox (13.01933pt too wide) in paragraph at lines 934--935
+\OT1/cmr/m/n/12 tion, (ii) injection-pattern de-tec-tion, and (iii) an ex-plici
+t \OT1/cmtt/m/n/12 flag[]for[]review
+
+Overfull \hbox (40.79414pt too wide) in paragraph at lines 935--936
+\OT1/cmr/m/n/12 under-matched (sit-u-a-tional) obli-ga-tions, plus cal-i-bra-ti
+on of the SQL/contextual
+[34] (D:/REP\Orbis\_deliverables\01_Report1\build\report1.bbl [35]) [36]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \hskip 11.74988pt
+(hyperref)                replaced by space on input line 952.
+
+[37]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \hskip 11.74988pt
+(hyperref)                replaced by space on input line 1012.
+
+[38] [39] (D:/REP\Orbis\_deliverables\01_Report1\build\report1.aux)
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+ )
+(see the transcript file for additional information) <C:\Users\Acer\AppData\Loc
+al\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1200.pk><D:/MiKTeX/fonts/type1
+/public/amsfonts/cm/cmbx10.pfb><D:/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12
+.pfb><D:/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx8.pfb><D:/MiKTeX/fonts/type1
+/public/amsfonts/cm/cmbxti10.pfb><D:/MiKTeX/fonts/type1/public/amsfonts/cm/cmcs
+c10.pfb><D:/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><D:/MiKTeX/fonts/t
+ype1/public/amsfonts/cm/cmmi12.pfb><D:/MiKTeX/fonts/type1/public/amsfonts/cm/cm
+mi8.pfb><D:/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><D:/MiKTeX/fonts/ty
+pe1/public/amsfonts/cm/cmr12.pfb><D:/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6
+.pfb><D:/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><D:/MiKTeX/fonts/type1/
+public/amsfonts/cm/cmss10.pfb><D:/MiKTeX/fonts/type1/public/amsfonts/cm/cmss8.p
+fb><D:/MiKTeX/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><D:/MiKTeX/fonts/type
+1/public/amsfonts/cm/cmssi8.pfb><D:/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy1
+0.pfb><D:/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><D:/MiKTeX/fonts/type
+1/public/amsfonts/cm/cmti10.pfb><D:/MiKTeX/fonts/type1/public/amsfonts/cm/cmti1
+2.pfb><D:/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><D:/MiKTeX/fonts/typ
+e1/public/amsfonts/cm/cmtt12.pfb><D:/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt
+8.pfb>
+Output written on D:/REP\Orbis\_deliverables\01_Report1\build\report1.pdf (46 p
+ages, 1658644 bytes).
+Transcript written on D:/REP\Orbis\_deliverables\01_Report1\build\report1.log.
+Latexmk: Getting log file '/d/REP/Orbis/_deliverables/01_Report1/build/report1.log'
+Latexmk: Examining '/d/REP/Orbis/_deliverables/01_Report1/build/report1.fls'
+Latexmk: Examining '/d/REP/Orbis/_deliverables/01_Report1/build/report1.log'
+Latexmk: Found input bbl file 'D:/REP/Orbis/_deliverables/01_Report1/build/report1.bbl'
+Latexmk: Log file says output to 'D:/REP/Orbis/_deliverables/01_Report1/build/report1.pdf'
+Latexmk: Using bibtex to make bibliography file(s).
+  ===Source file 'D:/REP/Orbis/_deliverables/01_Report1/build/report1.bbl' for 'pdflatex'
+Latexmk: Found bibliography file(s):
+  D:/REP/Orbis/_deliverables/01_Report1/report/references.bib
+Latexmk: All targets (/d/REP/Orbis/_deliverables/01_Report1/build/report1.pdf) are up-to-date
+

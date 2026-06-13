@@ -1,3 +1,6 @@
-\contentsline {figure}{\numberline {1}{\ignorespaces Data Categorization and Taxonomy Pipeline Architecture\relax }}{7}{}%
-\contentsline {figure}{\numberline {2}{\ignorespaces Sequential flow and architecture of the Orbis Proactive Event Pipeline. The orchestrator owns all run state; workers are stateless and communicate only via the orchestrator. The reviewer is invoked only for ambiguous candidates.\relax }}{8}{}%
-\contentsline {figure}{\numberline {3}{\ignorespaces Agentic submission-evaluation flow. A deterministic file gate rejects empty, corrupt, or unreadable files without invoking the LLM. The agent then reasons in two LLM calls: it first \emph {decomposes} the assignment into a requirement checklist, then \emph {judges the document against each requirement individually} with cited evidence before synthesizing a verdict. A deterministic keyword \texttt {line\_review} is retained only as a fallback when decomposition fails. Every stage is streamed over Server-Sent Events so the UI can render the source text, the requirements, and each per-requirement finding live. Every rejection (early-stage or LLM-based) is recoverable through the \texttt {flag\_for\_review} appeal path, which routes the case to a human reviewer instead of terminating the student's submission attempt.\relax }}{10}{}%
+\contentsline {figure}{\numberline {1}{\ignorespaces Taxonomy Pipeline Architecture}}{11}{figure.caption.10}%
+\contentsline {figure}{\numberline {2}{\ignorespaces Proactive Event Pipeline Architecture}}{12}{figure.caption.11}%
+\contentsline {figure}{\numberline {3}{\ignorespaces Agentic Submission-Evaluation Flow}}{14}{figure.caption.12}%
+\contentsline {figure}{\numberline {4}{\ignorespaces Chatbot Query Input}}{15}{figure.caption.13}%
+\contentsline {figure}{\numberline {5}{\ignorespaces RAG Chatbot Pipeline}}{18}{figure.caption.14}%
+\contentsline {figure}{\numberline {6}{\ignorespaces Chatbot Response Output}}{22}{figure.caption.15}%

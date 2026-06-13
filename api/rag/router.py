@@ -39,7 +39,8 @@ def route_query(llm_service: Any, query: str) -> list[dict[str, Any]]:
     router_decision = {}
     for i, intent in enumerate(intents):
         router_decision[f"search_{i+1}"] = intent
-    eval_state["routing_phase"]["router_decision"] = router_decision
+    routing_phase = eval_state.setdefault("routing_phase", {})
+    routing_phase["router_decision"] = router_decision
 
     if RAG_DEBUG:
         table = Table(box=box.SIMPLE, show_header=True)

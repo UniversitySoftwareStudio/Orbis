@@ -451,6 +451,8 @@ class RAGService:
         """
         from database.models import KnowledgeBase
 
+        init_eval_state(query)
+
         yield {"type": "step", "message": "Understanding your question"}
 
         focused_doc = _focused_source_doc(focused_source)
