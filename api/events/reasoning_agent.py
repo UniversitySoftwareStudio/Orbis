@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import re
 
+from events import obligation_patterns as patterns
 from events.types import ObligationCandidate, SourceDocument
 from events.utils import normalize_text
 
@@ -18,34 +19,6 @@ _ARTICLE_HEADER_RE = re.compile(
 
 class ReasoningAgent:
     """Deterministic extractor focused on strict actionable statements."""
-
-    _ACTION_PATTERNS = (
-        re.compile(r"\bmust\b", re.IGNORECASE),
-        re.compile(r"\bshall\b", re.IGNORECASE),
-        re.compile(r"\brequired(?:\s+to)?\b", re.IGNORECASE),
-        re.compile(r"\boblig(?:ed|ation)\b", re.IGNORECASE),
-        re.compile(r"\bzorunlu(?:dur|dur\.|d?r|)\b", re.IGNORECASE),
-        re.compile(r"\bzorundad(?:ır|ir|ırlar|irler)\b", re.IGNORECASE),
-        re.compile(r"\byükümlüdür(?:ler)?\b", re.IGNORECASE),
-        re.compile(r"\bmecbur(?:dur|idir)\b", re.IGNORECASE),
-        re.compile(r"\ben\s+geç\b", re.IGNORECASE),
-        re.compile(r"\btarihine\s+kadar\b", re.IGNORECASE),
-    )
-
-    _ACTOR_PATTERNS = (
-        re.compile(r"\bstudents?\b", re.IGNORECASE),
-        re.compile(r"\böğrenc(?:i|iler)\b", re.IGNORECASE),
-        re.compile(r"\bstaff\b", re.IGNORECASE),
-        re.compile(r"\bpersonel\b", re.IGNORECASE),
-        re.compile(r"\bemployees?\b", re.IGNORECASE),
-        re.compile(r"\bakademik\b", re.IGNORECASE),
-        re.compile(r"\bidari\b", re.IGNORECASE),
-        re.compile(r"\badmin\b", re.IGNORECASE),
-        re.compile(r"\byönetim\b", re.IGNORECASE),
-        re.compile(r"\brektörlük\b", re.IGNORECASE),
-        re.compile(r"\bbuluş(?:çu| sahibi)\b", re.IGNORECASE),
-        re.compile(r"\baraştırmac(?:ı|ilar|ılar)\b", re.IGNORECASE),
-    )
 
     _BLOCKLIST_PATTERNS = (
         re.compile(r"for detailed information", re.IGNORECASE),
@@ -135,29 +108,17 @@ class ReasoningAgent:
                     yield clause
 
     def _has_action(self, text: str) -> bool:
-        return any(pattern.search(text) for pattern in self._ACTION_PATTERNS)
+        return patterns.has_action(text)
 
     def _action_count(self, text: str) -> int:
-        return sum(1 for pattern in self._ACTION_PATTERNS if pattern.search(text))
+        return patterns.action_count(text)
 
     def _looks_assignable(self, text: str) -> bool:
-        return any(pattern.search(text) for pattern in self._ACTOR_PATTERNS)
+        return patterns.has_actor(text)
 
     def _is_blocklisted(self, text: str) -> bool:
         return any(pattern.search(text) for pattern in self._BLOCKLIST_PATTERNS)
 
     @staticmethod
     def _detect_role(text: str) -> str:
-        lowered = text.lower()
-        if any(token in lowered for token in ("öğrenci", "students", "student")):
-            return "student"
-        if any(token in lowered for token in ("personel", "staff", "instructor", "employee", "akademik", "idari", "buluşçu", "araştırmacı")):
-            return "staff"
-        if any(token in lowered for token in ("admin", "yönetim", "dean", "rektörlük", "rectorate")):
-            return "admin"
-        return "all"
-
-
-class NoopReasoningAgent(ReasoningAgent):
-    def extract(self, source: SourceDocument) -> list[ObligationCandidate]:
-        return []
+        return patterns.detect_role(text)

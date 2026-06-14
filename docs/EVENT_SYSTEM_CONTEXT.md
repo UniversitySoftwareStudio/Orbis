@@ -39,8 +39,7 @@ Core runtime files:
 
 ## Current Student Regulation Path
 
-The student-facing regulations page does not trigger extraction. It reads
-precomputed assignments:
+The student-facing regulations page reads precomputed assignments:
 
 ```text
 GET /api/regulations/me
@@ -49,6 +48,19 @@ PATCH /api/regulations/assignments/{assignment_id}
 
 These endpoints read/write `user_rule_assignments`, joined to
 `regulation_rules`.
+
+A live per-user matcher is also exposed:
+
+```text
+POST /api/regulations/check/stream
+```
+
+It runs the user agent (`events/user_agent.py`) over the current user, reasons
+rule-by-rule, and writes `user_rule_assignments` (SSE trace). The trigger
+pipeline now feeds this path: accepted `regulatory_events` are promoted into
+`regulation_rules` (see `api/events/promotion.py`) so the agent matches against
+what the pipeline found. The canonical end-to-end flow is in the root
+[`EVENT_SYSTEM.md`](../EVENT_SYSTEM.md).
 
 ## Report Evidence Path
 
@@ -77,11 +89,15 @@ profile-rule pairs.
 
 ## Known Gaps
 
-- No currently exposed `/api/events/assign/me` endpoint.
-- Current extraction route writes `regulatory_events`; report assignment metrics
-  use `regulation_rules` and `user_rule_assignments`.
+- The extraction route writes `regulatory_events`; those accepted events are now
+  promoted into `regulation_rules` (`api/events/promotion.py`), which is what the
+  per-user matcher and the regulations UI consume. Promotion adds rules but does
+  not yet retire ones whose source regulation disappeared.
+- Promoted rules are thin (obligation sentence + role); they do not carry
+  structured deadline/consequence/blocking fields. Enriching the extractor is
+  future work.
 - The event extraction labels are silver LLM labels, not human gold labels.
 - Inter-judge agreement is 0.529 on a 51-candidate sample, so recall should be
   interpreted conservatively.
-- Future work should reconnect extraction, rule assignment, and the regulations
-  UI into one live end-to-end flow.
+- Admin review of `NEEDS_REVIEW` events has no dedicated UI yet; promotion takes
+  `PENDING` events only.

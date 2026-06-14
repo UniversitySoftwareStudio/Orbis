@@ -15,6 +15,8 @@ Re-running updates the reason and urgency without creating duplicates.
 from __future__ import annotations
 
 import json
+import re
+from concurrent.futures import ThreadPoolExecutor
 from datetime import date
 from typing import Any
 from urllib import request as urlrequest
@@ -34,7 +36,7 @@ from database.models import (
     UserRuleAssignment,
 )
 from llm.service import LLMService, get_llm_service
-from events.utils import normalize_text
+from events.utils import normalize_text, safe_eval_condition
 
 logger = get_logger(__name__)
 
@@ -94,7 +96,8 @@ SYSTEM = (
     "You are a university policy advisor. "
     "You decide which university regulations apply to a specific person based on their profile and role. "
     "Be precise — only say a rule applies if there is a clear reason given the person's situation. "
-    "Return only valid JSON. No explanation, no markdown."
+    "Return only valid JSON. No markdown. "
+    "Do not reveal internal reasoning; write only short UI display text."
 )
 
 CONTEXTUAL_MATCH_PROMPT = """You are checking which university regulations apply to a specific person.
@@ -115,7 +118,7 @@ Return a JSON array — include ONLY rules that apply:
   {{
     "rule_index": 0,
     "applies": true,
-    "reason": "one or two sentences explaining exactly why this rule applies to this person given their specific situation"
+    "ui_reason": "Student fact + rule hook, max 90 chars. Example: GPA 2.60 meets threshold."
   }}
 ]
 
@@ -140,7 +143,7 @@ Return strict JSON only:
     {{
       "rule_index": 0,
       "applies": true,
-      "reason": "one concise sentence grounded in the profile and the rule"
+      "ui_reason": "Student fact + rule hook, max 90 chars. Example: GPA 2.60 meets threshold."
     }}
   ]
 }}
@@ -294,12 +297,9 @@ def _match_sql_rules(db: Session, user: User) -> list[dict]:
     for rule in rules:
         if not rule.sql_condition:
             continue
-        try:
-            if eval(rule.sql_condition, {"__builtins__": {}}, context):  # noqa: S307
-                matched.append(_rule_to_dict(rule, "sql",
-                    f"Your profile matches the condition: {rule.sql_condition}"))
-        except Exception:
-            continue
+        if safe_eval_condition(rule.sql_condition, context):
+            matched.append(_rule_to_dict(rule, "sql",
+                _format_sql_reason(rule.sql_condition, context, True)))
 
     return matched
 
@@ -309,6 +309,68 @@ def _match_sql_rules(db: Session, user: User) -> list[dict]:
 # ---------------------------------------------------------------------------
 
 _CONTEXTUAL_BATCH_SIZE = 25
+_CONTEXTUAL_MAX_WORKERS = 4
+_UI_REASON_MAX_CHARS = 96
+_CONDITION_SUMMARY_RE = re.compile(
+    r"^\s*(?P<field>[a-zA-Z_][a-zA-Z0-9_]*)\s*"
+    r"(?P<op><=|>=|==|!=|<|>)\s*"
+    r"(?P<value>-?\d+(?:\.\d+)?|true|false|none)\s*$",
+    re.IGNORECASE,
+)
+_FIELD_LABELS = {
+    "gpa": "GPA",
+    "enrolled_credits": "enrolled credits",
+    "is_active": "active status",
+}
+
+
+def _compact_reason(value: str, max_chars: int = _UI_REASON_MAX_CHARS) -> str:
+    text = normalize_text(value or "")
+    if not text:
+        return "Matched profile."
+    text = re.sub(r"^[\-*•]\s*", "", text)
+    text = re.sub(r"\b(because|since|therefore|thus|so)\b[:,]?\s*", "", text, flags=re.IGNORECASE)
+    text = re.sub(r"\b(this rule|the rule|regulation)\s+", "", text, flags=re.IGNORECASE)
+    sentence = re.split(r"(?<=[.!?])\s+", text, maxsplit=1)[0].strip()
+    if sentence:
+        text = sentence
+    if len(text) <= max_chars:
+        return text
+    return text[: max_chars - 3].rstrip(" ,.;:") + "..."
+
+
+def _ui_reason_from_decision(item: dict[str, Any], fallback: str = "") -> str:
+    """Prefer the model's display contract, then sanitize legacy reason output."""
+    raw = item.get("ui_reason")
+    if not raw:
+        raw = item.get("reason")
+    return _compact_reason(str(raw or fallback))
+
+
+def _format_sql_reason(condition: str, context: dict, applies: bool | None) -> str:
+    match = _CONDITION_SUMMARY_RE.match(condition or "")
+    if not match:
+        return "Profile matches." if applies else "Profile does not match."
+
+    field = match.group("field")
+    op = match.group("op")
+    threshold = match.group("value")
+    raw_value = context.get(field)
+    label = _FIELD_LABELS.get(field, field.replace("_", " "))
+    value = f"{raw_value:.2f}" if isinstance(raw_value, float) else str(raw_value)
+
+    if applies:
+        if op in {">", ">="}:
+            return f"{label} {value} meets {threshold}."
+        if op in {"<", "<="}:
+            return f"{label} {value} is below {threshold}."
+        return f"{label} matches."
+
+    if op in {">", ">="}:
+        return f"{label} {value} is below {threshold}."
+    if op in {"<", "<="}:
+        return f"{label} {value} is not below {threshold}."
+    return f"{label} differs."
 
 
 def _match_contextual_rules(
@@ -334,6 +396,7 @@ def _match_contextual_rules(
         batch = rules[batch_start: batch_start + _CONTEXTUAL_BATCH_SIZE]
         rules_payload = [
             {
+                "rule_index": i,
                 "index": i,
                 "rule_text": r.rule_text,
                 "applies_to": r.applies_to,
@@ -361,14 +424,14 @@ def _match_contextual_rules(
             continue
 
         for item in result:
-            idx = item.get("rule_index")
-            if not isinstance(idx, int) or idx >= len(batch):
+            idx = _decision_index(item)
+            if not isinstance(idx, int) or idx < 0 or idx >= len(batch):
                 continue
             if not item.get("applies"):
                 continue
             rule = batch[idx]
             matched.append(_rule_to_dict(rule, "contextual",
-                normalize_text(item.get("reason", ""))))
+                _ui_reason_from_decision(item)))
 
     return matched
 
@@ -390,8 +453,20 @@ def _parse_llm_decisions(raw: str) -> list[dict[str, Any]]:
     return []
 
 
+def _decision_index(item: dict[str, Any]) -> int | None:
+    """Accept both the requested key and the key shown in rule payloads."""
+    for key in ("rule_index", "index"):
+        value = item.get(key)
+        if isinstance(value, int) and not isinstance(value, bool):
+            return value
+        if isinstance(value, str) and value.strip().isdigit():
+            return int(value.strip())
+    return None
+
+
 def _rule_payload(rule: RegulationRule, index: int) -> dict[str, Any]:
     return {
+        "rule_index": index,
         "index": index,
         "rule_id": str(rule.id),
         "rule_text": rule.rule_text,
@@ -406,7 +481,14 @@ def _rule_payload(rule: RegulationRule, index: int) -> dict[str, Any]:
     }
 
 
-def _decision_payload(rule: RegulationRule, match_type: str, applies: bool, reason: str) -> dict[str, Any]:
+def _decision_payload(
+    rule: RegulationRule,
+    match_type: str,
+    applies: bool,
+    reason: str,
+    *,
+    persistable: bool = True,
+) -> dict[str, Any]:
     return {
         "rule_id": str(rule.id),
         "rule_text": rule.rule_text,
@@ -416,9 +498,12 @@ def _decision_payload(rule: RegulationRule, match_type: str, applies: bool, reas
         "blocking": bool(rule.blocking),
         "consequence": rule.consequence,
         "authority": rule.authority,
+        "source_url": rule.source_doc_url,
+        "evidence_quote": rule.evidence_quote,
         "match_type": match_type,
         "applies": applies,
-        "reason": normalize_text(reason),
+        "reason": _compact_reason(reason),
+        "persistable": persistable,
         "_rule_obj": rule,
     }
 
@@ -431,7 +516,7 @@ def _sql_rule_decisions(db: Session, user: User) -> list[dict[str, Any]]:
     )
     if user.user_type.value != "student" or not user.student:
         return [
-            _decision_payload(rule, "sql", False, "SQL rules are student-profile checks; this user has no student record.")
+            _decision_payload(rule, "sql", False, "No student record.")
             for rule in rules
         ]
 
@@ -445,19 +530,81 @@ def _sql_rule_decisions(db: Session, user: User) -> list[dict[str, Any]]:
     decisions: list[dict[str, Any]] = []
     for rule in rules:
         if not rule.sql_condition:
-            decisions.append(_decision_payload(rule, "sql", False, "No SQL condition is defined for this rule."))
+            decisions.append(_decision_payload(rule, "sql", False, "No condition."))
             continue
-        try:
-            applies = bool(eval(rule.sql_condition, {"__builtins__": {}}, context))  # noqa: S307
-            reason = (
-                f"Profile values {context} satisfy {rule.sql_condition}."
-                if applies else
-                f"Profile values {context} do not satisfy {rule.sql_condition}."
-            )
-        except Exception as exc:
+        result = safe_eval_condition(rule.sql_condition, context)
+        if result is None:
             applies = False
-            reason = f"Could not evaluate condition {rule.sql_condition}: {exc}"
+            reason = "Condition unavailable."
+        else:
+            applies = result
+            reason = _format_sql_reason(rule.sql_condition, context, applies)
         decisions.append(_decision_payload(rule, "sql", applies, reason))
+    return decisions
+
+
+def _contextual_batch_decisions(
+    *,
+    batch_start: int,
+    batch: list[RegulationRule],
+    user_context: str,
+    llm: LLMService,
+) -> list[dict[str, Any]]:
+    prompt = CONTEXTUAL_TRACE_PROMPT.format(
+        system=SYSTEM,
+        user_context=user_context,
+        rules=json.dumps([_rule_payload(rule, i) for i, rule in enumerate(batch)], ensure_ascii=False, indent=2),
+    )
+    try:
+        raw = llm.complete(prompt)
+    except Exception as exc:
+        logger.warning("Contextual trace LLM failed for batch %d: %s", batch_start, exc)
+        return [
+            _decision_payload(
+                rule,
+                "contextual",
+                False,
+                "Check failed; unchanged.",
+                persistable=False,
+            )
+            for rule in batch
+        ]
+
+    parsed = _parse_llm_decisions(raw)
+    by_index: dict[int, dict[str, Any]] = {}
+    by_rule_id: dict[str, dict[str, Any]] = {}
+    for item in parsed:
+        if not isinstance(item, dict):
+            continue
+        idx = _decision_index(item)
+        if isinstance(idx, int):
+            by_index[idx] = item
+        rule_id = item.get("rule_id")
+        if isinstance(rule_id, str) and rule_id:
+            by_rule_id[rule_id] = item
+
+    decisions: list[dict[str, Any]] = []
+    for i, rule in enumerate(batch):
+        item = by_index.get(i) or by_rule_id.get(str(rule.id))
+        if item is None:
+            decisions.append(
+                _decision_payload(
+                    rule,
+                    "contextual",
+                    False,
+                    "No decision; unchanged.",
+                    persistable=False,
+                )
+            )
+            continue
+        decisions.append(
+            _decision_payload(
+                rule,
+                "contextual",
+                bool(item.get("applies")),
+                _ui_reason_from_decision(item, "Matched profile."),
+            )
+        )
     return decisions
 
 
@@ -475,34 +622,33 @@ def _contextual_rule_decisions(
         return []
 
     llm = llm_service or get_llm_service()
-    decisions: list[dict[str, Any]] = []
-    for batch_start in range(0, len(rules), _CONTEXTUAL_BATCH_SIZE):
-        batch = rules[batch_start: batch_start + _CONTEXTUAL_BATCH_SIZE]
-        prompt = CONTEXTUAL_TRACE_PROMPT.format(
-            system=SYSTEM,
+    batches = [
+        (batch_start, rules[batch_start: batch_start + _CONTEXTUAL_BATCH_SIZE])
+        for batch_start in range(0, len(rules), _CONTEXTUAL_BATCH_SIZE)
+    ]
+    if len(batches) == 1:
+        return _contextual_batch_decisions(
+            batch_start=batches[0][0],
+            batch=batches[0][1],
             user_context=user_context,
-            rules=json.dumps([_rule_payload(rule, i) for i, rule in enumerate(batch)], ensure_ascii=False, indent=2),
+            llm=llm,
         )
-        raw = llm.complete(prompt)
-        parsed = _parse_llm_decisions(raw)
-        by_index = {
-            item.get("rule_index"): item
-            for item in parsed
-            if isinstance(item, dict) and isinstance(item.get("rule_index"), int)
-        }
-        for i, rule in enumerate(batch):
-            item = by_index.get(i)
-            if item is None:
-                decisions.append(_decision_payload(rule, "contextual", False, "The agent returned no decision for this rule."))
-                continue
-            decisions.append(
-                _decision_payload(
-                    rule,
-                    "contextual",
-                    bool(item.get("applies")),
-                    str(item.get("reason") or "No reason supplied."),
-                )
+
+    decisions: list[dict[str, Any]] = []
+    workers = min(_CONTEXTUAL_MAX_WORKERS, len(batches))
+    with ThreadPoolExecutor(max_workers=workers) as executor:
+        futures = [
+            executor.submit(
+                _contextual_batch_decisions,
+                batch_start=batch_start,
+                batch=batch,
+                user_context=user_context,
+                llm=llm,
             )
+            for batch_start, batch in batches
+        ]
+        for future in futures:
+            decisions.extend(future.result())
     return decisions
 
 
@@ -524,9 +670,11 @@ def _persist_assignments_detailed(db: Session, user: User, decisions: list[dict[
         before_urgency = existing.urgency.value if existing else None
 
         if not decision.get("applies"):
+            if not decision.get("persistable", True):
+                continue
             if existing and existing.status == AssignmentStatus.ACTIVE:
                 existing.status = AssignmentStatus.DISMISSED
-                existing.reason = f"No longer matched by the self-check: {reason}"
+                existing.reason = f"No longer matches: {reason}"
                 db.flush()
                 effects.append(
                     {
@@ -586,30 +734,31 @@ def _persist_assignments_detailed(db: Session, user: User, decisions: list[dict[
 
 def run_for_user_trace(db: Session, user: User):
     """Yield a transparent audit trail for a user-requested regulation check."""
-    yield {"type": "step", "message": "Building your regulation context", "detail": f"{user.first_name} {user.last_name}"}
+    yield {"type": "step", "message": "Loading profile", "detail": f"{user.first_name} {user.last_name}"}
     user_context = build_user_context(db, user)
     yield {"type": "profile", "context": user_context}
 
-    yield {"type": "step", "message": "Checking deterministic profile rules", "detail": "SQL conditions"}
+    yield {"type": "step", "message": "Checking SQL", "detail": "profile rules"}
     sql_decisions = _sql_rule_decisions(db, user)
-    for decision in sql_decisions:
-        payload = {k: v for k, v in decision.items() if k != "_rule_obj"}
-        payload["type"] = "rule_decision"
-        yield payload
+    yield {
+        "type": "rule_decisions",
+        "phase": "sql",
+        "decisions": [{k: v for k, v in decision.items() if k != "_rule_obj"} for decision in sql_decisions],
+    }
 
-    yield {"type": "step", "message": "Reasoning over contextual rules", "detail": "agent judgment against your profile"}
+    yield {"type": "step", "message": "Checking LLM", "detail": "parallel batches"}
     contextual_decisions = _contextual_rule_decisions(db, user_context)
-    for decision in contextual_decisions:
-        payload = {k: v for k, v in decision.items() if k != "_rule_obj"}
-        payload["type"] = "rule_decision"
-        yield payload
+    yield {
+        "type": "rule_decisions",
+        "phase": "contextual",
+        "decisions": [{k: v for k, v in decision.items() if k != "_rule_obj"} for decision in contextual_decisions],
+    }
 
     all_decisions = sql_decisions + contextual_decisions
     applicable = [decision for decision in all_decisions if decision.get("applies")]
-    yield {"type": "step", "message": "Updating matched regulation assignments", "detail": f"{len(applicable)} applicable"}
+    yield {"type": "step", "message": "Saving matches", "detail": f"{len(applicable)} yes"}
     effects = _persist_assignments_detailed(db, user, all_decisions)
-    for effect in effects:
-        yield {"type": "assignment", **effect}
+    yield {"type": "assignments", "assignments": effects}
 
     counts = {
         "rules_checked": len(all_decisions),
@@ -643,6 +792,7 @@ def _rule_to_dict(rule: RegulationRule, match_type: str, reason: str) -> dict:
         "match_type": match_type,
         "reason": reason,
         "source_url": rule.source_doc_url,
+        "evidence_quote": rule.evidence_quote,
         "_rule_obj": rule,
     }
 

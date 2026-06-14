@@ -11,6 +11,7 @@ import httpx
 PROVIDERS_PATH = Path.home() / ".config" / "agent" / "providers.json"
 MODEL = os.getenv("JUDGE_MODEL", "google/gemini-2.5-flash-lite")
 BASE_URL = "https://openrouter.ai/api/v1/chat/completions"
+OPENROUTER_PROVIDER = os.getenv("OPENROUTER_PROVIDER", "Cloudflare")
 
 
 def _load_key() -> str:
@@ -29,6 +30,7 @@ def judge(system: str, user: str, *, temperature: float = 0.0, max_tokens: int =
         "model": MODEL,
         "temperature": temperature,
         "max_tokens": max_tokens,
+        "provider": {"only": [OPENROUTER_PROVIDER]},
         "messages": [
             {"role": "system", "content": system},
             {"role": "user", "content": user},

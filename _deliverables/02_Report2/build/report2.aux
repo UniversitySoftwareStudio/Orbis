@@ -1,107 +1,55 @@
 \relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyperFirstAtBeginDocument{\AtBeginDocument}
+\HyperFirstAtBeginDocument{\ifx\hyper@anchor\@undefined
+\global\let\oldcontentsline\contentsline
+\gdef\contentsline#1#2#3#4{\oldcontentsline{#1}{#2}{#3}}
+\global\let\oldnewlabel\newlabel
+\gdef\newlabel#1#2{\newlabelxx{#1}#2}
+\gdef\newlabelxx#1#2#3#4#5#6{\oldnewlabel{#1}{{#2}{#3}}}
+\AtEndDocument{\ifx\hyper@anchor\@undefined
+\let\contentsline\oldcontentsline
+\let\newlabel\oldnewlabel
+\fi}
+\fi}
+\global\let\hyper@last\relax 
+\gdef\HyperFirstAtBeginDocument#1{#1}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
 \providecommand \oddpage@label [2]{}
-\@writefile{toc}{\contentsline {section}{Abstract}{1}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{Contents}{2}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{List of Figures}{4}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{List of Tables}{5}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{List of Abbreviations}{7}{}\protected@file@percent }
-\citation{lewis2020retrieval}
-\citation{assayed2024systematic}
-\citation{ismail2025academic}
-\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {2}Related Works}{1}{}\protected@file@percent }
-\citation{wick2023dars}
-\citation{zhang2016semantic}
-\citation{galli2025aiAct}
-\citation{cisneros2025jorgpt}
-\citation{zheng2023judging}
-\citation{assayed2024systematic}
-\citation{ismail2025academic}
-\citation{wick2023dars}
-\citation{zhang2016semantic}
-\citation{galli2025aiAct}
-\citation{cisneros2025jorgpt}
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Positioning of Orbis against related categories of academic-support systems. \emph  {Push} means the system surfaces an obligation before a student asks. \emph  {Unstructured rules} means handling free-text regulation, not only schema-based requirements.\relax }}{3}{}\protected@file@percent }
-\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{tab:related_work}{{1}{3}}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Official baseline and comparator validity. \emph  {Direct} means the same task and data family; \emph  {partial} means a related subsystem metric but different domain or output schema; \emph  {contextual} means useful for positioning only.\relax }}{4}{}\protected@file@percent }
-\newlabel{tab:baseline_validity}{{2}{4}}
-\@writefile{toc}{\contentsline {section}{\numberline {3}Dataset}{4}{}\protected@file@percent }
-\citation{shannon1948mathematical}
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Dataset and post-processing statistics. The Proactive Event System operates only on the 935 regulatory chunks; all other categories are routed to the RAG search index.\relax }}{5}{}\protected@file@percent }
-\newlabel{tab:dataset_stats}{{3}{5}}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Theoretical Background}{5}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Shannon Entropy for URL Classification}{5}{}\protected@file@percent }
-\citation{sculley2010web}
-\citation{ward1963hierarchical}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Vector Embeddings and Cosine Similarity}{6}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}MiniBatchKMeans and Ward HAC}{6}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {5}Proposed Methodology}{6}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Data Categorization \& Taxonomy Strategy}{6}{}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Data Categorization and Taxonomy Pipeline Architecture\relax }}{7}{}\protected@file@percent }
-\newlabel{fig:taxonomy_pipeline}{{1}{7}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}The Orchestrator-Led Event Pipeline}{7}{}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Sequential flow and architecture of the Orbis Proactive Event Pipeline. The orchestrator owns all run state; workers are stateless and communicate only via the orchestrator. The reviewer is invoked only for ambiguous candidates.\relax }}{8}{}\protected@file@percent }
-\newlabel{fig:event_system_architecture}{{2}{8}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Contextual vs. SQL Assignment Matching}{8}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Agentic Assignment Submission Evaluation}{9}{}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Agentic submission-evaluation flow. A deterministic file gate rejects empty, corrupt, or unreadable files without invoking the LLM. The agent then reasons in two LLM calls: it first \emph  {decomposes} the assignment into a requirement checklist, then \emph  {judges the document against each requirement individually} with cited evidence before synthesizing a verdict. A deterministic keyword \texttt  {line\_review} is retained only as a fallback when decomposition fails. Every stage is streamed over Server-Sent Events so the UI can render the source text, the requirements, and each per-requirement finding live. Every rejection (early-stage or LLM-based) is recoverable through the \texttt  {flag\_for\_review} appeal path, which routes the case to a human reviewer instead of terminating the student's submission attempt.\relax }}{10}{}\protected@file@percent }
-\newlabel{fig:submission_flow}{{3}{10}}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Experimental Setup}{11}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Framework and Deployment}{11}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Performance Metrics}{11}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {7}Experiments \& Discussion}{12}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Extraction Throughput \& Quality Funnel}{12}{}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Event Extraction Pipeline Funnel\relax }}{12}{}\protected@file@percent }
-\newlabel{tab:extraction_funnel}{{4}{12}}
-\@writefile{toc}{\contentsline {section}{\numberline {8}Results}{12}{}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Assignments generated per real student profile, broken down by urgency and matching path. ``SQL'' counts deterministic conditional matches; ``CTX'' counts contextual LLM matches.\relax }}{13}{}\protected@file@percent }
-\newlabel{tab:assignment_results}{{5}{13}}
-\@writefile{toc}{\contentsline {section}{\numberline {9}Quantitative Evaluation}{13}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.1}Gold Ground-Truth Construction}{14}{}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Metric provenance and limitations. Artifact paths are reported relative to the repository.\relax }}{15}{}\protected@file@percent }
-\newlabel{tab:metric_provenance}{{6}{15}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.2}Event Extraction Results}{15}{}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Confusion matrix of the event extraction pipeline against gold ground truth ($N{=}323$).\relax }}{15}{}\protected@file@percent }
-\newlabel{tab:event_confusion}{{7}{15}}
-\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Binary classification metrics for the event extraction stage. Positive class = true obligation accepted by the system.\relax }}{15}{}\protected@file@percent }
-\newlabel{tab:event_metrics}{{8}{15}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.3}Assignment Matching Results}{16}{}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Per-profile assignment matching scores against gold ground truth ($N{=}712$ pairs: 4 profiles $\times $ 178 accepted obligations).\relax }}{16}{}\protected@file@percent }
-\newlabel{tab:matching_perprofile}{{9}{16}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.4}Submission Agent Results}{16}{}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Submission agent results stratified by case type. Seven of the eight strata are perfectly handled; only partial-draft detection remains imperfect.\relax }}{17}{}\protected@file@percent }
-\newlabel{tab:submission_stratum}{{10}{17}}
-\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Submission agent confusion matrix on $N{=}32$ cases (positive class: approve). Zero false negatives: no genuine submission was rejected. Both false positives are \texttt  {flag\_partial} drafts.\relax }}{17}{}\protected@file@percent }
-\newlabel{tab:submission_confusion}{{11}{17}}
-\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Submission agent binary classification metrics (positive class: approve), measured on the 32-case ground-truth set against the current two-call agentic reviewer.\relax }}{17}{}\protected@file@percent }
-\newlabel{tab:submission_metrics}{{12}{17}}
-\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Submission Agent Ablation Study: Redesigning the reviewer significantly lifted in-document prompt-injection resistance because the agent now explicitly verifies whether requirements are met, bypassing embedded adversarial instructions.\relax }}{18}{}\protected@file@percent }
-\newlabel{tab:ablation_study}{{13}{18}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.5}Limitations}{18}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {10}Realistic Constraints}{18}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {10.1}Social, Environmental and Economic Impact}{18}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {10.2}Cost Analysis}{18}{}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Per-stage model choice and OpenRouter pricing. Cheaper models are used for high-volume bulk labeling; a stronger model is reserved for adversarial review and submission reasoning.\relax }}{19}{}\protected@file@percent }
-\newlabel{tab:cost_models}{{14}{19}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {10.3}Standards}{20}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.3.1}NSPE Code of Ethics}{20}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.3.2}IEEE Standards}{20}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {10.4}Risk Analysis}{20}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {11}Conclusion \& Future Work}{21}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {12}Contributions}{22}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\textsc  {Table of Contents}}{ii}{section*.2}\protected@file@percent }
+\citation{unSdgs}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Realistic Constraints}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Social, Environmental and Economic Impact}{1}{subsection.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.2}Cost and Time Analysis}{2}{subsection.1.2}\protected@file@percent }
+\citation{nspeCode}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.3}Standards}{3}{subsection.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.3.1}NSPE Code Of Ethics}{3}{subsubsection.1.3.1}\protected@file@percent }
+\citation{ieee16085}
+\citation{ieee12207}
+\citation{ieee29148}
+\citation{ieee24748_7000}
+\citation{gdpr2016}
+\citation{kvkk6698}
+\citation{wcag22}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.3.2}IEEE Standards}{4}{subsubsection.1.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Risk Analysis And Changes}{4}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Challenges}{5}{subsection.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Weak And Strong Points}{6}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.1}Weak Points}{6}{subsubsection.2.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2}Strong Points}{6}{subsubsection.2.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Contributions}{7}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Conclusion}{7}{section.4}\protected@file@percent }
 \bibstyle{ieeetr}
 \bibdata{references}
-\bibcite{lewis2020retrieval}{1}
-\bibcite{assayed2024systematic}{2}
-\bibcite{ismail2025academic}{3}
-\bibcite{wick2023dars}{4}
-\bibcite{zhang2016semantic}{5}
-\bibcite{galli2025aiAct}{6}
-\bibcite{cisneros2025jorgpt}{7}
-\bibcite{zheng2023judging}{8}
-\bibcite{shannon1948mathematical}{9}
-\bibcite{sculley2010web}{10}
-\bibcite{ward1963hierarchical}{11}
-\@writefile{toc}{\contentsline {section}{References}{23}{}\protected@file@percent }
-\gdef \@abspage@last{31}
+\bibcite{unSdgs}{1}
+\bibcite{nspeCode}{2}
+\bibcite{ieee16085}{3}
+\bibcite{ieee12207}{4}
+\bibcite{ieee29148}{5}
+\bibcite{ieee24748_7000}{6}
+\bibcite{gdpr2016}{7}
+\bibcite{kvkk6698}{8}
+\bibcite{wcag22}{9}
+\@writefile{toc}{\contentsline {section}{References}{9}{section.4}\protected@file@percent }
+\gdef \@abspage@last{11}

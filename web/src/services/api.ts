@@ -243,6 +243,12 @@ export const api = {
   // 11. My regulation assignments
   getMyRegulations: () => getJson('/regulations/me'),
 
+  // 11a. One regulation assignment with source/evidence
+  getMyRegulationAssignment: (assignmentId: string) => getJson(`/regulations/assignments/${assignmentId}`),
+
+  // 11b. My regulation pipeline/debug counters
+  getMyRegulationDiagnostics: () => getJson('/regulations/debug/me'),
+
   // 12. Update a regulation assignment status (actioned | dismissed | active)
   updateRegulationStatus: async (assignmentId: string, status: string) => {
     const response = await fetch(

@@ -30,6 +30,15 @@ SessionLocal = sessionmaker(bind=engine, autoflush=False, autocommit=False)
 def prepare_schema() -> Generator[None, None, None]:
     with engine.begin() as conn:
         conn.execute(text("CREATE EXTENSION IF NOT EXISTS vector"))
+    # The production embedding table declares hnsw indexes over a runtime
+    # `embedding::vector(384)` cast expression. pgvector cannot build an
+    # operator-class index over that cast via create_all on a fresh DB, and
+    # these vector indexes are irrelevant outside the RAG suites. Skip them so
+    # the schema can be materialized for the non-RAG tests.
+    for table in models.Base.metadata.tables.values():
+        for index in list(table.indexes):
+            if "hnsw" in index.name:
+                table.indexes.discard(index)
     models.Base.metadata.create_all(bind=engine)
     yield
     models.Base.metadata.drop_all(bind=engine)
