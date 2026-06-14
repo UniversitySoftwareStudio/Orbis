@@ -127,6 +127,10 @@ button.card-hover, a.card-hover { user-select: none; }
 .swatch { transition: transform 0.15s var(--ease); user-select: none; }
 .swatch:hover { transform: scale(1.15); }
 .req-row:hover { background: var(--bg-tertiary) !important; }
+
+/* Regulations feed rows (X-style list): subtle hover, no shift, no chrome. */
+.reg-feed-row { transition: background 0.12s var(--ease); }
+.reg-feed-row:not([data-active]):hover { background: var(--bg-tertiary); }
 .sched-block { transition: transform 0.15s var(--ease), box-shadow 0.15s var(--ease); }
 .sched-block:hover { transform: scale(1.03); z-index: 20; box-shadow: var(--shadow-lg); }
 

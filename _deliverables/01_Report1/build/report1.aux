@@ -1,13 +1,27 @@
 \relax 
 \providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyperFirstAtBeginDocument{\AtBeginDocument}
+\HyperFirstAtBeginDocument{\ifx\hyper@anchor\@undefined
+\global\let\oldcontentsline\contentsline
+\gdef\contentsline#1#2#3#4{\oldcontentsline{#1}{#2}{#3}}
+\global\let\oldnewlabel\newlabel
+\gdef\newlabel#1#2{\newlabelxx{#1}#2}
+\gdef\newlabelxx#1#2#3#4#5#6{\oldnewlabel{#1}{{#2}{#3}}}
+\AtEndDocument{\ifx\hyper@anchor\@undefined
+\let\contentsline\oldcontentsline
+\let\newlabel\oldnewlabel
+\fi}
+\fi}
+\global\let\hyper@last\relax 
+\gdef\HyperFirstAtBeginDocument#1{#1}
 \providecommand\HyField@AuxAddToFields[1]{}
 \providecommand\HyField@AuxAddToCoFields[2]{}
 \providecommand \oddpage@label [2]{}
 \@writefile{toc}{\contentsline {section}{\textsc  {Abstract}}{ii}{section*.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\textsc  {Table of Contents}}{iii}{section*.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{List of Figures}{v}{section*.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{List of Tables}{vi}{section*.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\textsc  {List of Abbreviations}}{vii}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{List of Figures}{vi}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{List of Tables}{vii}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\textsc  {List of Abbreviations}}{viii}{section*.5}\protected@file@percent }
 \citation{lewis2020retrieval}
 \citation{assayed2024systematic}
 \citation{zhang2016semantic,galli2025aiAct}
@@ -42,108 +56,140 @@
 \newlabel{sec:dataset}{{3.1}{5}{Dataset}{subsection.3.1}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Dataset and Post-Processing Statistics}}{6}{table.caption.8}\protected@file@percent }
 \newlabel{tab:dataset_stats}{{3}{6}{Dataset and Post-Processing Statistics}{table.caption.8}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.1}RAG Knowledge Base Preparation}{6}{subsubsection.3.1.1}\protected@file@percent }
-\newlabel{sec:rag_dataset}{{3.1.1}{6}{RAG Knowledge Base Preparation}{subsubsection.3.1.1}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Web Page Corpus Distribution}}{7}{table.caption.9}\protected@file@percent }
-\newlabel{tab:web_distribution}{{4}{7}{Web Page Corpus Distribution}{table.caption.9}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.1}Synthetic SIS Profile Generation}{6}{subsubsection.3.1.1}\protected@file@percent }
+\newlabel{sec:synthetic_profiles}{{3.1.1}{6}{Synthetic SIS Profile Generation}{subsubsection.3.1.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Synthetic SIS Profile Generation}}{7}{table.caption.9}\protected@file@percent }
+\newlabel{tab:synthetic_profiles}{{4}{7}{Synthetic SIS Profile Generation}{table.caption.9}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Login Screen}}{7}{figure.caption.10}\protected@file@percent }
+\newlabel{fig:login_screen}{{1}{7}{Login Screen}{figure.caption.10}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Student Dashboard}}{8}{figure.caption.11}\protected@file@percent }
+\newlabel{fig:student_dashboard}{{2}{8}{Student Dashboard}{figure.caption.11}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Transcript View}}{9}{figure.caption.12}\protected@file@percent }
+\newlabel{fig:transcript_view}{{3}{9}{Transcript View}{figure.caption.12}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.2}RAG Knowledge Base Preparation}{9}{subsubsection.3.1.2}\protected@file@percent }
+\newlabel{sec:rag_dataset}{{3.1.2}{9}{RAG Knowledge Base Preparation}{subsubsection.3.1.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Web Page Corpus Distribution}}{10}{table.caption.13}\protected@file@percent }
+\newlabel{tab:web_distribution}{{5}{10}{Web Page Corpus Distribution}{table.caption.13}{}}
 \citation{shannon1948mathematical}
+\citation{reimers2019sentencebert}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Theoretical Background}{11}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:theory}{{3.2}{11}{Theoretical Background}{subsection.3.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.1}Shannon Entropy for URL Classification}{11}{subsubsection.3.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2}Vector Embeddings and Cosine Similarity}{11}{subsubsection.3.2.2}\protected@file@percent }
 \citation{sculley2010web}
 \citation{ward1963hierarchical}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Theoretical Background}{8}{subsection.3.2}\protected@file@percent }
-\newlabel{sec:theory}{{3.2}{8}{Theoretical Background}{subsection.3.2}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.1}Shannon Entropy for URL Classification}{8}{subsubsection.3.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2}Vector Embeddings and Cosine Similarity}{8}{subsubsection.3.2.2}\protected@file@percent }
 \citation{malkov2018hnsw}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.3}MiniBatchKMeans and Ward HAC}{9}{subsubsection.3.2.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.4}Hybrid Retrieval and Neural Re-Ranking}{9}{subsubsection.3.2.4}\protected@file@percent }
-\newlabel{sec:theory_hybrid}{{3.2.4}{9}{Hybrid Retrieval and Neural Re-Ranking}{subsubsection.3.2.4}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Methodology}{10}{section.4}\protected@file@percent }
-\newlabel{sec:methodology}{{4}{10}{Methodology}{section.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Data Categorization \& Taxonomy Strategy}{10}{subsection.4.1}\protected@file@percent }
-\newlabel{sec:taxonomy}{{4.1}{10}{Data Categorization \& Taxonomy Strategy}{subsection.4.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Taxonomy Pipeline Architecture}}{11}{figure.caption.10}\protected@file@percent }
-\newlabel{fig:taxonomy_pipeline}{{1}{11}{Taxonomy Pipeline Architecture}{figure.caption.10}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}The Orchestrator-Led Event Pipeline}{11}{subsection.4.2}\protected@file@percent }
-\newlabel{sec:event_pipeline}{{4.2}{11}{The Orchestrator-Led Event Pipeline}{subsection.4.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Proactive Event Pipeline Architecture}}{12}{figure.caption.11}\protected@file@percent }
-\newlabel{fig:event_system_architecture}{{2}{12}{Proactive Event Pipeline Architecture}{figure.caption.11}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Contextual vs. SQL Assignment Matching}{12}{subsection.4.3}\protected@file@percent }
-\newlabel{sec:matching_design}{{4.3}{12}{Contextual vs. SQL Assignment Matching}{subsection.4.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Agentic Assignment Submission Evaluation}{13}{subsection.4.4}\protected@file@percent }
-\newlabel{sec:submission_design}{{4.4}{13}{Agentic Assignment Submission Evaluation}{subsection.4.4}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Agentic Submission-Evaluation Flow}}{14}{figure.caption.12}\protected@file@percent }
-\newlabel{fig:submission_flow}{{3}{14}{Agentic Submission-Evaluation Flow}{figure.caption.12}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}RAG Chatbot Architecture}{15}{subsection.4.5}\protected@file@percent }
-\newlabel{sec:rag_arch}{{4.5}{15}{RAG Chatbot Architecture}{subsection.4.5}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Chatbot Query Input}}{15}{figure.caption.13}\protected@file@percent }
-\newlabel{fig:chatbot_query}{{4}{15}{Chatbot Query Input}{figure.caption.13}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.5.1}End-to-End Query Walkthrough}{15}{subsubsection.4.5.1}\protected@file@percent }
-\newlabel{sec:rag_walkthrough}{{4.5.1}{15}{End-to-End Query Walkthrough}{subsubsection.4.5.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces RAG Chatbot Pipeline}}{18}{figure.caption.14}\protected@file@percent }
-\newlabel{fig:rag_flow}{{5}{18}{RAG Chatbot Pipeline}{figure.caption.14}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.5.2}Knowledge Base Construction and Ingestion Pipeline}{19}{subsubsection.4.5.2}\protected@file@percent }
-\newlabel{sec:rag_ingest}{{4.5.2}{19}{Knowledge Base Construction and Ingestion Pipeline}{subsubsection.4.5.2}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.5.3}LLM-Based Query Routing}{19}{subsubsection.4.5.3}\protected@file@percent }
-\newlabel{sec:rag_routing}{{4.5.3}{19}{LLM-Based Query Routing}{subsubsection.4.5.3}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.5.4}Hybrid Search with Two-Stage Neural Re-Ranking}{20}{subsubsection.4.5.4}\protected@file@percent }
-\newlabel{sec:rag_search}{{4.5.4}{20}{Hybrid Search with Two-Stage Neural Re-Ranking}{subsubsection.4.5.4}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.5.5}Context Building and Streaming Response Generation}{21}{subsubsection.4.5.5}\protected@file@percent }
-\newlabel{sec:rag_context}{{4.5.5}{21}{Context Building and Streaming Response Generation}{subsubsection.4.5.5}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Chatbot Response Output}}{22}{figure.caption.15}\protected@file@percent }
-\newlabel{fig:chatbot_response}{{6}{22}{Chatbot Response Output}{figure.caption.15}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Experimental Setup}{22}{section.5}\protected@file@percent }
-\newlabel{sec:setup}{{5}{22}{Experimental Setup}{section.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Framework and Deployment}{22}{subsection.5.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Performance Metrics}{23}{subsection.5.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}RAG Chatbot System Configuration}{23}{subsection.5.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}RAG Evaluation Dataset}{24}{subsection.5.4}\protected@file@percent }
-\newlabel{sec:rag_eval_dataset}{{5.4}{24}{RAG Evaluation Dataset}{subsection.5.4}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces RAG Evaluation Benchmark Categories}}{24}{table.caption.16}\protected@file@percent }
-\newlabel{tab:rag_eval_dataset}{{5}{24}{RAG Evaluation Benchmark Categories}{table.caption.16}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}RAG Evaluation Metrics}{24}{subsection.5.5}\protected@file@percent }
-\newlabel{sec:rag_metrics}{{5.5}{24}{RAG Evaluation Metrics}{subsection.5.5}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Experiments \& Discussion}{25}{section.6}\protected@file@percent }
-\newlabel{sec:experiments}{{6}{25}{Experiments \& Discussion}{section.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Extraction Throughput \& Quality Funnel}{25}{subsection.6.1}\protected@file@percent }
-\newlabel{sec:extraction_funnel}{{6.1}{25}{Extraction Throughput \& Quality Funnel}{subsection.6.1}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Event Extraction Pipeline Funnel}}{25}{table.caption.17}\protected@file@percent }
-\newlabel{tab:extraction_funnel}{{6}{25}{Event Extraction Pipeline Funnel}{table.caption.17}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Assignment Generation Coverage}{25}{subsection.6.2}\protected@file@percent }
-\newlabel{sec:assignment_coverage}{{6.2}{25}{Assignment Generation Coverage}{subsection.6.2}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Assignments per Student Profile}}{26}{table.caption.18}\protected@file@percent }
-\newlabel{tab:assignment_results}{{7}{26}{Assignments per Student Profile}{table.caption.18}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Gold Ground-Truth Construction}{27}{subsection.6.3}\protected@file@percent }
-\newlabel{sec:gold_gt}{{6.3}{27}{Gold Ground-Truth Construction}{subsection.6.3}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Metric Provenance and Limitations}}{28}{table.caption.19}\protected@file@percent }
-\newlabel{tab:metric_provenance}{{8}{28}{Metric Provenance and Limitations}{table.caption.19}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Event Extraction Results}{28}{subsection.6.4}\protected@file@percent }
-\newlabel{sec:event_results}{{6.4}{28}{Event Extraction Results}{subsection.6.4}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Event Extraction Confusion Matrix}}{28}{table.caption.20}\protected@file@percent }
-\newlabel{tab:event_confusion}{{9}{28}{Event Extraction Confusion Matrix}{table.caption.20}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Event Extraction Metrics}}{28}{table.caption.21}\protected@file@percent }
-\newlabel{tab:event_metrics}{{10}{28}{Event Extraction Metrics}{table.caption.21}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.5}Assignment Matching Results}{29}{subsection.6.5}\protected@file@percent }
-\newlabel{sec:matching_results}{{6.5}{29}{Assignment Matching Results}{subsection.6.5}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Per-Profile Assignment Matching Scores}}{29}{table.caption.22}\protected@file@percent }
-\newlabel{tab:matching_perprofile}{{11}{29}{Per-Profile Assignment Matching Scores}{table.caption.22}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.6}Submission Agent Results}{29}{subsection.6.6}\protected@file@percent }
-\newlabel{sec:submission_results}{{6.6}{29}{Submission Agent Results}{subsection.6.6}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Submission Agent Results by Stratum}}{30}{table.caption.23}\protected@file@percent }
-\newlabel{tab:submission_stratum}{{12}{30}{Submission Agent Results by Stratum}{table.caption.23}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Submission Agent Confusion Matrix}}{30}{table.caption.24}\protected@file@percent }
-\newlabel{tab:submission_confusion}{{13}{30}{Submission Agent Confusion Matrix}{table.caption.24}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Submission Agent Metrics}}{30}{table.caption.25}\protected@file@percent }
-\newlabel{tab:submission_metrics}{{14}{30}{Submission Agent Metrics}{table.caption.25}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces Submission Agent Ablation Study}}{31}{table.caption.26}\protected@file@percent }
-\newlabel{tab:ablation_study}{{15}{31}{Submission Agent Ablation Study}{table.caption.26}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.7}RAG Chatbot Evaluation}{31}{subsection.6.7}\protected@file@percent }
-\newlabel{sec:rag_eval}{{6.7}{31}{RAG Chatbot Evaluation}{subsection.6.7}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces RAG Chatbot Evaluation Results}}{31}{table.caption.27}\protected@file@percent }
-\newlabel{tab:rag_results}{{16}{31}{RAG Chatbot Evaluation Results}{table.caption.27}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.8}Limitations}{33}{subsection.6.8}\protected@file@percent }
-\newlabel{sec:limitations}{{6.8}{33}{Limitations}{subsection.6.8}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion and Future Work}{33}{section.7}\protected@file@percent }
-\newlabel{sec:conclusion}{{7}{33}{Conclusion and Future Work}{section.7}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.3}MiniBatchKMeans and Ward HAC}{12}{subsubsection.3.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.4}Hybrid Retrieval and Neural Re-Ranking}{12}{subsubsection.3.2.4}\protected@file@percent }
+\newlabel{sec:theory_hybrid}{{3.2.4}{12}{Hybrid Retrieval and Neural Re-Ranking}{subsubsection.3.2.4}{}}
+\citation{macqueen1967kmeans,sculley2010web}
+\citation{salton1988termweighting}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Methodology}{13}{section.4}\protected@file@percent }
+\newlabel{sec:methodology}{{4}{13}{Methodology}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Data Categorization \& Taxonomy Strategy}{13}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:taxonomy}{{4.1}{13}{Data Categorization \& Taxonomy Strategy}{subsection.4.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Taxonomy Pipeline Architecture}}{14}{figure.caption.14}\protected@file@percent }
+\newlabel{fig:taxonomy_pipeline}{{4}{14}{Taxonomy Pipeline Architecture}{figure.caption.14}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Radial Taxonomy Tree}}{15}{figure.caption.15}\protected@file@percent }
+\newlabel{fig:taxonomy_radial_tree}{{5}{15}{Radial Taxonomy Tree}{figure.caption.15}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}The Orchestrator-Led Event Pipeline}{15}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:event_pipeline}{{4.2}{15}{The Orchestrator-Led Event Pipeline}{subsection.4.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Proactive Event Pipeline Architecture}}{16}{figure.caption.16}\protected@file@percent }
+\newlabel{fig:event_system_architecture}{{6}{16}{Proactive Event Pipeline Architecture}{figure.caption.16}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Contextual vs. SQL Assignment Matching}{16}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:matching_design}{{4.3}{16}{Contextual vs. SQL Assignment Matching}{subsection.4.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces My Regulations Interface}}{17}{figure.caption.17}\protected@file@percent }
+\newlabel{fig:my_regulations}{{7}{17}{My Regulations Interface}{figure.caption.17}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Agentic Assignment Submission Evaluation}{17}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:submission_design}{{4.4}{17}{Agentic Assignment Submission Evaluation}{subsection.4.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Agentic Submission-Evaluation Flow}}{19}{figure.caption.18}\protected@file@percent }
+\newlabel{fig:submission_flow}{{8}{19}{Agentic Submission-Evaluation Flow}{figure.caption.18}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Assignment Review Interface}}{20}{figure.caption.19}\protected@file@percent }
+\newlabel{fig:assignment_review_interface}{{9}{20}{Assignment Review Interface}{figure.caption.19}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}RAG Chatbot Architecture}{20}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:rag_arch}{{4.5}{20}{RAG Chatbot Architecture}{subsection.4.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Chatbot Query Input}}{21}{figure.caption.20}\protected@file@percent }
+\newlabel{fig:chatbot_query}{{10}{21}{Chatbot Query Input}{figure.caption.20}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.5.1}End-to-End Query Walkthrough}{21}{subsubsection.4.5.1}\protected@file@percent }
+\newlabel{sec:rag_walkthrough}{{4.5.1}{21}{End-to-End Query Walkthrough}{subsubsection.4.5.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces RAG Chatbot Pipeline}}{23}{figure.caption.21}\protected@file@percent }
+\newlabel{fig:rag_flow}{{11}{23}{RAG Chatbot Pipeline}{figure.caption.21}{}}
+\citation{reimers2019sentencebert}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.5.2}Knowledge Base Construction and Ingestion Pipeline}{24}{subsubsection.4.5.2}\protected@file@percent }
+\newlabel{sec:rag_ingest}{{4.5.2}{24}{Knowledge Base Construction and Ingestion Pipeline}{subsubsection.4.5.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.5.3}LLM-Based Query Routing}{24}{subsubsection.4.5.3}\protected@file@percent }
+\newlabel{sec:rag_routing}{{4.5.3}{24}{LLM-Based Query Routing}{subsubsection.4.5.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Courses View}}{25}{figure.caption.22}\protected@file@percent }
+\newlabel{fig:courses_view}{{12}{25}{Courses View}{figure.caption.22}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Weekly Schedule View}}{26}{figure.caption.23}\protected@file@percent }
+\newlabel{fig:schedule_view}{{13}{26}{Weekly Schedule View}{figure.caption.23}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Academic Calendar View}}{26}{figure.caption.24}\protected@file@percent }
+\newlabel{fig:calendar_view}{{14}{26}{Academic Calendar View}{figure.caption.24}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.5.4}Hybrid Search with Two-Stage Neural Re-Ranking}{26}{subsubsection.4.5.4}\protected@file@percent }
+\newlabel{sec:rag_search}{{4.5.4}{26}{Hybrid Search with Two-Stage Neural Re-Ranking}{subsubsection.4.5.4}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.5.5}Context Building and Streaming Response Generation}{27}{subsubsection.4.5.5}\protected@file@percent }
+\newlabel{sec:rag_context}{{4.5.5}{27}{Context Building and Streaming Response Generation}{subsubsection.4.5.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Chatbot Response Output}}{28}{figure.caption.25}\protected@file@percent }
+\newlabel{fig:chatbot_response}{{15}{28}{Chatbot Response Output}{figure.caption.25}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Experimental Setup}{28}{section.5}\protected@file@percent }
+\newlabel{sec:setup}{{5}{28}{Experimental Setup}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Framework and Deployment}{28}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Performance Metrics}{29}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}RAG Chatbot System Configuration}{29}{subsection.5.3}\protected@file@percent }
+\citation{voorhees1999trec}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}RAG Evaluation Dataset}{30}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:rag_eval_dataset}{{5.4}{30}{RAG Evaluation Dataset}{subsection.5.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces RAG Evaluation Benchmark Categories}}{30}{table.caption.26}\protected@file@percent }
+\newlabel{tab:rag_eval_dataset}{{6}{30}{RAG Evaluation Benchmark Categories}{table.caption.26}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}RAG Evaluation Metrics}{30}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:rag_metrics}{{5.5}{30}{RAG Evaluation Metrics}{subsection.5.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Experiments \& Discussion}{31}{section.6}\protected@file@percent }
+\newlabel{sec:experiments}{{6}{31}{Experiments \& Discussion}{section.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Extraction Throughput \& Quality Funnel}{31}{subsection.6.1}\protected@file@percent }
+\newlabel{sec:extraction_funnel}{{6.1}{31}{Extraction Throughput \& Quality Funnel}{subsection.6.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Event Extraction Pipeline Funnel}}{31}{table.caption.27}\protected@file@percent }
+\newlabel{tab:extraction_funnel}{{7}{31}{Event Extraction Pipeline Funnel}{table.caption.27}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Assignment Generation Coverage}{31}{subsection.6.2}\protected@file@percent }
+\newlabel{sec:assignment_coverage}{{6.2}{31}{Assignment Generation Coverage}{subsection.6.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Assignments per Student Profile}}{32}{table.caption.28}\protected@file@percent }
+\newlabel{tab:assignment_results}{{8}{32}{Assignments per Student Profile}{table.caption.28}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Gold Ground-Truth Construction}{33}{subsection.6.3}\protected@file@percent }
+\newlabel{sec:gold_gt}{{6.3}{33}{Gold Ground-Truth Construction}{subsection.6.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Metric Provenance and Limitations}}{34}{table.caption.29}\protected@file@percent }
+\newlabel{tab:metric_provenance}{{9}{34}{Metric Provenance and Limitations}{table.caption.29}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Event Extraction Results}{34}{subsection.6.4}\protected@file@percent }
+\newlabel{sec:event_results}{{6.4}{34}{Event Extraction Results}{subsection.6.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Event Extraction Confusion Matrix}}{34}{table.caption.30}\protected@file@percent }
+\newlabel{tab:event_confusion}{{10}{34}{Event Extraction Confusion Matrix}{table.caption.30}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Event Extraction Metrics}}{34}{table.caption.31}\protected@file@percent }
+\newlabel{tab:event_metrics}{{11}{34}{Event Extraction Metrics}{table.caption.31}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5}Assignment Matching Results}{35}{subsection.6.5}\protected@file@percent }
+\newlabel{sec:matching_results}{{6.5}{35}{Assignment Matching Results}{subsection.6.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Per-Profile Assignment Matching Scores}}{35}{table.caption.32}\protected@file@percent }
+\newlabel{tab:matching_perprofile}{{12}{35}{Per-Profile Assignment Matching Scores}{table.caption.32}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.6}Submission Agent Results}{35}{subsection.6.6}\protected@file@percent }
+\newlabel{sec:submission_results}{{6.6}{35}{Submission Agent Results}{subsection.6.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Submission Agent Results by Stratum}}{36}{table.caption.33}\protected@file@percent }
+\newlabel{tab:submission_stratum}{{13}{36}{Submission Agent Results by Stratum}{table.caption.33}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Submission Agent Confusion Matrix}}{36}{table.caption.34}\protected@file@percent }
+\newlabel{tab:submission_confusion}{{14}{36}{Submission Agent Confusion Matrix}{table.caption.34}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces Submission Agent Metrics}}{36}{table.caption.35}\protected@file@percent }
+\newlabel{tab:submission_metrics}{{15}{36}{Submission Agent Metrics}{table.caption.35}{}}
+\citation{voorhees1999trec}
+\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces Submission Agent Ablation Study}}{37}{table.caption.36}\protected@file@percent }
+\newlabel{tab:ablation_study}{{16}{37}{Submission Agent Ablation Study}{table.caption.36}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.7}Embedding Model and Chunking Benchmark}{37}{subsection.6.7}\protected@file@percent }
+\newlabel{sec:embedding_benchmark}{{6.7}{37}{Embedding Model and Chunking Benchmark}{subsection.6.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {17}{\ignorespaces Embedding benchmark on Orbis regulation data}}{38}{table.caption.37}\protected@file@percent }
+\newlabel{tab:embedding_benchmarks}{{17}{38}{Embedding benchmark on Orbis regulation data}{table.caption.37}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.8}RAG Chatbot Evaluation}{38}{subsection.6.8}\protected@file@percent }
+\newlabel{sec:rag_eval}{{6.8}{38}{RAG Chatbot Evaluation}{subsection.6.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {18}{\ignorespaces RAG Chatbot Evaluation Results}}{38}{table.caption.38}\protected@file@percent }
+\newlabel{tab:rag_results}{{18}{38}{RAG Chatbot Evaluation Results}{table.caption.38}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.9}Limitations}{40}{subsection.6.9}\protected@file@percent }
+\newlabel{sec:limitations}{{6.9}{40}{Limitations}{subsection.6.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion and Future Work}{40}{section.7}\protected@file@percent }
+\newlabel{sec:conclusion}{{7}{40}{Conclusion and Future Work}{section.7}{}}
 \bibstyle{ieeetr}
 \bibdata{references}
 \bibcite{lewis2020retrieval}{1}
@@ -157,13 +203,25 @@
 \bibcite{cisneros2025jorgpt}{9}
 \bibcite{zheng2023judging}{10}
 \bibcite{shannon1948mathematical}{11}
-\@writefile{toc}{\contentsline {section}{References}{35}{section*.28}\protected@file@percent }
-\bibcite{sculley2010web}{12}
-\bibcite{ward1963hierarchical}{13}
-\bibcite{malkov2018hnsw}{14}
-\@writefile{toc}{\contentsline {section}{Appendix}{37}{section*.30}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{A.1\hskip 1em\relax RAG Router Prompt}{37}{section*.31}\protected@file@percent }
-\newlabel{app:router_prompt}{{7}{37}{A.1\quad RAG Router Prompt}{section*.32}{}}
-\@writefile{toc}{\contentsline {subsection}{A.2\hskip 1em\relax RAG Generative Agent Prompt}{38}{lstnumber.-1.52}\protected@file@percent }
-\newlabel{app:answer_prompt}{{7}{38}{A.2\quad RAG Generative Agent Prompt}{section*.33}{}}
-\gdef \@abspage@last{46}
+\@writefile{toc}{\contentsline {section}{References}{42}{section*.39}\protected@file@percent }
+\bibcite{reimers2019sentencebert}{12}
+\bibcite{sculley2010web}{13}
+\bibcite{ward1963hierarchical}{14}
+\bibcite{malkov2018hnsw}{15}
+\bibcite{macqueen1967kmeans}{16}
+\bibcite{salton1988termweighting}{17}
+\bibcite{voorhees1999trec}{18}
+\@writefile{toc}{\contentsline {section}{Appendix}{44}{section*.41}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{A.1\hskip 1em\relax RAG Router Prompt}{44}{section*.42}\protected@file@percent }
+\newlabel{app:router_prompt}{{7}{44}{A.1\quad RAG Router Prompt}{section*.43}{}}
+\@writefile{toc}{\contentsline {subsection}{A.2\hskip 1em\relax RAG Generative Agent Prompt}{45}{lstnumber.-1.52}\protected@file@percent }
+\newlabel{app:answer_prompt}{{7}{45}{A.2\quad RAG Generative Agent Prompt}{section*.44}{}}
+\@writefile{toc}{\contentsline {subsection}{A.3\hskip 1em\relax Event Reasoning Reviewer Prompt}{46}{lstnumber.-2.36}\protected@file@percent }
+\newlabel{app:event_reviewer_prompt}{{7}{46}{A.3\quad Event Reasoning Reviewer Prompt}{section*.45}{}}
+\@writefile{toc}{\contentsline {subsection}{A.4\hskip 1em\relax Contextual Assignment Matching Prompt}{47}{lstnumber.-3.37}\protected@file@percent }
+\newlabel{app:contextual_match_prompt}{{7}{47}{A.4\quad Contextual Assignment Matching Prompt}{section*.46}{}}
+\@writefile{toc}{\contentsline {subsection}{A.5\hskip 1em\relax Submission Requirement Decomposition Prompt}{47}{lstnumber.-4.24}\protected@file@percent }
+\newlabel{app:submission_requirement_prompt}{{7}{47}{A.5\quad Submission Requirement Decomposition Prompt}{section*.47}{}}
+\@writefile{toc}{\contentsline {subsection}{A.6\hskip 1em\relax Submission Verdict Prompt}{48}{lstnumber.-5.21}\protected@file@percent }
+\newlabel{app:submission_verdict_prompt}{{7}{48}{A.6\quad Submission Verdict Prompt}{section*.48}{}}
+\gdef \@abspage@last{57}

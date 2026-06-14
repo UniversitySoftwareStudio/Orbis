@@ -16,6 +16,7 @@ from database.models import (
     EventSourceStatus,
 )
 from events.event_creator import EventCreator
+from events.promotion import promote_events_to_rules
 from events.reasoning_agent import ReasoningAgent
 from events.search_agent import SearchAgent
 
@@ -197,6 +198,26 @@ class EventPipelineOrchestrator:
                 run.events_created = events_created
                 db.commit()
 
+            # Connect the pipeline to the student-facing path: promote the
+            # high-confidence events this run produced into matchable
+            # RegulationRule rows, so the user agent (and the "My Regulations"
+            # page it feeds) sees what the pipeline found. Idempotent by
+            # fingerprint, so re-runs never duplicate rules.
+            promotion = promote_events_to_rules(db, commit=False)
+            self._emit_agent_log(
+                db=db,
+                run_id=run.id,
+                source_key=None,
+                agent=EventAgent.EVENT_CREATOR,
+                state="PROMOTE",
+                decision="events_promoted_to_rules",
+                reason="connect_pipeline_to_student_path",
+                payload={
+                    "promoted": promotion.promoted,
+                    "skipped_existing": promotion.skipped_existing,
+                },
+            )
+
             run.status = EventRunStatus.COMPLETED
             run.completed_at = func.now()
             run.chunks_processed = chunks_processed
@@ -214,6 +235,7 @@ class EventPipelineOrchestrator:
                     "sources_processed": sources_processed,
                     "chunks_processed": chunks_processed,
                     "events_created": events_created,
+                    "rules_promoted": promotion.promoted,
                 },
             )
             db.commit()

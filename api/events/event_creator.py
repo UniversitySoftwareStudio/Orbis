@@ -7,56 +7,17 @@ from dataclasses import dataclass
 from sqlalchemy.orm import Session
 
 from database.models import Event, EventCandidateDecision, EventCandidateLog, EventStatus, EventTargetRole
+from events import obligation_patterns as patterns
 from events.reasoning_reviewer import ReviewedCandidate, ReasoningReviewer
 from events.types import ObligationCandidate
 from events.utils import hash_text, make_event_fingerprint, normalize_text
 
 
-_STRICT_ACTION_PATTERNS = (
-    re.compile(r"\bmust\b", re.IGNORECASE),
-    re.compile(r"\bshall\b", re.IGNORECASE),
-    re.compile(r"\brequired(?:\s+to)?\b", re.IGNORECASE),
-    re.compile(r"\boblig(?:ed|ation)\b", re.IGNORECASE),
-    re.compile(r"\bzorunlu(?:dur|)\b", re.IGNORECASE),
-    re.compile(r"\bzorundad(?:ır|ir|ırlar|irler)\b", re.IGNORECASE),
-    re.compile(r"\byükümlüdür(?:ler)?\b", re.IGNORECASE),
-    re.compile(r"\bmecbur(?:dur|idir)\b", re.IGNORECASE),
-    re.compile(r"\ben\s+geç\b", re.IGNORECASE),
-    re.compile(r"\btarihine\s+kadar\b", re.IGNORECASE),
-)
-
-_STUDENT_ACTOR_PATTERNS = (
-    re.compile(r"\bstudents?\b", re.IGNORECASE),
-    re.compile(r"\böğrenc(?:i|iler)\b", re.IGNORECASE),
-    re.compile(r"\bthe student\b", re.IGNORECASE),
-)
-
-_STAFF_ACTOR_PATTERNS = (
-    re.compile(r"\bstaff\b", re.IGNORECASE),
-    re.compile(r"\bpersonel\b", re.IGNORECASE),
-    re.compile(r"\bemployees?\b", re.IGNORECASE),
-    re.compile(r"\bakademik\b", re.IGNORECASE),
-    re.compile(r"\bidari\b", re.IGNORECASE),
-    re.compile(r"\bbuluş(?:çu|\s+sahibi)\b", re.IGNORECASE),
-    re.compile(r"\baraştırmac(?:ı|ilar|ılar)\b", re.IGNORECASE),
-)
-
-_ADMIN_ACTOR_PATTERNS = (
-    re.compile(r"\badmin\b", re.IGNORECASE),
-    re.compile(r"\byönetim\b", re.IGNORECASE),
-    re.compile(r"\brektörlük\b", re.IGNORECASE),
-    re.compile(r"\bcommittee\b", re.IGNORECASE),
-    re.compile(r"\bboard\b", re.IGNORECASE),
-    re.compile(r"\bdean(?:'s)?\b", re.IGNORECASE),
-    re.compile(r"\bfaculty executive board\b", re.IGNORECASE),
-    re.compile(r"\byönetim kurulu\b", re.IGNORECASE),
-)
-
-_ACTOR_PATTERNS = (
-    *_STUDENT_ACTOR_PATTERNS,
-    *_STAFF_ACTOR_PATTERNS,
-    *_ADMIN_ACTOR_PATTERNS,
-)
+# Obligation/actor recognition is shared with the extractor — see
+# events/obligation_patterns.py. The quality gate uses the same patterns so the
+# two stages never disagree about what counts as an obligation.
+_STRICT_ACTION_PATTERNS = patterns.ACTION_PATTERNS
+_ACTOR_PATTERNS = patterns.ACTOR_PATTERNS
 
 _WEAK_MODAL_PATTERNS = (
     re.compile(r"\bcan\b", re.IGNORECASE),
@@ -193,9 +154,18 @@ class EventCreator:
                 else:
                     decision_status = None
             elif reviewer_enabled and base.decision != EventCandidateDecision.REJECT_QUALITY:
-                decision = EventCandidateDecision.REJECT_QUALITY
-                decision_reason = "llm_missing_decision"
-                decision_status = None
+                # The reviewer was enabled but returned no decision for this
+                # candidate (timeout, parse failure, dropped item). Fail OPEN to
+                # the deterministic gate's verdict instead of silently rejecting
+                # — a flaky LLM must not quietly shrink recall. A would-be
+                # PENDING is downgraded to NEEDS_REVIEW so a human still checks
+                # it; the miss is counted in rejection_reasons for visibility.
+                metrics["llm_review_missing"] = True
+                rejection_reasons["llm_review_missing"] = rejection_reasons.get("llm_review_missing", 0) + 1
+                if base.decision == EventCandidateDecision.ACCEPT_PENDING:
+                    decision = EventCandidateDecision.ACCEPT_REVIEW
+                    decision_status = EventStatus.NEEDS_REVIEW
+                    decision_reason = "review_missing_failopen"
 
             # safety re-check after LLM normalization/role override
             safety_candidate = ObligationCandidate(
@@ -514,11 +484,7 @@ class EventCreator:
 
     @staticmethod
     def _role_hits(text: str) -> dict[str, int]:
-        return {
-            "student": sum(1 for pattern in _STUDENT_ACTOR_PATTERNS if pattern.search(text)),
-            "staff": sum(1 for pattern in _STAFF_ACTOR_PATTERNS if pattern.search(text)),
-            "admin": sum(1 for pattern in _ADMIN_ACTOR_PATTERNS if pattern.search(text)),
-        }
+        return patterns.role_hits(text)
 
     @staticmethod
     def _log_candidate(

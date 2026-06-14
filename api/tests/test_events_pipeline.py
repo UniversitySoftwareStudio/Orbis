@@ -13,10 +13,13 @@ from database.models import (
     EventSourceLog,
     EventSourceCheckpoint,
     KnowledgeBase,
+    RegulationRule,
+    RuleMatchType,
 )
 from events.orchestrator import EventPipelineOrchestrator
+from events.promotion import promote_events_to_rules
 from events.search_agent import SearchAgent
-from events.utils import canonicalize_url
+from events.utils import canonicalize_url, safe_eval_condition
 
 
 def _kb_row(url: str, content: str, category: str = "regulation_document") -> KnowledgeBase:
@@ -239,3 +242,69 @@ def test_pipeline_writes_candidate_logs_and_review_status(db_session):
     decisions = {log.decision for log in candidate_logs}
     assert EventCandidateDecision.ACCEPT_PENDING in decisions
     assert EventCandidateDecision.ACCEPT_REVIEW in decisions
+
+
+def test_pipeline_promotes_events_into_regulation_rules(db_session):
+    """The trigger pipeline's output must reach the student-facing rule table."""
+    db_session.add_all(
+        [
+            _kb_row(
+                "https://www.bilgi.edu.tr/upload/regulation-promote-1/",
+                "Students must submit course registration forms by the deadline.",
+            ),
+            _kb_row(
+                "https://www.bilgi.edu.tr/upload/regulation-promote-2/",
+                "Academic staff are required to approve forms within 3 business days.",
+            ),
+        ]
+    )
+    db_session.commit()
+
+    orchestrator = EventPipelineOrchestrator()
+    run = orchestrator.start_run(db_session)
+    result = orchestrator.run_existing(db_session, run)
+
+    assert result.status == EventRunStatus.COMPLETED.value
+    assert result.events_created == 2
+
+    # The orchestrator promoted the accepted events into matchable rules.
+    rules = db_session.query(RegulationRule).all()
+    assert len(rules) == 2
+    assert {rule.target_role.value for rule in rules} == {"student", "staff"}
+    assert all(rule.match_type == RuleMatchType.CONTEXTUAL for rule in rules)
+    # Fingerprints match their source events, so promotion is traceable.
+    event_fps = {e.fingerprint for e in db_session.query(Event).all()}
+    assert {rule.fingerprint for rule in rules} == event_fps
+
+
+def test_promotion_is_idempotent(db_session):
+    db_session.add(
+        _kb_row(
+            "https://www.bilgi.edu.tr/upload/regulation-promote-idem/",
+            "Students must complete orientation before classes start.",
+        )
+    )
+    db_session.commit()
+
+    orchestrator = EventPipelineOrchestrator()
+    run = orchestrator.start_run(db_session)
+    orchestrator.run_existing(db_session, run)
+
+    before = db_session.query(RegulationRule).count()
+    stats = promote_events_to_rules(db_session)
+    assert stats.promoted == 0
+    assert stats.skipped_existing == before
+    assert db_session.query(RegulationRule).count() == before
+
+
+def test_safe_eval_condition_handles_conditions_and_rejects_injection():
+    ctx = {"gpa": 1.5, "enrolled_credits": 9, "is_active": True}
+    assert safe_eval_condition("gpa < 1.80", ctx) is True
+    assert safe_eval_condition("gpa < 1.0", ctx) is False
+    assert safe_eval_condition("enrolled_credits < 12", ctx) is True
+    assert safe_eval_condition("is_active", ctx) is True
+    assert safe_eval_condition("not is_active", ctx) is False
+    # missing field, malformed text, and injection attempts all return None
+    assert safe_eval_condition("gpa < 1.8", {"gpa": None}) is None
+    assert safe_eval_condition("__import__('os').system('x')", ctx) is None
+    assert safe_eval_condition("", ctx) is None

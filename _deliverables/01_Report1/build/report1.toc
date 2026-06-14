@@ -1,46 +1,52 @@
 \contentsline {section}{\textsc {Abstract}}{ii}{section*.2}%
 \contentsline {section}{\textsc {Table of Contents}}{iii}{section*.2}%
-\contentsline {section}{List of Figures}{v}{section*.3}%
-\contentsline {section}{List of Tables}{vi}{section*.4}%
-\contentsline {section}{\textsc {List of Abbreviations}}{vii}{section*.5}%
+\contentsline {section}{List of Figures}{vi}{section*.3}%
+\contentsline {section}{List of Tables}{vii}{section*.4}%
+\contentsline {section}{\textsc {List of Abbreviations}}{viii}{section*.5}%
 \contentsline {section}{\numberline {1}Introduction}{1}{section.1}%
 \contentsline {section}{\numberline {2}Related Works}{2}{section.2}%
 \contentsline {section}{\numberline {3}Design}{5}{section.3}%
 \contentsline {subsection}{\numberline {3.1}Dataset}{5}{subsection.3.1}%
-\contentsline {subsubsection}{\numberline {3.1.1}RAG Knowledge Base Preparation}{6}{subsubsection.3.1.1}%
-\contentsline {subsection}{\numberline {3.2}Theoretical Background}{8}{subsection.3.2}%
-\contentsline {subsubsection}{\numberline {3.2.1}Shannon Entropy for URL Classification}{8}{subsubsection.3.2.1}%
-\contentsline {subsubsection}{\numberline {3.2.2}Vector Embeddings and Cosine Similarity}{8}{subsubsection.3.2.2}%
-\contentsline {subsubsection}{\numberline {3.2.3}MiniBatchKMeans and Ward HAC}{9}{subsubsection.3.2.3}%
-\contentsline {subsubsection}{\numberline {3.2.4}Hybrid Retrieval and Neural Re-Ranking}{9}{subsubsection.3.2.4}%
-\contentsline {section}{\numberline {4}Methodology}{10}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Data Categorization \& Taxonomy Strategy}{10}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}The Orchestrator-Led Event Pipeline}{11}{subsection.4.2}%
-\contentsline {subsection}{\numberline {4.3}Contextual vs. SQL Assignment Matching}{12}{subsection.4.3}%
-\contentsline {subsection}{\numberline {4.4}Agentic Assignment Submission Evaluation}{13}{subsection.4.4}%
-\contentsline {subsection}{\numberline {4.5}RAG Chatbot Architecture}{15}{subsection.4.5}%
-\contentsline {subsubsection}{\numberline {4.5.1}End-to-End Query Walkthrough}{15}{subsubsection.4.5.1}%
-\contentsline {subsubsection}{\numberline {4.5.2}Knowledge Base Construction and Ingestion Pipeline}{19}{subsubsection.4.5.2}%
-\contentsline {subsubsection}{\numberline {4.5.3}LLM-Based Query Routing}{19}{subsubsection.4.5.3}%
-\contentsline {subsubsection}{\numberline {4.5.4}Hybrid Search with Two-Stage Neural Re-Ranking}{20}{subsubsection.4.5.4}%
-\contentsline {subsubsection}{\numberline {4.5.5}Context Building and Streaming Response Generation}{21}{subsubsection.4.5.5}%
-\contentsline {section}{\numberline {5}Experimental Setup}{22}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Framework and Deployment}{22}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}Performance Metrics}{23}{subsection.5.2}%
-\contentsline {subsection}{\numberline {5.3}RAG Chatbot System Configuration}{23}{subsection.5.3}%
-\contentsline {subsection}{\numberline {5.4}RAG Evaluation Dataset}{24}{subsection.5.4}%
-\contentsline {subsection}{\numberline {5.5}RAG Evaluation Metrics}{24}{subsection.5.5}%
-\contentsline {section}{\numberline {6}Experiments \& Discussion}{25}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Extraction Throughput \& Quality Funnel}{25}{subsection.6.1}%
-\contentsline {subsection}{\numberline {6.2}Assignment Generation Coverage}{25}{subsection.6.2}%
-\contentsline {subsection}{\numberline {6.3}Gold Ground-Truth Construction}{27}{subsection.6.3}%
-\contentsline {subsection}{\numberline {6.4}Event Extraction Results}{28}{subsection.6.4}%
-\contentsline {subsection}{\numberline {6.5}Assignment Matching Results}{29}{subsection.6.5}%
-\contentsline {subsection}{\numberline {6.6}Submission Agent Results}{29}{subsection.6.6}%
-\contentsline {subsection}{\numberline {6.7}RAG Chatbot Evaluation}{31}{subsection.6.7}%
-\contentsline {subsection}{\numberline {6.8}Limitations}{33}{subsection.6.8}%
-\contentsline {section}{\numberline {7}Conclusion and Future Work}{33}{section.7}%
-\contentsline {section}{References}{35}{section*.28}%
-\contentsline {section}{Appendix}{37}{section*.30}%
-\contentsline {subsection}{A.1\hskip 1em\relax RAG Router Prompt}{37}{section*.31}%
-\contentsline {subsection}{A.2\hskip 1em\relax RAG Generative Agent Prompt}{38}{lstnumber.-1.52}%
+\contentsline {subsubsection}{\numberline {3.1.1}Synthetic SIS Profile Generation}{6}{subsubsection.3.1.1}%
+\contentsline {subsubsection}{\numberline {3.1.2}RAG Knowledge Base Preparation}{9}{subsubsection.3.1.2}%
+\contentsline {subsection}{\numberline {3.2}Theoretical Background}{11}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}Shannon Entropy for URL Classification}{11}{subsubsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.2}Vector Embeddings and Cosine Similarity}{11}{subsubsection.3.2.2}%
+\contentsline {subsubsection}{\numberline {3.2.3}MiniBatchKMeans and Ward HAC}{12}{subsubsection.3.2.3}%
+\contentsline {subsubsection}{\numberline {3.2.4}Hybrid Retrieval and Neural Re-Ranking}{12}{subsubsection.3.2.4}%
+\contentsline {section}{\numberline {4}Methodology}{13}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Data Categorization \& Taxonomy Strategy}{13}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}The Orchestrator-Led Event Pipeline}{15}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Contextual vs. SQL Assignment Matching}{16}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Agentic Assignment Submission Evaluation}{17}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}RAG Chatbot Architecture}{20}{subsection.4.5}%
+\contentsline {subsubsection}{\numberline {4.5.1}End-to-End Query Walkthrough}{21}{subsubsection.4.5.1}%
+\contentsline {subsubsection}{\numberline {4.5.2}Knowledge Base Construction and Ingestion Pipeline}{24}{subsubsection.4.5.2}%
+\contentsline {subsubsection}{\numberline {4.5.3}LLM-Based Query Routing}{24}{subsubsection.4.5.3}%
+\contentsline {subsubsection}{\numberline {4.5.4}Hybrid Search with Two-Stage Neural Re-Ranking}{26}{subsubsection.4.5.4}%
+\contentsline {subsubsection}{\numberline {4.5.5}Context Building and Streaming Response Generation}{27}{subsubsection.4.5.5}%
+\contentsline {section}{\numberline {5}Experimental Setup}{28}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Framework and Deployment}{28}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Performance Metrics}{29}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}RAG Chatbot System Configuration}{29}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}RAG Evaluation Dataset}{30}{subsection.5.4}%
+\contentsline {subsection}{\numberline {5.5}RAG Evaluation Metrics}{30}{subsection.5.5}%
+\contentsline {section}{\numberline {6}Experiments \& Discussion}{31}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Extraction Throughput \& Quality Funnel}{31}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Assignment Generation Coverage}{31}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Gold Ground-Truth Construction}{33}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}Event Extraction Results}{34}{subsection.6.4}%
+\contentsline {subsection}{\numberline {6.5}Assignment Matching Results}{35}{subsection.6.5}%
+\contentsline {subsection}{\numberline {6.6}Submission Agent Results}{35}{subsection.6.6}%
+\contentsline {subsection}{\numberline {6.7}Embedding Model and Chunking Benchmark}{37}{subsection.6.7}%
+\contentsline {subsection}{\numberline {6.8}RAG Chatbot Evaluation}{38}{subsection.6.8}%
+\contentsline {subsection}{\numberline {6.9}Limitations}{40}{subsection.6.9}%
+\contentsline {section}{\numberline {7}Conclusion and Future Work}{40}{section.7}%
+\contentsline {section}{References}{42}{section*.39}%
+\contentsline {section}{Appendix}{44}{section*.41}%
+\contentsline {subsection}{A.1\hskip 1em\relax RAG Router Prompt}{44}{section*.42}%
+\contentsline {subsection}{A.2\hskip 1em\relax RAG Generative Agent Prompt}{45}{lstnumber.-1.52}%
+\contentsline {subsection}{A.3\hskip 1em\relax Event Reasoning Reviewer Prompt}{46}{lstnumber.-2.36}%
+\contentsline {subsection}{A.4\hskip 1em\relax Contextual Assignment Matching Prompt}{47}{lstnumber.-3.37}%
+\contentsline {subsection}{A.5\hskip 1em\relax Submission Requirement Decomposition Prompt}{47}{lstnumber.-4.24}%
+\contentsline {subsection}{A.6\hskip 1em\relax Submission Verdict Prompt}{48}{lstnumber.-5.21}%

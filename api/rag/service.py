@@ -546,6 +546,19 @@ class RAGService:
         else:
             yield {"type": "step", "message": "No exact source match — answering from general guidance"}
 
+        # Detect the QUESTION language so the answer follows the question, not
+        # the (usually Turkish) source context. "the student's language" alone
+        # made the model copy the context language.
+        _tr_chars = set("çğışöüÇĞİŞÖÜ")
+        _tr_words = {"nasıl", "nedir", "ne", "için", "mi", "mı", "kaç", "hangi", "var", "nerede", "ne zaman"}
+        _is_tr = any(c in _tr_chars for c in query) or any(w in query.lower().split() for w in _tr_words)
+        _target_lang = "Turkish" if _is_tr else "English"
+        _lang_rule = (
+            f"CRITICAL: Write your ENTIRE answer in {_target_lang}. The sources may be in "
+            f"another language — translate the relevant facts into {_target_lang}. "
+            f"Never answer in any language other than {_target_lang}. "
+        )
+
         # Build a grounded prompt from the real document content.
         if docs:
             context = "\n\n".join(
@@ -555,19 +568,22 @@ class RAGService:
                 context = sis_context + "\n\n" + context
             prompt = (
                 "You are Orbis, the academic assistant for Istanbul Bilgi University. "
-                "Answer the student's question using ONLY the sources below. Be concise and "
-                "practical, answer in the student's language, and cite sources inline as "
+                + _lang_rule
+                + "Answer the student's question using ONLY the sources below. Be concise and "
+                "practical, and cite sources inline as "
                 "[1], [2] matching their order. If the sources don't fully cover it, say so.\n\n"
-                f"Sources:\n{context}\n\nStudent question: {query}"
+                f"Sources:\n{context}\n\nStudent question: {query}\n\n"
+                f"Remember: answer entirely in {_target_lang}."
             )
         else:
             ctx = (sis_context + "\n\n") if sis_context else ""
             prompt = (
                 "You are Orbis, the academic assistant for Istanbul Bilgi University. "
-                "Answer helpfully and concisely in the student's language. Give practical "
-                "guidance and point to the relevant office for exact current rules. Do not "
-                "invent specific dates, names, or numbers.\n\n"
-                f"{ctx}Student question: {query}"
+                + _lang_rule
+                + "Give practical guidance and point to the relevant office for exact "
+                "current rules. Do not invent specific dates, names, or numbers.\n\n"
+                f"{ctx}Student question: {query}\n\n"
+                f"Remember: answer entirely in {_target_lang}."
             )
 
         for chunk in self.llm_service.generate(prompt):

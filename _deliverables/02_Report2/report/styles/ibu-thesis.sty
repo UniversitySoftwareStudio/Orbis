@@ -1,93 +1,192 @@
-\NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{styles/ibu-thesis}[2026/05/11 Minimal IBU thesis compatibility style]
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{nomencl}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{xcolor}
+ 
 
-\RequirePackage[T1]{fontenc}
-\RequirePackage[utf8]{inputenc}
-\RequirePackage{geometry}
-\RequirePackage{setspace}
+%
+%% MAKING ARRAYS
+%%  Ref: https://tex.stackexchange.com/questions/463902/indexing-variables
+%
+\usepackage{xparse}
+\usepackage{pgffor}
 
-\geometry{a4paper, margin=2.5cm}
-\onehalfspacing
-
-\makeatletter
-
-\newcommand{\ibu@thesistitle}{}
-\newcommand{\ibu@faculty}{}
-\newcommand{\ibu@degree}{}
-\newcommand{\ibu@department}{}
-\newcommand{\ibu@submissiondate}{}
-\newcommand{\ibu@abstract}{}
-
-\newcommand{\thesistitle}[1]{\gdef\ibu@thesistitle{#1}}
-\newcommand{\authors}[2][]{\expandafter\gdef\csname ibu@author@#1\endcsname{#2}}
-\newcommand{\authorsid}[2][]{\expandafter\gdef\csname ibu@authorid@#1\endcsname{#2}}
-\newcommand{\supervisors}[2][]{\expandafter\gdef\csname ibu@supervisor@#1\endcsname{#2}}
-\newcommand{\faculty}[1]{\gdef\ibu@faculty{#1}}
-\newcommand{\degree}[1]{\gdef\ibu@degree{#1}}
-\newcommand{\department}[1]{\gdef\ibu@department{#1}}
-\newcommand{\submissiondate}[1]{\gdef\ibu@submissiondate{#1}}
-\renewcommand{\abstract}[1]{\gdef\ibu@abstract{#1}}
-
-\newcommand{\ibu@printauthor}[1]{%
-  \@ifundefined{ibu@author@#1}{}{%
-    \csname ibu@author@#1\endcsname%
-    \@ifundefined{ibu@authorid@#1}{}{, \csname ibu@authorid@#1\endcsname}%
-    \par}}
-
-\newcommand{\ibu@printsupervisor}[1]{%
-  \@ifundefined{ibu@supervisor@#1}{}{\csname ibu@supervisor@#1\endcsname\par}}
-
-\renewcommand{\maketitle}{%
-  \begin{titlepage}
-    \centering
-    \vspace*{1cm}
-    {\Large\bfseries \ibu@thesistitle\par}
-    \vspace{1.5cm}
-    {\large by\par}
-    \vspace{0.5cm}
-    {\large
-      \ibu@printauthor{1}
-      \ibu@printauthor{2}
-      \ibu@printauthor{3}
-      \ibu@printauthor{4}
-      \ibu@printauthor{5}
+\newcommand\makearray[1]{%
+    \expandafter\NewDocumentCommand\csname#1\endcsname{r[]g}{%
+        \IfValueTF{##2}{%
+            \expandafter\def\csname #1@##1\endcsname{##2}%
+        }{%
+            \csname #1@##1\endcsname
+        }%
     }
-    \vspace{1.5cm}
-    {\large Supervised by\par}
-    \vspace{0.5cm}
-    {\large
-      \ibu@printsupervisor{1}
-      \ibu@printsupervisor{2}
-      \ibu@printsupervisor{3}
-    }
-    \vfill
-    Submitted to the\par
-    \ibu@faculty\par
-    in partial fulfillment of the requirements for the\par
-    \ibu@degree\par
-    in the\par
-    \ibu@department\par
-    \vspace{1.2cm}
-    \ibu@submissiondate\par
-  \end{titlepage}}
+}
 
-\newcommand{\makeabstract}{%
-  \section*{\abstractname}
-  \ibu@abstract
-  \clearpage}
 
-\newcommand{\maketableofcontents}{%
-  \tableofcontents
-  \clearpage}
+% ============ Variables ============
 
-\newcommand{\listofabbrv}{List of Abbreviations}
-\newcommand{\makelistofabbrv}{\section*{\listofabbrv}}
-\newcommand{\listofsymbols}{List of Symbols}
-\newcommand{\makelistofsymbols}{\section*{\listofsymbols}}
-\newcommand{\makelistoffigures}{\listoffigures\clearpage}
-\newcommand{\makelistoftables}{\listoftables\clearpage}
+\def\thesistitle#1{\gdef\@thesistitle{#1}}
 
-\newenvironment{abbrv}{\begin{description}}{\end{description}}
-\newenvironment{symbols}{\begin{description}}{\end{description}}
+\def\faculty#1{\gdef\@faculty{#1}}
+\def\degree#1{\gdef\@degree{#1}}
+\def\department#1{\gdef\@department{#1}}
+\def\submissiondate#1{\gdef\@submissiondate{#1}}
+\def\abstract#1{\gdef\@abstract{#1}}
 
-\makeatother
+\makearray{authors}
+\makearray{authorsid}
+\makearray{supervisors}
+
+% ============ Variables ============
+
+
+
+% ============== Pages ==============
+
+% Title page
+\renewcommand{\maketitle}{
+    \pagenumbering{roman}
+    \thispagestyle{empty}
+    \begin{center}
+        \begin{figure*}
+            \centering
+            \includegraphics[width=.5\linewidth]{figures/LOGO.png}
+        \end{figure*}
+        \vspace*{.5in}
+        {\Large \textsc{\@thesistitle}} \\   
+        \vspace*{0.5in}
+        \textit{by} \\[1\baselineskip]
+        \foreach \authorindex in {1,...,6} {
+            \ifcsname authors@\authorindex\endcsname 
+                \textsc{\authors[\authorindex], \authorsid[\authorindex]} \par
+            \fi
+        }        
+        \vspace*{0.5in}
+        \textit{Supervised by} \\[1\baselineskip]
+        \foreach \supervisorindex in {1,...,6} {
+            \ifcsname supervisors@\supervisorindex\endcsname 
+                \textsc{\supervisors[\supervisorindex]} \par
+            \fi
+        }
+        \vspace*{0.5in}
+        \makedissertation
+    \end{center}
+    \newpage
+}
+
+\newcommand{\makedissertation}{
+    {\small \textit{Submitted to the} \\
+    \@faculty \\
+    \textit{in partial fulfillment of the requirements for the} \\[1\baselineskip]
+    \@degree \\[1\baselineskip]
+    \textit{in the} \\
+    \@department}
+    \vfill{}
+    \@submissiondate
+}
+
+% Abstract page
+\renewcommand\abstractname{\textsc{Abstract}}
+\newcommand{\makeabstract}[1]{
+    \begin{center}
+        \large{\textbf{\textit{Abstract}}} \\[2\baselineskip]
+    \end{center} 
+    \textit{\@abstract}
+    \newpage
+}
+
+% Table of Contents
+\renewcommand\contentsname{\textsc{Table of Contents}}
+\newcommand\maketableofcontents{
+    
+     \@afterindenttrue
+     \begin{center}
+        {\Large \textsc{\contentsname}}
+        \vskip21pt \vskip0.3\baselineskip
+      \end{center}
+    \@afterheading
+    \@starttoc{toc}%
+    \newpage
+}
+
+% List of Figures
+\renewcommand\figurename{Figure}
+\renewcommand\listoffigures{List of Figures}
+\newcommand\makelistoffigures{
+    \begin{center}
+        {\Large \sc \listoffigures}
+    \end{center}
+    \vskip\baselineskip
+    \@starttoc{lof}
+    \newpage
+}
+
+% List of Tables
+\renewcommand\tablename{Table}
+\renewcommand\listoftables{\textsc{List of Tables}}
+\newcommand\makelistoftables{
+    \begin{center}
+        {\Large \textsc{\listoftables}}
+    \end{center}
+    \vskip\baselineskip
+    \@starttoc{lot}
+    \newpage
+}
+
+
+% List of symbols
+\newlist{symbols}{itemize}{1}
+\setlist[symbols,1]{
+    label=,labelwidth=2in,align=parleft,itemsep=0.2\baselineskip,leftmargin=!
+}
+\newcommand\listofsymbols{\textsc{List of Symbols}}
+\newcommand\makelistofsymbols{
+    \begin{center}
+        {\Large \textsc{\listofsymbols}}
+    \end{center}
+    \vskip\baselineskip
+}
+
+% List of abbreviations
+\newlist{abbrv}{itemize}{1}
+\setlist[abbrv,1]{
+    label=,labelwidth=2in,align=parleft,itemsep=0.2\baselineskip,leftmargin=!
+}
+\newcommand\listofabbrv{\textsc{List of Abbreviations}}
+\newcommand\makelistofabbrv{
+    \begin{center}
+        {\Large \textsc{\listofabbrv}}
+    \end{center}
+    \vskip\baselineskip
+}
+
+% ============== Pages ==============
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.95}
+
+\renewcommand{\lstlistingname}{Code}
+\lstdefinestyle{custom_style}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    numberstyle=\scriptsize,
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,     
+    extendedchars=true,
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=7pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=custom_style}

@@ -1,4 +1,5 @@
 from collections.abc import Iterator
+import os
 from typing import Protocol
 
 import google.generativeai as genai
@@ -31,14 +32,20 @@ class GeminiProvider:
 class OpenAICompatProvider:
     def __init__(self, model: str, api_key: str, base_url: str | None = None) -> None:
         self.model = model
+        self.base_url = base_url or ""
+        self.openrouter_provider = os.getenv("OPENROUTER_PROVIDER", "Cloudflare")
         self.client = OpenAI(api_key=api_key, base_url=base_url)
 
     def stream(self, prompt: str) -> Iterator[str]:
+        request_kwargs = {}
+        if "openrouter.ai" in self.base_url:
+            request_kwargs["extra_body"] = {"provider": {"only": [self.openrouter_provider]}}
         chunks = self.client.chat.completions.create(
             model=self.model,
             messages=[{"role": "user", "content": prompt}],
             stream=True,
             max_tokens=RAG_LLM_MAX_TOKENS,
+            **request_kwargs,
         )
         for chunk in chunks:
             text = chunk.choices[0].delta.content

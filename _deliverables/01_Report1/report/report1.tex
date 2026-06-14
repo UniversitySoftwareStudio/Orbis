@@ -226,6 +226,50 @@ Student profiles (\texttt{user\_profiles}) & 4 \\
 
 The crawl is intentionally heterogeneous: it contains formal regulations (student handbooks, dual-major directives, internship procedures), administrative announcements, event pages, and upload directories. The corpus is bilingual, which complicates deduplication --- the same regulation often exists under both \texttt{/en/academics/...} and \texttt{/tr/akademik/...} paths. Chunking is performed at ingest time using a semantic splitter with a soft 800-token target and a 100-token overlap; each chunk is embedded once with a local MiniLM model and stored in \texttt{knowledge\_base\_embeddings} alongside the source URL, content hash, and categorical metadata. The regulation subset is isolated via the four-step taxonomy pipeline of Section~\ref{sec:taxonomy}, with a final regex overlay that promotes any chunk whose source URL matches a known regulation path into the \texttt{regulation} or \texttt{regulation\_document} category, preventing event-pipeline cross-contamination from non-binding content. Instead, evaluation is performed against a constructed Gold Ground-Truth testing set, detailed in Section~\ref{sec:gold_gt}.
 
+\subsubsection{Synthetic SIS Profile Generation}
+\label{sec:synthetic_profiles}
+Because the prototype is not connected to the university's live Student Information System, student-facing pages require representative academic state. We therefore use a reproducible \emph{synthetic SIS profile generator} rather than real student records. The generator is implemented as an idempotent seed script: for any new walkthrough user it creates or refreshes a row in \texttt{users}, links it to \texttt{students}, fills the enriched \texttt{user\_profiles} context used by the event-matching agent, and then inserts completed transcript rows through the same relational tables used by the production endpoints. This keeps the demonstration data realistic while preserving privacy and repeatability.
+
+\begin{table}[H]
+\centering
+\begin{adjustbox}{center}
+\begin{tabular}{p{4.0cm}p{5.0cm}p{5.2cm}}
+\toprule
+\textbf{Synthetic artifact} & \textbf{Generated fields} & \textbf{Purpose in Orbis} \\ \midrule
+Identity and login & Name, email, password hash, student number & Allows the web application to authenticate a realistic student account without external SIS access. \\
+Academic profile & Department, faculty, program level, year, semester, credits, GPA, status flags, extra context & Supplies structured context for proactive regulation matching and dashboard statistics. \\
+Transcript history & Past academic terms, courses, sections, completed enrollments, letter grades, numeric grades & Populates the transcript view and supports GPA/credit-based reasoning. \\
+Regulation assignments & Active rule assignments with urgency and explanation text & Demonstrates the push-notification path for user-specific obligations. \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\caption[Synthetic SIS Profile Generation]{Synthetic SIS profile generation for demonstration and evaluation users. All records are artificial, reproducible, and stored in the same schema used by the application endpoints.}
+\label{tab:synthetic_profiles}
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{figures/login.png}
+    \caption[Login Screen]{Login screen for the synthetic walkthrough user.}
+    \label{fig:login_screen}
+\end{figure}
+
+The convenient academic framing is therefore \emph{controlled synthetic data generation}: every demo profile is artificial, but internally consistent. For example, a new user is not only given a name and email; the seed path also creates completed enrollments, recalculates GPA from those grades, and records contextual flags such as internship status or minor-program participation. This allows the transcript, dashboard, schedule, RAG SIS-injection, and proactive regulation modules to be exercised end-to-end without exposing personally identifiable student data.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{figures/dashboard.png}
+    \caption[Student Dashboard]{Student dashboard populated from the synthetic SIS profile for a walkthrough user.}
+    \label{fig:student_dashboard}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{figures/transcript.png}
+    \caption[Transcript View]{Transcript view generated from synthetic completed enrollments and computed GPA.}
+    \label{fig:transcript_view}
+\end{figure}
+
 \subsubsection{RAG Knowledge Base Preparation}
 \label{sec:rag_dataset}
 The same \texttt{knowledge\_base} table serves as the retrieval index for the RAG chatbot, but the full chatbot-facing corpus has a substantially broader scope than the 935-chunk regulatory subset consumed by the event pipeline. The chatbot index is built from web pages and PDFs split into \textbf{150-word chunks with a 30-word overlap}, hard-capped to remain within the embedding model's token limit. Understanding the corpus structure is necessary to explain several design decisions in the retrieval architecture.
@@ -262,14 +306,14 @@ The same \texttt{knowledge\_base} table serves as the retrieval index for the RA
 To successfully isolate and evaluate this dataset, Orbis relies on several foundational machine learning and information theory algorithms. 
 
 \subsubsection{Shannon Entropy for URL Classification}
-To classify opaque URL structures, we measure the diversity of URL "tails" using Shannon Entropy \cite{shannon1948mathematical}. A high entropy value indicates that a URL directory is semantically informative, whereas low entropy implies repetitive or dynamic templates.
-$$H = -\sum_{i=1}^{n} p_i \cdot \log_2(p_i)$$
-Where $p_i$ is the probability of a specific URL pattern occurring within a given parent group.
+To classify opaque URL structures, we quantify the diversity of URL ``tails'' using the Shannon entropy of their empirical distribution \cite{shannon1948mathematical}. Let a parent group contain a set of $n$ distinct tail patterns, and model the tail as a discrete random variable $X$ taking values $\{x_1, \dots, x_n\}$ with probability mass function $p_i = \Pr(X = x_i)$, estimated by the relative frequency of pattern $x_i$ within the group, so that $p_i \in [0,1]$ and $\sum_{i=1}^{n} p_i = 1$. The Shannon entropy of $X$ is defined as
+$$H(X) = -\sum_{i=1}^{n} p_i \, \log_2 p_i,$$
+measured in bits, with the convention $0 \log_2 0 = 0$. The quantity $-\log_2 p_i$ is the information content of outcome $x_i$, and $H(X)$ is its expectation $\mathbb{E}[-\log_2 p_i]$, i.e. the mean information content of the distribution. Since $\log_2 p_i \le 0$ for $p_i \in (0,1]$, the leading negation guarantees $H(X) \ge 0$. The entropy attains its minimum $H(X) = 0$ when the distribution is degenerate ($p_j = 1$ for some $j$ and $p_i = 0$ otherwise), and its maximum $H(X) = \log_2 n$ when $X$ is uniform ($p_i = 1/n$ for all $i$). Accordingly, a parent group dominated by a single recurring template yields $H(X) \to 0$ and is classified as a low-information dynamic structure, whereas a group exhibiting a broad, near-uniform spread of tails yields $H(X) \to \log_2 n$ and is classified as a semantically informative directory (label \textsc{known}).
 
 \subsubsection{Vector Embeddings and Cosine Similarity}
-Text chunks are transformed into high-dimensional numerical vectors. To measure the semantic similarity between two chunks (or a user query and a document), we calculate the Cosine Similarity.
-$$\cos(\theta) = \frac{\mathbf{A} \cdot \mathbf{B}}{\|\mathbf{A}\| \|\mathbf{B}\|}$$
-Prior to clustering, we perform L2-Normalization on all vectors ($\hat{v} = \frac{v}{\|v\|}$), converting cosine distance into Euclidean distance on a unit sphere, optimizing it for K-Means processing.
+Each text chunk is mapped to a vector $\mathbf{A} \in \mathbb{R}^d$ in a $d$-dimensional embedding space by a pretrained sentence-embedding model \cite{reimers2019sentencebert}. The semantic affinity between two embeddings $\mathbf{A}$ and $\mathbf{B}$ --- whether two chunks or a query--document pair --- is quantified by their cosine similarity, the cosine of the angle $\theta$ subtended by the vectors:
+$$\cos\theta = \frac{\mathbf{A} \cdot \mathbf{B}}{\|\mathbf{A}\|\,\|\mathbf{B}\|} = \frac{\sum_{i=1}^{d} A_i B_i}{\sqrt{\sum_{i=1}^{d} A_i^2}\,\sqrt{\sum_{i=1}^{d} B_i^2}},$$
+where $\mathbf{A} \cdot \mathbf{B}$ denotes the Euclidean inner product and $\|\mathbf{A}\| = \sqrt{\mathbf{A} \cdot \mathbf{A}}$ the $\ell_2$ norm. Normalizing by the product of magnitudes renders the measure invariant to vector scale, so that it depends only on orientation; consequently $\cos\theta \in [-1, 1]$, with $1$ indicating collinear (maximally similar) vectors, $0$ orthogonality (semantic independence), and $-1$ antiparallel vectors. Prior to clustering, every embedding is $\ell_2$-normalized, $\hat{v} = v / \|v\|$, so that $\|\hat{v}\| = 1$. On the resulting unit hypersphere the cosine similarity reduces to the inner product $\hat{\mathbf{A}} \cdot \hat{\mathbf{B}}$, and squared Euclidean distance satisfies $\|\hat{\mathbf{A}} - \hat{\mathbf{B}}\|^2 = 2\,(1 - \hat{\mathbf{A}} \cdot \hat{\mathbf{B}})$, establishing a monotone correspondence between cosine distance and the squared-$\ell_2$ objective minimized by K-Means.
 
 \subsubsection{MiniBatchKMeans and Ward HAC}
 For semantic discovery of opaque URLs, we deploy MiniBatchKMeans, which utilizes random mini-batches to achieve linear time complexity $\mathcal{O}(n)$ suitable for large datasets \cite{sculley2010web}. This is followed by Ward Hierarchical Agglomerative Clustering (HAC) on the centroids. Ward's method merges clusters to minimize the total within-cluster variance \cite{ward1963hierarchical}.
@@ -297,7 +341,7 @@ Standard RAG systems suffer degraded accuracy when mixing formal rulebooks with 
 \begin{enumerate}
     \item \textbf{Step 1: Rule Engine:} Evaluates URL prefixes calculating semantic and dynamic ratios. Groups with high dynamic ratios (e.g., UUIDs) are rejected.
     \item \textbf{Step 2: Tail Signal Classification:} Computes the Shannon entropy of URL tails. High entropy groups are classified as KNOWN.
-    \item \textbf{Step 3: Semantic Discovery:} The 21,324 UNKNOWN documents undergo L2-normalization and MiniBatchKMeans clustering. Ward HAC generates 52 fine-level labeled clusters based on TF-IDF scoring.
+    \item \textbf{Step 3: Semantic Discovery:} The 21,324 UNKNOWN documents undergo L2-normalization and MiniBatchKMeans clustering \cite{macqueen1967kmeans, sculley2010web}. Ward HAC generates 52 fine-level labeled clusters based on TF-IDF scoring \cite{salton1988termweighting}.
     \item \textbf{Step 4: AI Taxonomy Mapping:} An LLM maps the deduplicated groups into a closed vocabulary of 11 top-level categories and 96 specific leaf nodes. A targeted regex overlay isolates the 935 regulation chunks into 29 distinct regulatory leaves.
 \end{enumerate}
 
@@ -323,7 +367,7 @@ Standard RAG systems suffer degraded accuracy when mixing formal rulebooks with 
     \node[process, below=0.8cm of unknown] (step3) {Step 3: MiniBatchKMeans\\+ Ward HAC Clustering};
     
     \node[process, below=1.5cm of step2] (step4) {Step 4: AI Taxonomy Mapping \& Dedup};
-    \node[process, below=0.8cm of step4] (step12) {Step 12: Regulation Overlay\\(935 chunks $\rightarrow$ 29 leaves)};
+    \node[process, below=0.8cm of step4] (step12) {Regulation Overlay\\(935 chunks $\rightarrow$ 29 leaves)};
     \node[db, below=0.8cm of step12] (final) {tree\_with\_regulations.json};
 
     \draw[arrow] (kb) -- (step1);
@@ -340,6 +384,15 @@ Standard RAG systems suffer degraded accuracy when mixing formal rulebooks with 
     }
     \caption[Taxonomy Pipeline Architecture]{Data categorization and taxonomy pipeline architecture.}
     \label{fig:taxonomy_pipeline}
+\end{figure}
+
+The resulting taxonomy is also visualized as a radial tree in Figure~\ref{fig:taxonomy_radial_tree}. This view is useful for inspection because it exposes both the high-level category balance and the dense leaf structure created by the algorithmic clustering and LLM mapping stages.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{figures/radial_tree.png}
+    \caption[Radial Taxonomy Tree]{Radial visualization of the final Orbis taxonomy tree.}
+    \label{fig:taxonomy_radial_tree}
 \end{figure}
 
 \subsection{The Orchestrator-Led Event Pipeline}
@@ -426,6 +479,14 @@ User assignments are routed through two parallel channels based on the user's \t
     \item \textbf{SQL Path (Deterministic):} Objective thresholds (e.g., GPA constraints) are evaluated instantly via Python logic against database variables.
     \item \textbf{Contextual Path (LLM Reasoned):} Complex rules are evaluated against the student's text profile in batches. The LLM determines applicability and generates a human-readable justification.
 \end{itemize}
+The resulting per-user obligations are surfaced to the student in the \textit{My Regulations} interface (Figure~\ref{fig:my_regulations}), where each matched rule is presented with its urgency, the justification produced by the matcher, and the source document it was extracted from.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{figures/myregulations.png}
+    \caption[My Regulations Interface]{The \textit{My Regulations} interface presenting a student's personalized, source-backed regulatory obligations produced by the SQL and contextual matching paths.}
+    \label{fig:my_regulations}
+\end{figure}
 
 \subsection{Agentic Assignment Submission Evaluation}
 \label{sec:submission_design}
@@ -528,6 +589,13 @@ The entire flow is exposed to the browser as a Server-Sent-Events stream: the cl
     \label{fig:submission_flow}
 \end{figure}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{figures/assignmentcheckmodule.png}
+    \caption[Assignment Review Interface]{Assignment-review interface for the agentic submission evaluator.}
+    \label{fig:assignment_review_interface}
+\end{figure}
+
 \subsection{RAG Chatbot Architecture}
 \label{sec:rag_arch}
 The Orbis RAG chatbot is a stateless, multi-agent pipeline for answering natural-language queries over the institutional knowledge base. Its design prioritizes \textit{precision} and \textit{fault tolerance} over conversational continuity: no conversation history is retained between queries, preventing context bloat and token overflow while ensuring each query receives the full retrieval budget. From the student's perspective the interaction is a single text box: they type a question and receive a streamed, citation-backed answer, as illustrated in Figure~\ref{fig:chatbot_query}.
@@ -572,7 +640,7 @@ The data pipeline that populates the \texttt{knowledge\_base} table runs in thre
 
 A critical detail is the \textit{enriched embedding format}: before vectorization, each document's title and categorical context are prepended to the content. For web pages, the full breadcrumb path is prepended (e.g., \texttt{BİLGİ'de Yaşam > Ulaşım > Servis > Güzergah}); for courses, the course code is prepended. This ensures the embedding model encodes both the content topic and its institutional category in a single vector, improving retrieval specificity for navigation-structured content.
 
-The selected embedding model, \texttt{paraphrase-multilingual-MiniLM-L12-v2}, produces 384-dimensional vectors and natively handles both Turkish and English. The model is served via a Text Embeddings Inference (TEI) container with a local in-process Hugging Face fallback. Two PostgreSQL indexes are maintained: an HNSW index on the \texttt{embedding} column (L2 distance) for approximate nearest-neighbor vector search, and a GIN index on the auto-generated \texttt{search\_vector} TSVECTOR column for full-text keyword search.
+The selected embedding model, \texttt{paraphrase-multilingual-MiniLM-L12-v2} \cite{reimers2019sentencebert}, produces 384-dimensional vectors and natively handles both Turkish and English. The model is served via a Text Embeddings Inference (TEI) container with a local in-process Hugging Face fallback. Two PostgreSQL indexes are maintained: an HNSW index on the \texttt{embedding} column (L2 distance) for approximate nearest-neighbor vector search, and a GIN index on the auto-generated \texttt{search\_vector} TSVECTOR column for full-text keyword search.
 
 \subsubsection{LLM-Based Query Routing}
 \label{sec:rag_routing}
@@ -587,7 +655,28 @@ Every query is first processed by the Router Agent (an LLM call via Groq \texttt
 
 Multi-intent queries (comparing two courses, or spanning a regulation and a calendar date) return multiple intents, each executed in parallel with a reduced per-intent budget (\texttt{TOP\_K=15}, \texttt{FINAL\_K=5}) to conserve the context window across the merged result. Router output is auto-repaired: a \texttt{sql} intent with no filters falls back to \texttt{vector}; malformed JSON produces a single \texttt{vector} intent from the raw query string.
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{figures/courses.png}
+    \caption[Courses View]{Courses view backed by structured SIS enrollment rows.}
+    \label{fig:courses_view}
+\end{figure}
+
 Calendar and schedule intents are intercepted before the retrieval engine by \texttt{context\_injectors.py}, which fetches structured data from the SIS relational tables and formats it as a structured \texttt{AKADEMİK TAKVİM} (academic calendar) or \texttt{ÖĞRENCİ HAFTALIK PROGRAMI} (personal schedule) block. This block is prepended to the document context before generation, allowing the LLM to reason over both structured SIS data and unstructured document chunks in a single prompt. Both fetchers are wrapped in try/except so SIS failures do not interrupt the retrieval pipeline.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{figures/schedule.png}
+    \caption[Weekly Schedule View]{Weekly schedule view generated from enrolled course sections and schedule rows.}
+    \label{fig:schedule_view}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{figures/calender.png}
+    \caption[Academic Calendar View]{Academic calendar view backed by the \texttt{academic\_calendar\_entries} table.}
+    \label{fig:calendar_view}
+\end{figure}
 
 \subsubsection{Hybrid Search with Two-Stage Neural Re-Ranking}
 \label{sec:rag_search}
@@ -667,7 +756,7 @@ Four metrics cover the query-to-answer lifecycle:
 \begin{itemize}
     \item \textbf{Routing Accuracy:} Percentage of queries for which the Router Agent selected the correct tool(s) and applied correct filters, adjusted for anomalies in the ground-truth dataset (e.g., filters referencing database fields that do not exist in the production schema).
     \item \textbf{Context Recall:} Percentage of queries for which the required source data was present in the final retrieved context, regardless of routing path.
-    \item \textbf{Mean Reciprocal Rank (MRR):} Ranking quality of the final reranked result set. An MRR of 1.0 indicates the relevant document is always in the top position.
+    \item \textbf{Mean Reciprocal Rank (MRR):} Ranking quality of the final reranked result set \cite{voorhees1999trec}. An MRR of 1.0 indicates the relevant document is always in the top position.
     \item \textbf{Semantic Accuracy:} LLM-judged metric (consistent with the LLM-as-a-judge methodology of Section~\ref{sec:related}) assessing whether the generated answer is factually aligned with the retrieved context and the expected answer.
 \end{itemize}
 
@@ -750,6 +839,7 @@ Submission review & Accuracy 0.938; precision 0.800; recall 1.000; $F_1$ 0.889 &
 Prompt-injection resistance & 4/4 tested cases rejected & \texttt{reject\_injection} stratum & \texttt{submissions/}\newline \texttt{results.jsonl} & Directional finding only; not a general security guarantee against all prompt-injection patterns. \\
 Submission ablation & Accuracy 0.781$\rightarrow$0.938; injection 1/4$\rightarrow$4/4 & Old single-call reviewer vs. current two-call reviewer on the same case design & Historical run recorded in Section~\ref{sec:submission_results} narrative; current \texttt{results.jsonl} & Internal baseline, not external prior work; intended to justify the design change. \\
 RAG chatbot & Routing 92.3\%; recall 94.7\%; MRR 0.94; semantic accuracy 97.6\% & 100-query bilingual benchmark & Runtime JSONL eval log (one record per query) & Scores adjusted for dataset anomalies; ground-truth answers are author-validated but concise. \\
+Embedding retrieval & Best top-3 accuracy 0.708; MRR 0.565 & 572 100-word and 416 150-word regulation QA pairs & \texttt{results/chunking}\newline \texttt{\_quality/*.json} & Local runtime comparison only; measures retrieval of the expected chunk, not final answer quality. \\
 \bottomrule
 \end{tabular}
 \end{adjustbox}
@@ -876,6 +966,29 @@ V2: Two-Call Agentic Reviewer & 0.938 & 4/4 (100\%) \\
 \end{table}
 
 Third, the only remaining error mode is over-approval of partial drafts ($2/4$ \texttt{flag\_partial} cases approved), motivating an explicit third \texttt{flag} output class as future work.
+
+\subsection{Embedding Model and Chunking Benchmark}
+\label{sec:embedding_benchmark}
+Before evaluating the full chatbot pipeline, we isolated the dense-retrieval layer on Orbis' own regulation-question data. The benchmark uses generated question-answer pairs over Istanbul Bilgi University regulation chunks. For each query, the evaluator embeds the question, retrieves the top three chunks by vector similarity, and marks the query correct if the expected chunk appears in that top-three set. Mean Reciprocal Rank (MRR) \cite{voorhees1999trec} rewards the correct chunk appearing earlier, while keyword accuracy checks whether the retrieved context contains at least half of the critical terms attached to the gold question.
+
+\begin{table}[H]
+\centering
+\begin{adjustbox}{center}
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Embedding runtime} & \textbf{Chunk} & \textbf{Questions} & \textbf{Top-3 acc.} & \textbf{MRR} & \textbf{Keyword acc.} \\ \midrule
+Ollama (\texttt{nomic-embed-text}) & 100w & 572 & 68.9\% & \textbf{0.571} & 73.8\% \\
+TEI (\texttt{all-MiniLM}) & 100w & 572 & \textbf{70.8\%} & 0.565 & 75.5\% \\
+Ollama (\texttt{nomic-embed-text}) & 150w & 416 & 67.8\% & 0.560 & 75.7\% \\
+TEI (\texttt{all-MiniLM}) & 150w & 416 & 68.0\% & 0.552 & \textbf{76.9\%} \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\caption[Embedding benchmark on Orbis regulation data]{Embedding benchmark on Orbis regulation retrieval data. Results are reproduced from \texttt{api/scripts/experiments/results/chunking\_quality/}.}
+\label{tab:embedding_benchmarks}
+\end{table}
+
+The best exact-chunk retrieval result is TEI with \texttt{all-MiniLM} on 100-word chunks (70.8\% top-three accuracy), while Ollama's \texttt{nomic-embed-text} places its successful 100-word retrievals slightly earlier on average (MRR 0.571 vs. 0.565). The 150-word setting improves keyword coverage but reduces exact-chunk retrieval, suggesting that longer chunks preserve topical vocabulary while diluting the specific rule signal needed for precise regulation lookup. This result justifies the current local MiniLM embedding default and motivates the hybrid retrieval design: embeddings provide the candidate pool, but keyword search, re-ranking, and Smart Context Expansion are still required for reliable answers.
 
 \subsection{RAG Chatbot Evaluation}
 \label{sec:rag_eval}
@@ -1051,6 +1164,176 @@ You are a knowledgeable and helpful academic assistant for Istanbul Bilgi Univer
 
 ### ANSWER:
 """.strip()
+\end{lstlisting}
+
+\addcontentsline{toc}{subsection}{A.3\quad Event Reasoning Reviewer Prompt}
+\subsection*{A.3\quad Event Reasoning Reviewer Prompt}
+\label{app:event_reviewer_prompt}
+The following prompt drives the optional LLM \texttt{ReasoningReviewer} quality gate in the event pipeline (Section~\ref{sec:event_pipeline}), with \texttt{\{candidates\_json\}} filled at runtime by the JSON-encoded candidate sentences to be judged.
+
+\begin{lstlisting}[style=promptstyle]
+You are a strict compliance quality gate for university regulations. Language can be Turkish or English.
+
+Goal: keep only explicit, person-assignable obligations.
+Reject aggressively.
+
+Decisions:
+- accept_pending: clear actor + strict obligation + concrete action + atomic sentence.
+- accept_review: probably obligation but still ambiguous/compound/long.
+- reject: definition, scope, policy narrative, article metadata, committee composition, contact info, OCR garbage, or non-assignable passive governance text.
+
+Non-assignable governance examples to reject:
+- 'shall be determined by the Academic Committee'
+- 'this regulation shall apply ...'
+- 'provisions of Article X shall apply ...'
+
+Normalization for accepted items:
+- one atomic sentence, <=180 chars,
+- remove article headers/numbers/footnotes,
+- preserve obligation meaning and key deadline/condition,
+- do not add facts not present in input.
+
+Examples:
+Input: 'Students must submit the petition by Friday.' -> accept_pending
+Input: 'Students may submit additional documents.' -> accept_review
+Input: 'Aim Article 1: This directive defines principles...' -> reject
+Input: 'German Marshall Fund ... Supporters ...' -> reject
+Input: 'The Academic Committee shall determine ...' -> reject
+
+Return ONLY JSON array. Each object keys: id, decision, reason_code, normalized_text, target_role.
+decision in {accept_pending, accept_review, reject}.
+reason_code in {strict, ambiguous_compound, non_assignable, missing_actor, missing_action, noisy_text, role_ambiguous, other}.
+target_role in {student, staff, admin, all}.
+For reject, normalized_text may be ''.
+For accept_*, normalized_text must be non-empty and <=180 chars.
+Include exactly one output object for every input id.
+Candidates:
+{candidates_json}
+\end{lstlisting}
+
+\addcontentsline{toc}{subsection}{A.4\quad Contextual Assignment Matching Prompt}
+\subsection*{A.4\quad Contextual Assignment Matching Prompt}
+\label{app:contextual_match_prompt}
+The following prompt drives the contextual (LLM) branch of per-user rule matching (Section~\ref{sec:matching_design}), with the \texttt{\{user\_context\}} and \texttt{\{rules\}} placeholders filled at runtime by the person's profile facts and the candidate rules requiring judgment.
+
+\begin{lstlisting}[style=promptstyle]
+You are checking which university regulations apply to a specific person.
+
+PERSON PROFILE:
+{user_context}
+
+CANDIDATE RULES (contextual - need your judgment):
+{rules}
+
+---
+
+For each rule, decide if it applies to THIS specific person right now.
+Consider their role, department, program, status flags, GPA, enrollment, and any other context provided.
+
+Return a JSON array - include ONLY rules that apply:
+[
+  {
+    "rule_index": 0,
+    "applies": true,
+    "ui_reason": "Student fact + rule hook, max 90 chars. Example: GPA 2.60 meets threshold."
+  }
+]
+
+If no rules apply, return [].
+Return ONLY the JSON array.
+\end{lstlisting}
+
+\addcontentsline{toc}{subsection}{A.5\quad Submission Requirement Decomposition Prompt}
+\subsection*{A.5\quad Submission Requirement Decomposition Prompt}
+\label{app:submission_requirement_prompt}
+The following prompt drives the planning step of the assignment submission agent (Section~\ref{sec:submission_design}), which decomposes an assignment into a checklist of atomic requirements, with the \texttt{\{assignment\_title\}} and \texttt{\{assignment\_description\}} placeholders filled at runtime.
+
+\begin{lstlisting}[style=promptstyle]
+You are the planning step of a university assignment evaluation agent.
+
+Read the assignment and break it into a checklist of discrete, atomic requirements
+a real submission would have to satisfy. Capture both the topic ("what it must be
+about") and any concrete deliverables ("what artifacts/sections it must contain").
+Keep each requirement short and independently checkable. Do not invent requirements
+that the assignment does not state or clearly imply.
+
+Assignment title:
+{assignment_title}
+
+Assignment description:
+{assignment_description}
+
+Respond with only valid JSON in this exact shape:
+{
+  "requirements": [
+    "first atomic requirement",
+    "second atomic requirement"
+  ]
+}
+\end{lstlisting}
+
+\addcontentsline{toc}{subsection}{A.6\quad Submission Verdict Prompt}
+\subsection*{A.6\quad Submission Verdict Prompt}
+\label{app:submission_verdict_prompt}
+The following prompt drives the evidence-based judgement step of the assignment submission agent (Section~\ref{sec:submission_design}), with placeholders filled at runtime by the assignment metadata, the requirement checklist from Section~\ref{app:submission_requirement_prompt}, the deterministic file profile, the line-by-line review, and the clipped extracted submission text.
+
+\begin{lstlisting}[style=promptstyle]
+You are a university assignment submission evaluation agent.
+
+You are given a checklist of requirements that was already derived from the
+assignment. Reason causally and requirement-by-requirement:
+1. For EACH requirement, search the submitted document for concrete evidence
+   that it is or is not satisfied. Quote or cite the line that supports your call.
+2. Explain WHY that evidence does or does not satisfy the requirement (the causal
+   link between what the assignment asks and what the document actually contains).
+3. Only after walking every requirement, synthesize one overall decision.
+
+Approve when the document is a genuine attempt that addresses the core requirements.
+Reject when it is unrelated, empty, placeholder-only, unreadable, or for another task.
+Do not grade quality, and do not reject solely for being incomplete unless it is too
+thin to be a real submission. Return concise reasoning summaries, not hidden
+chain-of-thought.
+
+Assignment title:
+{assignment_title}
+
+Assignment description:
+{assignment_description}
+
+Requirement checklist JSON:
+{requirements_json}
+
+File profile JSON:
+{file_report_json}
+
+Line-by-line review JSON:
+{line_review_json}
+
+Extracted submission text, clipped if long:
+{extracted_text}
+
+Respond with only valid JSON in this exact shape:
+{
+  "decision": "approved",
+  "confidence": 0.0,
+  "reason": "one or two sentence reason for the student",
+  "assignment_understanding": "short summary of what the assignment asks for",
+  "submission_summary": "short summary of what the student submitted",
+  "requirement_findings": [
+    {
+      "requirement": "the requirement being checked",
+      "satisfied": true,
+      "evidence_line": 1,
+      "evidence": "short quote or paraphrase from the document",
+      "reasoning": "why this evidence does or does not satisfy the requirement"
+    }
+  ],
+  "evidence": [
+    {"line": 1, "quote": "short quote or paraphrase", "why_it_matters": "short explanation"}
+  ],
+  "missing_requirements": ["important missing or mismatched requirement, if any"],
+  "flags": ["notable file/content issues, if any"]
+}
 \end{lstlisting}
 
 \end{document}
