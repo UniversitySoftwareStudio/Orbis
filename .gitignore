@@ -18,3 +18,9 @@ report/*.toc
 
 # Codex
 .codex
+
+# Deliverable LaTeX build artifacts (regenerable)
+_deliverables/*/build/
+
+# Local PPTX backup (not a deliverable)
+*.no-video-backup.pptx

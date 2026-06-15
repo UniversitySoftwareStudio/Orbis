@@ -1,6 +1,8 @@
 \documentclass[a4paper,12pt]{article}
 
 % Package Imports
+\usepackage[T1]{fontenc}    % proper 8-bit font encoding (fixes Turkish glyphs)
+\usepackage[utf8]{inputenc} % allow literal UTF-8 input (ı, ğ, ş, ö, ...)
 \usepackage{styles/ibu-thesis} % Ensure this file exists in your directory
 \usepackage{subcaption}
 \usepackage{graphicx}
@@ -14,6 +16,14 @@
 \usepackage{listings}
 \usepackage{tikz}
 \usetikzlibrary{shapes.geometric, shapes.misc, shapes.symbols, arrows.meta, positioning, fit, backgrounds, calc, decorations.pathreplacing}
+
+% Allow long \texttt{} identifiers (e.g. jina-reranker-v2-base-multilingual,
+% EventPipelineOrchestrator, requirement_findings) to break across lines
+% instead of overflowing the right margin. seqsplit permits a break after
+% every character within a monospace token.
+\usepackage{seqsplit}
+\let\origtexttt\texttt
+\renewcommand{\texttt}[1]{{\ttfamily\seqsplit{#1}}}
 
 \definecolor{orbisInk}{HTML}{1F2933}
 \definecolor{orbisBlue}{HTML}{2563A9}
@@ -57,7 +67,7 @@
 % Author Information
 \authors[1]{Atakan Gül}
 \authorsid[1]{121200152}
-\authors[2]{Arda Kaan Y{\i}ld{\i}z}
+\authors[2]{Arda Kaan Yıldız}
 \authorsid[2]{122200045}
 
 % Supervisor Information
@@ -232,7 +242,7 @@ Because the prototype is not connected to the university's live Student Informat
 
 \begin{table}[H]
 \centering
-\begin{adjustbox}{center}
+\begin{adjustbox}{max width=\linewidth,center}
 \begin{tabular}{p{4.0cm}p{5.0cm}p{5.2cm}}
 \toprule
 \textbf{Synthetic artifact} & \textbf{Generated fields} & \textbf{Purpose in Orbis} \\ \midrule
@@ -278,16 +288,16 @@ The same \texttt{knowledge\_base} table serves as the retrieval index for the RA
 
 \begin{table}[H]
     \centering
-    \begin{adjustbox}{center}
+    \begin{adjustbox}{max width=\linewidth,center}
         \begin{tabular}{l c c p{5.5cm}}
             \toprule
             \textbf{Category} & \textbf{Count} & \textbf{Share} & \textbf{Description} \\ \midrule
-            News \& Announcements & $\approx$4,160 & 33\% & Press releases, news items (\texttt{/haber/}) \\
-            Events                & $\approx$4,035 & 32\% & Past and future seminars (\texttt{/etkinlik/}) \\
-            Academic (Faculties)  & $\approx$2,268 & 18\% & Department pages, faculty bios, course lists \\
-            University Info       & $\approx$1,008 &  8\% & Rules, administration, ``About Us'' pages \\
-            Student Life          & $\approx$630   &  5\% & Transport, clubs, support services \\
-            Other                 & $\approx$507   &  4\% & International office, research centers \\
+            News \& Announcements & 4,158 & 33\% & Press releases, news items (\texttt{/haber/}) \\
+            Events                & 4,032 & 32\% & Past and future seminars (\texttt{/etkinlik/}) \\
+            Academic (Faculties)  & 2,268 & 18\% & Department pages, faculty bios, course lists \\
+            University Info       & 1,008 &  8\% & Rules, administration, ``About Us'' pages \\
+            Student Life          &   630 &  5\% & Transport, clubs, support services \\
+            Other                 &   504 &  4\% & International office, research centers \\
             \bottomrule
         \end{tabular}
     \end{adjustbox}
@@ -295,7 +305,7 @@ The same \texttt{knowledge\_base} table serves as the retrieval index for the RA
     \label{tab:web_distribution}
 \end{table}
 
-65\% of the corpus is \textit{temporal} content (news and event pages), while only $\approx$35\% is \textit{core knowledge}. This imbalance is the primary retrieval challenge: a na\"{i}ve vector search for ``scholarship policy'' risks surfacing a 2018 news article announcing a policy update rather than the current policy page. The router architecture (Section~\ref{sec:rag_arch}) addresses this by steering factual queries away from high-temporal URL prefixes.
+65\% of the corpus is \textit{temporal} content (news and event pages), while 35\% is \textit{core knowledge}. This imbalance is the primary retrieval challenge: a na\"{i}ve vector search for ``scholarship policy'' risks surfacing a 2018 news article announcing a policy update rather than the current policy page. The router architecture (Section~\ref{sec:rag_arch}) addresses this by steering factual queries away from high-temporal URL prefixes.
 
 \textbf{PDF filtering.} Approximately 2,245 scraped PDFs were analyzed. Construction tenders (\texttt{/ihaleler/}) use legalistic language (``Article 5'', ``Obligations'') that semantically overlaps with academic regulations; recruitment result lists contain thousands of proper nouns and scores that dilute the vector space. A \texttt{filter\_pdfs.py} script applied hard-exclusion rules by URL pattern and Turkish keyword (e.g.\ ``teklif mektubu''---Proposal Letter; ``sonuç listesi''---Result List), with hard-inclusion overrides protecting known high-value documents (any file containing ``erasmus'', ``staj'', ``handbook'', or ``yönerge'' is always retained). The result: \textbf{1,595 files ingested} (regulations, syllabuses, Erasmus guides, brochures), \textbf{315 discarded} (tenders, outdated recruitment lists), and \textbf{335 archived} (faculty CVs, reserved for a future Faculty Search feature).
 
@@ -732,20 +742,18 @@ The RAG pipeline was evaluated against a standardized benchmark of \textbf{100 b
 
 \begin{table}[H]
     \centering
-    \begin{adjustbox}{center}
-        \begin{tabular}{l c c l}
+        \begin{tabular}{l c l}
             \toprule
-            \textbf{Category} & \textbf{Query IDs} & \textbf{Count} & \textbf{Feature Tested} \\ \midrule
-            Direct Course Inquiries   & 001--020 & 20 & \texttt{sql} routing, exact field lookup \\
-            Bulk Course Inquiries     & 021--030 & 10 & \texttt{sql} + CSV Compacting \\
-            Personal Schedule         & 031--035 &  5 & \texttt{student\_schedule} SIS injection \\
-            Academic Calendar         & 036--040 &  5 & \texttt{calendar} SIS injection \\
-            Academic Regulations      & 041--065 & 25 & \texttt{vector} + Smart Context Expansion (PDFs) \\
-            Campus Life \& Facilities & 066--085 & 20 & \texttt{vector} retrieval via web pages \\
-            Multi-hop / Comparison    & 086--100 & 15 & Parallel multi-intent routing \\
+            \textbf{Category} & \textbf{Count} & \textbf{Feature Tested} \\ \midrule
+            Direct Course Inquiries   & 20 & \texttt{sql} routing, exact field lookup \\
+            Bulk Course Inquiries     & 10 & \texttt{sql} + CSV Compacting \\
+            Personal Schedule         &  5 & \texttt{student\_schedule} SIS injection \\
+            Academic Calendar         &  5 & \texttt{calendar} SIS injection \\
+            Academic Regulations      & 25 & \texttt{vector} + Smart Context Expansion (PDFs) \\
+            Campus Life \& Facilities & 20 & \texttt{vector} retrieval via web pages \\
+            Multi-hop / Comparison    & 15 & Parallel multi-intent routing \\
             \bottomrule
         \end{tabular}
-    \end{adjustbox}
     \caption[RAG Evaluation Benchmark Categories]{RAG evaluation benchmark: 100 bilingual queries across seven routing categories.}
     \label{tab:rag_eval_dataset}
 \end{table}
@@ -772,7 +780,6 @@ The complete pipeline processed 80 regulation sources in exactly 59 minutes. Dur
 
 \begin{table}[H]
     \centering
-    \begin{adjustbox}{center}
         \begin{tabular}{l c}
             \toprule
             \textbf{Pipeline Metric} & \textbf{Value} \\ \midrule
@@ -783,7 +790,6 @@ The complete pipeline processed 80 regulation sources in exactly 59 minutes. Dur
             Rejected Quality Candidates & 145 (45\%) \\
             \bottomrule
         \end{tabular}
-    \end{adjustbox}
     \caption[Event Extraction Pipeline Funnel]{Event extraction pipeline funnel.}
     \label{tab:extraction_funnel}
 \end{table}
@@ -796,7 +802,7 @@ The system's assignment logic was exercised against the 4 student profiles store
 
 \begin{table}[H]
     \centering
-    \begin{adjustbox}{center}
+    \begin{adjustbox}{max width=\linewidth,center}
         \begin{tabular}{p{6.2cm} c c c c c}
             \toprule
             \textbf{Profile (real \texttt{user\_profiles} row)} & \textbf{Total} & \textbf{High} & \textbf{Med} & \textbf{SQL} & \textbf{CTX} \\ \midrule
@@ -853,10 +859,10 @@ Table~\ref{tab:event_confusion} reports the confusion matrix obtained by compari
 
 \begin{table}[H]
 \centering
-\begin{tabular}{l|ccc}
-System decision $\backslash$ Gold & True obligation & Non-obligation & Ambiguous \\ \hline
-Accept & 174 & 4 & 0 \\
-Reject & 129 & 16 & 0 \\
+\begin{tabular}{l|cc}
+System decision $\backslash$ Gold & True obligation & Non-obligation \\ \hline
+Accept & 174 & 4 \\
+Reject & 129 & 16 \\
 \end{tabular}
 \caption[Event Extraction Confusion Matrix]{Confusion matrix of the event extraction pipeline against gold ground truth ($N{=}323$).}
 \label{tab:event_confusion}
@@ -882,6 +888,7 @@ Each accepted obligation is routed by the system into either the deterministic S
 
 \begin{table}[H]
 \centering
+\begin{adjustbox}{max width=\linewidth}
 \begin{tabular}{l|cccc|ccc}
 Profile & TP & FP & FN & TN & Precision & Recall & $F_1$ \\ \hline
 P1 (CSE Y2, on probation) & 23 & 19 & 26 & 110 & 0.548 & 0.469 & 0.505 \\
@@ -890,6 +897,7 @@ P3 (Year 3, internship) & 39 & 21 & 39 & 79 & 0.650 & 0.500 & 0.565 \\
 P4 (Year 4, Grad. Project) & 21 & 17 & 25 & 115 & 0.553 & 0.457 & 0.500 \\ \hline
 Overall & 107 & 69 & 133 & 403 & 0.608 & 0.446 & 0.514 \\
 \end{tabular}
+\end{adjustbox}
 \caption[Per-Profile Assignment Matching Scores]{Per-profile assignment matching scores against gold ground truth ($N{=}712$ pairs: 4 profiles $\times$ 178 accepted obligations).}
 \label{tab:matching_perprofile}
 \end{table}
@@ -973,7 +981,7 @@ Before evaluating the full chatbot pipeline, we isolated the dense-retrieval lay
 
 \begin{table}[H]
 \centering
-\begin{adjustbox}{center}
+\begin{adjustbox}{max width=\linewidth,center}
 \begin{tabular}{lccccc}
 \toprule
 \textbf{Embedding runtime} & \textbf{Chunk} & \textbf{Questions} & \textbf{Top-3 acc.} & \textbf{MRR} & \textbf{Keyword acc.} \\ \midrule
@@ -996,7 +1004,7 @@ The 100-query bilingual benchmark was executed end-to-end against the live Orbis
 
 \begin{table}[H]
     \centering
-    \begin{adjustbox}{center}
+    \begin{adjustbox}{max width=\linewidth,center}
         \begin{tabular}{l c}
             \toprule
             \textbf{Metric} & \textbf{Score} \\ \midrule
