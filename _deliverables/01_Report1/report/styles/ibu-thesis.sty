@@ -59,16 +59,16 @@
         {\Large \textsc{\@thesistitle}} \\   
         \vspace*{0.5in}
         \textit{by} \\[1\baselineskip]
-        \foreach \i in {1,...,6} {
-            \ifcsname authors@\i\endcsname 
-                \textsc{\authors[\i], \authorsid[\i]} \par
+        \foreach \authIdx in {1,...,6} {
+            \ifcsname authors@\authIdx\endcsname
+                \textsc{\authors[\authIdx], \authorsid[\authIdx]} \par
             \fi
-        }        
+        }
         \vspace*{0.5in}
         \textit{Supervised by} \\[1\baselineskip]
-        \foreach \i in {1,...,6} {
-            \ifcsname supervisors@\i\endcsname 
-                \textsc{\supervisors[\i]} \par
+        \foreach \authIdx in {1,...,6} {
+            \ifcsname supervisors@\authIdx\endcsname
+                \textsc{\supervisors[\authIdx]} \par
             \fi
         }
         \vspace*{0.5in}
