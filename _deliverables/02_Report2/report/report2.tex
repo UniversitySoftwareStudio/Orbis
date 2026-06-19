@@ -10,6 +10,7 @@
 \usepackage{booktabs}
 \usepackage{array}
 \usepackage{cite}
+\usepackage{xurl}
 \usepackage{enumitem}
 \usepackage{listings}
 \usepackage{tikz}
@@ -67,7 +68,16 @@ This report discusses the realistic constraints of Orbis. Report 1 already expla
 
 Orbis is an academic support system that uses AI and Retrieval-Augmented Generation to detect academic obligations, match them with student profiles and help students follow university regulations. Since the project is related to education and student data, it must be evaluated not only as a software product but also as an engineering system that can affect real users.
 
-\subsection{Social, Environmental and Economic Impact}
+\subsection{Design}
+The design of Orbis was shaped by the realistic constraints of a senior engineering project: limited time, limited budget, no official production access to the Student Information System, and the need to avoid unsafe automated academic decisions. The system was therefore designed as an advisory and evidence-based support layer instead of a final authority.
+
+The main design decision is to keep the system modular. The knowledge-base crawler, taxonomy generation pipeline, RAG search service, event extraction pipeline, assignment matcher, submission agent, database layer and frontend are separate components. This makes the project easier to test and maintain because a weak component can be improved without rewriting the whole system. For example, the assignment matcher can be replaced or re-trained while the regulation crawler and source-backed search interface remain usable.
+
+The second design constraint is traceability. Orbis does not only produce an answer; it also stores source URLs, evidence text, extracted rules, reasoning logs and review states. This is important because an academic support system must allow students, advisors and administrators to inspect why a recommendation was generated. A black-box design would be faster to prototype, but it would not be acceptable for educational decision support.
+
+The third design constraint is deployability within a university environment. The selected stack, FastAPI, PostgreSQL, \texttt{pgvector}, React and open-source Python tooling, can run locally or on a small server. This keeps the project within a student budget and avoids dependence on expensive proprietary infrastructure. The design also allows sensitive student data to be minimized before any LLM call, and it can be moved to an on-premise model if institutional policy requires it.
+
+\subsection[Social, Environmental and Economic Impact within the Scope of the UN Sustainable Development Goals]{Social, Environmental and Economic Impact within the Scope of\\ the UN Sustainable Development Goals}
 For an engineering project to be successful, it should create a useful effect for people or institutions. Orbis mainly creates a social impact by helping students understand academic rules earlier and more clearly. University regulations can be long, scattered and difficult to follow. Students may miss deadlines not because they are careless, but because they do not know which regulation applies to them. Orbis reduces this problem by turning official regulation text into personalized, source-backed academic tasks.
 
 This social impact is related to the United Nations Sustainable Development Goal 4, Quality Education, and Goal 10, Reduced Inequalities \cite{unSdgs}. Students with less advising experience, double-major students, scholarship students, internship students and students near graduation can benefit from earlier warnings. However, wrong advice can also harm students. For this reason, Orbis should not replace advisors or Student Affairs. It should work as a support tool that shows the source document and allows human review when needed.
@@ -76,7 +86,12 @@ The environmental impact is smaller but still positive. A proactive digital advi
 
 Economically, Orbis can reduce repeated advising workload. In the evaluated run, the event pipeline processed 80 regulation sources, 935 regulation chunks and 323 candidate rules in 59 minutes, finally accepting 178 actionable obligations. Doing the same filtering manually would require much more human time. The project therefore has an economic benefit for the university by helping advisors and administrative units focus on more complex cases.
 
-\subsection{Cost and Time Analysis}
+\subsection{Project Outcomes}
+The expected outcome of the project is a working prototype that shows how institutional regulations can be transformed into explainable academic support tasks. The project outcome is not a fully autonomous advising authority. Instead, the outcome is a decision-support system that can surface relevant regulations, reduce information overload, and provide evidence for human review.
+
+The measured outcome also shows where the design needs improvement. Event extraction reached high precision, but assignment matching was weaker and should remain reviewable. Therefore, the project outcome is useful as a prototype and as a foundation for future institutional deployment, but it requires stronger integration, broader evaluation and policy approval before production use.
+
+\subsection{Cost Analysis}
 The main cost of Orbis is labor. The software stack is mostly open source and the project was developed with existing student hardware. Still, the time spent on research, design, implementation, testing and reporting should be counted as a real engineering cost.
 
 For this analysis, the hourly engineering labor cost is estimated as 300 TL/hour.
@@ -106,11 +121,20 @@ The technical cash cost is much lower:
 
 The approximate total research and development cost, including labor and technical costs, is therefore around 269{,}310 TL. If Orbis becomes a production system, the main continuing cost would be server hosting and maintenance rather than LLM usage.
 
-\subsection{Standards}
-In this section, the standards of NSPE Code of Ethics, IEEE software engineering standards and relevant data-protection/accessibility regulations are discussed.
+\subsection{Sustainability}
+The sustainability of Orbis can be discussed in three dimensions: educational sustainability, environmental sustainability and maintenance sustainability.
 
-\subsubsection{NSPE Code Of Ethics}
-The NSPE Code of Ethics states that engineers should hold public safety, health and welfare paramount \cite{nspeCode}. In Orbis, the main public welfare issue is student academic welfare. An incorrect notification or wrong submission decision can affect a student's academic progress.
+Educationally, Orbis supports sustainable academic advising because it reduces dependence on repeated one-to-one explanations of the same regulation. Once a regulation is crawled, structured and reviewed, it can support many students. This is related to SDG 4 because it improves access to academic information, and to SDG 10 because students with less personal advising support can still receive early warnings \cite{unSdgs}.
+
+Environmentally, the project is lightweight. It does not require special hardware, mechanical components or continuous high-power computation. The design uses cached embeddings, stored source chunks and incremental reprocessing so that unchanged regulations do not need to be repeatedly embedded or analyzed. This reduces unnecessary model usage and supports a lower-compute deployment.
+
+From a maintenance perspective, sustainability means that the system can survive regulation changes, semester changes and model changes. Orbis stores source references, timestamps, database records and evaluation data. Future maintainers can re-crawl official pages, compare changed documents, re-run evaluation cases and roll back a weaker prompt or model. This is important because a system that cannot be maintained safely would not be sustainable in a university setting.
+
+\subsection{Standards}
+In this section, the standards of engineering ethics, IEEE software engineering standards, IET professional conduct, EU regulations, Turkish regulations, information security and accessibility are discussed.
+
+\subsubsection{Engineering Code Of Conduct}
+The NSPE Code of Ethics states that engineers should hold public safety, health and welfare paramount \cite{nspeCode}. The ACM/IEEE Software Engineering Code of Ethics also emphasizes public interest, client and employer responsibilities, product quality, judgment, management, profession, colleagues and self-improvement \cite{acmIeeeCode}. In Orbis, the main public welfare issue is student academic welfare. An incorrect notification or wrong submission decision can affect a student's academic progress.
 
 For this reason, Orbis follows these ethical principles:
 
@@ -121,7 +145,7 @@ For this reason, Orbis follows these ethical principles:
     \item Systems that affect users should be explainable and reviewable.
 \end{itemize}
 
-In the project, these principles were applied by keeping source URLs, evidence text, audit logs and human appeal paths. The report also states the weak points of the system instead of presenting the prototype as fully complete.
+In the project, these principles were applied by keeping source URLs, evidence text, audit logs and human appeal paths. The report also states the weak points of the system instead of presenting the prototype as fully complete. The IET Rules of Conduct are also relevant because they require professional conduct, integrity and responsible engineering behavior \cite{ietRules}. For Orbis, this means the system must communicate uncertainty and should not pretend to be an official university decision maker.
 
 \subsubsection{IEEE Standards}
 The following IEEE/ISO/IEC standards are related to Orbis:
@@ -133,21 +157,41 @@ The following IEEE/ISO/IEC standards are related to Orbis:
     \item \textbf{ISO/IEC/IEEE 24748-7000-2022 -- Ethical Concerns During System Design.} This standard is relevant because Orbis uses AI in an educational decision-support setting \cite{ieee24748_7000}.
 \end{itemize}
 
-In addition to IEEE standards, the project should follow data protection and accessibility principles. GDPR is relevant for European data-protection expectations \cite{gdpr2016}, and KVKK Law No. 6698 is relevant for personal data processing in Turkey \cite{kvkk6698}. Since Orbis can process GPA status, scholarship information, internship status and course enrollment, only necessary student data should be used. The interface should also follow WCAG 2.2 accessibility principles so that academic support is usable by different students \cite{wcag22}.
+\subsubsection{Software Quality, Security and Accessibility Standards}
+Orbis should also be evaluated with general software quality and information security standards. ISO/IEC 25010 is relevant because it defines quality characteristics such as functional suitability, reliability, usability, security, maintainability and portability \cite{iso25010}. These characteristics map directly to the project: Orbis must return relevant academic information, remain available during advising periods, be understandable to students, protect private records, and remain maintainable when regulations change.
 
-\section{Risk Analysis And Changes}
-In this section, the main project risks and the changes or backup plans for these risks are explained.
+ISO/IEC 27001 is relevant for information security management because Orbis can process student profile fields and academic records \cite{iso27001}. A production deployment should include access control, least-privilege database users, audit logging, backup procedures and incident response. For the Turkish context, TS ISO/IEC 27001 certification guidance from the Turkish Standards Institution is also relevant for institutional information security practices \cite{tse27001}.
 
+The interface should follow WCAG 2.2 accessibility principles so that academic support is usable by students with different needs \cite{wcag22}. This requires readable text contrast, keyboard navigation, clear focus states, understandable error messages and accessible forms.
+
+\subsubsection{EU And Turkish Legal Standards}
+GDPR is relevant for European data-protection expectations \cite{gdpr2016}, and KVKK Law No. 6698 is directly relevant for personal data processing in Turkey \cite{kvkk6698}. Since Orbis can process GPA status, scholarship information, internship status and course enrollment, only necessary student data should be used. Personal data should be processed for a clear academic-support purpose, retained only as long as needed, and protected with access control.
+
+The EU Artificial Intelligence Act is also relevant because Orbis uses AI in an education-related setting \cite{euAiAct2024}. Even though this project is a prototype, the design should follow the same risk-aware direction: human oversight, transparency, data governance, logging, evaluation and clear limitation notices. In practice, this means Orbis should provide source-backed outputs and should keep human advisors in the final decision loop.
+
+\section{Risks}
+In this section, the main project risks, potential outcomes, mitigation actions and backup plans are explained.
+
+\subsection{Risk Analysis}
+Risk analysis for Orbis focuses on risks that can affect students, advisors, university data and the reliability of academic support. Because Orbis is an AI-assisted system, the most important risks are incorrect academic advice, missed obligations, stale regulations, privacy leakage, prompt injection and low user trust. These risks and their backup plans are listed below.
+
+\subsection{Potential Risks and B Plan}
 \begin{itemize}
-    \item \textbf{Risk 1: Incorrect academic advice.} The assignment matcher can assign a regulation to the wrong student profile. Change: every assignment should include source evidence and should be dismissible or reviewable. B plan: high-impact assignments should be routed to an advisor before becoming final.
-    \item \textbf{Risk 2: Missed obligations.} A real obligation may not be assigned to a student. Change: the full source document remains searchable through RAG even if the event pipeline misses it. B plan: add a recall-oriented second pass and advisor escalation for disputed cases.
-    \item \textbf{Risk 3: Prompt injection in submitted documents.} A submitted file may contain text that tries to manipulate the LLM. Change: the submission agent first decomposes assignment requirements and then checks the file against those requirements. B plan: suspicious or low-confidence cases should go directly to human review.
-    \item \textbf{Risk 4: Stale regulations.} University rules can change after the first crawl. Change: store source timestamps and content hashes. B plan: schedule re-crawls and keep semester-specific regulation snapshots.
-    \item \textbf{Risk 5: Privacy leakage.} Student profiles contain sensitive academic information. Change: send only necessary fields to the model and log outbound prompts. B plan: use an on-premise model or anonymized profiles for sensitive cases.
-    \item \textbf{Risk 6: SIS integration delay.} Direct integration with the official Student Information System may not be immediately available. Change: use synthetic profiles and manual CSV/profile import during the prototype stage. B plan: keep Orbis as an advisory layer until official integration is approved.
+    \item \textbf{Incorrect academic advice.} Potential outcome: a student receives an irrelevant or harmful obligation. Mitigation: show source evidence, confidence and review state for every assignment. B plan: route high-impact cases to an advisor before final use.
+    \item \textbf{Missed obligation.} Potential outcome: a student does not receive a warning for a real requirement. Mitigation: keep the full regulation searchable through RAG and evaluate recall. B plan: run a second recall-oriented extraction pass and advisor review.
+    \item \textbf{Prompt injection in submissions.} Potential outcome: uploaded text tries to manipulate the submission agent. Mitigation: separate requirement decomposition from file checking and test malicious cases. B plan: send suspicious or low-confidence cases to human review.
+    \item \textbf{Stale regulation.} Potential outcome: a changed rule remains outdated in the system. Mitigation: store source timestamps, content hashes and regulation snapshots. B plan: schedule re-crawls and keep semester-specific versions.
+    \item \textbf{Privacy leakage.} Potential outcome: sensitive profile information is exposed unnecessarily. Mitigation: minimize prompt fields, restrict logs and apply access control. B plan: use anonymized profiles or an on-premise model.
+    \item \textbf{SIS integration delay.} Potential outcome: the system cannot access official live student data. Mitigation: support synthetic profiles and manual import during prototype testing. B plan: keep Orbis as an advisory layer until official integration is approved.
+    \item \textbf{Low user trust.} Potential outcome: students or advisors ignore the system. Mitigation: explain sources, uncertainty and limitations clearly. B plan: start with optional pilot usage and collect feedback.
 \end{itemize}
 
-Change management should be handled carefully. Regulation changes should trigger re-crawling and re-extraction. Prompt or model changes should be tested on the stored evaluation set before being used. Database changes should use migrations and backups. If a new model or prompt performs worse, the system should be rolled back to the previous stable version.
+\subsection{Risk and Change Management}
+Risk management in Orbis follows the idea of identifying risks early, estimating their effect, applying mitigation and keeping a backup plan. The most important principle is that risky changes should be tested before they affect students. A new prompt, model, crawler rule or database migration should be evaluated on stored test cases and reviewed against previous results.
+
+Regulation changes should trigger re-crawling and re-extraction. Prompt or model changes should be tested on the stored evaluation set before being used. Database changes should use migrations and backups. If a new model or prompt performs worse, the system should be rolled back to the previous stable version. For production, a change log should record the date, changed component, reason for change, evaluation result and rollback plan.
+
+The project also needs human change management. Advisors and administrative units should know that Orbis is a support tool, not a replacement. Students should be told when a task is AI-generated and should have a way to request correction. This keeps the system aligned with ethical engineering practice and reduces the risk of over-trusting the prototype.
 
 \subsection{Challenges}
 In this section we can summarize the challenges faced during the project:
